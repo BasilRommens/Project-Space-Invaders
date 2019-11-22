@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.15)
+project(Project-Space-Invaders)
+
+SET(CMAKE_CXX_STANDARD 11)
+
+add_executable(Project-Space-Invaders main.cpp)
