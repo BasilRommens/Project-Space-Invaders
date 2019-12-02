@@ -16,4 +16,7 @@ add_executable(Project-Space-Invaders
         src/Position.cpp
         src/Game.cpp)
 
+add_executable(test src/testMain.cpp)
+
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
+target_link_libraries(test "-lsfml-graphics -lsfml-window -lsfml-system")

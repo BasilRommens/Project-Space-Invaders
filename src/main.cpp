@@ -12,8 +12,9 @@
 
 int main(int argc, char** argv)
 {
-    sf::RenderWindow renderWindow(sf::VideoMode(640, 480), "SFML Demo");
 
+
+    /*
     sf::Event event;
 
     // If true, you will continue to receive keyboard events when a key is held down
@@ -57,5 +58,5 @@ int main(int argc, char** argv)
         renderWindow.clear();
         renderWindow.display();
     }
-
+    */
 }
