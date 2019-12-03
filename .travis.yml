@@ -1,3 +1,4 @@
+# Credits to Stijn Rosaer
 sudo: false
 dist: xenial
 language: cpp
@@ -17,7 +18,7 @@ before_install:
   - sudo apt-get install -y libjpeg62-dev libsfml-dev libsndfile1-dev libglew1.5 libglew1.5-dev libfreetype6 libjpeg-turbo8 libjpeg8 libopenal-data libopenal1  libxrandr2 libxrender1 libsoil1
 
   - mkdir cmake-dist
-  - travis_retry wget -qO- https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.tar.gz | sudo tar --strip-components=1 -C cmake-dist -xz
+  - travis_retry wget -qO- https://cmake.org/files/v3.15/cmake-3.15.1-Linux-x86_64.tar.gz | sudo tar --strip-components=1 -C cmake-dist -xz
   - export PATH=$PWD/cmake-dist/bin:$PATH;
 
 install:
