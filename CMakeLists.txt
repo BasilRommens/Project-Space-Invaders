@@ -14,7 +14,7 @@ add_executable(Project-Space-Invaders
         src/BGTile.cpp
         src/main.cpp
         src/Position.cpp
-        src/Game.cpp)
+        src/Game.cpp src/Stopwatch.cpp src/Stopwatch.h)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
