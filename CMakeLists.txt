@@ -14,10 +14,10 @@ add_executable(Project-Space-Invaders
         src/BGTile.cpp
         src/main.cpp
         src/Position.cpp
-        src/Game.cpp src/Stopwatch.cpp src/Stopwatch.h)
+        src/Game.cpp src/utils/Stopwatch.cpp src/utils/Stopwatch.h src/utils/Transformation.cpp src/utils/Transformation.h)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
 
-add_executable(test src/testMain.cpp)
+add_executable(test src/testMain.cpp src/utils/Stopwatch.cpp)
 target_link_libraries(test "-lsfml-graphics -lsfml-window -lsfml-system")

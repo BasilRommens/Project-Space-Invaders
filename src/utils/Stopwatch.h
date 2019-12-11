@@ -10,10 +10,15 @@
 
 #include <chrono>
 
+// TODO make singleton pattern of them
 class Stopwatch {
 private:
+    static Stopwatch* instance;
     std::chrono::time_point<std::chrono::system_clock> startTime{};
     std::chrono::time_point<std::chrono::system_clock> stopTime{};
+
+    Stopwatch();
+
 public:
     void start();
 
@@ -26,6 +31,8 @@ public:
     std::chrono::duration<double> getTotalDif() const;
 
     void reset();
+
+    static Stopwatch* getStopwatch();
 };
 
 #endif //PROJECT_SPACE_INVADERS_STOPWATCH_H

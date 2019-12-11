@@ -7,11 +7,6 @@
 
 #include "Stopwatch.h"
 
-std::chrono::time_point<std::chrono::system_clock> Stopwatch::get_start_time() const
-{
-    return startTime;
-}
-
 void Stopwatch::start()
 {
     startTime = std::chrono::system_clock::now();
@@ -19,7 +14,6 @@ void Stopwatch::start()
 
 std::chrono::duration<double> Stopwatch::get_lap() const
 {
-
     auto test = std::chrono::system_clock::now();
     return std::chrono::system_clock::now()-startTime;
 }
@@ -38,3 +32,13 @@ void Stopwatch::reset()
 {
     start();
 }
+
+Stopwatch* Stopwatch::getStopwatch()
+{
+    if (!instance)
+        instance = new Stopwatch();
+    return instance;
+}
+
+Stopwatch::Stopwatch()
+        :startTime(std::chrono::system_clock::now()) { }

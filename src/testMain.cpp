@@ -6,11 +6,12 @@
  */
 
 #include <SFML/Graphics.hpp>
+#include "utils/Stopwatch.h"
 #include <unordered_map>
 #include <iostream>
 #include <list>
 
-int main()
+void draw()
 {
     sf::Texture texture;
     texture.loadFromFile("img/alien.png");
@@ -34,6 +35,51 @@ int main()
         renderWindow.draw(sprite);
         renderWindow.display();
     }
+}
+
+#include <iostream>
+
+using namespace std;
+
+class Singleton {
+    static Singleton* instance;
+    int data;
+
+    // Private constructor so that no objects can be created.
+    Singleton()
+    {
+        data = 0;
+    }
+
+public:
+    static Singleton* getInstance()
+    {
+        if (!instance)
+            instance = new Singleton;
+        return instance;
+    }
+
+    int getData()
+    {
+        return this->data;
+    }
+
+    void setData(int data)
+    {
+        this->data = data;
+    }
+};
+
+//Initialize pointer to zero so that it can be initialized in first call to getInstance
+Stopwatch* Stopwatch::instance = nullptr;
+
+int main()
+{
+    Stopwatch* s = s->getStopwatch();
+
+    s->start();
+    s->stop();
+    std::cout << s->getTotalDif().count() << std::endl;
 
     // TODO figuring out how keyboard inputs can change the location of the player
     return 0;
