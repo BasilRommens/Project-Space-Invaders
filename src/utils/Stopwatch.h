@@ -10,28 +10,49 @@
 
 #include <chrono>
 
-// TODO make singleton pattern of them
 class Stopwatch {
 private:
-    static Stopwatch* instance;
-    std::chrono::time_point<std::chrono::system_clock> startTime{};
-    std::chrono::time_point<std::chrono::system_clock> stopTime{};
+    static Stopwatch* instance; /** @var instance: The sole instance of the Stopwatch class */
+    std::chrono::time_point<std::chrono::system_clock> startTime{}; /** @var startTime: The time at which the stopwatch object is started */
+    std::chrono::time_point<std::chrono::system_clock> stopTime{}; /** @var stopTime: The time at which the stopwatch object is stopped */
 
+    /**
+     * @brief The default constructor of Stopwatch
+     */
     Stopwatch();
 
 public:
+    /**
+     * @brief sets the timepoint at which it starts at the current time
+     */
     void start();
 
-    std::chrono::time_point<std::chrono::system_clock> get_start_time() const;
-
+    /**
+     *
+     * @return the duration from the start time to the current time without changing the stop time
+     */
     std::chrono::duration<double> get_lap() const;
 
+    /**
+     * @brief sets the stop time of the stopwatch to the current time
+     */
     void stop();
 
+    /**
+     *
+     * @return the duration from the start time to the stop time
+     */
     std::chrono::duration<double> getTotalDif() const;
 
+    /**
+     * @brief resets the stopwatch by setting the start time to the current time
+     */
     void reset();
 
+    /**
+     *
+     * @return The sole instance of an object of this class
+     */
     static Stopwatch* getStopwatch();
 };
 
