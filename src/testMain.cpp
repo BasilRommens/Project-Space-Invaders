@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <iostream>
 #include <list>
+#include <memory>
 
 void draw()
 {
@@ -71,11 +72,22 @@ public:
     }
 };
 
-//Initialize pointer to zero so that it can be initialized in first call to getInstance
-
 int main()
 {
-    Transformation a = Transformation::getTransformation();
+    std::shared_ptr<Utils::Transformation> a = Utils::Transformation::getTransformation();
+    std::shared_ptr<Utils::Transformation> b = Utils::Transformation::getTransformation();
+    Utils::Stopwatch s = Utils::Stopwatch::getStopwatch();
+    Utils::Stopwatch t = Utils::Stopwatch::getStopwatch();
+
+    std::cout << a << "=" << b << std::endl;
+    std::cout << &s << "=" << &t << std::endl;
+
+    if (&a==&b) {
+        std::cout << "Singleton pattern working for Transformation" << std::endl;
+    }
+    if (&s==&t) {
+        std::cout << "Singleton pattern working for Stopwatch" << std::endl;
+    }
 
     // TODO figuring out how keyboard inputs can change the location of the player
     return 0;

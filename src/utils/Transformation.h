@@ -25,7 +25,7 @@ namespace Utils {
 
     class Transformation {
     private:
-        static Transformation instance; /** @var instance: The sole instance of the Transformation class */
+        static std::shared_ptr<Transformation> instance; /** @var instance: The sole instance of the Transformation class */
 
         /**
          * @brief The default constructor of Transformation
@@ -36,12 +36,12 @@ namespace Utils {
         /**
          * @return The sole instance of an object of this class
          */
-        static Transformation getTransformation();
+        static std::shared_ptr<Transformation>& getTransformation();
 
         /**
          * @param x: The x position in the [-4,4] x [-3, 3] coordinate system
          * @param y: The y position in the [-4,4] x [-3, 3] coordinate system
-         * @param width: The width of the screen
+         * @param width: The width of the window
          * @return The coordinates in pixels of the coordinates in the [-4,4] x [-3, 3] coordinate system
          */
         std::pair<unsigned int, unsigned int> operator()(double x, double y, unsigned int width);

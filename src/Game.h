@@ -8,6 +8,8 @@
 #ifndef PROJECT_SPACE_INVADERS_GAME_H
 #define PROJECT_SPACE_INVADERS_GAME_H
 
+#include "Entity/Entity.h"
+
 class Game {
 
 };

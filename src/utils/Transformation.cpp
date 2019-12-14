@@ -7,14 +7,17 @@
 
 #include "Transformation.h"
 
-Utils::Transformation::Transformation()
-{
+// set the instance of the transformation to nullptr to be not pointing to anything
+std::shared_ptr<Utils::Transformation> Utils::Transformation::instance = nullptr;
 
-}
+Utils::Transformation::Transformation() { }
 
-Utils::Transformation Utils::Transformation::getTransformation()
+std::shared_ptr<Utils::Transformation>& Utils::Transformation::getTransformation()
 {
-    static Transformation instance = Transformation();
+    // If the Transformation object has not yet been constructed
+    if (!instance) {
+        instance = std::shared_ptr<Transformation>(new Transformation());
+    }
     return instance;
 }
 

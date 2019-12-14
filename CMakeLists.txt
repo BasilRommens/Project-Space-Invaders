@@ -21,5 +21,5 @@ add_executable(Project-Space-Invaders
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
 
-add_executable(test src/testMain.cpp src/utils/Stopwatch.cpp)
+add_executable(test src/testMain.cpp src/utils/Stopwatch.cpp src/utils/Transformation.cpp)
 target_link_libraries(test "-lsfml-graphics -lsfml-window -lsfml-system")
