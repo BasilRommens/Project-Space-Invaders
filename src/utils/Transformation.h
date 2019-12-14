@@ -12,6 +12,7 @@
 #include <tuple>
 #include <cmath>
 #include <exception>
+#include <iostream>
 #include <memory>
 
 namespace Utils {

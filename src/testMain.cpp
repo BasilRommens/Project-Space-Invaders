@@ -12,6 +12,7 @@
 #include <iostream>
 #include <list>
 #include <memory>
+#include <zconf.h>
 
 void draw()
 {
@@ -39,56 +40,18 @@ void draw()
     }
 }
 
-#include <iostream>
-
-using namespace std;
-
-class Singleton {
-    static Singleton* instance;
-    int data;
-
-    // Private constructor so that no objects can be created.
-    Singleton()
-    {
-        data = 0;
+void mainKeyboard()
+{
+    while (true) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+            std::cout << "K" << std::endl;
+        }
+        usleep(100000);
     }
-
-public:
-    static Singleton* getInstance()
-    {
-        if (!instance)
-            instance = new Singleton;
-        return instance;
-    }
-
-    int getData()
-    {
-        return this->data;
-    }
-
-    void setData(int data)
-    {
-        this->data = data;
-    }
-};
+}
 
 int main()
 {
-    std::shared_ptr<Utils::Transformation> a = Utils::Transformation::getTransformation();
-    std::shared_ptr<Utils::Transformation> b = Utils::Transformation::getTransformation();
-    std::shared_ptr<Utils::Stopwatch> s = Utils::Stopwatch::getStopwatch();
-    std::shared_ptr<Utils::Stopwatch> t = Utils::Stopwatch::getStopwatch();
-
-    std::cout << a << "=" << b << std::endl;
-    std::cout << s << "=" << t << std::endl;
-
-    if (&a==&b) {
-        std::cout << "Singleton pattern working for Transformation" << std::endl;
-    }
-    if (&s==&t) {
-        std::cout << "Singleton pattern working for Stopwatch" << std::endl;
-    }
-
-    // TODO figuring out how keyboard inputs can change the location of the player
+    mainKeyboard();
     return 0;
 }
