@@ -12,9 +12,22 @@ Transformation::Transformation()
 
 }
 
-Transformation* Transformation::getTransformation()
+Transformation Transformation::getTransformation()
 {
-    if (!instance)
-        instance = new Transformation();
+    static Transformation instance = Transformation();
     return instance;
+}
+
+std::pair<unsigned int, unsigned int> Transformation::operator()(double x, double y, unsigned int width)
+{
+    double scaleWidth = width/(-lowerX+upperX);
+    double height = width*(-lowerY*upperY)/(-lowerX*upperX);
+    double scaleHeight = height/(-lowerY+upperY);
+
+    // change the coordinates in the [-4,4] x [-3,3] system to the screen pixels
+    double retX = (x-lowerX)*scaleWidth;
+    double retY = (y-lowerY)*scaleHeight;
+
+    return std::make_pair(std::round(retX), std::round(retY));
+
 }

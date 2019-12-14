@@ -13,7 +13,7 @@
 
 class Stopwatch {
 private:
-    static Stopwatch* instance; /** @var instance: The sole instance of the Stopwatch class */
+    static Stopwatch instance; /** @var instance: The sole instance of the Stopwatch class */
     std::chrono::time_point<std::chrono::system_clock> startTime{}; /** @var startTime: The time at which the stopwatch object is started */
     std::chrono::time_point<std::chrono::system_clock> stopTime{}; /** @var stopTime: The time at which the stopwatch object is stopped */
 
@@ -51,10 +51,9 @@ public:
     void reset();
 
     /**
-     *
      * @return The sole instance of an object of this class
      */
-    static Stopwatch* getStopwatch();
+    static Stopwatch getStopwatch();
 };
 
 #endif //PROJECT_SPACE_INVADERS_STOPWATCH_H

@@ -33,10 +33,9 @@ void Stopwatch::reset()
     start();
 }
 
-Stopwatch* Stopwatch::getStopwatch()
+Stopwatch Stopwatch::getStopwatch()
 {
-    if (!instance)
-        instance = new Stopwatch();
+    static Stopwatch instance;
     return instance;
 }
 

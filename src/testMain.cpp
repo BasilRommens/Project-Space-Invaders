@@ -6,6 +6,7 @@
  */
 
 #include <SFML/Graphics.hpp>
+#include "utils/Transformation.h"
 #include "utils/Stopwatch.h"
 #include <unordered_map>
 #include <iostream>
@@ -71,15 +72,10 @@ public:
 };
 
 //Initialize pointer to zero so that it can be initialized in first call to getInstance
-Stopwatch* Stopwatch::instance = nullptr;
 
 int main()
 {
-    Stopwatch* s = s->getStopwatch();
-
-    s->start();
-    s->stop();
-    std::cout << s->getTotalDif().count() << std::endl;
+    Transformation a = Transformation::getTransformation();
 
     // TODO figuring out how keyboard inputs can change the location of the player
     return 0;

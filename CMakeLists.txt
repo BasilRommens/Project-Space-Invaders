@@ -1,20 +1,22 @@
 cmake_minimum_required(VERSION 3.15)
 project(Project-Space-Invaders)
 
-SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD 14)
 
 add_executable(Project-Space-Invaders
         src/main.cpp
-        src/Entity.cpp
-        src/Ship.cpp
-        src/PlayerShip.cpp
-        src/EnemyShip.cpp
-        src/Bullet.cpp
-        src/World.cpp
-        src/BGTile.cpp
+        src/Entity/Entity.cpp
+        src/Entity/Ship.cpp
+        src/Entity/PlayerShip.cpp
+        src/Entity/EnemyShip.cpp
+        src/Entity/Bullet.cpp
+        src/Entity/World.cpp
+        src/Entity/BGTile.cpp
         src/main.cpp
-        src/Position.cpp
-        src/Game.cpp src/utils/Stopwatch.cpp src/utils/Stopwatch.h src/utils/Transformation.cpp src/utils/Transformation.h)
+        src/Entity/Position.cpp
+        src/Game.cpp
+        src/utils/Stopwatch.cpp
+        src/utils/Transformation.cpp)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
