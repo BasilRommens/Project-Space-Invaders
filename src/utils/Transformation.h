@@ -34,11 +34,16 @@ namespace Utils {
 
     public:
         /**
-         *
          * @return The sole instance of an object of this class
          */
         static Transformation getTransformation();
 
+        /**
+         * @param x: The x position in the [-4,4] x [-3, 3] coordinate system
+         * @param y: The y position in the [-4,4] x [-3, 3] coordinate system
+         * @param width: The width of the screen
+         * @return The coordinates in pixels of the coordinates in the [-4,4] x [-3, 3] coordinate system
+         */
         std::pair<unsigned int, unsigned int> operator()(double x, double y, unsigned int width);
     };
 
