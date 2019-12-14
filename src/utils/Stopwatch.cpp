@@ -7,6 +7,8 @@
 
 #include "Stopwatch.h"
 
+std::shared_ptr<Utils::Stopwatch> Utils::Stopwatch::instance = nullptr;
+
 void Utils::Stopwatch::start()
 {
     startTime = std::chrono::system_clock::now();
@@ -33,9 +35,11 @@ void Utils::Stopwatch::reset()
     start();
 }
 
-Utils::Stopwatch Utils::Stopwatch::getStopwatch()
+std::shared_ptr<Utils::Stopwatch>& Utils::Stopwatch::getStopwatch()
 {
-    static Stopwatch instance;
+    if (!instance) {
+        instance = std::make_shared<Stopwatch>(Stopwatch());
+    }
     return instance;
 }
 

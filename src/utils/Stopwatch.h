@@ -10,12 +10,13 @@
 #define PROJECT_SPACE_INVADERS_STOPWATCH_H
 
 #include <chrono>
+#include <memory>
 
 namespace Utils {
 
     class Stopwatch {
     private:
-        static Stopwatch instance; /** @var instance: The sole instance of the Stopwatch class */
+        static std::shared_ptr<Stopwatch> instance; /** @var instance: The sole instance of the Stopwatch class */
         std::chrono::time_point<std::chrono::system_clock> startTime{}; /** @var startTime: The time at which the stopwatch object is started */
         std::chrono::time_point<std::chrono::system_clock> stopTime{}; /** @var stopTime: The time at which the stopwatch object is stopped */
 
@@ -55,7 +56,7 @@ namespace Utils {
         /**
          * @return The sole instance of an object of this class
          */
-        static Stopwatch getStopwatch();
+        static std::shared_ptr<Stopwatch>& getStopwatch();
     };
 
 }

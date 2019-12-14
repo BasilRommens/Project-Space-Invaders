@@ -76,11 +76,11 @@ int main()
 {
     std::shared_ptr<Utils::Transformation> a = Utils::Transformation::getTransformation();
     std::shared_ptr<Utils::Transformation> b = Utils::Transformation::getTransformation();
-    Utils::Stopwatch s = Utils::Stopwatch::getStopwatch();
-    Utils::Stopwatch t = Utils::Stopwatch::getStopwatch();
+    std::shared_ptr<Utils::Stopwatch> s = Utils::Stopwatch::getStopwatch();
+    std::shared_ptr<Utils::Stopwatch> t = Utils::Stopwatch::getStopwatch();
 
     std::cout << a << "=" << b << std::endl;
-    std::cout << &s << "=" << &t << std::endl;
+    std::cout << s << "=" << t << std::endl;
 
     if (&a==&b) {
         std::cout << "Singleton pattern working for Transformation" << std::endl;
