@@ -7,37 +7,37 @@
 
 #include "Stopwatch.h"
 
-void Stopwatch::start()
+void Utils::Stopwatch::start()
 {
     startTime = std::chrono::system_clock::now();
 }
 
-std::chrono::duration<double> Stopwatch::get_lap() const
+std::chrono::duration<double> Utils::Stopwatch::get_lap() const
 {
     auto test = std::chrono::system_clock::now();
     return std::chrono::system_clock::now()-startTime;
 }
 
-void Stopwatch::stop()
+void Utils::Stopwatch::stop()
 {
     stopTime = std::chrono::system_clock::now();
 }
 
-std::chrono::duration<double> Stopwatch::getTotalDif() const
+std::chrono::duration<double> Utils::Stopwatch::getTotalDif() const
 {
     return startTime-stopTime;
 }
 
-void Stopwatch::reset()
+void Utils::Stopwatch::reset()
 {
     start();
 }
 
-Stopwatch Stopwatch::getStopwatch()
+Utils::Stopwatch Utils::Stopwatch::getStopwatch()
 {
     static Stopwatch instance;
     return instance;
 }
 
-Stopwatch::Stopwatch()
+Utils::Stopwatch::Stopwatch()
         :startTime(std::chrono::system_clock::now()) { }

@@ -11,49 +11,53 @@
 
 #include <chrono>
 
-class Stopwatch {
-private:
-    static Stopwatch instance; /** @var instance: The sole instance of the Stopwatch class */
-    std::chrono::time_point<std::chrono::system_clock> startTime{}; /** @var startTime: The time at which the stopwatch object is started */
-    std::chrono::time_point<std::chrono::system_clock> stopTime{}; /** @var stopTime: The time at which the stopwatch object is stopped */
+namespace Utils {
 
-    /**
-     * @brief The default constructor of Stopwatch
-     */
-    Stopwatch();
+    class Stopwatch {
+    private:
+        static Stopwatch instance; /** @var instance: The sole instance of the Stopwatch class */
+        std::chrono::time_point<std::chrono::system_clock> startTime{}; /** @var startTime: The time at which the stopwatch object is started */
+        std::chrono::time_point<std::chrono::system_clock> stopTime{}; /** @var stopTime: The time at which the stopwatch object is stopped */
 
-public:
-    /**
-     * @brief sets the timepoint at which it starts at the current time
-     */
-    void start();
+        /**
+         * @brief The default constructor of Stopwatch
+         */
+        Stopwatch();
 
-    /**
-     *
-     * @return the duration from the start time to the current time without changing the stop time
-     */
-    std::chrono::duration<double> get_lap() const;
+    public:
+        /**
+         * @brief sets the timepoint at which it starts at the current time
+         */
+        void start();
 
-    /**
-     * @brief sets the stop time of the stopwatch to the current time
-     */
-    void stop();
+        /**
+         *
+         * @return the duration from the start time to the current time without changing the stop time
+         */
+        std::chrono::duration<double> get_lap() const;
 
-    /**
-     *
-     * @return the duration from the start time to the stop time
-     */
-    std::chrono::duration<double> getTotalDif() const;
+        /**
+         * @brief sets the stop time of the stopwatch to the current time
+         */
+        void stop();
 
-    /**
-     * @brief resets the stopwatch by setting the start time to the current time
-     */
-    void reset();
+        /**
+         *
+         * @return the duration from the start time to the stop time
+         */
+        std::chrono::duration<double> getTotalDif() const;
 
-    /**
-     * @return The sole instance of an object of this class
-     */
-    static Stopwatch getStopwatch();
-};
+        /**
+         * @brief resets the stopwatch by setting the start time to the current time
+         */
+        void reset();
+
+        /**
+         * @return The sole instance of an object of this class
+         */
+        static Stopwatch getStopwatch();
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_STOPWATCH_H

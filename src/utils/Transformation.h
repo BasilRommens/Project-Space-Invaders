@@ -14,28 +14,34 @@
 #include <exception>
 #include <memory>
 
-const double upperX = 4;
-const double lowerX = -4;
-const double upperY = 3;
-const double lowerY = -3;
+namespace Utils {
 
-class Transformation {
-private:
-    static Transformation instance; /** @var instance: The sole instance of the Transformation class */
+    namespace CoordinateBound {
+        const double UPPER_X = 4;
+        const double LOWER_X = -4;
+        const double UPPER_Y = 3;
+        const double LOWER_Y = -3;
+    }
 
-    /**
-     * @brief The default constructor of Transformation
-     */
-    Transformation();
+    class Transformation {
+    private:
+        static Transformation instance; /** @var instance: The sole instance of the Transformation class */
 
-public:
-    /**
-     *
-     * @return The sole instance of an object of this class
-     */
-    static Transformation getTransformation();
+        /**
+         * @brief The default constructor of Transformation
+         */
+        Transformation();
 
-    std::pair<unsigned int, unsigned int> operator()(double x, double y, unsigned int width);
-};
+    public:
+        /**
+         *
+         * @return The sole instance of an object of this class
+         */
+        static Transformation getTransformation();
+
+        std::pair<unsigned int, unsigned int> operator()(double x, double y, unsigned int width);
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_TRANSFORMATION_H
