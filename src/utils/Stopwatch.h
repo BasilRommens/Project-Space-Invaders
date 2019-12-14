@@ -1,8 +1,9 @@
 /**
- * @file 
+ * @file Stopwatch.h
  * @author Basil Rommens
  * @date 12/11/19
- * @brief ...
+ * @brief The header file of the Stopwatch class
+ * @source https://www.tutorialspoint.com/Explain-Cplusplus-Singleton-design-pattern
  */
 
 #ifndef PROJECT_SPACE_INVADERS_STOPWATCH_H
