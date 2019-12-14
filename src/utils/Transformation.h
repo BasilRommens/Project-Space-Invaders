@@ -3,7 +3,7 @@
  * @author Basil Rommens
  * @date 12/11/19
  * @brief The header file of the Transformation class
- * @source https://www.tutorialspoint.com/Explain-Cplusplus-Singleton-design-pattern
+ * @source https://stackoverflow.com/questions/47558290/singleton-class-with-smart-pointers-and-destructor-being-called
  */
 
 #ifndef PROJECT_SPACE_INVADERS_TRANSFORMATION_H

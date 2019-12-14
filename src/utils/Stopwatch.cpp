@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file Stopwatch.cpp
  * @author Basil Rommens
  * @date 12/11/19
- * @brief ...
+ * @brief the cpp file of the class Stopwatch
  */
 
 #include "Stopwatch.h"
