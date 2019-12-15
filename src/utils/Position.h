@@ -8,11 +8,15 @@
 #ifndef PROJECT_SPACE_INVADERS_POSITION_H
 #define PROJECT_SPACE_INVADERS_POSITION_H
 
-class Position {
-    int xPos{};
-    int yPos{};
-public:
-    Position(int x_pos, int y_pos);
-};
+namespace Utils {
+
+    class Position {
+        double xPos{};
+        double yPos{};
+    public:
+        Position(double x_pos, double y_pos);
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_POSITION_H

@@ -9,9 +9,22 @@
 #define PROJECT_SPACE_INVADERS_BULLET_H
 
 #include "Entity.h"
+#include "../utils/Position.h"
 
-class Bullet: public Entity {
+class Hitbox;
 
+enum Direction {
+    UP,
+    DOWN
+};
+
+class Bullet : public Entity {
+private:
+    Direction direction;
+    double speed;
+    double damage;
+    Hitbox hitbox;
+    Position pos;
 };
 
 #endif //PROJECT_SPACE_INVADERS_BULLET_H

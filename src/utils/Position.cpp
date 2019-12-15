@@ -7,5 +7,5 @@
 
 #include "Position.h"
 
-Position::Position(int x_pos, int y_pos)
+Utils::Position::Position(double x_pos, double y_pos)
         :xPos(x_pos), yPos(y_pos) { }

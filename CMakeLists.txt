@@ -13,7 +13,7 @@ add_executable(Project-Space-Invaders
         src/Entity/World.cpp
         src/Entity/BGTile.cpp
         src/main.cpp
-        src/Entity/Position.cpp
+        src/utils/Position.cpp
         src/Game.cpp
         src/utils/Stopwatch.cpp
         src/utils/Transformation.cpp src/Subject.cpp src/Subject.h src/Observer.cpp src/Observer.h src/Draw.cpp src/Draw.h)

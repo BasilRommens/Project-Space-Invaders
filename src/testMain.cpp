@@ -23,6 +23,7 @@ void draw()
     sprite.setTexture(texture);
 
     sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "SFML Demo");
+    sprite.setOrigin(-29, -(renderWindow.getSize().x/2.0));
 
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
@@ -34,22 +35,26 @@ void draw()
                 renderWindow.close();
             }
             if (event.type==sf::Event::KeyPressed) {
-                std::cout << (char) event.key.code << std::endl;
+                if (event.key.code==sf::Keyboard::A) {
+                    sprite.move(sf::Vector2f(-4, 0));
+                    std::cout << "left" << std::endl;
+                }
+                else if (event.key.code==sf::Keyboard::D) {
+                    sprite.move(sf::Vector2f(4, 0));
+                    std::cout << "right" << std::endl;
+                }
+                else if (event.key.code==sf::Keyboard::Space) {
+                    std::cout << "space" << std::endl;
+                }
+                else if (event.key.code==sf::Keyboard::Escape) {
+                    std::cout << "close" << std::endl;
+                    renderWindow.close();
+                }
             }
         }
         renderWindow.clear();
         renderWindow.draw(sprite);
         renderWindow.display();
-    }
-}
-
-void mainKeyboard()
-{
-    while (true) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
-            std::cout << "K" << std::endl;
-        }
-        usleep(100000);
     }
 }
 
