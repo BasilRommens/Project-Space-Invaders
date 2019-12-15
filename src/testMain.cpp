@@ -17,12 +17,12 @@
 void draw()
 {
     sf::Texture texture;
-    texture.loadFromFile("img/alien.png");
+    texture.loadFromFile("img/laser.png");
 
     sf::Sprite sprite;
     sprite.setTexture(texture);
 
-    sf::RenderWindow renderWindow(sf::VideoMode(800, 800), "SFML Demo");
+    sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "SFML Demo");
 
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
@@ -32,6 +32,9 @@ void draw()
             // "close requested" event: we close the window
             if (event.type==sf::Event::Closed) {
                 renderWindow.close();
+            }
+            if (event.type==sf::Event::KeyPressed) {
+                std::cout << (char) event.key.code << std::endl;
             }
         }
         renderWindow.clear();
@@ -52,6 +55,6 @@ void mainKeyboard()
 
 int main()
 {
-    mainKeyboard();
+    draw();
     return 0;
 }

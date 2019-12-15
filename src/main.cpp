@@ -5,12 +5,9 @@
  * @brief ...
  */
 
-#include <SFML/Graphics.hpp>
-#include <unordered_map>
-#include <iostream>
-#include <list>
+#include "Game.h"
 
 int main(int argc, char** argv)
 {
-
+    Game g;
 }
