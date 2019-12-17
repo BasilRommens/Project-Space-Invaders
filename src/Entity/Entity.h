@@ -8,7 +8,9 @@
 #ifndef PROJECT_SPACE_INVADERS_ENTITY_H
 #define PROJECT_SPACE_INVADERS_ENTITY_H
 
-class Entity {
+#include "../Observer.h"
+
+class Entity : public Observer {
 
 };
 

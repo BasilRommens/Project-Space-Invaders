@@ -10,9 +10,8 @@
 
 #include "Entity.h"
 #include "../utils/Position.h"
-#include "../Observer.h"
 
-class Bullet : public Entity, public Observer {
+class Bullet : public Entity {
 private:
     Utils::Direction direction;
     double speed;

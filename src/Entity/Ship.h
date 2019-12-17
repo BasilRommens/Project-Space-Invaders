@@ -10,9 +10,8 @@
 
 #include "Entity.h"
 #include "../utils/Position.h"
-#include "../Observer.h"
 
-class Ship : public Entity, public Observer {
+class Ship : public Entity {
 private:
     Utils::Position pos;
     double health;
