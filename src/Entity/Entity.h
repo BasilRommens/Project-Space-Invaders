@@ -18,6 +18,11 @@ class Entity : public Observer {
 protected:
     std::string image;
 
+public:
+    Entity();
+
+protected:
+
     Entity(const std::string& image);
 
     virtual void onNotify(Utils::Event event);

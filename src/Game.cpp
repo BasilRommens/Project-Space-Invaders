@@ -7,6 +7,8 @@
 
 #include "Game.h"
 
+Game::Game() { }
+
 void Game::start(std::vector<std::string> levels)
 {
     bool failure{};
@@ -21,14 +23,6 @@ void Game::start(std::vector<std::string> levels)
     if (failure) {
         // TODO Display failure message
     }
-}
-
-// TODO error on empty filename
-void Game::load(const std::string& level)
-{
-    json j(level);
-    loadPlayer(j["Player"]);
-    loadEnemy(j["Enemies"]);
 }
 
 bool Game::play()
@@ -59,9 +53,23 @@ bool Game::play()
 }
 
 // TODO error on empty filename
-void Game::loadPlayer(const std::string& player)
+void Game::load(const std::string& level)
 {
-    json j(player);
+    std::ifstream i(level);
+    json j;
+    i >> j;
+
+    loadWorld(j["World"]);
+    loadPlayer(j["Player"]);
+    loadEnemy(j["Enemies"]);
+}
+
+// TODO error on empty filename
+void Game::loadPlayer(const std::string&& player)
+{
+    std::ifstream i(player);
+    json j;
+    i >> j;
 
     // TODO if type is a mismatch -> error
     std::string image = j["Image"];
@@ -75,23 +83,29 @@ void Game::loadPlayer(const std::string& player)
 }
 
 // TODO error on empty filename
-void Game::loadEnemy(const std::string& enemy)
+void Game::loadEnemy(const std::string&& enemy)
 {
-    json j(enemy);
+    std::ifstream i(enemy);
+    json j;
+    i >> j;
 
     // TODO if type is a mismatch -> error
-    std::string image = j["Image"];
-    Utils::Position position(j["xPos"], j["yPos"]);
-    double HP = j["HP"];
-    double HSpeed = j["HSpeed"];
-    double VSpeed = j["VSpeed"];
-    double damage = j["Damage"];
+    for (auto ship: j["Ships"]) {
+        std::string image = ship["Image"];
+        Utils::Position position(ship["xPos"], ship["yPos"]);
+        double HP = ship["HP"];
+        double HSpeed = ship["HSpeed"];
+        double VSpeed = ship["VSpeed"];
+        double damage = ship["Damage"];
 
-    std::shared_ptr<Entity> enemyShip(new EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
-    world.addEntity(enemyShip);
+        std::shared_ptr<Entity> enemyShip(new EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
+        world.addEntity(enemyShip);
+    }
 }
 
-Game::Game(const std::string& world)
-        :world(world) { }
+void Game::loadWorld(const std::string&& worldName)
+{
+    world = World(worldName);
+}
 
 

@@ -37,3 +37,5 @@ void World::removeEntity(std::shared_ptr<Entity> entity)
 
 World::World(const std::string& image)
         :Entity(image) { }
+
+World::World() { }

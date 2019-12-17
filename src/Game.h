@@ -11,6 +11,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <SFML/Graphics.hpp>
 
 #include "Entity/PlayerShip.h"
@@ -20,7 +21,7 @@
 #include "Controller.h"
 #include "Entity/World.h"
 
-using nlohmann::json;
+using json = nlohmann::json;
 
 class Game {
 private:
@@ -32,12 +33,14 @@ private:
      */
     void load(const std::string& level);
 
-    void loadPlayer(const std::string& player);
+    void loadPlayer(const std::string&& player);
 
-    void loadEnemy(const std::string& enemy);
+    void loadEnemy(const std::string&& enemy);
+
+    void loadWorld(const std::string&& worldName);
 
 public:
-    Game(const std::string& world);
+    Game();
 
     /**
      * @brief Starts playing levels in the order they are passed through

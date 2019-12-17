@@ -14,3 +14,5 @@ void Entity::onNotify(Utils::Event event)
 {
 
 }
+
+Entity::Entity() { }
