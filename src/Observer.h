@@ -11,7 +11,11 @@
 #include "Entity/Entity.h"
 
 enum Event {
-    UPDATE_DRAW
+    UPDATE_DRAW,
+    MOVE_RIGHT,
+    MOVE_LEFT,
+    FIRE_BULLET,
+    CLOSE_WINDOW
 };
 
 class Observer {
@@ -23,10 +27,9 @@ public:
 
     /**
      * @brief A pure virtual function that needs to act accordingly when certain events are passed through
-     * @param entity: The entity that is needed for the event
      * @param event: The event that took place
      */
-    virtual void onNotify(const Entity& entity, Event event) = 0;
+    virtual void onNotify(Event event) = 0;
 };
 
 #endif //PROJECT_SPACE_INVADERS_OBSERVER_H

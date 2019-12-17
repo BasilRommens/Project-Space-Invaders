@@ -10,12 +10,13 @@
 
 #include "Entity.h"
 #include "../utils/Position.h"
+#include "../Observer.h"
 
-class Ship : public Entity {
+class Ship : public Entity, public Observer {
 private:
     Utils::Position pos;
     double health;
-    double speed;
+    double HSpeed;
 };
 
 #endif //PROJECT_SPACE_INVADERS_SHIP_H

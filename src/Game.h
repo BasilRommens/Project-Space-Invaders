@@ -16,15 +16,27 @@
 #include "Entity/PlayerShip.h"
 #include "Entity/EnemyShip.h"
 #include "Entity/Bullet.h"
-#include "Entity/"
+#include "Controller.h"
 
 class Game {
 private:
-    void load(std::string level);
+    /**
+     * @brief loads a level from a json file
+     * @param level: The filename of the level to be loaded
+     */
+    void load(const std::string& level);
 
 public:
+    /**
+     * @brief Starts playing levels in the order they are passed through
+     * @param levels: The levels that will be played in order when succesfully completed
+     */
     void start(std::vector<std::string> levels);
 
+    /**
+     * @brief Plays the level currently loaded in the model
+     * @return If the level was succesfully finished
+     */
     bool play();
 };
 

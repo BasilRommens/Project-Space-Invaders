@@ -12,8 +12,9 @@
 #include <memory>
 
 #include "Entity.h"
+#include "../Observer.h"
 
-class World : public Entity {
+class World : public Entity, public Observer {
 private:
     std::vector<std::shared_ptr<Entity>> Entities;
 };

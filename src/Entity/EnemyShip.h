@@ -10,8 +10,9 @@
 
 #include "Ship.h"
 
-class EnemyShip: public Ship {
-
+class EnemyShip : public Ship {
+private:
+    double VSpeed;
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENEMYSHIP_H

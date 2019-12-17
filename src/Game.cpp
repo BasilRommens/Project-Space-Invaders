@@ -23,7 +23,7 @@ void Game::start(std::vector<std::string> levels)
     }
 }
 
-void Game::load(std::string level)
+void Game::load(const std::string& level)
 {
 
 }
@@ -39,30 +39,14 @@ bool Game::play()
     sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "SFML Demo");
     sprite.setOrigin(-29, -(renderWindow.getSize().x/2.0));
 
+    Controller control;
+
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
-        // check all the window's events that were triggered since the last iteration of the loop
-        sf::Event event;
-        while (renderWindow.pollEvent(event)) {
-            // "close requested" event: we close the window
-            if (event.type==sf::Event::Closed) {
-                renderWindow.close();
-            }
-            if (event.type==sf::Event::KeyPressed) {
-                if (event.key.code==sf::Keyboard::A) {
-                    sprite.move(sf::Vector2f(-4, 0));
-                }
-                else if (event.key.code==sf::Keyboard::D) {
-                    sprite.move(sf::Vector2f(4, 0));
-                }
-                else if (event.key.code==sf::Keyboard::Space) {
-                    std::cout << "space" << std::endl;
-                }
-                else if (event.key.code==sf::Keyboard::Escape) {
-                    renderWindow.close();
-                }
-            }
-        }
+        /// Part of control
+        control.run(renderWindow);
+
+        /// Part of view
         renderWindow.clear();
         renderWindow.draw(sprite);
         renderWindow.display();

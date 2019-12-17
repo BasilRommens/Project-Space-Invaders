@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file Bullet.h
  * @author Basil Rommens
  * @date 22/11/2019
- * @brief ...
+ * @brief The header file of the Bullet class
  */
 
 #ifndef PROJECT_SPACE_INVADERS_BULLET_H
@@ -10,15 +10,11 @@
 
 #include "Entity.h"
 #include "../utils/Position.h"
+#include "../Observer.h"
 
-enum Direction {
-    UP,
-    DOWN
-};
-
-class Bullet : public Entity {
+class Bullet : public Entity, public Observer {
 private:
-    Direction direction;
+    Utils::Direction direction;
     double speed;
     double damage;
     Utils::Position pos;
