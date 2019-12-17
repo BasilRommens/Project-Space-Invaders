@@ -9,3 +9,8 @@
 
 Entity::Entity(const std::string& image)
         :image(image) { }
+
+void Entity::onNotify(Utils::Event event)
+{
+
+}

@@ -9,5 +9,6 @@
 
 int main(int argc, char** argv)
 {
-    Game g;
+    Game g("img/test.png");
+    g.start(std::vector<std::string>{"input/level1.json"});
 }

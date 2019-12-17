@@ -18,11 +18,14 @@
 #include "Entity/Bullet.h"
 #include "json.hpp"
 #include "Controller.h"
+#include "Entity/World.h"
 
 using nlohmann::json;
 
 class Game {
 private:
+    World world;
+
     /**
      * @brief loads a level from a json file
      * @param level: The filename of the level to be loaded
@@ -34,6 +37,8 @@ private:
     void loadEnemy(const std::string& enemy);
 
 public:
+    Game(const std::string& world);
+
     /**
      * @brief Starts playing levels in the order they are passed through
      * @param levels: The levels that will be played in order when succesfully completed

@@ -6,7 +6,7 @@
       "yPos": 0,
       "HSpeed": 3,
       "VSpeed": 1,
-      "Image": "alien.png",
+      "Image": "img/alien.png",
       "Damage": 2,
       "HP": 4
     },
@@ -15,7 +15,7 @@
       "yPos": 0.3,
       "HSpeed": 3,
       "VSpeed": 1,
-      "Image": "alien.png",
+      "Image": "img/alien.png",
       "Damage": 2,
       "HP": 4
     },
@@ -24,7 +24,7 @@
       "yPos": -0.3,
       "HSpeed": 3,
       "VSpeed": 1,
-      "Image": "alien.png",
+      "Image": "img/alien.png",
       "Damage": 2,
       "HP": 4
     }

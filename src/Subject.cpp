@@ -35,7 +35,7 @@ void Subject::removeObserver(std::shared_ptr<Observer> observer)
     }
 }
 
-void Subject::notify(Event event)
+void Subject::notify(Utils::Event event)
 {
     for (auto observer: observers) {
         // Let observer decide what to do onNotify

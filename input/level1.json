@@ -1,4 +1,4 @@
 {
-  "Enemies": "enemy.json",
-  "Player": "player.json"
+  "Enemies": "input/enemy.json",
+  "Player": "input/player.json"
 }

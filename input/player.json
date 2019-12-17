@@ -3,7 +3,7 @@
   "xPos": 0,
   "yPos": 0,
   "HSpeed": 3,
-  "Image": "alien.png",
+  "Image": "img/player.png",
   "Damage": 2,
   "HP": 8
 }

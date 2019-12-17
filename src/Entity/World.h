@@ -22,6 +22,8 @@ public:
     void addEntity(std::shared_ptr<Entity> entity);
 
     void removeEntity(std::shared_ptr<Entity> entity);
+
+    World(const std::string& image);
 };
 
 #endif //PROJECT_SPACE_INVADERS_WORLD_H

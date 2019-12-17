@@ -15,20 +15,20 @@ void Controller::run(sf::RenderWindow& window)
     while (window.pollEvent(event)) {
         // "close requested" event: we close the window
         if (event.type==sf::Event::Closed) {
-            notify(Event::CLOSE_WINDOW);
+            notify(Utils::Event::CLOSE_WINDOW);
         }
         if (event.type==sf::Event::KeyPressed) {
             if (event.key.code==sf::Keyboard::A) {
-                notify(Event::MOVE_LEFT);
+                notify(Utils::Event::MOVE_LEFT);
             }
             else if (event.key.code==sf::Keyboard::D) {
-                notify(Event::MOVE_RIGHT);
+                notify(Utils::Event::MOVE_RIGHT);
             }
             else if (event.key.code==sf::Keyboard::Space) {
-                notify(Event::FIRE_BULLET);
+                notify(Utils::Event::FIRE_BULLET);
             }
             else if (event.key.code==sf::Keyboard::Escape) {
-                notify(Event::CLOSE_WINDOW);
+                notify(Utils::Event::CLOSE_WINDOW);
             }
         }
     }

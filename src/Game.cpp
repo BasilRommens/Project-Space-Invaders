@@ -19,7 +19,7 @@ void Game::start(std::vector<std::string> levels)
     }
 
     if (failure) {
-        // Display failure message
+        // TODO Display failure message
     }
 }
 
@@ -54,6 +54,8 @@ bool Game::play()
         renderWindow.draw(sprite);
         renderWindow.display();
     }
+
+    return true;
 }
 
 // TODO error on empty filename
@@ -69,6 +71,7 @@ void Game::loadPlayer(const std::string& player)
     double damage = j["Damage"];
 
     std::shared_ptr<Entity> playerShip(new PlayerShip(image, position, HP, HSpeed, damage));
+    world.addEntity(playerShip);
 }
 
 // TODO error on empty filename
@@ -85,4 +88,10 @@ void Game::loadEnemy(const std::string& enemy)
     double damage = j["Damage"];
 
     std::shared_ptr<Entity> enemyShip(new EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
+    world.addEntity(enemyShip);
 }
+
+Game::Game(const std::string& world)
+        :world(world) { }
+
+

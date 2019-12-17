@@ -20,7 +20,9 @@ add_executable(Project-Space-Invaders
         src/Subject.cpp
         src/Observer.cpp
         src/Draw.cpp
-        src/json.hpp src/Controller.cpp src/Controller.h src/Command/Command.cpp src/Command/Command.h src/Command/MoveRightCommand.cpp src/Command/MoveRightCommand.h src/Command/MoveLeftCommand.cpp src/Command/MoveLeftCommand.h src/Command/FireCommand.cpp src/Command/FireCommand.h src/Command/CloseCommand.cpp src/Command/CloseCommand.h)
+        src/json.hpp
+        src/Controller.cpp
+        src/utils/Event.h)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")

@@ -25,7 +25,7 @@ protected:
      * @param entity: The entity on which the notification needs to be aplied
      * @param event: The event that has happened
      */
-    void notify(Event event);
+    void notify(Utils::Event event);
 
 public:
     /**
