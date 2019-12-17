@@ -10,12 +10,18 @@
 
 #include <vector>
 #include <memory>
+#include <iostream>
+#include <algorithm>
 
 #include "Entity.h"
 
 class World : public Entity {
 private:
-    std::vector<std::shared_ptr<Entity>> Entities;
+    std::vector<std::shared_ptr<Entity>> entities;
+public:
+    void addEntity(std::shared_ptr<Entity> entity);
+
+    void removeEntity(std::shared_ptr<Entity> entity);
 };
 
 #endif //PROJECT_SPACE_INVADERS_WORLD_H

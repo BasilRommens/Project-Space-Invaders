@@ -10,8 +10,9 @@
 
 #include "Ship.h"
 
-class PlayerShip: public Ship {
-
+class PlayerShip : public Ship {
+public:
+    PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed);
 };
 
 #endif //PROJECT_SPACE_INVADERS_PLAYERSHIP_H

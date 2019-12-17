@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file Ship.h
  * @author Basil Rommens
  * @date 22/11/2019
- * @brief ...
+ * @brief The header file of the class Ship
  */
 
 #ifndef PROJECT_SPACE_INVADERS_SHIP_H
@@ -16,6 +16,8 @@ private:
     Utils::Position pos;
     double health;
     double HSpeed;
+public:
+    Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed);
 };
 
 #endif //PROJECT_SPACE_INVADERS_SHIP_H

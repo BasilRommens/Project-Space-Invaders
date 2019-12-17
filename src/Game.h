@@ -16,6 +16,7 @@
 #include "Entity/PlayerShip.h"
 #include "Entity/EnemyShip.h"
 #include "Entity/Bullet.h"
+#include "json.hpp"
 #include "Controller.h"
 
 class Game {
@@ -25,6 +26,10 @@ private:
      * @param level: The filename of the level to be loaded
      */
     void load(const std::string& level);
+
+    void loadPlayer(const std::string& player);
+
+    void loadEnemy(const std::string& enemy);
 
 public:
     /**

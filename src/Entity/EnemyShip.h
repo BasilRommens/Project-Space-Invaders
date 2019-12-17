@@ -13,6 +13,8 @@
 class EnemyShip : public Ship {
 private:
     double VSpeed;
+public:
+    EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double vSpeed);
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENEMYSHIP_H

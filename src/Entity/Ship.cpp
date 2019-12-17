@@ -6,3 +6,9 @@
  */
 
 #include "Ship.h"
+
+Ship::Ship(const Utils::Position& pos, double health, double hSpeed)
+        :pos(pos), health(health), HSpeed(hSpeed) { }
+
+Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed)
+        :Entity(image), pos(pos), health(health), HSpeed(hSpeed) { }

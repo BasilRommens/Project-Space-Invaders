@@ -8,10 +8,14 @@
 #ifndef PROJECT_SPACE_INVADERS_ENTITY_H
 #define PROJECT_SPACE_INVADERS_ENTITY_H
 
+#include <string>
 #include "../Observer.h"
 
 class Entity : public Observer {
+protected:
+    std::string image;
 
+    Entity(const std::string& image);
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H
