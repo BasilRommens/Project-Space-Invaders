@@ -16,10 +16,14 @@ add_executable(Project-Space-Invaders
         src/utils/Position.cpp
         src/Game.cpp
         src/utils/Stopwatch.cpp
-        src/utils/Transformation.cpp src/Subject.cpp src/Subject.h src/Observer.cpp src/Observer.h src/Draw.cpp src/Draw.h)
+        src/utils/Transformation.cpp
+        src/Subject.cpp
+        src/Observer.cpp
+        src/Draw.cpp
+        src/json.hpp)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
 
-add_executable(test src/testMain.cpp src/utils/Stopwatch.cpp src/utils/Transformation.cpp)
+add_executable(test src/testMain.cpp src/utils/Stopwatch.cpp src/utils/Transformation.cpp src/json.hpp)
 target_link_libraries(test "-lsfml-graphics -lsfml-window -lsfml-system")

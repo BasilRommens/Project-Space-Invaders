@@ -1,0 +1,9 @@
+{
+  "Type": "Player",
+  "xPos": 0,
+  "yPos": 0,
+  "Speed": 3,
+  "Image": "alien.png",
+  "Damage": 2,
+  "HP": 8
+}

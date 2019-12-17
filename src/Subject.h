@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file Subject.h
  * @author Basil Rommens
  * @date 12/15/19
- * @brief ...
+ * @brief Yoink
  */
 
 #ifndef PROJECT_SPACE_INVADERS_SUBJECT_H
@@ -12,19 +12,33 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
+#include <memory>
 
 #include "Observer.h"
 
 class Subject {
 private:
-    std::vector<Observer*> observers;
+    std::vector<std::shared_ptr<Observer>> observers;
 protected:
+    /**
+     * @brief Notifies every observer held by the subject
+     * @param entity: The entity on which the notification needs to be aplied
+     * @param event: The event that has happened
+     */
     void notify(const Entity& entity, Event event);
 
 public:
-    void addObserver(Observer* observer);
+    /**
+     * @brief Adds and observer to the list of observers the subject holds
+     * @param observer: The observer that will be added to the list of observers of the subject
+     */
+    void addObserver(std::shared_ptr<Observer> observer);
 
-    void removeObserver(Observer* observer);
+    /**
+     * @brief Removes the requested observer from the class
+     * @param observer: The observer that needs to be removed
+     */
+    void removeObserver(std::shared_ptr<Observer> observer);
 };
 
 #endif //PROJECT_SPACE_INVADERS_SUBJECT_H

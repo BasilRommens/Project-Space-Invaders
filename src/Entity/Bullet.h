@@ -11,8 +11,6 @@
 #include "Entity.h"
 #include "../utils/Position.h"
 
-class Hitbox;
-
 enum Direction {
     UP,
     DOWN
@@ -23,8 +21,7 @@ private:
     Direction direction;
     double speed;
     double damage;
-    Hitbox hitbox;
-    Position pos;
+    Utils::Position pos;
 };
 
 #endif //PROJECT_SPACE_INVADERS_BULLET_H

@@ -16,8 +16,16 @@ enum Event {
 
 class Observer {
 public:
+    /**
+     * @brief Destructor of the Observer
+     */
     virtual ~Observer();
 
+    /**
+     * @brief A pure virtual function that needs to act accordingly when certain events are passed through
+     * @param entity: The entity that is needed for the event
+     * @param event: The event that took place
+     */
     virtual void onNotify(const Entity& entity, Event event) = 0;
 };
 

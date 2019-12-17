@@ -13,7 +13,10 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "Entity/Entity.h"
+#include "Entity/PlayerShip.h"
+#include "Entity/EnemyShip.h"
+#include "Entity/Bullet.h"
+#include "Entity/"
 
 class Game {
 private:

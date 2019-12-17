@@ -11,13 +11,10 @@
 #include "Entity.h"
 #include "../utils/Position.h"
 
-class Hitbox;
-
 class Ship : public Entity {
 private:
-    Position pos;
+    Utils::Position pos;
     double health;
-    Hitbox hitbox;
     double speed;
 };
 

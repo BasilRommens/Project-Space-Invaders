@@ -1,0 +1,32 @@
+{
+  "Type": "Enemy",
+  "Ships": [
+    {
+      "xPos": 0,
+      "yPos": 0,
+      "HSpeed": 3,
+      "VSpeed": 1,
+      "Image": "alien.png",
+      "Damage": 2,
+      "HP": 4
+    },
+    {
+      "xPos": 0.3,
+      "yPos": 0.3,
+      "HSpeed": 3,
+      "VSpeed": 1,
+      "Image": "alien.png",
+      "Damage": 2,
+      "HP": 4
+    },
+    {
+      "xPos": -0.3,
+      "yPos": -0.3,
+      "HSpeed": 3,
+      "VSpeed": 1,
+      "Image": "alien.png",
+      "Damage": 2,
+      "HP": 4
+    }
+  ]
+}

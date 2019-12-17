@@ -7,7 +7,7 @@
 
 #include "Subject.h"
 
-void Subject::addObserver(Observer* observer)
+void Subject::addObserver(std::shared_ptr<Observer> observer)
 {
     try {
         if (!observer) {
@@ -21,7 +21,7 @@ void Subject::addObserver(Observer* observer)
     }
 }
 
-void Subject::removeObserver(Observer* observer)
+void Subject::removeObserver(std::shared_ptr<Observer> observer)
 {
     try {
         if (!observer) {
