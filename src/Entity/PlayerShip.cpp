@@ -7,5 +7,6 @@
 
 #include "PlayerShip.h"
 
-PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed)
-        :Ship(image, pos, health, hSpeed) { }
+PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+        double damage)
+        :Ship(image, pos, health, hSpeed, damage) { }

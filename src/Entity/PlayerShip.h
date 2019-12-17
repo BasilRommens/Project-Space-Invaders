@@ -12,7 +12,7 @@
 
 class PlayerShip : public Ship {
 public:
-    PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed);
+    PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
 };
 
 #endif //PROJECT_SPACE_INVADERS_PLAYERSHIP_H

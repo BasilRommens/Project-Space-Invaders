@@ -19,6 +19,8 @@
 #include "json.hpp"
 #include "Controller.h"
 
+using nlohmann::json;
+
 class Game {
 private:
     /**

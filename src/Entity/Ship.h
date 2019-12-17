@@ -16,8 +16,9 @@ private:
     Utils::Position pos;
     double health;
     double HSpeed;
+    double damage;
 public:
-    Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed);
+    Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
 };
 
 #endif //PROJECT_SPACE_INVADERS_SHIP_H

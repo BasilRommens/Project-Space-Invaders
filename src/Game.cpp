@@ -23,9 +23,12 @@ void Game::start(std::vector<std::string> levels)
     }
 }
 
+// TODO error on empty filename
 void Game::load(const std::string& level)
 {
-
+    json j(level);
+    loadPlayer(j["Player"]);
+    loadEnemy(j["Enemies"]);
 }
 
 bool Game::play()
@@ -51,4 +54,35 @@ bool Game::play()
         renderWindow.draw(sprite);
         renderWindow.display();
     }
+}
+
+// TODO error on empty filename
+void Game::loadPlayer(const std::string& player)
+{
+    json j(player);
+
+    // TODO if type is a mismatch -> error
+    std::string image = j["Image"];
+    Utils::Position position(j["xPos"], j["yPos"]);
+    double HP = j["HP"];
+    double HSpeed = j["HSpeed"];
+    double damage = j["Damage"];
+
+    std::shared_ptr<Entity> playerShip(new PlayerShip(image, position, HP, HSpeed, damage));
+}
+
+// TODO error on empty filename
+void Game::loadEnemy(const std::string& enemy)
+{
+    json j(enemy);
+
+    // TODO if type is a mismatch -> error
+    std::string image = j["Image"];
+    Utils::Position position(j["xPos"], j["yPos"]);
+    double HP = j["HP"];
+    double HSpeed = j["HSpeed"];
+    double VSpeed = j["VSpeed"];
+    double damage = j["Damage"];
+
+    std::shared_ptr<Entity> enemyShip(new EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
 }

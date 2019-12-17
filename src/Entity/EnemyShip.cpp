@@ -7,5 +7,6 @@
 
 #include "EnemyShip.h"
 
-EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double vSpeed)
-        :Ship(image, pos, health, hSpeed), VSpeed(vSpeed) { }
+EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
+        double vSpeed)
+        :Ship(image, pos, health, hSpeed, damage), VSpeed(vSpeed) { }
