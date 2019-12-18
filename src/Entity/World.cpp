@@ -61,3 +61,22 @@ std::string World::getType() const
 {
     return "world";
 }
+
+void World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+{
+    // TODO throw error when no entity is detected
+    switch (event) {
+    case Utils::Event::FIRE_BULLET:
+        // Create a bullet with that needs to depart from the certain ship
+        this->addEntity(createBullet(entity));
+        break;
+    default:
+        std::cout << "Default" << std::endl;
+    }
+}
+
+std::shared_ptr<Entity> World::createBullet(std::shared_ptr<Entity> ship)
+{
+    std::shared_ptr<Entity> bullet;
+    return bullet;
+}

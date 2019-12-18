@@ -32,6 +32,11 @@ public:
     std::shared_ptr<Entity> getPlayer() const;
 
     std::string getType() const override;
+
+    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
+
+    std::shared_ptr<Entity> createBullet(std::shared_ptr<Entity> ship);
+
 };
 
 #endif //PROJECT_SPACE_INVADERS_WORLD_H

@@ -27,6 +27,8 @@ void Game::start(std::vector<std::string> levels)
 
 bool Game::play()
 {
+    // TODO add a thing that closes the screen
+    // TODO add the visualization of the world and all its entities
     sf::Texture texture;
     texture.loadFromFile("img/laser.png");
 
