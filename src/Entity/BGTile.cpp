@@ -6,3 +6,8 @@
  */
 
 #include "BGTile.h"
+
+std::string BGTile::getType() const
+{
+    return "BgTile";
+}

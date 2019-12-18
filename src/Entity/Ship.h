@@ -9,6 +9,7 @@
 #define PROJECT_SPACE_INVADERS_SHIP_H
 
 #include <iostream>
+#include <memory>
 
 #include "Entity.h"
 #include "../utils/Position.h"
@@ -28,6 +29,8 @@ protected:
 
 public:
     Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
+
+    std::string getType() const override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_SHIP_H

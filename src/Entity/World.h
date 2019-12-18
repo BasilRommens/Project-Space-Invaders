@@ -28,6 +28,10 @@ public:
     World();
 
     const std::vector<std::shared_ptr<Entity>>& getEntities() const;
+
+    std::shared_ptr<Entity> getPlayer() const;
+
+    std::string getType() const override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_WORLD_H

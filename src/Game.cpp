@@ -39,7 +39,7 @@ bool Game::play()
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
         /// Part of control
-        controller.run(renderWindow);
+        controller.run(renderWindow, world);
 
         /// Part of view
         renderWindow.clear();
@@ -53,6 +53,7 @@ bool Game::play()
 // TODO error on empty filename
 void Game::load(const std::string& level)
 {
+    // Parse json file
     std::ifstream i(level);
     json j;
     i >> j;
@@ -71,6 +72,7 @@ void Game::load(const std::string& level)
 // TODO error on empty filename
 void Game::loadPlayer(const std::string&& player)
 {
+    // Parse json file
     std::ifstream i(player);
     json j;
     i >> j;
@@ -84,11 +86,13 @@ void Game::loadPlayer(const std::string&& player)
 
     std::shared_ptr<Entity> playerShip(new PlayerShip(image, position, HP, HSpeed, damage));
     world.addEntity(playerShip);
+    world.addObserver(playerShip);
 }
 
 // TODO error on empty filename
 void Game::loadEnemy(const std::string&& enemy)
 {
+    // Parse json file
     std::ifstream i(enemy);
     json j;
     i >> j;
@@ -104,6 +108,7 @@ void Game::loadEnemy(const std::string&& enemy)
 
         std::shared_ptr<Entity> enemyShip(new EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
         world.addEntity(enemyShip);
+        world.addObserver(enemyShip);
     }
 }
 

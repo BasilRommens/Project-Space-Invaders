@@ -11,8 +11,13 @@ EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, doubl
         double vSpeed)
         :Ship(image, pos, health, hSpeed, damage), VSpeed(vSpeed) { }
 
-void EnemyShip::onNotify(Utils::Event event)
+void EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
+    // Return if the entity passed through isnt this one
+    if (entity.get()!=this) {
+        return;
+    }
+
     switch (event) {
     case Utils::Event::MOVE_RIGHT:
         // TODO move right according to speed
@@ -45,5 +50,11 @@ void EnemyShip::moveLeft()
 
 void EnemyShip::fireBullet()
 {
+    std::shared_ptr<Entity> p(this);
+    notify(p, Utils::Event::FIRE_BULLET);
+}
 
+std::string EnemyShip::getType() const
+{
+    return "enemy";
 }

@@ -14,7 +14,7 @@ class EnemyShip : public Ship {
 private:
     double VSpeed;
 
-    virtual void onNotify(Utils::Event event);
+    virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event);
 
     void moveRight();
 
@@ -25,6 +25,8 @@ private:
 public:
     EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
             double vSpeed);
+
+    std::string getType() const override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENEMYSHIP_H

@@ -8,7 +8,11 @@
 #ifndef PROJECT_SPACE_INVADERS_OBSERVER_H
 #define PROJECT_SPACE_INVADERS_OBSERVER_H
 
+#include <memory>
+
 #include "utils/Event.h"
+
+class Entity;
 
 class Observer {
 public:
@@ -21,7 +25,7 @@ public:
      * @brief A pure virtual function that needs to act accordingly when certain events are passed through
      * @param event: The event that took place
      */
-    virtual void onNotify(Utils::Event event) = 0;
+    virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) = 0;
 };
 
 #endif //PROJECT_SPACE_INVADERS_OBSERVER_H

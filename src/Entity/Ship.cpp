@@ -9,3 +9,8 @@
 
 Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage)
         :Entity(image), pos(pos), health(health), HSpeed(hSpeed), damage(damage) { }
+
+std::string Ship::getType() const
+{
+    return "";
+}

@@ -12,10 +12,11 @@
 
 #include "Subject.h"
 #include "Observer.h"
+#include "Entity/World.h"
 
 class Controller : public Subject {
 public:
-    void run(sf::RenderWindow& window);
+    void run(sf::RenderWindow& window, World& world);
 };
 
 #endif //PROJECT_SPACE_INVADERS_CONTROLLER_H

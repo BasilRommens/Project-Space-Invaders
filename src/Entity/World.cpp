@@ -6,6 +6,7 @@
  */
 
 #include "World.h"
+#include "Ship.h"
 
 void World::addEntity(std::shared_ptr<Entity> entity)
 {
@@ -43,4 +44,20 @@ World::World() { }
 const std::vector<std::shared_ptr<Entity>>& World::getEntities() const
 {
     return entities;
+}
+
+std::shared_ptr<Entity> World::getPlayer() const
+{
+    for (auto entity: entities) {
+        std::string type = entity->getType();
+        if (type=="player") {
+            return entity;
+        }
+    }
+    return nullptr;
+}
+
+std::string World::getType() const
+{
+    return "world";
 }

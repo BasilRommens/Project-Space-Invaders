@@ -11,19 +11,22 @@
 #include <string>
 
 #include "../Observer.h"
+#include "../Subject.h"
 
 class Observer;
 
-class Entity : public Observer {
+class Entity : public Observer, public Subject {
 protected:
     std::string image;
 
     Entity(const std::string& image);
 
-    virtual void onNotify(Utils::Event event);
+    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
 
 public:
     Entity();
+
+    virtual std::string getType() const;
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H

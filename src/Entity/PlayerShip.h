@@ -12,7 +12,7 @@
 
 class PlayerShip : public Ship {
 private:
-    virtual void onNotify(Utils::Event event);
+    virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event);
 
     void moveRight();
 
@@ -22,6 +22,8 @@ private:
 
 public:
     PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
+
+    std::string getType() const override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_PLAYERSHIP_H

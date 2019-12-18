@@ -10,7 +10,9 @@
 
 #include "Entity.h"
 
-class BGTile: public Entity {
+class BGTile : public Entity {
+public:
+    std::string getType() const override;
 
 };
 

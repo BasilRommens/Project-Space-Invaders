@@ -17,6 +17,11 @@ private:
     double speed;
     double damage;
     Utils::Position pos;
+public:
+    Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
+            const Utils::Position& pos);
+
+    std::string getType() const override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_BULLET_H

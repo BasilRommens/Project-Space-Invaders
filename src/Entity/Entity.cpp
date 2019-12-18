@@ -10,9 +10,14 @@
 Entity::Entity(const std::string& image)
         :image(image) { }
 
-void Entity::onNotify(Utils::Event event)
+Entity::Entity() { }
+
+void Entity::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
 
 }
 
-Entity::Entity() { }
+std::string Entity::getType() const
+{
+    return std::string();
+}
