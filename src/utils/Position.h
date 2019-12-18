@@ -8,6 +8,8 @@
 #ifndef PROJECT_SPACE_INVADERS_POSITION_H
 #define PROJECT_SPACE_INVADERS_POSITION_H
 
+#include "Transformation.h"
+
 namespace Utils {
 
     enum Direction {
@@ -16,10 +18,15 @@ namespace Utils {
     };
 
     class Position {
+    private:
         double xPos{};
         double yPos{};
     public:
         Position(double x_pos, double y_pos);
+
+        void moveXPos(double x_pos, double distance);
+
+        void moveYPos(double y_pos, double distance);
     };
 
 }
