@@ -39,5 +39,6 @@ void Subject::notify(Utils::Event event)
 {
     for (auto observer: observers) {
         // Let observer decide what to do onNotify
+        observer->onNotify(event);
     }
 }

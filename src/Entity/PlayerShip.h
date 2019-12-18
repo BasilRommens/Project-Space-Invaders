@@ -11,6 +11,15 @@
 #include "Ship.h"
 
 class PlayerShip : public Ship {
+private:
+    virtual void onNotify(Utils::Event event);
+
+    void moveRight();
+
+    void moveLeft();
+
+    void fireBullet();
+
 public:
     PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
 };

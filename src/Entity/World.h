@@ -26,6 +26,8 @@ public:
     World(const std::string& image);
 
     World();
+
+    const std::vector<std::shared_ptr<Entity>>& getEntities() const;
 };
 
 #endif //PROJECT_SPACE_INVADERS_WORLD_H

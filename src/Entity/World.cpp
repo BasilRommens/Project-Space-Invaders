@@ -39,3 +39,8 @@ World::World(const std::string& image)
         :Entity(image) { }
 
 World::World() { }
+
+const std::vector<std::shared_ptr<Entity>>& World::getEntities() const
+{
+    return entities;
+}

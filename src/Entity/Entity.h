@@ -18,14 +18,12 @@ class Entity : public Observer {
 protected:
     std::string image;
 
-public:
-    Entity();
-
-protected:
-
     Entity(const std::string& image);
 
     virtual void onNotify(Utils::Event event);
+
+public:
+    Entity();
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H

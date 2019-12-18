@@ -36,12 +36,10 @@ bool Game::play()
     sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "SFML Demo");
     sprite.setOrigin(-29, -(renderWindow.getSize().x/2.0));
 
-    Controller control;
-
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
         /// Part of control
-        control.run(renderWindow);
+        controller.run(renderWindow);
 
         /// Part of view
         renderWindow.clear();
@@ -62,6 +60,12 @@ void Game::load(const std::string& level)
     loadWorld(j["World"]);
     loadPlayer(j["Player"]);
     loadEnemy(j["Enemies"]);
+
+    // TODO add check for when entity is not a valid pointer
+    // Add observers to the controller of the game
+    for (auto entity: world.getEntities()) {
+        controller.addObserver(entity);
+    }
 }
 
 // TODO error on empty filename

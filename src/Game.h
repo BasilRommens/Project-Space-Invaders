@@ -27,6 +27,8 @@ class Game {
 private:
     World world;
 
+    Controller controller;
+
     /**
      * @brief loads a level from a json file
      * @param level: The filename of the level to be loaded
