@@ -12,10 +12,10 @@
 Utils::Position::Position(double x_pos, double y_pos)
         :xPos(x_pos), yPos(y_pos) { }
 
-void Utils::Position::moveXPos(double x_pos, double distance)
+void Utils::Position::moveXPos(double distance)
 {
     // Set the new possible x position
-    double newXPos = x_pos+distance;
+    double newXPos = xPos+distance;
 
     // TODO throw an error when out of bounds
     if (newXPos>CoordinateBound::UPPER_X) {
@@ -29,10 +29,10 @@ void Utils::Position::moveXPos(double x_pos, double distance)
     }
 }
 
-void Utils::Position::moveYPos(double y_pos, double distance)
+void Utils::Position::moveYPos(double distance)
 {
     // Set the new possible y position
-    double newXPos = y_pos+distance;
+    double newXPos = yPos+distance;
 
     // TODO throw an error when out of bounds
     if (newXPos>CoordinateBound::UPPER_Y) {

@@ -33,12 +33,12 @@ void PlayerShip::onNotify(Utils::Event event)
 
 void PlayerShip::moveRight()
 {
-
+    pos.moveXPos(-HSpeed);
 }
 
 void PlayerShip::moveLeft()
 {
-
+    pos.moveXPos(HSpeed);
 }
 
 void PlayerShip::fireBullet()

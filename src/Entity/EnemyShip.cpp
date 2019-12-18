@@ -35,12 +35,12 @@ void EnemyShip::onNotify(Utils::Event event)
 
 void EnemyShip::moveRight()
 {
-
+    pos.moveXPos(-HSpeed);
 }
 
 void EnemyShip::moveLeft()
 {
-
+    pos.moveXPos(HSpeed);
 }
 
 void EnemyShip::fireBullet()

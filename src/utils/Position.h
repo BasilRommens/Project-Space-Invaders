@@ -24,9 +24,9 @@ namespace Utils {
     public:
         Position(double x_pos, double y_pos);
 
-        void moveXPos(double x_pos, double distance);
+        void moveXPos(double distance);
 
-        void moveYPos(double y_pos, double distance);
+        void moveYPos(double distance);
     };
 
 }
