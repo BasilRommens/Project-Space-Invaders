@@ -31,8 +31,10 @@ void Draw::newD(std::shared_ptr<Entity> entity)
     std::pair<std::shared_ptr<Entity>, sf::Sprite> t;
 }
 
-Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window)
-        :window(window) { }
+Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const World& world)
+        :window(window) {
+    // TODO add all the world elements to the draw
+}
 
 void Draw::view() const
 {

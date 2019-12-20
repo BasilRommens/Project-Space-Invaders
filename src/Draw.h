@@ -11,6 +11,12 @@
 #include <SFML/Graphics.hpp>
 
 #include "Observer.h"
+#include "Entity/Entity.h"
+#include "Entity/EnemyShip.h"
+#include "Entity/Bullet.h"
+#include "Entity/BGTile.h"
+#include "Entity/PlayerShip.h"
+#include "Entity/World.h"
 
 class Draw : public Observer {
 private:
@@ -18,7 +24,7 @@ private:
 
     std::vector<std::pair<std::shared_ptr<Entity>, sf::Sprite>> sprites;
 public:
-    Draw(const std::shared_ptr<sf::RenderWindow>& window);
+    Draw(const std::shared_ptr<sf::RenderWindow>& window, const World& world);
 
     void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
 
