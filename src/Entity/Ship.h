@@ -31,6 +31,8 @@ public:
     Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
 
     std::string getType() const override;
+
+    Utils::Position getPos() const override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_SHIP_H

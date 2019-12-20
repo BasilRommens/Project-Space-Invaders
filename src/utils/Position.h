@@ -22,11 +22,17 @@ namespace Utils {
         double xPos{};
         double yPos{};
     public:
+        Position();
+
         Position(double x_pos, double y_pos);
 
         void moveXPos(double distance);
 
         void moveYPos(double distance);
+
+        double getXPos() const;
+
+        double getYPos() const;
     };
 
 }

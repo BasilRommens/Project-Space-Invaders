@@ -14,3 +14,8 @@ std::string Ship::getType() const
 {
     return "";
 }
+
+Utils::Position Ship::getPos() const
+{
+    return pos;
+}

@@ -15,3 +15,8 @@ std::string Bullet::getType() const
 {
     return "bullet";
 }
+
+Utils::Position Bullet::getPos() const
+{
+    return pos;
+}

@@ -21,3 +21,13 @@ std::string Entity::getType() const
 {
     return std::string();
 }
+
+Utils::Position Entity::getPos() const
+{
+    return Utils::Position{};
+}
+
+const std::string& Entity::getImage() const
+{
+    return image;
+}

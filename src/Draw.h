@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Observer.h"
+#include "utils/Transformation.h"
 #include "Entity/Entity.h"
 #include "Entity/EnemyShip.h"
 #include "Entity/Bullet.h"
@@ -18,11 +19,16 @@
 #include "Entity/PlayerShip.h"
 #include "Entity/World.h"
 
+std::shared_ptr<Utils::Transformation> Utils::Transformation::instance = nullptr;
+
 class Draw : public Observer {
 private:
     std::shared_ptr<sf::RenderWindow> window;
 
     std::vector<std::pair<std::shared_ptr<Entity>, sf::Sprite>> sprites;
+
+    sf::Sprite createSprite(std::shared_ptr<Entity> entity);
+
 public:
     Draw(const std::shared_ptr<sf::RenderWindow>& window, const World& world);
 

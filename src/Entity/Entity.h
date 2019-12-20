@@ -12,6 +12,7 @@
 
 #include "../Observer.h"
 #include "../Subject.h"
+#include "../utils/Position.h"
 
 class Observer;
 
@@ -27,6 +28,10 @@ public:
     Entity();
 
     virtual std::string getType() const;
+
+    virtual Utils::Position getPos() const;
+
+    const std::string& getImage() const;
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H

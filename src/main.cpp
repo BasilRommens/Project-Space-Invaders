@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file main.cpp
  * @author Basil Rommens
  * @date 30/11/2019
- * @brief ...
+ * @brief The place from where all the code is run
  */
 
 #include "Game.h"

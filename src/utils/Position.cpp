@@ -45,3 +45,15 @@ void Utils::Position::moveYPos(double distance)
         xPos = newXPos;
     }
 }
+
+Utils::Position::Position() { }
+
+double Utils::Position::getXPos() const
+{
+    return xPos;
+}
+
+double Utils::Position::getYPos() const
+{
+    return yPos;
+}

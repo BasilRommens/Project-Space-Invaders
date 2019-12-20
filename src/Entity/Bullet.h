@@ -22,6 +22,8 @@ public:
             const Utils::Position& pos);
 
     std::string getType() const override;
+
+    Utils::Position getPos() const override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_BULLET_H
