@@ -12,7 +12,8 @@ namespace Utils {
         MOVE_RIGHT,
         MOVE_LEFT,
         FIRE_BULLET,
-        CLOSE_WINDOW
+        CLOSE_WINDOW,
+        NEW_DRAW
     };
 
 }
