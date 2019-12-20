@@ -38,15 +38,16 @@ bool Game::play()
     sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "SFML Demo");
     sprite.setOrigin(-29, -(renderWindow.getSize().x/2.0));
 
+    std::shared_ptr<sf::RenderWindow> window(&renderWindow);
+    Draw draw(window);
+
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
         /// Part of control
         controller.run(renderWindow, world);
 
         /// Part of view
-        renderWindow.clear();
-        renderWindow.draw(sprite);
-        renderWindow.display();
+        draw.view();
     }
 
     return true;

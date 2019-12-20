@@ -20,6 +20,7 @@
 #include "json.hpp"
 #include "Controller.h"
 #include "Entity/World.h"
+#include "Draw.h"
 
 using json = nlohmann::json;
 
