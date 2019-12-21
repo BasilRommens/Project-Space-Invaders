@@ -132,8 +132,9 @@ void Game::loadWorld(const std::string&& worldName)
 
 void Game::wait()
 {
-    double elapsedTime = stopwatch->get_lap().count()*1000;
+    int elapsedTime = stopwatch->get_lap().count()*1000000;
     if (elapsedTime<Utils::frameDuration) {
+        // multiplied by 100 cause framerate doesnt seem right
         usleep(Utils::frameDuration-elapsedTime);
     }
 }
