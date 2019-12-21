@@ -28,11 +28,13 @@ void PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
         // TODO move right according to speed
         std::cout << "right move" << std::endl;
         moveRight();
+        notify(shared_from_this(), Utils::Event::UPDATE_DRAW);
         break;
     case Utils::Event::MOVE_LEFT:
         // TODO move left according to speed
         std::cout << "left move" << std::endl;
         moveLeft();
+        notify(shared_from_this(), Utils::Event::UPDATE_DRAW);
         break;
     case Utils::Event::FIRE_BULLET:
         std::cout << "fire bullet" << std::endl;

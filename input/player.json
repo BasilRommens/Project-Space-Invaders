@@ -2,7 +2,7 @@
   "Type": "Player",
   "xPos": -0.4,
   "yPos": -2,
-  "HSpeed": 3,
+  "HSpeed": 0.1,
   "Image": "img/player.png",
   "Damage": 2,
   "HP": 8

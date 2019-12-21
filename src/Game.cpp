@@ -11,7 +11,7 @@ Game::Game() { }
 
 void Game::start(std::vector<std::string> levels)
 {
-    sf::RenderWindow renderWindow(sf::VideoMode(400, 300), "Project Space Invaders");
+    sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
     bool failure{};
 
     for (auto level: levels) {

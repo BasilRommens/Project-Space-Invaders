@@ -19,9 +19,11 @@ void Utils::Position::moveXPos(double distance)
 
     // TODO throw an error when out of bounds
     if (newXPos>CoordinateBound::UPPER_X) {
+        std::cout << "hit upper bounds" << std::endl;
         xPos = CoordinateBound::UPPER_X;
     }
     else if (newXPos<CoordinateBound::LOWER_X) {
+        std::cout << "hit lower bounds" << std::endl;
         xPos = CoordinateBound::LOWER_X;
     }
     else {

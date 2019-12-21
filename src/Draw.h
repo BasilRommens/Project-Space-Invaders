@@ -25,7 +25,7 @@ private:
 
     std::shared_ptr<sf::RenderWindow> window;
 
-    std::vector<std::pair<std::shared_ptr<Entity>, sf::Sprite>> sprites;
+    std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>> sprites;
 
     sf::Sprite createSprite(std::shared_ptr<Entity> entity);
 
@@ -40,9 +40,9 @@ public:
 
     void view() const;
 
-    void addSprite(std::pair<std::shared_ptr<Entity>, sf::Sprite>& sprite);
+    void addSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>& sprite);
 
-    void removeSprite(std::pair<std::shared_ptr<Entity>, sf::Sprite>& sprite);
+    void removeSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>& sprite);
 };
 
 #endif //PROJECT_SPACE_INVADERS_DRAW_H
