@@ -82,7 +82,6 @@ void Draw::addSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Spri
 
 void Draw::removeSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>& sprite)
 {
-    // TODO fix the sprite datastructure because the sprites seem to be stored by value and not by memory location
     for (auto _sprite = sprites.begin(); _sprite!=sprites.end(); ++_sprite) {
         if (_sprite->first.get()==sprite.first.get() and _sprite->second.get()==sprite.second.get()) {
             sprites.erase(_sprite);

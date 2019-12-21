@@ -7,6 +7,9 @@
 
 #include "Game.h"
 
+// set the instance of the Stopwatch to nullptr to be not pointing to anything
+std::shared_ptr<Utils::Stopwatch> Utils::Stopwatch::instance = nullptr;
+
 Game::Game() { }
 
 void Game::start(std::vector<std::string> levels)
@@ -32,7 +35,6 @@ void Game::start(std::vector<std::string> levels)
 
 bool Game::play(sf::RenderWindow& renderWindow)
 {
-    // TODO add a thing that closes the screen
     // TODO add the visualization of the world and all its entities
     std::shared_ptr<sf::RenderWindow> window(&renderWindow);
     std::shared_ptr<Draw> draw(new Draw(window, world));
@@ -45,11 +47,16 @@ bool Game::play(sf::RenderWindow& renderWindow)
 
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
+        // start the timing of the stopwatch
+        stopwatch->start();
+
         /// Part of control
         controller.run(renderWindow, world);
 
         /// Part of view
-        draw->view();
+        draw->view();\
+
+        wait();
     }
 
     return false;
@@ -121,6 +128,14 @@ void Game::loadEnemy(const std::string&& enemy)
 void Game::loadWorld(const std::string&& worldName)
 {
     world = World(worldName);
+}
+
+void Game::wait()
+{
+    double elapsedTime = stopwatch->get_lap().count()*1000;
+    if (elapsedTime<Utils::frameDuration) {
+        usleep(Utils::frameDuration-elapsedTime);
+    }
 }
 
 

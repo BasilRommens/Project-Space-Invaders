@@ -18,6 +18,8 @@
  */
 namespace Utils {
 
+    const double frameDuration = 1.0/60.0*1000;
+
     /**
      * @class Stopwatch: The class that is implemented to be used as a stopwatch
      * @details The class is implemented as a singleton pattern

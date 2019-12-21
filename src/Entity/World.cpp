@@ -65,6 +65,7 @@ std::string World::getType() const
 void World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // TODO throw error when no entity is detected
+    std::cout << "test" << std::endl;
     switch (event) {
     case Utils::Event::FIRE_BULLET:
         std::cout << "create" << std::endl;

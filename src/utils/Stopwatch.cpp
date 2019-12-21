@@ -7,8 +7,6 @@
 
 #include "Stopwatch.h"
 
-std::shared_ptr<Utils::Stopwatch> Utils::Stopwatch::instance = nullptr;
-
 void Utils::Stopwatch::start()
 {
     startTime = std::chrono::system_clock::now();
@@ -16,7 +14,6 @@ void Utils::Stopwatch::start()
 
 std::chrono::duration<double> Utils::Stopwatch::get_lap() const
 {
-    auto test = std::chrono::system_clock::now();
     return std::chrono::system_clock::now()-startTime;
 }
 

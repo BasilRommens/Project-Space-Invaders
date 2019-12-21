@@ -12,14 +12,16 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <unistd.h>
 #include <SFML/Graphics.hpp>
 
 #include "Entity/PlayerShip.h"
 #include "Entity/EnemyShip.h"
 #include "Entity/Bullet.h"
+#include "Entity/World.h"
+#include "utils/Stopwatch.h"
 #include "json.hpp"
 #include "Controller.h"
-#include "Entity/World.h"
 #include "Draw.h"
 
 using json = nlohmann::json;
@@ -29,6 +31,8 @@ private:
     World world;
 
     Controller controller;
+
+    std::shared_ptr<Utils::Stopwatch> stopwatch = stopwatch->getStopwatch();
 
     /**
      * @brief loads a level from a json file
@@ -60,6 +64,8 @@ private:
      * @return If the level was succesfully finished
      */
     bool play(sf::RenderWindow& renderWindow);
+
+    void wait();
 
 public:
 
