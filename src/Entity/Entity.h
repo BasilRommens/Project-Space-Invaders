@@ -9,6 +9,7 @@
 #define PROJECT_SPACE_INVADERS_ENTITY_H
 
 #include <string>
+#include <SFML/Graphics.hpp>
 
 #include "../Observer.h"
 #include "../Subject.h"
@@ -20,6 +21,8 @@ class Entity : public Observer, public Subject {
 protected:
     std::string image;
 
+    sf::Texture texture;
+
     Entity(const std::string& image);
 
     void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
@@ -30,6 +33,8 @@ public:
     virtual std::string getType() const;
 
     virtual Utils::Position getPos() const;
+
+    const sf::Texture& getTexture() const;
 
     const std::string& getImage() const;
 };

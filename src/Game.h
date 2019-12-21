@@ -54,7 +54,15 @@ private:
      */
     void loadWorld(const std::string&& worldName);
 
+    /**
+     * @brief Plays the level currently loaded in the model
+     * @param renderWindow: The window which shows the game that needs to run
+     * @return If the level was succesfully finished
+     */
+    bool play(sf::RenderWindow& renderWindow);
+
 public:
+
     /**
      * @brief The default game constructor
      */
@@ -65,13 +73,6 @@ public:
      * @param levels: The levels that will be played in order when succesfully completed
      */
     void start(std::vector<std::string> levels);
-
-    /**
-     * @brief Plays the level currently loaded in the model
-     * @param renderWindow: The window which shows the game that needs to run
-     * @return If the level was succesfully finished
-     */
-    bool play(sf::RenderWindow& renderWindow);
 };
 
 #endif //PROJECT_SPACE_INVADERS_GAME_H

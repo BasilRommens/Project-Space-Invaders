@@ -34,7 +34,6 @@ bool Game::play(sf::RenderWindow& renderWindow)
 {
     // TODO add a thing that closes the screen
     // TODO add the visualization of the world and all its entities
-
     std::shared_ptr<sf::RenderWindow> window(&renderWindow);
     std::shared_ptr<Draw> draw(new Draw(window, world));
     std::shared_ptr<Observer> drawShared(draw);
@@ -92,7 +91,7 @@ void Game::loadPlayer(const std::string&& player)
 
     std::shared_ptr<Entity> playerShip(new PlayerShip(image, position, HP, HSpeed, damage));
     world.addEntity(playerShip);
-    world.addObserver(playerShip);
+    playerShip->addObserver(std::make_shared<Entity>(world));
 }
 
 // TODO error on empty filename
@@ -114,7 +113,8 @@ void Game::loadEnemy(const std::string&& enemy)
 
         std::shared_ptr<Entity> enemyShip(new EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
         world.addEntity(enemyShip);
-        world.addObserver(enemyShip);
+        std::shared_ptr<Entity> sharedWorld(&world);
+        enemyShip->addObserver(sharedWorld);
     }
 }
 

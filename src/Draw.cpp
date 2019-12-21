@@ -39,13 +39,15 @@ void Draw::updateD(std::shared_ptr<Entity> entity)
             break;
         }
     }
+    std::cout << "update" << std::endl;
     // TODO recalculate the place of the spriteToUpdate
 }
 
 void Draw::newD(std::shared_ptr<Entity> entity)
 {
     std::pair<std::shared_ptr<Entity>, sf::Sprite> newSprite(entity, createSprite(entity));
-    this->sprites.push_back(newSprite);
+    addSprite(newSprite);
+    std::cout << "new" << std::endl;
 }
 
 Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const World& world)
@@ -85,17 +87,20 @@ void Draw::removeSprite(std::pair<std::shared_ptr<Entity>, sf::Sprite>& sprite)
 sf::Sprite Draw::createSprite(std::shared_ptr<Entity> entity)
 {
     // TODO scale sprites
+    // TODO fix representation in texture in the model because it doesnt belong there
     std::shared_ptr<Utils::Transformation> transform = transform->getTransformation();
-    std::pair<unsigned int, unsigned int> spriteCoordinates = (*transform)(entity->getPos().getXPos(),
-            entity->getPos().getYPos(), window->getSize().x);
+    std::pair<int, int> spriteCoordinates = (*transform)(entity->getPos().getXPos(),
+            entity->getPos().getYPos(), window->getSize().x, window->getSize().y);
 
     sf::Texture texture;
     texture.loadFromFile(entity->getImage());
+    textures.push_back(texture);
 
     sf::Sprite sprite;
-    sprite.setTexture(texture);
+    sprite.setTexture(entity->getTexture());
 
     sprite.setOrigin(spriteCoordinates.first, spriteCoordinates.second);
 
+    std::cout << entity->getType() << " " << spriteCoordinates.first << " " << spriteCoordinates.second << std::endl;
     return sprite;
 }

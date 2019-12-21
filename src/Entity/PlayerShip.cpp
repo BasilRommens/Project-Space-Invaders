@@ -55,8 +55,7 @@ void PlayerShip::moveLeft()
 
 void PlayerShip::fireBullet()
 {
-    std::shared_ptr<Entity> p(this);
-    notify(p, Utils::Event::FIRE_BULLET);
+    notify(shared_from_this(), Utils::Event::FIRE_BULLET);
 }
 
 std::string PlayerShip::getType() const

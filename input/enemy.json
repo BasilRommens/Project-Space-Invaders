@@ -2,8 +2,8 @@
   "Type": "Enemy",
   "Ships": [
     {
-      "xPos": 0,
-      "yPos": 0,
+      "xPos": -0.4,
+      "yPos": 2,
       "HSpeed": 3,
       "VSpeed": 1,
       "Image": "img/alien.png",
@@ -11,8 +11,8 @@
       "HP": 4
     },
     {
-      "xPos": 0.3,
-      "yPos": 0.3,
+      "xPos": 0.6,
+      "yPos": 2,
       "HSpeed": 3,
       "VSpeed": 1,
       "Image": "img/alien.png",
@@ -20,8 +20,8 @@
       "HP": 4
     },
     {
-      "xPos": -0.3,
-      "yPos": -0.3,
+      "xPos": -1.4,
+      "yPos": 2,
       "HSpeed": 3,
       "VSpeed": 1,
       "Image": "img/alien.png",

@@ -21,6 +21,8 @@
 
 class Draw : public Observer {
 private:
+    std::vector<sf::Texture> textures;
+
     std::shared_ptr<sf::RenderWindow> window;
 
     std::vector<std::pair<std::shared_ptr<Entity>, sf::Sprite>> sprites;

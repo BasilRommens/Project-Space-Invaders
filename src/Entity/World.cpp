@@ -67,6 +67,7 @@ void World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     // TODO throw error when no entity is detected
     switch (event) {
     case Utils::Event::FIRE_BULLET:
+        std::cout << "create" << std::endl;
         // Create a bullet with that needs to depart from the certain ship
         this->addEntity(createBullet(entity));
         break;
@@ -77,6 +78,7 @@ void World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 
 std::shared_ptr<Entity> World::createBullet(std::shared_ptr<Entity> ship)
 {
+    // TODO add data to the bullet
     std::shared_ptr<Entity> bullet;
     return bullet;
 }

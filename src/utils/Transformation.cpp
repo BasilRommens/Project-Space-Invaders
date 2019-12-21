@@ -18,17 +18,16 @@ std::shared_ptr<Utils::Transformation>& Utils::Transformation::getTransformation
     return instance;
 }
 
-std::pair<unsigned int, unsigned int> Utils::Transformation::operator()(double x, double y, unsigned int width)
+std::pair<int, int> Utils::Transformation::operator()(double x, double y, unsigned int width, unsigned int height)
 {
+    // TODO fix faulty code
     double scaleWidth = width/(-CoordinateBound::LOWER_X+CoordinateBound::UPPER_X);
-    double height = width*(-CoordinateBound::LOWER_Y*CoordinateBound::UPPER_Y)
-            /(-CoordinateBound::LOWER_X*CoordinateBound::UPPER_Y);
     double scaleHeight = height/(-CoordinateBound::LOWER_Y+CoordinateBound::UPPER_Y);
 
     try {
         // change the coordinates in the [-4,4] x [-3,3] system to the screen pixels
         double retX = (x-CoordinateBound::LOWER_X)*scaleWidth;
-        double retY = (y-CoordinateBound::LOWER_Y)*scaleHeight;
+        double retY = -(y-CoordinateBound::UPPER_Y)*scaleHeight;
 
         // exception handling
         std::string e; // Initializing the out of range exception with nothing
@@ -52,7 +51,7 @@ std::pair<unsigned int, unsigned int> Utils::Transformation::operator()(double x
             throw std::out_of_range(e);
         }
 
-        return std::make_pair(std::round(retX), std::round(retY));
+        return std::make_pair(std::round(-retX), std::round(-retY));
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;

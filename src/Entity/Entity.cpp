@@ -8,14 +8,14 @@
 #include "Entity.h"
 
 Entity::Entity(const std::string& image)
-        :image(image) { }
+        :image(image)
+{
+    texture.loadFromFile(image);
+}
 
 Entity::Entity() { }
 
-void Entity::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
-{
-
-}
+void Entity::onNotify(std::shared_ptr<Entity> entity, Utils::Event event) { }
 
 std::string Entity::getType() const
 {
@@ -25,6 +25,11 @@ std::string Entity::getType() const
 Utils::Position Entity::getPos() const
 {
     return Utils::Position{};
+}
+
+const sf::Texture& Entity::getTexture() const
+{
+    return texture;
 }
 
 const std::string& Entity::getImage() const

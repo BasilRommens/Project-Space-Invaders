@@ -45,7 +45,7 @@ namespace Utils {
          * @param width: The width of the window
          * @return The coordinates in pixels of the coordinates in the [-4,4] x [-3, 3] coordinate system
          */
-        std::pair<unsigned int, unsigned int> operator()(double x, double y, unsigned int width);
+        std::pair<int, int> operator()(double x, double y, unsigned int width, unsigned int height);
     };
 
 }

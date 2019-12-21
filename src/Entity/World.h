@@ -33,10 +33,9 @@ public:
 
     std::string getType() const override;
 
-    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
+    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
 
     std::shared_ptr<Entity> createBullet(std::shared_ptr<Entity> ship);
-
 };
 
 #endif //PROJECT_SPACE_INVADERS_WORLD_H
