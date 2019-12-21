@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file Position.cpp
  * @author Basil Rommens
  * @date 01/12/2019
- * @brief ...
+ * @brief The cpp file of the class Position
  */
 
 #include "Position.h"

@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file Game.h
  * @author Basil Rommens
  * @date 01/12/2019
- * @brief ...
+ * @brief The header file of the class Game
  */
 
 #ifndef PROJECT_SPACE_INVADERS_GAME_H
@@ -36,13 +36,28 @@ private:
      */
     void load(const std::string& level);
 
+    /**
+     * @brief Loads the player from a string given with it
+     * @param player: The filename which to parse
+     */
     void loadPlayer(const std::string&& player);
 
+    /**
+     * @brief Loads the enemy from a string given to it
+     * @param enemy: The filename which to parse
+     */
     void loadEnemy(const std::string&& enemy);
 
+    /**
+     * @brief Loads the world from a string given to it
+     * @param worldName: The filename of the graphical representation of the world
+     */
     void loadWorld(const std::string&& worldName);
 
 public:
+    /**
+     * @brief The default game constructor
+     */
     Game();
 
     /**
@@ -53,9 +68,10 @@ public:
 
     /**
      * @brief Plays the level currently loaded in the model
+     * @param renderWindow: The window which shows the game that needs to run
      * @return If the level was succesfully finished
      */
-    bool play();
+    bool play(sf::RenderWindow& renderWindow);
 };
 
 #endif //PROJECT_SPACE_INVADERS_GAME_H

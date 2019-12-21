@@ -11,11 +11,16 @@ Game::Game() { }
 
 void Game::start(std::vector<std::string> levels)
 {
+    sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
     bool failure{};
+
     for (auto level: levels) {
         load(level);
-        failure = play();
+        failure = play(renderWindow);
         if (failure) {
+            break;
+        }
+        if (not renderWindow.isOpen()) {
             break;
         }
     }
@@ -25,21 +30,19 @@ void Game::start(std::vector<std::string> levels)
     }
 }
 
-bool Game::play()
+bool Game::play(sf::RenderWindow& renderWindow)
 {
     // TODO add a thing that closes the screen
     // TODO add the visualization of the world and all its entities
-    sf::Texture texture;
-    texture.loadFromFile("img/laser.png");
-
-    sf::Sprite sprite;
-    sprite.setTexture(texture);
-
-    sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "SFML Demo");
-    sprite.setOrigin(-29, -(renderWindow.getSize().x/2.0));
 
     std::shared_ptr<sf::RenderWindow> window(&renderWindow);
-    Draw draw(window);
+    std::shared_ptr<Draw> draw(new Draw(window, world));
+    std::shared_ptr<Observer> drawShared(draw);
+
+    // Add the draw object to each class
+    for (auto& entity: world.getEntities()) {
+        entity->addObserver(drawShared);
+    }
 
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
@@ -47,10 +50,10 @@ bool Game::play()
         controller.run(renderWindow, world);
 
         /// Part of view
-        draw.view();
+        draw->view();
     }
 
-    return true;
+    return false;
 }
 
 // TODO error on empty filename

@@ -7,9 +7,6 @@
 
 #include "Transformation.h"
 
-// set the instance of the transformation to nullptr to be not pointing to anything
-std::shared_ptr<Utils::Transformation> Utils::Transformation::instance = nullptr;
-
 Utils::Transformation::Transformation() { }
 
 std::shared_ptr<Utils::Transformation>& Utils::Transformation::getTransformation()

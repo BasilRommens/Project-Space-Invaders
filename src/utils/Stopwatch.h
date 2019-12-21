@@ -3,7 +3,7 @@
  * @author Basil Rommens
  * @date 12/11/19
  * @brief The header file of the Stopwatch class
- * @source https://stackoverflow.com/questions/47558290/singleton-class-with-smart-pointers-and-destructor-being-called
+ * @see [singleton pattern](https://stackoverflow.com/questions/47558290/singleton-class-with-smart-pointers-and-destructor-being-called)
  */
 
 #ifndef PROJECT_SPACE_INVADERS_STOPWATCH_H
@@ -12,8 +12,17 @@
 #include <chrono>
 #include <memory>
 
+/**
+ * @addtogroup Utils
+ * @{
+ */
 namespace Utils {
 
+    /**
+     * @class Stopwatch: The class that is implemented to be used as a stopwatch
+     * @details The class is implemented as a singleton pattern
+     * @see [Singleton pattern](https://stackoverflow.com/questions/47558290/singleton-class-with-smart-pointers-and-destructor-being-called)
+     */
     class Stopwatch {
     private:
         static std::shared_ptr<Stopwatch> instance; /** @var instance: The sole instance of the Stopwatch class */
@@ -60,5 +69,9 @@ namespace Utils {
     };
 
 }
+
+/**
+ * @}
+ */
 
 #endif //PROJECT_SPACE_INVADERS_STOPWATCH_H

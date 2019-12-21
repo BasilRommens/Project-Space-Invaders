@@ -19,8 +19,6 @@
 #include "Entity/PlayerShip.h"
 #include "Entity/World.h"
 
-std::shared_ptr<Utils::Transformation> Utils::Transformation::instance = nullptr;
-
 class Draw : public Observer {
 private:
     std::shared_ptr<sf::RenderWindow> window;

@@ -13,6 +13,11 @@ PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, dou
 
 void PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
+    // Notify if we need to close the window
+    if (not entity and event==Utils::Event::CLOSE_WINDOW) {
+        notify(nullptr, event);
+    }
+
     // Return if the entity passed through isnt this one
     if (entity.get()!=this) {
         return;
@@ -30,7 +35,6 @@ void PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
         moveLeft();
         break;
     case Utils::Event::FIRE_BULLET:
-        // TODO add what to do when firing a bullet
         std::cout << "fire bullet" << std::endl;
         fireBullet();
         break;
