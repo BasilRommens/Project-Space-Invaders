@@ -8,4 +8,6 @@ cd build
 cmake ..
 make
 
-./Project-Space-Invaders
+cd ..
+
+build/Project-Space-Invaders

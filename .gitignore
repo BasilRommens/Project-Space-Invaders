@@ -124,3 +124,15 @@ fabric.properties
 .idea/**/markdown-navigator/
 
 # End of https://www.gitignore.io/api/clion
+.idea/$PRODUCT_WORKSPACE_FILE$
+.idea/.gitignore
+.idea/Project-Space-Invaders.iml
+.idea/codeStyles/
+.idea/dataSources.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+doc/html/
+doc/xml/
+
+cmake-build-debug/
