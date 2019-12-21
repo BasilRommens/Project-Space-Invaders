@@ -51,7 +51,7 @@ std::pair<int, int> Utils::Transformation::operator()(double x, double y, unsign
             throw std::out_of_range(e);
         }
 
-        return std::make_pair(std::round(-retX), std::round(-retY));
+        return std::make_pair(std::round(retX), std::round(retY));
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;

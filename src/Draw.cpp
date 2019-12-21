@@ -47,7 +47,6 @@ void Draw::newD(std::shared_ptr<Entity> entity)
 {
     std::pair<std::shared_ptr<Entity>, sf::Sprite> newSprite(entity, createSprite(entity));
     addSprite(newSprite);
-    std::cout << "new" << std::endl;
 }
 
 Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const World& world)
@@ -55,7 +54,6 @@ Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const World& world)
 {
     for (auto entity: world.getEntities()) {
         newD(entity);
-
     }
 }
 
@@ -86,9 +84,10 @@ void Draw::removeSprite(std::pair<std::shared_ptr<Entity>, sf::Sprite>& sprite)
 
 sf::Sprite Draw::createSprite(std::shared_ptr<Entity> entity)
 {
-    // TODO scale sprites
     // TODO fix representation in texture in the model because it doesnt belong there
+    // create an object of the transform class
     std::shared_ptr<Utils::Transformation> transform = transform->getTransformation();
+    // Retrieve the sprite coordinates of the pixels
     std::pair<int, int> spriteCoordinates = (*transform)(entity->getPos().getXPos(),
             entity->getPos().getYPos(), window->getSize().x, window->getSize().y);
 
@@ -96,11 +95,16 @@ sf::Sprite Draw::createSprite(std::shared_ptr<Entity> entity)
     texture.loadFromFile(entity->getImage());
     textures.push_back(texture);
 
+    // create the sprite and apply the next 3 actions on it
     sf::Sprite sprite;
+    // Decide the texture of the sprite
     sprite.setTexture(entity->getTexture());
 
-    sprite.setOrigin(spriteCoordinates.first, spriteCoordinates.second);
+    // Place the sprites at the right position
+    sprite.setPosition(spriteCoordinates.first, spriteCoordinates.second);
 
-    std::cout << entity->getType() << " " << spriteCoordinates.first << " " << spriteCoordinates.second << std::endl;
+    // TODO fix scaling of sprites
+    // Set the scale of the sprite according to the window size
+    sprite.scale(sf::Vector2f(window->getSize().x/800.f, window->getSize().y/600.f));
     return sprite;
 }
