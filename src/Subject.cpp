@@ -42,3 +42,8 @@ void Subject::notify(std::shared_ptr<Entity> entity, Utils::Event event)
         observer->onNotify(entity, event);
     }
 }
+
+const std::vector<std::shared_ptr<Observer>>& Subject::getObservers() const
+{
+    return observers;
+}

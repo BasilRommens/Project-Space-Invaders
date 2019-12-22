@@ -26,6 +26,8 @@ public:
      * @param event: The event that took place
      */
     virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) = 0;
+
+    virtual std::string getType();
 };
 
 #endif //PROJECT_SPACE_INVADERS_OBSERVER_H

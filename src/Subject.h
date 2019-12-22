@@ -27,6 +27,8 @@ protected:
      */
     void notify(std::shared_ptr<Entity> entity, Utils::Event event);
 
+    const std::vector<std::shared_ptr<Observer>>& getObservers() const;
+
 public:
     /**
      * @brief Adds and observer to the list of observers the subject holds

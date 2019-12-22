@@ -23,12 +23,15 @@
 #include "json.hpp"
 #include "Controller.h"
 #include "Draw.h"
+#include "AI.h"
 
 using json = nlohmann::json;
 using namespace std::chrono_literals;
 
 class Game {
 private:
+    AI ai;
+
     World world;
 
     Controller controller;

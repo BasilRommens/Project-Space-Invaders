@@ -33,6 +33,8 @@ public:
     std::string getType() const override;
 
     Utils::Position getPos() const override;
+
+    double getDamage() const override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_SHIP_H

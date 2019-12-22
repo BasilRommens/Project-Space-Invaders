@@ -37,6 +37,11 @@ public:
     const sf::Texture& getTexture() const;
 
     const std::string& getImage() const;
+
+    // TODO Possibly move it to the ship class
+    virtual double getDamage() const;
+
+    std::shared_ptr<Observer> getDrawShared();
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H

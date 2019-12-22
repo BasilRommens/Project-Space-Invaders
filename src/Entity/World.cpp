@@ -6,7 +6,6 @@
  */
 
 #include "World.h"
-#include "Ship.h"
 
 void World::addEntity(std::shared_ptr<Entity> entity)
 {
@@ -64,22 +63,28 @@ std::string World::getType() const
 
 void World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
+
     // TODO throw error when no entity is detected
-    std::cout << "test" << std::endl;
-    switch (event) {
-    case Utils::Event::FIRE_BULLET:
-        std::cout << "create" << std::endl;
+    if (event==Utils::Event::FIRE_BULLET) {
         // Create a bullet with that needs to depart from the certain ship
-        this->addEntity(createBullet(entity));
-        break;
-    default:
-        std::cout << "Default" << std::endl;
+        std::shared_ptr<Entity> bullet = createBullet(entity);
+        this->addEntity(bullet);
+        notify(bullet, Utils::Event::NEW_DRAW);
     }
 }
 
 std::shared_ptr<Entity> World::createBullet(std::shared_ptr<Entity> ship)
 {
-    // TODO add data to the bullet
-    std::shared_ptr<Entity> bullet;
+    // TODO remove fixed image of the bullet
+    // TODO remove fixed bullet speed
+    Utils::Position pos(0, 0);
+    std::string image("img/laser.png");
+    Utils::Direction direction = (ship->getType()=="player") ? Utils::Direction::UP : Utils::Direction::DOWN;
+    double speed = 0.3;
+    double damage = ship->getDamage();
+    std::shared_ptr<Entity> bullet(new Bullet(image, direction, speed, damage, pos));
+
+    // add the observer to be able to draw a bullet
+    bullet->addObserver(ship->getDrawShared());
     return bullet;
 }

@@ -8,3 +8,8 @@
 #include "Observer.h"
 
 Observer::~Observer() { }
+
+std::string Observer::getType()
+{
+    return "";
+}

@@ -41,14 +41,14 @@ bool Game::play(sf::RenderWindow& renderWindow)
     std::shared_ptr<Observer> drawShared(draw);
 
     // Add the draw object to each class
-    for (auto& entity: world.getEntities()) {
+    for (const auto entity: world.getEntities()) {
         entity->addObserver(drawShared);
     }
 
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
         // start the timing of the stopwatch
-        stopwatch.reset();
+        stopwatch->start();
 
         /// Part of control
         controller.run(renderWindow, world);
@@ -98,7 +98,9 @@ void Game::loadPlayer(const std::string&& player)
 
     std::shared_ptr<Entity> playerShip(new PlayerShip(image, position, HP, HSpeed, damage));
     world.addEntity(playerShip);
-    playerShip->addObserver(std::make_shared<Entity>(world));
+
+    std::shared_ptr<Observer> sharedWorld(&world);
+    playerShip->addObserver(sharedWorld);
 }
 
 // TODO error on empty filename
@@ -120,9 +122,16 @@ void Game::loadEnemy(const std::string&& enemy)
 
         std::shared_ptr<Entity> enemyShip(new EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
         world.addEntity(enemyShip);
-        std::shared_ptr<Entity> sharedWorld(&world);
+
+        std::shared_ptr<Observer> sharedWorld(&world);
         enemyShip->addObserver(sharedWorld);
+
+        std::shared_ptr<Observer> sharedAI(&ai);
+        enemyShip->addObserver(sharedAI);
     }
+
+    std::shared_ptr<Observer> sharedController(&controller);
+    ai.addObserver(sharedController);
 }
 
 void Game::loadWorld(const std::string&& worldName)

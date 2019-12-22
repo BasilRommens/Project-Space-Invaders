@@ -27,8 +27,6 @@ public:
             double vSpeed);
 
     std::string getType() const override;
-
-
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENEMYSHIP_H

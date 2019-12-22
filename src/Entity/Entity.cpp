@@ -36,3 +36,18 @@ const std::string& Entity::getImage() const
 {
     return image;
 }
+
+double Entity::getDamage() const
+{
+    return 0;
+}
+
+std::shared_ptr<Observer> Entity::getDrawShared()
+{
+    for (auto observer: this->getObservers()) {
+        if (observer->getType()=="draw") {
+            return observer;
+        }
+    }
+    return nullptr;
+}

@@ -43,6 +43,8 @@ public:
     void addSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>& sprite);
 
     void removeSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>& sprite);
+
+    std::string getType() override;
 };
 
 #endif //PROJECT_SPACE_INVADERS_DRAW_H

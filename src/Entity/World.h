@@ -14,6 +14,7 @@
 #include <algorithm>
 
 #include "Entity.h"
+#include "Bullet.h"
 
 class World : public Entity {
 private:

@@ -117,3 +117,8 @@ sf::Sprite Draw::createSprite(std::shared_ptr<Entity> entity)
 
     return sprite;
 }
+
+std::string Draw::getType()
+{
+    return "draw";
+}

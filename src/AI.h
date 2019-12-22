@@ -10,10 +10,13 @@
 
 #include "Subject.h"
 
-class AI : public Subject {
+class AI : public Subject, public Observer {
 private:
 
 public:
+    AI();
+
+    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override { }
 };
 
 #endif //PROJECT_SPACE_INVADERS_AI_H

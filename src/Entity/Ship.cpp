@@ -19,3 +19,8 @@ Utils::Position Ship::getPos() const
 {
     return pos;
 }
+
+double Ship::getDamage() const
+{
+    return damage;
+}
