@@ -12,7 +12,30 @@ add_executable(Project-Space-Invaders
         src/Entity/Bullet.cpp
         src/Entity/World.cpp
         src/Entity/BGTile.cpp
-        src/main.cpp
+        src/utils/Position.cpp
+        src/utils/Stopwatch.cpp
+        src/utils/Transformation.cpp
+        src/utils/Event.h
+        src/Game.cpp
+        src/Subject.cpp
+        src/Observer.cpp
+        src/Draw.cpp
+        src/json.hpp
+        src/Controller.cpp
+        )
+
+
+target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
+
+add_executable(test
+        src/testMain.cpp
+        src/Entity/Entity.cpp
+        src/Entity/Ship.cpp
+        src/Entity/PlayerShip.cpp
+        src/Entity/EnemyShip.cpp
+        src/Entity/Bullet.cpp
+        src/Entity/World.cpp
+        src/Entity/BGTile.cpp
         src/utils/Position.cpp
         src/Game.cpp
         src/utils/Stopwatch.cpp
@@ -22,10 +45,7 @@ add_executable(Project-Space-Invaders
         src/Draw.cpp
         src/json.hpp
         src/Controller.cpp
-        src/utils/Event.h)
+        src/utils/Event.h
+        )
 
-
-target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
-
-add_executable(test src/testMain.cpp src/utils/Stopwatch.cpp src/utils/Transformation.cpp src/json.hpp)
 target_link_libraries(test "-lsfml-graphics -lsfml-window -lsfml-system")
