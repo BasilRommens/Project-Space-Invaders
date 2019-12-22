@@ -8,8 +8,8 @@
 #include "Bullet.h"
 
 Bullet::Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
-        const Utils::Position& pos)
-        :Entity(image), direction(direction), speed(speed), damage(damage), pos(pos)
+        const Utils::Position& pos, std::shared_ptr<Entity> from)
+        :Entity(image), direction(direction), speed(speed), damage(damage), pos(pos), from(from)
 {
     texture.loadFromFile(image);
 }
@@ -22,4 +22,9 @@ std::string Bullet::getType() const
 Utils::Position Bullet::getPos() const
 {
     return pos;
+}
+
+std::shared_ptr<Entity> Bullet::getFrom() const
+{
+    return from;
 }

@@ -51,3 +51,8 @@ std::shared_ptr<Observer> Entity::getDrawShared()
     }
     return nullptr;
 }
+
+std::shared_ptr<Entity> Entity::getFrom() const
+{
+    return nullptr;
+}

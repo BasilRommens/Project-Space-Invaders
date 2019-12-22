@@ -17,6 +17,8 @@
 
 class Observer;
 
+class Ship;
+
 class Entity : public Observer, public Subject {
 protected:
     std::string image;
@@ -42,6 +44,8 @@ public:
     virtual double getDamage() const;
 
     std::shared_ptr<Observer> getDrawShared();
+
+    virtual std::shared_ptr<Entity> getFrom() const;
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H

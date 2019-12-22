@@ -16,6 +16,7 @@
 #include "Entity.h"
 #include "Bullet.h"
 
+// TODO add window sizes to the world
 class World : public Entity {
 private:
     std::vector<std::shared_ptr<Entity>> entities;

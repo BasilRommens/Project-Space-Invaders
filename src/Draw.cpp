@@ -6,6 +6,7 @@
  */
 
 #include "Draw.h"
+#include "Entity/World.h"
 
 // set the instance of the transformation to nullptr to be not pointing to anything
 std::shared_ptr<Utils::Transformation> Utils::Transformation::instance = nullptr;
@@ -114,6 +115,27 @@ sf::Sprite Draw::createSprite(std::shared_ptr<Entity> entity)
     // 3. Set the scale of the sprite according to the window size
     // TODO add the default window size in utils namespace
     sprite.scale(sf::Vector2f(window->getSize().x/800.f, window->getSize().y/600.f));
+
+    // if it is a bullet do some moving of the sprite
+    if (entity->getType()=="bullet") {
+        std::shared_ptr<Entity> fromShip = entity->getFrom();
+        std::shared_ptr<sf::Sprite> spriteFrom;
+        // Find the sprite to which we need to centre
+        for (const auto& sprite: sprites) {
+            if (sprite.first.get()==fromShip.get()) {
+                spriteFrom = sprite.second;
+            }
+        }
+
+        double fromOffset = spriteFrom->getGlobalBounds().width/2.f;
+        double bulletOffset = sprite.getGlobalBounds().width/2.f;
+        double xOffset = fromOffset-bulletOffset;
+
+        double yOffset = sprite.getGlobalBounds().height;
+
+        // Change the location of the bullet by the offset
+        sprite.move(sf::Vector2f(xOffset, -yOffset));
+    }
 
     return sprite;
 }

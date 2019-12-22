@@ -77,12 +77,13 @@ std::shared_ptr<Entity> World::createBullet(std::shared_ptr<Entity> ship)
 {
     // TODO remove fixed image of the bullet
     // TODO remove fixed bullet speed
-    Utils::Position pos(0, 0);
+    // TODO fix the spawning position of the bullet
+    Utils::Position pos(ship->getPos().getXPos(), ship->getPos().getYPos());
     std::string image("img/laser.png");
     Utils::Direction direction = (ship->getType()=="player") ? Utils::Direction::UP : Utils::Direction::DOWN;
     double speed = 0.3;
     double damage = ship->getDamage();
-    std::shared_ptr<Entity> bullet(new Bullet(image, direction, speed, damage, pos));
+    std::shared_ptr<Entity> bullet(new Bullet(image, direction, speed, damage, pos, ship));
 
     // add the observer to be able to draw a bullet
     bullet->addObserver(ship->getDrawShared());

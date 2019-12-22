@@ -17,7 +17,8 @@
 #include "Entity/Bullet.h"
 #include "Entity/BGTile.h"
 #include "Entity/PlayerShip.h"
-#include "Entity/World.h"
+
+class World;
 
 class Draw : public Observer {
 private:
