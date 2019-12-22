@@ -40,6 +40,9 @@ bool Game::play(sf::RenderWindow& renderWindow)
     std::shared_ptr<Draw> draw(new Draw(window, world));
     std::shared_ptr<Observer> drawShared(draw);
 
+    // add draw object to the world because it enables to spawn bullets
+    world.addObserver(drawShared);
+
     // Add the draw object to each class
     for (const auto entity: world.getEntities()) {
         entity->addObserver(drawShared);
