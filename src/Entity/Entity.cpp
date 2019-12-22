@@ -56,3 +56,13 @@ std::shared_ptr<Entity> Entity::getFrom() const
 {
     return nullptr;
 }
+
+bool Entity::isInControl() const
+{
+    return false;
+}
+
+void Entity::setInControl()
+{
+    // Do nothing
+}

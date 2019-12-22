@@ -34,17 +34,17 @@ void Utils::Position::moveXPos(double distance)
 void Utils::Position::moveYPos(double distance)
 {
     // Set the new possible y position
-    double newXPos = yPos+distance;
+    double newYPos = yPos+distance;
 
     // TODO throw an error when out of bounds
-    if (newXPos>CoordinateBound::UPPER_Y) {
-        xPos = CoordinateBound::UPPER_Y;
+    if (newYPos>CoordinateBound::UPPER_Y) {
+        yPos = CoordinateBound::UPPER_Y;
     }
-    else if (newXPos<CoordinateBound::LOWER_Y) {
-        xPos = CoordinateBound::LOWER_Y;
+    else if (newYPos<CoordinateBound::LOWER_Y) {
+        yPos = CoordinateBound::LOWER_Y;
     }
     else {
-        xPos = newXPos;
+        yPos = newYPos;
     }
 }
 

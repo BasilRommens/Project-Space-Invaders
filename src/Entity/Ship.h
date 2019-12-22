@@ -14,7 +14,7 @@
 #include "Entity.h"
 #include "../utils/Position.h"
 
-class Ship : public Entity, public std::enable_shared_from_this<Entity> {
+class Ship : public Entity {
 protected:
     Utils::Position pos;
     double health;

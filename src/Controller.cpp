@@ -33,6 +33,18 @@ void Controller::run(sf::RenderWindow& window, World& world)
             }
         }
     }
+
+    // Update all the bullets of position
+    for (auto entity: world.getEntities()) {
+        if (entity->getType()=="bullet") {
+            // If it is already being observed by the controller class do nothing
+            if (not entity->isInControl()) {
+                this->addObserver(entity);
+                entity->setInControl();
+            }
+            notify(entity, Utils::Event::UPDATE_DRAW);
+        }
+    }
 }
 
 void Controller::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
@@ -40,4 +52,9 @@ void Controller::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     if (entity) {
 
     }
+}
+
+void Controller::update(std::shared_ptr<Entity> entity)
+{
+
 }

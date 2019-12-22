@@ -19,7 +19,7 @@ class Observer;
 
 class Ship;
 
-class Entity : public Observer, public Subject {
+class Entity : public Observer, public Subject, public std::enable_shared_from_this<Entity> {
 protected:
     std::string image;
 
@@ -46,6 +46,10 @@ public:
     std::shared_ptr<Observer> getDrawShared();
 
     virtual std::shared_ptr<Entity> getFrom() const;
+
+    virtual bool isInControl() const;
+
+    virtual void setInControl();
 };
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H

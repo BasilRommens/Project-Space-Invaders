@@ -28,3 +28,36 @@ std::shared_ptr<Entity> Bullet::getFrom() const
 {
     return from;
 }
+
+bool Bullet::isInControl() const
+{
+    return inControl;
+}
+
+void Bullet::setInControl()
+{
+    Bullet::inControl = true;
+}
+
+void Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+{
+    // check that the bullet to update equals the bullet that is being called
+    if (shared_from_this().get()!=entity.get()) {
+        return;
+    }
+    std::cout << "successful entrance" << std::endl;
+
+    // update the bullets position
+    // Decide the direction of the bullet
+    double directionSpeed;
+    if (direction==Utils::Direction::DOWN) {
+        directionSpeed = speed;
+    }
+    else {
+        directionSpeed = -speed;
+    }
+    this->pos.moveYPos(directionSpeed);
+
+    // notify that there needs to be a sprite move of the current bullet
+    notify(shared_from_this(), Utils::Event::UPDATE_DRAW);
+}
