@@ -1,5 +1,5 @@
 /**
- * @file 
+ * @file Observer.h
  * @author Basil Rommens
  * @date 12/15/19
  * @brief The header file of the Observer class

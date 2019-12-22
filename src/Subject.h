@@ -2,7 +2,7 @@
  * @file Subject.h
  * @author Basil Rommens
  * @date 12/15/19
- * @brief Yoink
+ * @brief The header file of the Subject class
  */
 
 #ifndef PROJECT_SPACE_INVADERS_SUBJECT_H

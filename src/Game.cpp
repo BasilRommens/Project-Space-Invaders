@@ -48,7 +48,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
         // start the timing of the stopwatch
-        stopwatch->start();
+        stopwatch.reset();
 
         /// Part of control
         controller.run(renderWindow, world);

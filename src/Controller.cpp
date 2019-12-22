@@ -34,3 +34,10 @@ void Controller::run(sf::RenderWindow& window, World& world)
         }
     }
 }
+
+void Controller::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+{
+    if (entity) {
+
+    }
+}
