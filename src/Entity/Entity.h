@@ -34,7 +34,9 @@ public:
 
     virtual std::string getType() const;
 
-    virtual Utils::Position getPos() const;
+    virtual std::shared_ptr<Utils::Position> getPos() const;
+
+    virtual void setPosition(Utils::Position newPos);
 
     const sf::Texture& getTexture() const;
 

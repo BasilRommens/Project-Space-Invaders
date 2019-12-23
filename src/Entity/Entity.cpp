@@ -22,11 +22,6 @@ std::string Entity::getType() const
     return std::string();
 }
 
-Utils::Position Entity::getPos() const
-{
-    return Utils::Position{};
-}
-
 const sf::Texture& Entity::getTexture() const
 {
     return texture;
@@ -65,4 +60,14 @@ bool Entity::isInControl() const
 void Entity::setInControl()
 {
     // Do nothing
+}
+
+std::shared_ptr<Utils::Position> Entity::getPos() const
+{
+    return std::shared_ptr<Utils::Position>();
+}
+
+void Entity::setPosition(Utils::Position newPos)
+{
+
 }

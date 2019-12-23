@@ -32,7 +32,9 @@ public:
 
     std::string getType() const override;
 
-    Utils::Position getPos() const override;
+    std::shared_ptr<Utils::Position> getPos() const final;
+
+    void setPosition(Utils::Position newPos) final;
 
     double getDamage() const override;
 };

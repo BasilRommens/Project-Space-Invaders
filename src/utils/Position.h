@@ -19,20 +19,22 @@ namespace Utils {
 
     class Position {
     private:
-        double xPos{};
-        double yPos{};
+        double x{};
+        double y{};
     public:
         Position();
 
-        Position(double x_pos, double y_pos);
+        Position(double x, double y);
 
         void moveXPos(double distance);
 
         void moveYPos(double distance);
 
-        double getXPos() const;
+        double getX() const;
 
-        double getYPos() const;
+        double getY() const;
+
+        void setPosition(Utils::Position newPosition);
     };
 
 }

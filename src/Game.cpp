@@ -57,7 +57,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
         controller.run(renderWindow, world);
 
         /// Part of view
-        draw->view();\
+        draw->view();
 
         wait();
     }

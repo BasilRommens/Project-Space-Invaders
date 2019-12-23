@@ -15,12 +15,17 @@ std::string Ship::getType() const
     return "";
 }
 
-Utils::Position Ship::getPos() const
+std::shared_ptr<Utils::Position> Ship::getPos() const
 {
-    return pos;
+    return std::make_shared<Utils::Position>(pos);
 }
 
 double Ship::getDamage() const
 {
     return damage;
+}
+
+void Ship::setPosition(Utils::Position newPos)
+{
+    pos.setPosition(newPos);
 }

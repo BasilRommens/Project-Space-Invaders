@@ -10,6 +10,18 @@ void Controller::run(sf::RenderWindow& window, World& world)
 {
     // TODO find something that can change input controls
 
+    // Update the position of all the bullets
+    for (auto entity: world.getEntities()) {
+        if (entity->getType()=="bullet") {
+            // If it is already being observed by the controller class do nothing
+            if (not entity->isInControl()) {
+                this->addObserver(entity);
+                entity->setInControl();
+            }
+            notify(entity, Utils::Event::UPDATE_DRAW);
+        }
+    }
+
     // check all the window's events that were triggered since the last iteration of the loop
     sf::Event event;
     std::shared_ptr<Entity> player = world.getPlayer();
@@ -31,18 +43,6 @@ void Controller::run(sf::RenderWindow& window, World& world)
             else if (event.key.code==sf::Keyboard::Escape) {
                 notify(nullptr, Utils::Event::CLOSE_WINDOW);
             }
-        }
-    }
-
-    // Update all the bullets of position
-    for (auto entity: world.getEntities()) {
-        if (entity->getType()=="bullet") {
-            // If it is already being observed by the controller class do nothing
-            if (not entity->isInControl()) {
-                this->addObserver(entity);
-                entity->setInControl();
-            }
-            notify(entity, Utils::Event::UPDATE_DRAW);
         }
     }
 }

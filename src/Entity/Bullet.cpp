@@ -19,9 +19,9 @@ std::string Bullet::getType() const
     return "bullet";
 }
 
-Utils::Position Bullet::getPos() const
+std::shared_ptr<Utils::Position> Bullet::getPos() const
 {
-    return pos;
+    return std::make_shared<Utils::Position>(pos);
 }
 
 std::shared_ptr<Entity> Bullet::getFrom() const
@@ -45,19 +45,27 @@ void Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     if (shared_from_this().get()!=entity.get()) {
         return;
     }
-    std::cout << "successful entrance" << std::endl;
+    // In case that the events dont match return too
+    if (event!=Utils::Event::UPDATE_DRAW) {
+        return;
+    }
 
     // update the bullets position
     // Decide the direction of the bullet
     double directionSpeed;
     if (direction==Utils::Direction::DOWN) {
-        directionSpeed = speed;
+        directionSpeed = -speed;
     }
     else {
-        directionSpeed = -speed;
+        directionSpeed = speed;
     }
     this->pos.moveYPos(directionSpeed);
 
     // notify that there needs to be a sprite move of the current bullet
     notify(shared_from_this(), Utils::Event::UPDATE_DRAW);
+}
+
+void Bullet::setPosition(Utils::Position newPos)
+{
+    pos.setPosition(newPos);
 }

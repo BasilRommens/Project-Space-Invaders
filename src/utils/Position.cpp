@@ -9,53 +9,58 @@
 
 // TODO remove duplication from moveXPos and moveYPos
 
-Utils::Position::Position(double x_pos, double y_pos)
-        :xPos(x_pos), yPos(y_pos) { }
+Utils::Position::Position(double x, double y)
+        :x(x), y(y) { }
 
 void Utils::Position::moveXPos(double distance)
 {
     // Set the new possible x position
-    double newXPos = xPos+distance;
+    double newXPos = x+distance;
 
     // TODO throw an error when out of bounds
     if (newXPos>CoordinateBound::UPPER_X) {
         std::cout << "hit upper bounds" << std::endl;
-        xPos = CoordinateBound::UPPER_X;
+        x = CoordinateBound::UPPER_X;
     }
     else if (newXPos<CoordinateBound::LOWER_X) {
         std::cout << "hit lower bounds" << std::endl;
-        xPos = CoordinateBound::LOWER_X;
+        x = CoordinateBound::LOWER_X;
     }
     else {
-        xPos = newXPos;
+        x = newXPos;
     }
 }
 
 void Utils::Position::moveYPos(double distance)
 {
     // Set the new possible y position
-    double newYPos = yPos+distance;
+    double newYPos = y+distance;
 
     // TODO throw an error when out of bounds
     if (newYPos>CoordinateBound::UPPER_Y) {
-        yPos = CoordinateBound::UPPER_Y;
+        y = CoordinateBound::UPPER_Y;
     }
     else if (newYPos<CoordinateBound::LOWER_Y) {
-        yPos = CoordinateBound::LOWER_Y;
+        y = CoordinateBound::LOWER_Y;
     }
     else {
-        yPos = newYPos;
+        y = newYPos;
     }
 }
 
 Utils::Position::Position() { }
 
-double Utils::Position::getXPos() const
+double Utils::Position::getX() const
 {
-    return xPos;
+    return x;
 }
 
-double Utils::Position::getYPos() const
+double Utils::Position::getY() const
 {
-    return yPos;
+    return y;
+}
+
+void Utils::Position::setPosition(Utils::Position newPos)
+{
+    *this = newPos;
 }
