@@ -29,6 +29,7 @@ void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
         // "close requested" event: we close the window
         if (event.type==sf::Event::Closed) {
             notify(nullptr, Utils::Event::CLOSE_WINDOW);
+            break;
         }
         if (event.type==sf::Event::KeyPressed) {
             if (event.key.code==sf::Keyboard::A) {
@@ -42,6 +43,7 @@ void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
             }
             else if (event.key.code==sf::Keyboard::Escape) {
                 notify(nullptr, Utils::Event::CLOSE_WINDOW);
+                break;
             }
         }
     }

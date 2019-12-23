@@ -47,3 +47,10 @@ const std::vector<std::shared_ptr<Observer>>& Subject::getObservers() const
 {
     return observers;
 }
+
+Subject::~Subject()
+{
+    for (auto observer: observers) {
+        observer.reset();
+    }
+}

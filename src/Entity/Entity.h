@@ -51,7 +51,7 @@ namespace EntityNS {
 
         std::shared_ptr<Observer> getDrawShared();
 
-        virtual std::shared_ptr<Entity> getFrom() const;
+        virtual std::weak_ptr<Entity> getFrom() const;
 
         virtual bool isInControl() const;
 

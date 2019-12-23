@@ -8,7 +8,7 @@
 #include "Bullet.h"
 
 EntityNS::Bullet::Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
-        const Utils::Position& pos, std::shared_ptr<Entity> from)
+        const Utils::Position& pos, std::weak_ptr<Entity> from)
         :Entity(image), direction(direction), speed(speed), damage(damage), pos(pos), from(from)
 {
     texture.loadFromFile(image);
@@ -24,7 +24,7 @@ std::shared_ptr<Utils::Position> EntityNS::Bullet::getPos() const
     return std::make_shared<Utils::Position>(pos);
 }
 
-std::shared_ptr<EntityNS::Entity> EntityNS::Bullet::getFrom() const
+std::weak_ptr<EntityNS::Entity> EntityNS::Bullet::getFrom() const
 {
     return from;
 }

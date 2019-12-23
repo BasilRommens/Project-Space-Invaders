@@ -20,13 +20,13 @@ namespace EntityNS {
         double speed;
         double damage;
         Utils::Position pos;
-        std::shared_ptr<Entity> from;
+        std::weak_ptr<Entity> from;
         bool inControl{false};
     public:
         virtual ~Bullet();
 
         Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
-                const Utils::Position& pos, std::shared_ptr<Entity> from);
+                const Utils::Position& pos, std::weak_ptr<Entity> from);
 
         std::string getType() const override;
 
@@ -34,7 +34,7 @@ namespace EntityNS {
 
         void setPosition(Utils::Position newPos) final;
 
-        std::shared_ptr<Entity> getFrom() const final;
+        std::weak_ptr<Entity> getFrom() const final;
 
         bool isInControl() const final;
 

@@ -27,9 +27,14 @@ protected:
      */
     void notify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event);
 
+    /**
+     * @return The observers of the subject
+     */
     const std::vector<std::shared_ptr<Observer>>& getObservers() const;
 
 public:
+    virtual ~Subject();
+
     /**
      * @brief Adds and observer to the list of observers the subject holds
      * @param observer: The observer that will be added to the list of observers of the subject

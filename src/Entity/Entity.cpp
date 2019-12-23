@@ -47,11 +47,6 @@ std::shared_ptr<Observer> EntityNS::Entity::getDrawShared()
     return nullptr;
 }
 
-std::shared_ptr<EntityNS::Entity> EntityNS::Entity::getFrom() const
-{
-    return nullptr;
-}
-
 bool EntityNS::Entity::isInControl() const
 {
     return false;
@@ -75,4 +70,9 @@ void EntityNS::Entity::setPosition(Utils::Position newPos)
 EntityNS::Entity::~Entity()
 {
 
+}
+
+std::weak_ptr<EntityNS::Entity> EntityNS::Entity::getFrom() const
+{
+    return std::weak_ptr<Entity>();
 }

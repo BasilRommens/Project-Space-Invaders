@@ -25,6 +25,7 @@ void Draw::onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event
     case Utils::Event::CLOSE_WINDOW:
         std::cout << "close" << std::endl;
         window->close();
+        open = false;
         break;
     default:
         break;
@@ -119,11 +120,11 @@ sf::Sprite Draw::createSprite(std::shared_ptr<EntityNS::Entity> entity)
 
     // if it is a bullet do some moving of the sprite and only if it is not in control of itself
     if (entity->getType()=="bullet") {
-        std::shared_ptr<EntityNS::Entity> fromShip = entity->getFrom();
+        std::weak_ptr<EntityNS::Entity> fromShip = entity->getFrom();
         std::shared_ptr<sf::Sprite> spriteFrom;
         // Find the sprite to which we need to centre
         for (const auto& sprite: sprites) {
-            if (sprite.first.get()==fromShip.get()) {
+            if (sprite.first.get()==fromShip.lock().get()) {
                 spriteFrom = sprite.second;
             }
         }
@@ -154,4 +155,9 @@ sf::Sprite Draw::createSprite(std::shared_ptr<EntityNS::Entity> entity)
 std::string Draw::getType()
 {
     return "draw";
+}
+
+bool Draw::isOpen() const
+{
+    return open;
 }

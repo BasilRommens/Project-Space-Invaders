@@ -26,6 +26,8 @@ namespace EntityNS {
 
 class Draw : public Observer {
 private:
+    bool open{true}; ///< is a variable to check if the window still is open
+
     std::vector<sf::Texture> textures;
 
     std::shared_ptr<sf::RenderWindow> window;
@@ -50,6 +52,8 @@ public:
     void removeSprite(std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>& sprite);
 
     std::string getType() override;
+
+    bool isOpen() const;
 };
 
 #endif //PROJECT_SPACE_INVADERS_DRAW_H

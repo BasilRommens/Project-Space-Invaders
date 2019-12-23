@@ -57,6 +57,10 @@ bool Game::play(sf::RenderWindow& renderWindow)
         controller.run(renderWindow, world);
 
         /// Part of view
+        // if the window has been closed then exit the level
+        if (not draw->isOpen()) {
+            break;
+        }
         draw->view();
 
         wait();
