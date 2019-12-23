@@ -25,6 +25,8 @@ namespace EntityNS {
         void fireBullet();
 
     public:
+        virtual ~EnemyShip();
+
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
                 double vSpeed);
 

@@ -23,6 +23,8 @@ namespace EntityNS {
     private:
         std::vector<std::shared_ptr<EntityNS::Entity>> entities;
     public:
+        virtual ~World();
+
         void addEntity(std::shared_ptr<EntityNS::Entity> entity);
 
         void removeEntity(std::shared_ptr<EntityNS::Entity> entity);

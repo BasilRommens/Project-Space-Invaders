@@ -69,3 +69,8 @@ void EntityNS::Bullet::setPosition(Utils::Position newPos)
 {
     pos.setPosition(newPos);
 }
+
+EntityNS::Bullet::~Bullet()
+{
+
+}

@@ -29,3 +29,8 @@ void EntityNS::Ship::setPosition(Utils::Position newPos)
 {
     pos.setPosition(newPos);
 }
+
+EntityNS::Ship::~Ship()
+{
+
+}

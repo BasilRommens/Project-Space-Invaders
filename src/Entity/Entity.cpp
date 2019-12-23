@@ -71,3 +71,8 @@ void EntityNS::Entity::setPosition(Utils::Position newPos)
 {
 
 }
+
+EntityNS::Entity::~Entity()
+{
+
+}

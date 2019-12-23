@@ -23,6 +23,8 @@ namespace EntityNS {
         std::shared_ptr<Entity> from;
         bool inControl{false};
     public:
+        virtual ~Bullet();
+
         Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
                 const Utils::Position& pos, std::shared_ptr<Entity> from);
 

@@ -11,3 +11,8 @@ std::string EntityNS::BGTile::getType() const
 {
     return "BgTile";
 }
+
+EntityNS::BGTile::~BGTile()
+{
+
+}

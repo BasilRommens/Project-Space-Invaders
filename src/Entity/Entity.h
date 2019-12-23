@@ -32,6 +32,8 @@ namespace EntityNS {
         void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) override;
 
     public:
+        virtual ~Entity();
+
         Entity();
 
         virtual std::string getType() const;

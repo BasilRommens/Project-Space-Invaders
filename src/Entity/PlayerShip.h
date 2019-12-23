@@ -23,6 +23,8 @@ namespace EntityNS {
         void fireBullet();
 
     public:
+        virtual ~PlayerShip();
+
         PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
 
         std::string getType() const override;

@@ -59,3 +59,8 @@ std::string EntityNS::EnemyShip::getType() const
 {
     return "enemy";
 }
+
+EntityNS::EnemyShip::~EnemyShip()
+{
+
+}

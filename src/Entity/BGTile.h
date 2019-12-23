@@ -14,6 +14,8 @@ namespace EntityNS {
 
     class BGTile : public Entity {
     public:
+        virtual ~BGTile();
+
         std::string getType() const override;
 
     };

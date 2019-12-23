@@ -61,3 +61,8 @@ std::string EntityNS::PlayerShip::getType() const
 {
     return "player";
 }
+
+EntityNS::PlayerShip::~PlayerShip()
+{
+
+}

@@ -89,3 +89,8 @@ std::shared_ptr<EntityNS::Entity> EntityNS::World::createBullet(std::shared_ptr<
     bullet->addObserver(ship->getDrawShared());
     return bullet;
 }
+
+EntityNS::World::~World()
+{
+
+}
