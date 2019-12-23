@@ -17,8 +17,8 @@ add_executable(Project-Space-Invaders
         src/utils/Transformation.cpp
         src/utils/Event.h
         src/Game.cpp
-        src/Subject.cpp
-        src/Observer.cpp
+        src/ObserverPattern/Subject.cpp
+        src/ObserverPattern/Observer.cpp
         src/Draw.cpp
         src/json.hpp
         src/Controller.cpp
@@ -40,8 +40,8 @@ add_executable(test
         src/Game.cpp
         src/utils/Stopwatch.cpp
         src/utils/Transformation.cpp
-        src/Subject.cpp
-        src/Observer.cpp
+        src/ObserverPattern/Subject.cpp
+        src/ObserverPattern/Observer.cpp
         src/Draw.cpp
         src/json.hpp
         src/Controller.cpp

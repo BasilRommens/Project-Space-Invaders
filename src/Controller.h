@@ -10,8 +10,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Subject.h"
-#include "Observer.h"
+#include "ObserverPattern/Subject.h"
+#include "ObserverPattern/Observer.h"
 #include "Entity/World.h"
 
 class Controller : public Subject, public Observer {
