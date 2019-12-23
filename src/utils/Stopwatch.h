@@ -27,9 +27,9 @@ namespace Utils {
      */
     class Stopwatch {
     private:
-        static std::shared_ptr<Stopwatch> instance; /** @var instance: The sole instance of the Stopwatch class */
-        std::chrono::time_point<std::chrono::system_clock> startTime{}; /** @var startTime: The time at which the stopwatch object is started */
-        std::chrono::time_point<std::chrono::system_clock> stopTime{}; /** @var stopTime: The time at which the stopwatch object is stopped */
+        static std::shared_ptr<Stopwatch> instance; ///< The sole instance of the Stopwatch class
+        std::chrono::time_point<std::chrono::system_clock> startTime{}; ///< The time at which the stopwatch object is started
+        std::chrono::time_point<std::chrono::system_clock> stopTime{}; ///< The time at which the stopwatch object is stopped
 
         /**
          * @brief The default constructor of Stopwatch

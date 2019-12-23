@@ -26,7 +26,7 @@ namespace Utils {
 
     class Transformation {
     private:
-        static std::shared_ptr<Transformation> instance; /** @var instance: The sole instance of the Transformation class */
+        static std::shared_ptr<Transformation> instance; ///< The sole instance of the Transformation class
 
         /**
          * @brief The default constructor of Transformation
