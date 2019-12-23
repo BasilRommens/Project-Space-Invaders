@@ -17,41 +17,45 @@
 
 class Observer;
 
-class Ship;
+namespace EntityNS {
 
-class Entity : public Observer, public Subject, public std::enable_shared_from_this<Entity> {
-protected:
-    std::string image;
+    class Ship;
 
-    sf::Texture texture;
+    class Entity : public Observer, public Subject, public std::enable_shared_from_this<Entity> {
+    protected:
+        std::string image;
 
-    Entity(const std::string& image);
+        sf::Texture texture;
 
-    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
+        Entity(const std::string& image);
 
-public:
-    Entity();
+        void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) override;
 
-    virtual std::string getType() const;
+    public:
+        Entity();
 
-    virtual std::shared_ptr<Utils::Position> getPos() const;
+        virtual std::string getType() const;
 
-    virtual void setPosition(Utils::Position newPos);
+        virtual std::shared_ptr<Utils::Position> getPos() const;
 
-    const sf::Texture& getTexture() const;
+        virtual void setPosition(Utils::Position newPos);
 
-    const std::string& getImage() const;
+        const sf::Texture& getTexture() const;
 
-    // TODO Possibly move it to the ship class
-    virtual double getDamage() const;
+        const std::string& getImage() const;
 
-    std::shared_ptr<Observer> getDrawShared();
+        // TODO Possibly move it to the ship class
+        virtual double getDamage() const;
 
-    virtual std::shared_ptr<Entity> getFrom() const;
+        std::shared_ptr<Observer> getDrawShared();
 
-    virtual bool isInControl() const;
+        virtual std::shared_ptr<Entity> getFrom() const;
 
-    virtual void setInControl();
-};
+        virtual bool isInControl() const;
+
+        virtual void setInControl();
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H

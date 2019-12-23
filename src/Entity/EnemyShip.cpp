@@ -7,11 +7,12 @@
 
 #include "EnemyShip.h"
 
-EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
+EntityNS::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+        double damage,
         double vSpeed)
         :Ship(image, pos, health, hSpeed, damage), VSpeed(vSpeed) { }
 
-void EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // Return if the entity passed through isnt this one
     if (entity.get()!=this) {
@@ -38,23 +39,23 @@ void EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     }
 }
 
-void EnemyShip::moveRight()
+void EntityNS::EnemyShip::moveRight()
 {
     pos.moveXPos(-HSpeed);
 }
 
-void EnemyShip::moveLeft()
+void EntityNS::EnemyShip::moveLeft()
 {
     pos.moveXPos(HSpeed);
 }
 
-void EnemyShip::fireBullet()
+void EntityNS::EnemyShip::fireBullet()
 {
     std::shared_ptr<Entity> p(this);
     notify(p, Utils::Event::FIRE_BULLET);
 }
 
-std::string EnemyShip::getType() const
+std::string EntityNS::EnemyShip::getType() const
 {
     return "enemy";
 }

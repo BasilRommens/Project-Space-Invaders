@@ -7,37 +7,37 @@
 
 #include "Entity.h"
 
-Entity::Entity(const std::string& image)
+EntityNS::Entity::Entity(const std::string& image)
         :image(image)
 {
     texture.loadFromFile(image);
 }
 
-Entity::Entity() { }
+EntityNS::Entity::Entity() { }
 
-void Entity::onNotify(std::shared_ptr<Entity> entity, Utils::Event event) { }
+void EntityNS::Entity::onNotify(std::shared_ptr<Entity> entity, Utils::Event event) { }
 
-std::string Entity::getType() const
+std::string EntityNS::Entity::getType() const
 {
     return std::string();
 }
 
-const sf::Texture& Entity::getTexture() const
+const sf::Texture& EntityNS::Entity::getTexture() const
 {
     return texture;
 }
 
-const std::string& Entity::getImage() const
+const std::string& EntityNS::Entity::getImage() const
 {
     return image;
 }
 
-double Entity::getDamage() const
+double EntityNS::Entity::getDamage() const
 {
     return 0;
 }
 
-std::shared_ptr<Observer> Entity::getDrawShared()
+std::shared_ptr<Observer> EntityNS::Entity::getDrawShared()
 {
     for (auto observer: this->getObservers()) {
         if (observer->getType()=="draw") {
@@ -47,27 +47,27 @@ std::shared_ptr<Observer> Entity::getDrawShared()
     return nullptr;
 }
 
-std::shared_ptr<Entity> Entity::getFrom() const
+std::shared_ptr<EntityNS::Entity> EntityNS::Entity::getFrom() const
 {
     return nullptr;
 }
 
-bool Entity::isInControl() const
+bool EntityNS::Entity::isInControl() const
 {
     return false;
 }
 
-void Entity::setInControl()
+void EntityNS::Entity::setInControl()
 {
     // Do nothing
 }
 
-std::shared_ptr<Utils::Position> Entity::getPos() const
+std::shared_ptr<Utils::Position> EntityNS::Entity::getPos() const
 {
     return std::shared_ptr<Utils::Position>();
 }
 
-void Entity::setPosition(Utils::Position newPos)
+void EntityNS::Entity::setPosition(Utils::Position newPos)
 {
 
 }

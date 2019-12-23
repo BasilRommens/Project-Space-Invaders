@@ -99,7 +99,7 @@ void Game::loadPlayer(const std::string&& player)
     double HSpeed = j["HSpeed"];
     double damage = j["Damage"];
 
-    std::shared_ptr<Entity> playerShip(new PlayerShip(image, position, HP, HSpeed, damage));
+    std::shared_ptr<EntityNS::Entity> playerShip(new EntityNS::PlayerShip(image, position, HP, HSpeed, damage));
     world.addEntity(playerShip);
 
     std::shared_ptr<Observer> sharedWorld(&world);
@@ -123,7 +123,8 @@ void Game::loadEnemy(const std::string&& enemy)
         double VSpeed = ship["VSpeed"];
         double damage = ship["Damage"];
 
-        std::shared_ptr<Entity> enemyShip(new EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
+        std::shared_ptr<EntityNS::Entity> enemyShip(
+                new EntityNS::EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
         world.addEntity(enemyShip);
 
         std::shared_ptr<Observer> sharedWorld(&world);
@@ -139,12 +140,12 @@ void Game::loadEnemy(const std::string&& enemy)
 
 void Game::loadWorld(const std::string&& worldName)
 {
-    world = World(worldName);
+    world = EntityNS::World(worldName);
 }
 
 void Game::wait()
 {
-    int elapsedTime = stopwatch->get_lap().count()*1000000;
+    int elapsedTime = stopwatch->get_lap().count()*1000000.f;
     if (elapsedTime<Utils::frameDuration) {
         // multiplied by 100 cause framerate doesnt seem right
         usleep(Utils::frameDuration-elapsedTime);

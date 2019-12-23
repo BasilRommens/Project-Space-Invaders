@@ -10,10 +10,14 @@
 
 #include "Entity.h"
 
-class BGTile : public Entity {
-public:
-    std::string getType() const override;
+namespace EntityNS {
 
-};
+    class BGTile : public Entity {
+    public:
+        std::string getType() const override;
+
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_BGTILE_H

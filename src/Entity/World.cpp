@@ -7,7 +7,7 @@
 
 #include "World.h"
 
-void World::addEntity(std::shared_ptr<Entity> entity)
+void EntityNS::World::addEntity(std::shared_ptr<Entity> entity)
 {
     try {
         if (!entity) {
@@ -21,7 +21,7 @@ void World::addEntity(std::shared_ptr<Entity> entity)
     }
 }
 
-void World::removeEntity(std::shared_ptr<Entity> entity)
+void EntityNS::World::removeEntity(std::shared_ptr<Entity> entity)
 {
     try {
         if (!entity) {
@@ -35,17 +35,17 @@ void World::removeEntity(std::shared_ptr<Entity> entity)
     }
 }
 
-World::World(const std::string& image)
+EntityNS::World::World(const std::string& image)
         :Entity(image) { }
 
-World::World() { }
+EntityNS::World::World() { }
 
-const std::vector<std::shared_ptr<Entity>>& World::getEntities() const
+const std::vector<std::shared_ptr<EntityNS::Entity>>& EntityNS::World::getEntities() const
 {
     return entities;
 }
 
-std::shared_ptr<Entity> World::getPlayer() const
+std::shared_ptr<EntityNS::Entity> EntityNS::World::getPlayer() const
 {
     for (auto entity: entities) {
         std::string type = entity->getType();
@@ -56,12 +56,12 @@ std::shared_ptr<Entity> World::getPlayer() const
     return nullptr;
 }
 
-std::string World::getType() const
+std::string EntityNS::World::getType() const
 {
     return "world";
 }
 
-void World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
 
     // TODO throw error when no entity is detected
@@ -73,7 +73,7 @@ void World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     }
 }
 
-std::shared_ptr<Entity> World::createBullet(std::shared_ptr<Entity> ship)
+std::shared_ptr<EntityNS::Entity> EntityNS::World::createBullet(std::shared_ptr<Entity> ship)
 {
     // TODO remove fixed image of the bullet
     // TODO remove fixed bullet speed

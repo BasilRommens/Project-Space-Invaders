@@ -35,7 +35,7 @@ void Subject::removeObserver(std::shared_ptr<Observer> observer)
     }
 }
 
-void Subject::notify(std::shared_ptr<Entity> entity, Utils::Event event)
+void Subject::notify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event)
 {
     for (std::shared_ptr<Observer> observer: observers) {
         // Let observer decide what to do onNotify

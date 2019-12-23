@@ -7,25 +7,25 @@
 
 #include "Ship.h"
 
-Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage)
+EntityNS::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage)
         :Entity(image), pos(pos), health(health), HSpeed(hSpeed), damage(damage) { }
 
-std::string Ship::getType() const
+std::string EntityNS::Ship::getType() const
 {
     return "";
 }
 
-std::shared_ptr<Utils::Position> Ship::getPos() const
+std::shared_ptr<Utils::Position> EntityNS::Ship::getPos() const
 {
     return std::make_shared<Utils::Position>(pos);
 }
 
-double Ship::getDamage() const
+double EntityNS::Ship::getDamage() const
 {
     return damage;
 }
 
-void Ship::setPosition(Utils::Position newPos)
+void EntityNS::Ship::setPosition(Utils::Position newPos)
 {
     pos.setPosition(newPos);
 }

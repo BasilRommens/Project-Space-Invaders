@@ -16,7 +16,7 @@ private:
 public:
     AI();
 
-    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override { }
+    void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) override { }
 };
 
 #endif //PROJECT_SPACE_INVADERS_AI_H

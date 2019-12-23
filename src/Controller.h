@@ -16,12 +16,12 @@
 
 class Controller : public Subject, public Observer {
 private:
-    void update(std::shared_ptr<Entity> entity);
+    void update(std::shared_ptr<EntityNS::Entity> entity);
 
 public:
-    void run(sf::RenderWindow& window, World& world);
+    void run(sf::RenderWindow& window, EntityNS::World& world);
 
-    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
+    void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) final;
 };
 
 #endif //PROJECT_SPACE_INVADERS_CONTROLLER_H

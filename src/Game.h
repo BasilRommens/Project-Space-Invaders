@@ -32,7 +32,7 @@ class Game {
 private:
     AI ai;
 
-    World world;
+    EntityNS::World world;
 
     Controller controller;
 

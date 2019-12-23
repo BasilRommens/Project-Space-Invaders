@@ -10,23 +10,27 @@
 
 #include "Ship.h"
 
-class EnemyShip : public Ship {
-private:
-    double VSpeed;
+namespace EntityNS {
 
-    virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event);
+    class EnemyShip : public Ship {
+    private:
+        double VSpeed;
 
-    void moveRight();
+        virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event);
 
-    void moveLeft();
+        void moveRight();
 
-    void fireBullet();
+        void moveLeft();
 
-public:
-    EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
-            double vSpeed);
+        void fireBullet();
 
-    std::string getType() const override;
-};
+    public:
+        EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
+                double vSpeed);
+
+        std::string getType() const override;
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_ENEMYSHIP_H

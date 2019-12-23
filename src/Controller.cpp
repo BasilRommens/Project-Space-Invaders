@@ -6,7 +6,7 @@
  */
 #include "Controller.h"
 
-void Controller::run(sf::RenderWindow& window, World& world)
+void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
 {
     // TODO find something that can change input controls
 
@@ -24,7 +24,7 @@ void Controller::run(sf::RenderWindow& window, World& world)
 
     // check all the window's events that were triggered since the last iteration of the loop
     sf::Event event;
-    std::shared_ptr<Entity> player = world.getPlayer();
+    std::shared_ptr<EntityNS::Entity> player = world.getPlayer();
     while (window.pollEvent(event)) {
         // "close requested" event: we close the window
         if (event.type==sf::Event::Closed) {
@@ -47,14 +47,14 @@ void Controller::run(sf::RenderWindow& window, World& world)
     }
 }
 
-void Controller::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void Controller::onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event)
 {
     if (entity) {
 
     }
 }
 
-void Controller::update(std::shared_ptr<Entity> entity)
+void Controller::update(std::shared_ptr<EntityNS::Entity> entity)
 {
 
 }

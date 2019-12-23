@@ -14,29 +14,33 @@
 #include "Entity.h"
 #include "../utils/Position.h"
 
-class Ship : public Entity {
-protected:
-    Utils::Position pos;
-    double health;
-    double HSpeed;
-    double damage;
+namespace EntityNS {
 
-    virtual void moveRight() = 0;
+    class Ship : public Entity {
+    protected:
+        Utils::Position pos;
+        double health;
+        double HSpeed;
+        double damage;
 
-    virtual void moveLeft() = 0;
+        virtual void moveRight() = 0;
 
-    virtual void fireBullet() = 0;
+        virtual void moveLeft() = 0;
 
-public:
-    Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
+        virtual void fireBullet() = 0;
 
-    std::string getType() const override;
+    public:
+        Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
 
-    std::shared_ptr<Utils::Position> getPos() const final;
+        std::string getType() const override;
 
-    void setPosition(Utils::Position newPos) final;
+        std::shared_ptr<Utils::Position> getPos() const final;
 
-    double getDamage() const override;
-};
+        void setPosition(Utils::Position newPos) final;
+
+        double getDamage() const override;
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_SHIP_H

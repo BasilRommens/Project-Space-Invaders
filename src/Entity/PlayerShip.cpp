@@ -7,11 +7,11 @@
 
 #include "PlayerShip.h"
 
-PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+EntityNS::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
         double damage)
         :Ship(image, pos, health, hSpeed, damage) { }
 
-void PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // Notify if we need to close the window
     if (not entity and event==Utils::Event::CLOSE_WINDOW) {
@@ -42,22 +42,22 @@ void PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     }
 }
 
-void PlayerShip::moveRight()
+void EntityNS::PlayerShip::moveRight()
 {
     pos.moveXPos(HSpeed);
 }
 
-void PlayerShip::moveLeft()
+void EntityNS::PlayerShip::moveLeft()
 {
     pos.moveXPos(-HSpeed);
 }
 
-void PlayerShip::fireBullet()
+void EntityNS::PlayerShip::fireBullet()
 {
     notify(shared_from_this(), Utils::Event::FIRE_BULLET);
 }
 
-std::string PlayerShip::getType() const
+std::string EntityNS::PlayerShip::getType() const
 {
     return "player";
 }

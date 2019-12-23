@@ -7,7 +7,7 @@
 
 #include "BGTile.h"
 
-std::string BGTile::getType() const
+std::string EntityNS::BGTile::getType() const
 {
     return "BgTile";
 }

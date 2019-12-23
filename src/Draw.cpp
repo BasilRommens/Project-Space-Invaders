@@ -11,7 +11,7 @@
 // set the instance of the transformation to nullptr to be not pointing to anything
 std::shared_ptr<Utils::Transformation> Utils::Transformation::instance = nullptr;
 
-void Draw::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void Draw::onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event)
 {
     switch (event) {
     case Utils::Event::UPDATE_DRAW:
@@ -31,12 +31,13 @@ void Draw::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     }
 }
 
-void Draw::updateD(std::shared_ptr<Entity> entity)
+void Draw::updateD(std::shared_ptr<EntityNS::Entity> entity)
 {
-    std::shared_ptr<std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>> spriteToUpdate;
+    std::shared_ptr<std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>> spriteToUpdate;
     for (auto sprite: sprites) {
         if (sprite.first.get()==entity.get()) {
-            spriteToUpdate = std::make_shared<std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>>(sprite);
+            spriteToUpdate = std::make_shared<std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>>(
+                    sprite);
             break;
         }
     }
@@ -52,14 +53,14 @@ void Draw::updateD(std::shared_ptr<Entity> entity)
     spriteToUpdate->second->setPosition(spriteCoordinates.first, spriteCoordinates.second);
 }
 
-void Draw::newD(std::shared_ptr<Entity> entity)
+void Draw::newD(std::shared_ptr<EntityNS::Entity> entity)
 {
     std::shared_ptr<sf::Sprite> spritePointer = std::make_shared<sf::Sprite>(createSprite(entity));
-    std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>> newSprite(entity, spritePointer);
+    std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>> newSprite(entity, spritePointer);
     addSprite(newSprite);
 }
 
-Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const World& world)
+Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const EntityNS::World& world)
         :window(window)
 {
     for (auto entity: world.getEntities()) {
@@ -76,12 +77,12 @@ void Draw::view() const
     window->display();
 }
 
-void Draw::addSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>& sprite)
+void Draw::addSprite(std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>& sprite)
 {
     sprites.push_back(sprite);
 }
 
-void Draw::removeSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::Sprite>>& sprite)
+void Draw::removeSprite(std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>& sprite)
 {
     for (auto _sprite = sprites.begin(); _sprite!=sprites.end(); ++_sprite) {
         if (_sprite->first.get()==sprite.first.get() and _sprite->second.get()==sprite.second.get()) {
@@ -91,7 +92,7 @@ void Draw::removeSprite(std::pair<std::shared_ptr<Entity>, std::shared_ptr<sf::S
     }
 }
 
-sf::Sprite Draw::createSprite(std::shared_ptr<Entity> entity)
+sf::Sprite Draw::createSprite(std::shared_ptr<EntityNS::Entity> entity)
 {
     // TODO fix representation in texture in the model because it doesnt belong there
     // create an object of the transform class
@@ -118,7 +119,7 @@ sf::Sprite Draw::createSprite(std::shared_ptr<Entity> entity)
 
     // if it is a bullet do some moving of the sprite and only if it is not in control of itself
     if (entity->getType()=="bullet") {
-        std::shared_ptr<Entity> fromShip = entity->getFrom();
+        std::shared_ptr<EntityNS::Entity> fromShip = entity->getFrom();
         std::shared_ptr<sf::Sprite> spriteFrom;
         // Find the sprite to which we need to centre
         for (const auto& sprite: sprites) {

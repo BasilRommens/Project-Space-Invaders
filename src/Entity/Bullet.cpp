@@ -7,39 +7,39 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
+EntityNS::Bullet::Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
         const Utils::Position& pos, std::shared_ptr<Entity> from)
         :Entity(image), direction(direction), speed(speed), damage(damage), pos(pos), from(from)
 {
     texture.loadFromFile(image);
 }
 
-std::string Bullet::getType() const
+std::string EntityNS::Bullet::getType() const
 {
     return "bullet";
 }
 
-std::shared_ptr<Utils::Position> Bullet::getPos() const
+std::shared_ptr<Utils::Position> EntityNS::Bullet::getPos() const
 {
     return std::make_shared<Utils::Position>(pos);
 }
 
-std::shared_ptr<Entity> Bullet::getFrom() const
+std::shared_ptr<EntityNS::Entity> EntityNS::Bullet::getFrom() const
 {
     return from;
 }
 
-bool Bullet::isInControl() const
+bool EntityNS::Bullet::isInControl() const
 {
     return inControl;
 }
 
-void Bullet::setInControl()
+void EntityNS::Bullet::setInControl()
 {
     Bullet::inControl = true;
 }
 
-void Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void EntityNS::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // check that the bullet to update equals the bullet that is being called
     if (shared_from_this().get()!=entity.get()) {
@@ -65,7 +65,7 @@ void Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     notify(shared_from_this(), Utils::Event::UPDATE_DRAW);
 }
 
-void Bullet::setPosition(Utils::Position newPos)
+void EntityNS::Bullet::setPosition(Utils::Position newPos)
 {
     pos.setPosition(newPos);
 }

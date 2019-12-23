@@ -16,28 +16,32 @@
 #include "Entity.h"
 #include "Bullet.h"
 
+namespace EntityNS {
+
 // TODO add window sizes to the world
-class World : public Entity {
-private:
-    std::vector<std::shared_ptr<Entity>> entities;
-public:
-    void addEntity(std::shared_ptr<Entity> entity);
+    class World : public EntityNS::Entity {
+    private:
+        std::vector<std::shared_ptr<EntityNS::Entity>> entities;
+    public:
+        void addEntity(std::shared_ptr<EntityNS::Entity> entity);
 
-    void removeEntity(std::shared_ptr<Entity> entity);
+        void removeEntity(std::shared_ptr<EntityNS::Entity> entity);
 
-    World(const std::string& image);
+        World(const std::string& image);
 
-    World();
+        World();
 
-    const std::vector<std::shared_ptr<Entity>>& getEntities() const;
+        const std::vector<std::shared_ptr<EntityNS::Entity>>& getEntities() const;
 
-    std::shared_ptr<Entity> getPlayer() const;
+        std::shared_ptr<EntityNS::Entity> getPlayer() const;
 
-    std::string getType() const override;
+        std::string getType() const override;
 
-    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
+        void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) final;
 
-    std::shared_ptr<Entity> createBullet(std::shared_ptr<Entity> ship);
-};
+        std::shared_ptr<EntityNS::Entity> createBullet(std::shared_ptr<EntityNS::Entity> ship);
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_WORLD_H

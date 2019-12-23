@@ -12,31 +12,35 @@
 #include "../utils/Position.h"
 #include "Ship.h"
 
-class Bullet : public Entity {
-private:
-    Utils::Direction direction;
-    double speed;
-    double damage;
-    Utils::Position pos;
-    std::shared_ptr<Entity> from;
-    bool inControl{false};
-public:
-    Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
-            const Utils::Position& pos, std::shared_ptr<Entity> from);
+namespace EntityNS {
 
-    std::string getType() const override;
+    class Bullet : public Entity {
+    private:
+        Utils::Direction direction;
+        double speed;
+        double damage;
+        Utils::Position pos;
+        std::shared_ptr<Entity> from;
+        bool inControl{false};
+    public:
+        Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
+                const Utils::Position& pos, std::shared_ptr<Entity> from);
 
-    std::shared_ptr<Utils::Position> getPos() const final;
+        std::string getType() const override;
 
-    void setPosition(Utils::Position newPos) final;
+        std::shared_ptr<Utils::Position> getPos() const final;
 
-    std::shared_ptr<Entity> getFrom() const final;
+        void setPosition(Utils::Position newPos) final;
 
-    bool isInControl() const final;
+        std::shared_ptr<Entity> getFrom() const final;
 
-    void setInControl() final;
+        bool isInControl() const final;
 
-    void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
-};
+        void setInControl() final;
+
+        void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_BULLET_H
