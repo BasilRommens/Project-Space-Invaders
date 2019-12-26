@@ -18,7 +18,7 @@
  */
 namespace Utils {
 
-    const double frameDuration = 1.0/60.0*1000000.0;
+    const double frameDuration = 1.0/60.0*1000000.0; ///< The duration of 1 frame
 
     /**
      * @class Stopwatch: The class that is implemented to be used as a stopwatch

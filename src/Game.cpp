@@ -15,6 +15,10 @@ Game::Game() { }
 void Game::start(std::vector<std::string> levels)
 {
     sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
+
+    std::shared_ptr<Observer> sharedController(&controller);
+    ai.addObserver(sharedController);
+
     bool failure{};
 
     for (auto level: levels) {
@@ -106,6 +110,9 @@ void Game::loadPlayer(const std::string&& player)
     std::shared_ptr<EntityNS::Entity> playerShip(new EntityNS::PlayerShip(image, position, HP, HSpeed, damage));
     world.addEntity(playerShip);
 
+    std::shared_ptr<Observer> sharedAI(&ai);
+    playerShip->addObserver(sharedAI);
+
     std::shared_ptr<Observer> sharedWorld(&world);
     playerShip->addObserver(sharedWorld);
 }
@@ -137,9 +144,6 @@ void Game::loadEnemy(const std::string&& enemy)
         std::shared_ptr<Observer> sharedAI(&ai);
         enemyShip->addObserver(sharedAI);
     }
-
-    std::shared_ptr<Observer> sharedController(&controller);
-    ai.addObserver(sharedController);
 }
 
 void Game::loadWorld(const std::string&& worldName)

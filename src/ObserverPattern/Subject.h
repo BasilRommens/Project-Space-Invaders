@@ -33,6 +33,9 @@ protected:
     const std::vector<std::shared_ptr<Observer>>& getObservers() const;
 
 public:
+    /**
+     * @brief The default destructor of a subject
+     */
     virtual ~Subject();
 
     /**

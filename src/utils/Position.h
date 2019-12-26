@@ -17,6 +17,9 @@
  */
 namespace Utils {
 
+    /**
+     * @enum Direction: The direction in which an object moves
+     */
     enum Direction {
         UP,
         DOWN

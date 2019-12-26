@@ -10,5 +10,6 @@
 int main(int argc, char** argv)
 {
     Game g;
-    g.start(std::vector<std::string>{"input/level1.json"});
+    std::vector<std::string> levels{argv[1]};
+    g.start(levels);
 }

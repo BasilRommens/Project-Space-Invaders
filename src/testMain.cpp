@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file testMain.cpp
  * @author Basil Rommens
  * @date 02/12/2019
- * @brief ...
+ * @brief The cpp file of the main that does all the testing
  */
 
 #include <SFML/Graphics.hpp>

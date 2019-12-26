@@ -13,3 +13,5 @@ Site: https://basilrommens.github.io/Project-Space-Invaders/
 | D             | Move right    |
 | SPACE         | Fire a bullet |
 | ESC           | Quit the game |
+
+## Config files
