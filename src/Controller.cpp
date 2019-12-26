@@ -9,6 +9,7 @@
 void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
 {
     // TODO find something that can change input controls
+    notify(nullptr, Utils::Event::UNMOVE); // Make all the enemy ships movable
 
     // Update the position of all the bullets
     for (auto entity: world.getEntities()) {
@@ -47,16 +48,18 @@ void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
             }
         }
     }
+
+    // Move all the enemy ships
+    notify(nullptr, Utils::Event::MOVE);
 }
 
 void Controller::onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event)
 {
-    if (entity) {
+    // The entity that will be passed through will be the entity that needs to be pushed against the wall whil the rest isnt
+    for (auto observer: this->getObservers()) {
+        // If the observer equals the entity passed through
+        if (observer.get()==entity.get()) {
 
+        }
     }
-}
-
-void Controller::update(std::shared_ptr<EntityNS::Entity> entity)
-{
-
 }

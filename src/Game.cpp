@@ -16,9 +16,6 @@ void Game::start(std::vector<std::string> levels)
 {
     sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
 
-    std::shared_ptr<Observer> sharedController(&controller);
-    ai.addObserver(sharedController);
-
     bool failure{};
 
     for (auto level: levels) {
@@ -73,6 +70,15 @@ bool Game::play(sf::RenderWindow& renderWindow)
     return false;
 }
 
+void Game::wait()
+{
+    int elapsedTime = stopwatch->get_lap().count()*1000000.f;
+    if (elapsedTime<Utils::frameDuration) {
+        // multiplied by 100 cause framerate doesnt seem right
+        usleep(Utils::frameDuration-elapsedTime);
+    }
+}
+
 // TODO error on empty filename
 void Game::load(const std::string& level)
 {
@@ -81,15 +87,12 @@ void Game::load(const std::string& level)
     json j;
     i >> j;
 
+    // TODO make extra functions for applying the observer pattern
     loadWorld(j["World"]);
     loadPlayer(j["Player"]);
     loadEnemy(j["Enemies"]);
 
     // TODO add check for when entity is not a valid pointer
-    // Add observers to the controller of the game
-    for (auto entity: world.getEntities()) {
-        controller.addObserver(entity);
-    }
 }
 
 // TODO error on empty filename
@@ -110,11 +113,11 @@ void Game::loadPlayer(const std::string&& player)
     std::shared_ptr<EntityNS::Entity> playerShip(new EntityNS::PlayerShip(image, position, HP, HSpeed, damage));
     world.addEntity(playerShip);
 
-    std::shared_ptr<Observer> sharedAI(&ai);
-    playerShip->addObserver(sharedAI);
-
     std::shared_ptr<Observer> sharedWorld(&world);
     playerShip->addObserver(sharedWorld);
+
+    std::shared_ptr<Observer> observerPlayer(playerShip);
+    controller.addObserver(observerPlayer);
 }
 
 // TODO error on empty filename
@@ -134,15 +137,20 @@ void Game::loadEnemy(const std::string&& enemy)
         double VSpeed = ship["VSpeed"];
         double damage = ship["Damage"];
 
-        std::shared_ptr<EntityNS::Entity> enemyShip(
-                new EntityNS::EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
-        world.addEntity(enemyShip);
+        auto enemyShip = std::make_shared<EntityNS::EnemyShip>(
+                EntityNS::EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
+
+        std::shared_ptr<EntityNS::Entity> sharedEntity(enemyShip);
+        world.addEntity(sharedEntity);
+
+        std::shared_ptr<Observer> sharedObserver(enemyShip);
+        controller.addObserver(sharedObserver);
 
         std::shared_ptr<Observer> sharedWorld(&world);
         enemyShip->addObserver(sharedWorld);
 
-        std::shared_ptr<Observer> sharedAI(&ai);
-        enemyShip->addObserver(sharedAI);
+        std::weak_ptr<EntityNS::EnemyShip> weakEnemy = enemyShip;
+        enemyShip->addShip(weakEnemy);
     }
 }
 
@@ -150,14 +158,3 @@ void Game::loadWorld(const std::string&& worldName)
 {
     world = EntityNS::World(worldName);
 }
-
-void Game::wait()
-{
-    int elapsedTime = stopwatch->get_lap().count()*1000000.f;
-    if (elapsedTime<Utils::frameDuration) {
-        // multiplied by 100 cause framerate doesnt seem right
-        usleep(Utils::frameDuration-elapsedTime);
-    }
-}
-
-

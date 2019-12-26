@@ -21,9 +21,11 @@ namespace Utils {
         UPDATE_DRAW,
         MOVE_RIGHT,
         MOVE_LEFT,
+        MOVE,
         FIRE_BULLET,
         CLOSE_WINDOW,
-        NEW_DRAW
+        NEW_DRAW,
+        UNMOVE
     };
 
 }

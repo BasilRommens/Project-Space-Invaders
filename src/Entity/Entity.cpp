@@ -76,3 +76,8 @@ std::weak_ptr<EntityNS::Entity> EntityNS::Entity::getFrom() const
 {
     return std::weak_ptr<Entity>();
 }
+
+double EntityNS::Entity::getDistance() const
+{
+    return 0;
+}

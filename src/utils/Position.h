@@ -22,7 +22,9 @@ namespace Utils {
      */
     enum Direction {
         UP,
-        DOWN
+        DOWN,
+        LEFT,
+        RIGHT
     };
 
     class Position {

@@ -15,9 +15,6 @@
 #include "Entity/World.h"
 
 class Controller : public Subject, public Observer {
-private:
-    void update(std::shared_ptr<EntityNS::Entity> entity);
-
 public:
     void run(sf::RenderWindow& window, EntityNS::World& world);
 

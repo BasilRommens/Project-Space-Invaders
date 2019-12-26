@@ -73,6 +73,7 @@ void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event even
     }
 }
 
+// TODO add a bullet representation in entity to create bullets
 std::shared_ptr<EntityNS::Entity> EntityNS::World::createBullet(std::shared_ptr<Entity> ship)
 {
     // TODO remove fixed image of the bullet

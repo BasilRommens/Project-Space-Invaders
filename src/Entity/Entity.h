@@ -56,6 +56,8 @@ namespace EntityNS {
         virtual bool isInControl() const;
 
         virtual void setInControl();
+
+        virtual double getDistance() const;
     };
 
 }

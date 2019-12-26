@@ -16,13 +16,23 @@ namespace EntityNS {
     private:
         double VSpeed;
 
-        virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event);
+        static double distance; ///< Variable that keeps the distance travelled by the ship
 
-        void moveRight();
+        static std::vector<std::weak_ptr<EnemyShip>> otherShips;
 
-        void moveLeft();
+        bool moved;
 
-        void fireBullet();
+        Utils::Direction direction{Utils::Direction::LEFT}; ///< It keeps the current direction the ship is moving
+
+        virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
+
+        void moveRight() final;
+
+        void moveLeft() final;
+
+        void fireBullet() final;
+
+        void swapDirection(std::shared_ptr<EnemyShip> ship);
 
     public:
         virtual ~EnemyShip();
@@ -30,9 +40,12 @@ namespace EntityNS {
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
                 double vSpeed);
 
-        std::string getType() const override;
-    };
+        std::string getType() const final;
 
+        double getDistance() const final;
+
+        static void addShip(std::weak_ptr<EnemyShip> ship);
+    };
 }
 
 #endif //PROJECT_SPACE_INVADERS_ENEMYSHIP_H
