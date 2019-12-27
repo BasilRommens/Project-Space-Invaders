@@ -22,10 +22,6 @@ namespace EntityNS {
 
         void fireBullet() override;
 
-        void resetDelay();
-
-        void decreaseDelay();
-
     public:
         virtual ~PlayerShip();
 

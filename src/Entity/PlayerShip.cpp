@@ -64,18 +64,6 @@ EntityNS::PlayerShip::~PlayerShip()
 
 }
 
-void EntityNS::PlayerShip::resetDelay()
-{
-    currentDelay = bulletDelay;
-}
-
-void EntityNS::PlayerShip::decreaseDelay()
-{
-    if (currentDelay!=0) {
-        --currentDelay;
-    }
-}
-
 EntityNS::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
         double damage, const int bulletDelay)
         :Ship(image, pos, health, hSpeed, damage, bulletDelay) { }

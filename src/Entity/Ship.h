@@ -32,6 +32,10 @@ namespace EntityNS {
 
         virtual void fireBullet() = 0;
 
+        void resetDelay();
+
+        void decreaseDelay();
+
     public:
         virtual ~Ship();
 

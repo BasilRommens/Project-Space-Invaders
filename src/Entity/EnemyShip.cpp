@@ -12,6 +12,7 @@ EntityNS::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& 
         :Ship(image, pos, health, hSpeed, damage, bulletDelay), VSpeed(vSpeed)
 {
     moved = false;
+    currentDelay += randomOffset();
 }
 
 void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
@@ -20,6 +21,15 @@ void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event 
         // Set all the ships to not having moved such that the next tick the enemy ship can move
         for (auto ship: otherShips) {
             ship.lock()->moved = false;
+        }
+    }
+    else if (event==Utils::Event::DECREASE_DELAY) {
+        decreaseDelay();
+        if (currentDelay==0) {
+            // create new delay
+            currentDelay = bulletDelay+randomOffset();
+            // Fire a bullet
+            notify(shared_from_this(), Utils::Event::FIRE_BULLET);
         }
     }
 
@@ -54,11 +64,6 @@ void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event 
                 ship.lock()->notify(ship.lock(), Utils::Event::UPDATE_DRAW);
             }
         }
-        break;
-    case Utils::Event::FIRE_BULLET:
-        // TODO add what to do when to fire a bullet
-        std::cout << "fire bullet" << std::endl;
-        fireBullet();
         break;
     default:
         std::cout << "default triggered" << std::endl;
@@ -164,4 +169,10 @@ inline void EntityNS::EnemyShip::swapDirection(std::shared_ptr<EnemyShip> ship)
 void EntityNS::EnemyShip::addShip(std::weak_ptr<EnemyShip> ship)
 {
     otherShips.push_back(ship);
+}
+
+int EntityNS::EnemyShip::randomOffset()
+{
+    // half the Framerate * amount of ships + randRange(0, 360)
+    return 60/2*(int) otherShips.size()+(int) random()%360;
 }

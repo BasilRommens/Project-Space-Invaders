@@ -8,6 +8,8 @@
 #ifndef PROJECT_SPACE_INVADERS_ENEMYSHIP_H
 #define PROJECT_SPACE_INVADERS_ENEMYSHIP_H
 
+#include <random>
+
 #include "Ship.h"
 
 namespace EntityNS {
@@ -24,8 +26,6 @@ namespace EntityNS {
 
         Utils::Direction direction{Utils::Direction::LEFT}; ///< It keeps the current direction the ship is moving
 
-
-
         virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
 
         void moveRight() final;
@@ -35,6 +35,8 @@ namespace EntityNS {
         void fireBullet() final;
 
         void swapDirection(std::shared_ptr<EnemyShip> ship);
+
+        int randomOffset();
 
     public:
         virtual ~EnemyShip();

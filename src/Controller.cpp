@@ -51,7 +51,7 @@ void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
 
     // Move all the enemy ships
     notify(nullptr, Utils::Event::MOVE);
-    // Decrease the player firing delay with 1 every frame
+    // Decrease the player/enemy firing delay with 1 every frame
     notify(nullptr, Utils::Event::DECREASE_DELAY);
 }
 
