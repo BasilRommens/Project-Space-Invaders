@@ -72,6 +72,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
 
 void Game::wait()
 {
+    // TODO remove the 1000000.f because its ugly
     int elapsedTime = stopwatch->get_lap().count()*1000000.f;
     if (elapsedTime<Utils::frameDuration) {
         // multiplied by 100 cause framerate doesnt seem right
@@ -110,7 +111,7 @@ void Game::loadPlayer(const std::string&& player)
     double HSpeed = j["HSpeed"];
     double damage = j["Damage"];
 
-    std::shared_ptr<EntityNS::Entity> playerShip(new EntityNS::PlayerShip(image, position, HP, HSpeed, damage));
+    std::shared_ptr<EntityNS::Entity> playerShip(new EntityNS::PlayerShip(image, position, HP, HSpeed, damage, 20));
     world.addEntity(playerShip);
 
     std::shared_ptr<Observer> sharedWorld(&world);
@@ -138,7 +139,7 @@ void Game::loadEnemy(const std::string&& enemy)
         double damage = ship["Damage"];
 
         auto enemyShip = std::make_shared<EntityNS::EnemyShip>(
-                EntityNS::EnemyShip(image, position, HP, HSpeed, damage, VSpeed));
+                EntityNS::EnemyShip(image, position, HP, HSpeed, damage, 30, VSpeed));
 
         std::shared_ptr<EntityNS::Entity> sharedEntity(enemyShip);
         world.addEntity(sharedEntity);

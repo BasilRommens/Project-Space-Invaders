@@ -22,6 +22,9 @@ namespace EntityNS {
         double health;
         double HSpeed;
         double damage;
+        // TODO make the bullet delay in the input files
+        const int bulletDelay{30};
+        int currentDelay;
 
         virtual void moveRight() = 0;
 
@@ -32,7 +35,8 @@ namespace EntityNS {
     public:
         virtual ~Ship();
 
-        Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
+        Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
+                const int bulletDelay);
 
         std::string getType() const override;
 

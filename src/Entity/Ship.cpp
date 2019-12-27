@@ -7,9 +7,6 @@
 
 #include "Ship.h"
 
-EntityNS::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage)
-        :Entity(image), pos(pos), health(health), HSpeed(hSpeed), damage(damage) { }
-
 std::string EntityNS::Ship::getType() const
 {
     return "";
@@ -34,3 +31,7 @@ EntityNS::Ship::~Ship()
 {
 
 }
+
+EntityNS::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
+        const int bulletDelay)
+        :Entity(image), pos(pos), health(health), HSpeed(hSpeed), damage(damage), bulletDelay(bulletDelay) { }

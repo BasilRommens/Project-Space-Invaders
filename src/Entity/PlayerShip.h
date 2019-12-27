@@ -14,22 +14,23 @@ namespace EntityNS {
 
     class PlayerShip : public Ship {
     private:
-        const int bulletDelay{30};
-
-        int currentDelay{0};
-
         virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event);
 
         void moveRight();
 
         void moveLeft();
 
-        void fireBullet();
+        void fireBullet() override;
+
+        void resetDelay();
+
+        void decreaseDelay();
 
     public:
         virtual ~PlayerShip();
 
-        PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage);
+        PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
+                const int bulletDelay);
 
         std::string getType() const override;
     };

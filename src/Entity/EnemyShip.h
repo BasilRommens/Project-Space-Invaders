@@ -40,7 +40,7 @@ namespace EntityNS {
         virtual ~EnemyShip();
 
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
-                double vSpeed);
+                const int bulletDelay, double vSpeed);
 
         std::string getType() const final;
 

@@ -25,7 +25,8 @@ namespace Utils {
         FIRE_BULLET,
         CLOSE_WINDOW,
         NEW_DRAW,
-        UNMOVE
+        UNMOVE,
+        DECREASE_DELAY
     };
 
 }

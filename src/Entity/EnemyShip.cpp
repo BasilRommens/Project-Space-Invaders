@@ -8,12 +8,9 @@
 #include "EnemyShip.h"
 
 EntityNS::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        double damage,
-        double vSpeed)
-        :Ship(image, pos, health, hSpeed, damage), VSpeed(vSpeed)
+        double damage, const int bulletDelay, double vSpeed)
+        :Ship(image, pos, health, hSpeed, damage, bulletDelay), VSpeed(vSpeed)
 {
-    //std::weak_ptr<EnemyShip> weakEnemy = std::make_shared<EnemyShip>(*this);
-    //otherShips.push_back(weakEnemy);
     moved = false;
 }
 

@@ -7,15 +7,15 @@
 
 #include "PlayerShip.h"
 
-EntityNS::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        double damage)
-        :Ship(image, pos, health, hSpeed, damage) { }
-
 void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // Notify if we need to close the window
     if (not entity and event==Utils::Event::CLOSE_WINDOW) {
         notify(nullptr, event);
+    }
+
+    if (not entity and event==Utils::Event::DECREASE_DELAY) {
+        decreaseDelay();
     }
 
     // Return if the entity passed through isnt this one
@@ -34,7 +34,10 @@ void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event
         break;
     case Utils::Event::FIRE_BULLET:
         std::cout << "fire bullet" << std::endl;
-        notify(shared_from_this(), Utils::Event::FIRE_BULLET);
+        if (not currentDelay) {
+            notify(shared_from_this(), Utils::Event::FIRE_BULLET);
+            resetDelay(); // reset currentDelay
+        }
         break;
     default:
         std::cout << "default triggered" << std::endl;
@@ -57,6 +60,27 @@ std::string EntityNS::PlayerShip::getType() const
 }
 
 EntityNS::PlayerShip::~PlayerShip()
+{
+
+}
+
+void EntityNS::PlayerShip::resetDelay()
+{
+    currentDelay = bulletDelay;
+}
+
+void EntityNS::PlayerShip::decreaseDelay()
+{
+    if (currentDelay!=0) {
+        --currentDelay;
+    }
+}
+
+EntityNS::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+        double damage, const int bulletDelay)
+        :Ship(image, pos, health, hSpeed, damage, bulletDelay) { }
+
+void EntityNS::PlayerShip::fireBullet()
 {
 
 }
