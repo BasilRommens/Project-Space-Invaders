@@ -1,8 +1,8 @@
 /**
- * @file 
+ * @file PlayerShip.h
  * @author Basil Rommens
  * @date 22/11/2019
- * @brief ...
+ * @brief The header file of the class PlayerShip
  */
 
 #ifndef PROJECT_SPACE_INVADERS_PLAYERSHIP_H

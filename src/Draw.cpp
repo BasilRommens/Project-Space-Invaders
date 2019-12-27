@@ -133,7 +133,13 @@ sf::Sprite Draw::createSprite(std::shared_ptr<EntityNS::Entity> entity)
         double bulletOffset = sprite.getGlobalBounds().width/2.f;
         double xOffset = fromOffset-bulletOffset;
 
-        double yOffset = sprite.getGlobalBounds().height;
+        double yOffset;
+        if (entity->getType()=="player") {
+            yOffset = sprite.getGlobalBounds().height;
+        }
+        else {
+            yOffset = -spriteFrom->getGlobalBounds().height;
+        }
 
         // Change the location of the bullet by the offset
         sprite.move(sf::Vector2f(xOffset, -yOffset));
@@ -143,6 +149,7 @@ sf::Sprite Draw::createSprite(std::shared_ptr<EntityNS::Entity> entity)
                 xOffset/window->getSize().x*(Utils::CoordinateBound::UPPER_X-Utils::CoordinateBound::LOWER_X);
         double yOffsetEntity =
                 yOffset/window->getSize().y*(Utils::CoordinateBound::UPPER_Y-Utils::CoordinateBound::LOWER_Y);
+
         double xEntity = xOffsetEntity+entity->getPos()->getX();
         double yEntity = yOffsetEntity+entity->getPos()->getY();
         Utils::Position pos(xEntity, yEntity);

@@ -9,6 +9,7 @@
 #include "Entity/EnemyShip.h"
 
 double EntityNS::EnemyShip::distance = 0.f;
+
 std::vector<std::weak_ptr<EntityNS::EnemyShip>> EntityNS::EnemyShip::otherShips = {};
 
 int main(int argc, char** argv)
