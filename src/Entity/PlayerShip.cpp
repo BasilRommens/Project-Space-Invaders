@@ -35,7 +35,6 @@ void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event
     case Utils::Event::FIRE_BULLET:
         std::cout << "fire bullet" << std::endl;
         notify(shared_from_this(), Utils::Event::FIRE_BULLET);
-        fireBullet();
         break;
     default:
         std::cout << "default triggered" << std::endl;
@@ -50,11 +49,6 @@ void EntityNS::PlayerShip::moveRight()
 void EntityNS::PlayerShip::moveLeft()
 {
     pos.moveXPos(-HSpeed);
-}
-
-void EntityNS::PlayerShip::fireBullet()
-{
-    notify(shared_from_this(), Utils::Event::FIRE_BULLET);
 }
 
 std::string EntityNS::PlayerShip::getType() const

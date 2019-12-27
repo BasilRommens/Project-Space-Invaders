@@ -24,6 +24,8 @@ namespace EntityNS {
 
         Utils::Direction direction{Utils::Direction::LEFT}; ///< It keeps the current direction the ship is moving
 
+
+
         virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
 
         void moveRight() final;

@@ -14,6 +14,10 @@ namespace EntityNS {
 
     class PlayerShip : public Ship {
     private:
+        const int bulletDelay{30};
+
+        int currentDelay{0};
+
         virtual void onNotify(std::shared_ptr<Entity> entity, Utils::Event event);
 
         void moveRight();
