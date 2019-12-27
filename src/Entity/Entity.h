@@ -17,36 +17,76 @@
 
 class Observer;
 
+/**
+ * @addtogroup EntityNS
+ * @{
+ */
 namespace EntityNS {
 
     class Ship;
 
     class Entity : public Observer, public Subject, public std::enable_shared_from_this<Entity> {
     protected:
-        std::string image;
+        std::string image; ///< The image string which will represent the entity
 
-        sf::Texture texture;
+        sf::Texture texture; ///< The texture of the Entity (faster moving of sprites)
 
-        Entity(const std::string& image);
+        /**
+         * @brief the protected entity constructor because it is an abstract class
+         * @param image: The image that needs to be used for the entity
+         */
+        // TODO check if the image is correct otherwise throw an error
+        explicit Entity(const std::string& image);
 
+        /**
+         * @brief The onNotify of an abstract entity, does nothing
+         * @param entity: The entity on which needs to be reacted
+         * @param event: The event that has happened
+         */
         void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) override;
 
     public:
-        virtual ~Entity();
+        /**
+         * @brief The destructor of this Entity class
+         */
+        ~Entity() override;
 
+        /**
+         * @brief The default constructor of the Entity class
+         */
         Entity();
 
+        /**
+         * @return The type of the entity ("")
+         */
         virtual std::string getType() const;
 
+        /**
+         * @return The position of the entity
+         */
         virtual std::shared_ptr<Utils::Position> getPos() const;
 
+        /**
+         * @brief Will set the position of the entity
+         * @param newPos: The new position of the entity
+         */
+        // TODO check if the postion is valid
         virtual void setPosition(Utils::Position newPos);
 
+        /**
+         * @return The texture of the Entity for quick sprite creation
+         */
         const sf::Texture& getTexture() const;
 
+        /**
+         * @return The image string
+         */
         const std::string& getImage() const;
 
         // TODO Possibly move it to the ship class
+        /**
+         * @return The damage done by a bullet
+         */
         virtual double getDamage() const;
 
         std::shared_ptr<Observer> getDrawShared();
@@ -61,5 +101,8 @@ namespace EntityNS {
     };
 
 }
+/**
+ * @}
+ */
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_H
