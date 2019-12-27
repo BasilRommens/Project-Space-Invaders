@@ -4,8 +4,8 @@
     {
       "xPos": -0.4,
       "yPos": 2,
-      "HSpeed": 0.0000000005,
-      "VSpeed": 0.1,
+      "HSpeed": 0.01,
+      "VSpeed": 0.4,
       "Image": "img/alien.png",
       "Damage": 2,
       "HP": 4
@@ -13,8 +13,8 @@
     {
       "xPos": 0.6,
       "yPos": 2,
-      "HSpeed": 0.0000000005,
-      "VSpeed": 0.1,
+      "HSpeed": 0.01,
+      "VSpeed": 0.4,
       "Image": "img/alien.png",
       "Damage": 2,
       "HP": 4
@@ -22,8 +22,8 @@
     {
       "xPos": -1.4,
       "yPos": 2,
-      "HSpeed": 0.0000000005,
-      "VSpeed": 0.1,
+      "HSpeed": 0.01,
+      "VSpeed": 0.4,
       "Image": "img/alien.png",
       "Damage": 2,
       "HP": 4

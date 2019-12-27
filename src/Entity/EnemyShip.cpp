@@ -49,14 +49,12 @@ void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event 
         for (auto ship: otherShips) {
             if (not ship.lock()->moved) {
                 notAllMoved = true;
-                ship.lock()->moved = true;
             }
         }
         // If all the ships have been moved then draw all of them
         if (not notAllMoved) {
             for (auto ship: otherShips) {
                 ship.lock()->notify(ship.lock(), Utils::Event::UPDATE_DRAW);
-                ship.lock()->moved = true; // set it to true so that the notify of the observer pattern wouldnt happen twice
             }
         }
         break;
@@ -74,12 +72,12 @@ void EntityNS::EnemyShip::moveRight()
 {
     moved = true;
     // Keep track of the distance covered by the ship
-    auto prevPos = pos;
+    double prevPos = pos.getX();
     pos.moveXPos(-HSpeed);
-    auto newPos = pos;
-    auto newDistance = newPos.getX()-prevPos.getX();
+    double newPos = pos.getX();
+    auto newDistance = std::abs(prevPos-newPos);
     // begin to move all the ships if the travelled distance is smaller than the
-    if (newDistance<HSpeed) {
+    if (newDistance<HSpeed*.98) {
         distance = newDistance;
         // Update all the ships with the new distance
         for (const std::weak_ptr<EnemyShip> ship: otherShips) {
@@ -107,12 +105,12 @@ void EntityNS::EnemyShip::moveLeft()
 {
     moved = true;
     // Keep track of the distance covered by the ship
-    auto prevPos = pos;
+    double prevPos = pos.getX();
     pos.moveXPos(HSpeed);
-    auto newPos = pos;
-    auto newDistance = prevPos.getX()-newPos.getX();
+    double newPos = pos.getX();
+    auto newDistance = std::abs(prevPos-newPos);
     // begin to move all the ships if the travelled distance is smaller than the
-    if (newDistance<HSpeed) {
+    if (newDistance<HSpeed*.98) {
         distance = newDistance;
         // Update all the ships with the new distance
         for (const std::weak_ptr<EnemyShip> ship: otherShips) {
@@ -120,7 +118,6 @@ void EntityNS::EnemyShip::moveLeft()
             // Move every ship down because we hit the end of the map
             ship.lock()->pos.moveYPos(-VSpeed);
             if (ship.lock().get()==this) {
-                ship.lock()->notify(ship.lock(), Utils::Event::UPDATE_DRAW);
                 continue;
             }
             if (ship.lock()->moved) {
@@ -133,15 +130,13 @@ void EntityNS::EnemyShip::moveLeft()
             }
             // Set moved to true such that the observer pattern will not update the ship again
             ship.lock()->moved = true;
-            ship.lock()->notify(ship.lock(), Utils::Event::UPDATE_DRAW);
         }
     }
 }
 
 void EntityNS::EnemyShip::fireBullet()
 {
-    std::shared_ptr<Entity> p(this);
-    notify(p, Utils::Event::FIRE_BULLET);
+
 }
 
 std::string EntityNS::EnemyShip::getType() const
@@ -161,7 +156,7 @@ double EntityNS::EnemyShip::getDistance() const
 
 inline void EntityNS::EnemyShip::swapDirection(std::shared_ptr<EnemyShip> ship)
 {
-    if (direction==Utils::Direction::LEFT) {
+    if (ship->direction==Utils::Direction::LEFT) {
         ship->direction = Utils::Direction::RIGHT;
     }
     else {
