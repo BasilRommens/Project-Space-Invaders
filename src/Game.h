@@ -70,6 +70,8 @@ private:
 
     void wait();
 
+    std::shared_ptr<EntityNS::Bullet> createBullet(std::string fileName);
+
 public:
 
     /**

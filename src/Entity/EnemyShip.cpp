@@ -11,8 +11,7 @@ EntityNS::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& 
         double damage, const int bulletDelay, double vSpeed)
         :Ship(image, pos, health, hSpeed, damage, bulletDelay), VSpeed(vSpeed)
 {
-    moved = false;
-    currentDelay += randomOffset();
+
 }
 
 void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
@@ -175,4 +174,12 @@ int EntityNS::EnemyShip::randomOffset()
 {
     // half the Framerate * amount of ships + randRange(0, 360)
     return 60/2*(int) otherShips.size()+(int) random()%360;
+}
+
+EntityNS::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+        double damage, int bulletDelay, const Hitbox& hitbox, std::shared_ptr<Bullet> dummyBullet, double vSpeed)
+        :Ship(image, pos, health, hSpeed, damage, bulletDelay, hitbox, dummyBullet), VSpeed(vSpeed)
+{
+    moved = false;
+    currentDelay += randomOffset();
 }

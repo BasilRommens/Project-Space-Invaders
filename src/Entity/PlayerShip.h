@@ -26,7 +26,7 @@ namespace EntityNS {
         virtual ~PlayerShip();
 
         PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
-                const int bulletDelay);
+                int bulletDelay, const Hitbox& hitbox, std::shared_ptr<Bullet> dummyBullet);
 
         std::string getType() const override;
     };

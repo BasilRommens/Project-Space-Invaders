@@ -110,8 +110,10 @@ void Game::loadPlayer(const std::string&& player)
     double HP = j["HP"];
     double HSpeed = j["HSpeed"];
     double damage = j["Damage"];
+    Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
 
-    std::shared_ptr<EntityNS::Entity> playerShip(new EntityNS::PlayerShip(image, position, HP, HSpeed, damage, 20));
+    std::shared_ptr<EntityNS::Entity> playerShip(
+            new EntityNS::PlayerShip(image, position, HP, HSpeed, damage, 20, hitbox));
     world.addEntity(playerShip);
 
     std::shared_ptr<Observer> sharedWorld(&world);
@@ -158,4 +160,21 @@ void Game::loadEnemy(const std::string&& enemy)
 void Game::loadWorld(const std::string&& worldName)
 {
     world = EntityNS::World(worldName);
+}
+
+std::shared_ptr<EntityNS::Bullet> Game::createBullet(std::string fileName)
+{
+    // Parse json file
+    std::ifstream i(fileName);
+    json j;
+    i >> j;
+
+    std::string image = j[""];
+    auto sharedBullet = std::make_shared<EntityNS::Bullet>(new EntityNS::Bullet(, Utils::Direction
+    direction, double
+    speed, double
+    damage,
+    const Utils::Position& pos, std::weak_ptr<Entity>
+    from))
+    return std::shared_ptr<EntityNS::Bullet>();
 }

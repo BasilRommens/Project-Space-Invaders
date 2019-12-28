@@ -9,8 +9,9 @@
 #define PROJECT_SPACE_INVADERS_BULLET_H
 
 #include "Entity.h"
-#include "../utils/Position.h"
 #include "Ship.h"
+#include "../Hitbox.h"
+#include "../utils/Position.h"
 
 /**
  * @addtogroup EntityNS
@@ -26,6 +27,7 @@ namespace EntityNS {
         Utils::Position pos; ///< The position of the bullet
         std::weak_ptr<Entity> from; ///< The entity that has created the bullet it is a weak pointer because it doesnt own it
         bool inControl{false}; ///< Is a member variable to check if it is already in the controller class
+        Hitbox hitbox;
     public:
         /**
          * @brief The destructor of the Bullet class
@@ -41,13 +43,14 @@ namespace EntityNS {
          * @param pos: The position at which we can find the bullet
          * @param from: The entity that is shooting this particular bullet with a weak pointer
          */
+        // TODO use RAII
         // TODO add assertion for bullet direction
         // TODO add assertion for bullet speed
         // TODO add assertion for bullet damage
         // TODO add assertion for pos
         // TODO add assertion for from
         Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
-                const Utils::Position& pos, std::weak_ptr<Entity> from);
+                const Utils::Position& pos, std::weak_ptr<Entity> from, Hitbox hitbox);
 
         /**
          *

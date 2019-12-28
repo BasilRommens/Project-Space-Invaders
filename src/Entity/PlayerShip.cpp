@@ -1,11 +1,15 @@
+#include "PlayerShip.h"
+
 /**
- * @file 
+ * @file
  * @author Basil Rommens
  * @date 22/11/2019
  * @brief ...
  */
 
-#include "PlayerShip.h"
+EntityNS::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+        double damage, int bulletDelay, const Hitbox& hitbox, std::shared_ptr<Bullet> dummyBullet)
+        :Ship(image, pos, health, hSpeed, damage, bulletDelay, hitbox, dummyBullet) { }
 
 void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
@@ -63,10 +67,6 @@ EntityNS::PlayerShip::~PlayerShip()
 {
 
 }
-
-EntityNS::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        double damage, const int bulletDelay)
-        :Ship(image, pos, health, hSpeed, damage, bulletDelay) { }
 
 void EntityNS::PlayerShip::fireBullet()
 {

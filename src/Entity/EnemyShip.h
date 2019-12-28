@@ -85,7 +85,7 @@ namespace EntityNS {
          */
         // TODO add checks for all these variables
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
-                const int bulletDelay, double vSpeed);
+                int bulletDelay, const Hitbox& hitbox, std::shared_ptr<Bullet> dummyBullet, double vSpeed);
 
         /**
          * @return The type of the entity ("enemy")

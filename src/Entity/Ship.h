@@ -12,7 +12,9 @@
 #include <memory>
 
 #include "Entity.h"
+#include "../Hitbox.h"
 #include "../utils/Position.h"
+#include "Bullet.h"
 
 namespace EntityNS {
 
@@ -25,6 +27,8 @@ namespace EntityNS {
         // TODO make the bullet delay in the input files
         const int bulletDelay{30};
         int currentDelay;
+        Hitbox hitbox;
+        std::shared_ptr<Bullet> dummyBullet;
 
         virtual void moveRight() = 0;
 
@@ -40,7 +44,7 @@ namespace EntityNS {
         virtual ~Ship();
 
         Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
-                const int bulletDelay);
+                int bulletDelay, const Hitbox& hitbox, std::shared_ptr<Bullet> dummyBullet);
 
         std::string getType() const override;
 

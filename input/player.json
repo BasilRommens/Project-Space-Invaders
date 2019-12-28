@@ -5,5 +5,10 @@
   "HSpeed": 0.1,
   "Image": "img/player.png",
   "Damage": 2,
-  "HP": 8
+  "HP": 8,
+  "Bullet": "input/bullet.json",
+  "Hitbox": {
+    "Width": 0.1025,
+    "Height": 0.083
+  }
 }

@@ -1,32 +1,40 @@
 {
   "Type": "Enemy",
+  "VSpeed": 0.4,
+  "HSpeed": 0.01,
   "Ships": [
     {
       "xPos": -0.4,
       "yPos": 2,
-      "HSpeed": 0.01,
-      "VSpeed": 0.4,
+      "HP": 4,
       "Image": "img/alien.png",
-      "Damage": 2,
-      "HP": 4
+      "Bullet": "input/bullet.json",
+      "Hitbox": {
+        "Width": 0.10125,
+        "Height": 0.1
+      }
     },
     {
       "xPos": 0.6,
       "yPos": 2,
-      "HSpeed": 0.01,
-      "VSpeed": 0.4,
+      "HP": 4,
       "Image": "img/alien.png",
-      "Damage": 2,
-      "HP": 4
+      "Bullet": "input/bullet.json",
+      "Hitbox": {
+        "Width": 0.10125,
+        "Height": 0.1
+      }
     },
     {
       "xPos": -1.4,
       "yPos": 2,
-      "HSpeed": 0.01,
-      "VSpeed": 0.4,
+      "HP": 4,
       "Image": "img/alien.png",
-      "Damage": 2,
-      "HP": 4
+      "Bullet": "input/bullet.json",
+      "Hitbox": {
+        "Width": 0.10125,
+        "Height": 0.1
+      }
     }
   ]
 }
