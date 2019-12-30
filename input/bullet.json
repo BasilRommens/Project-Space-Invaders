@@ -1,6 +1,6 @@
 {
   "Damage": 3,
-  "Image": "laser.png",
+  "Image": "img/laser.png",
   "Speed": 0.3,
   "Hitbox": {
     "Width": 0.015,

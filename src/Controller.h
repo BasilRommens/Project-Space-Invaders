@@ -14,11 +14,9 @@
 #include "ObserverPattern/Observer.h"
 #include "Entity/World.h"
 
-class Controller : public Subject, public Observer {
+class Controller : public Subject {
 public:
     void run(sf::RenderWindow& window, EntityNS::World& world);
-
-    void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) final;
 };
 
 #endif //PROJECT_SPACE_INVADERS_CONTROLLER_H

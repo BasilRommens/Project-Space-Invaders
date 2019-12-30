@@ -54,14 +54,3 @@ void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
     // Decrease the player/enemy firing delay with 1 every frame
     notify(nullptr, Utils::Event::DECREASE_DELAY);
 }
-
-void Controller::onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event)
-{
-    // The entity that will be passed through will be the entity that needs to be pushed against the wall whil the rest isnt
-    for (auto observer: this->getObservers()) {
-        // If the observer equals the entity passed through
-        if (observer.get()==entity.get()) {
-
-        }
-    }
-}

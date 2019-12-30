@@ -193,5 +193,5 @@ std::shared_ptr<EntityNS::Bullet> Game::createBullet(std::string fileName, std::
     }
 
     return std::make_shared<EntityNS::Bullet>(
-            EntityNS::Bullet(image, direction, speed, damage, Utils::Position(0, 0), entity, hitbox));
+            EntityNS::Bullet(image, direction, speed, damage, position, entity, hitbox));
 }
