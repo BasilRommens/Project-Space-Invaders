@@ -4,7 +4,6 @@
   "yPos": -2,
   "HSpeed": 0.1,
   "Image": "img/player.png",
-  "Damage": 2,
   "HP": 8,
   "Bullet": "input/bullet.json",
   "Hitbox": {

@@ -14,16 +14,19 @@
 #include "../ObserverPattern/Observer.h"
 #include "../ObserverPattern/Subject.h"
 #include "../utils/Position.h"
+#include "../Hitbox.h"
 
 class Observer;
-
 /**
  * @addtogroup EntityNS
  * @{
  */
+
 namespace EntityNS {
 
     class Ship;
+
+    class Bullet;
 
     class Entity : public Observer, public Subject, public std::enable_shared_from_this<Entity> {
     protected:
@@ -98,6 +101,12 @@ namespace EntityNS {
         virtual void setInControl();
 
         virtual double getDistance() const;
+
+        virtual const Hitbox& getHitbox() const;
+
+        virtual void addBullet(std::shared_ptr<Bullet> dummyBullet);
+
+        virtual std::shared_ptr<Entity> spawnBullet();
     };
 
 }

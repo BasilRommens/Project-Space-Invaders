@@ -7,13 +7,6 @@
 
 #include "EnemyShip.h"
 
-EntityNS::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        double damage, const int bulletDelay, double vSpeed)
-        :Ship(image, pos, health, hSpeed, damage, bulletDelay), VSpeed(vSpeed)
-{
-
-}
-
 void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     if (Utils::Event::UNMOVE==event and moved) {
@@ -177,8 +170,8 @@ int EntityNS::EnemyShip::randomOffset()
 }
 
 EntityNS::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        double damage, int bulletDelay, const Hitbox& hitbox, std::shared_ptr<Bullet> dummyBullet, double vSpeed)
-        :Ship(image, pos, health, hSpeed, damage, bulletDelay, hitbox, dummyBullet), VSpeed(vSpeed)
+        int bulletDelay, const Hitbox& hitbox, double vSpeed)
+        :Ship(image, pos, health, hSpeed, bulletDelay, hitbox), VSpeed(vSpeed)
 {
     moved = false;
     currentDelay += randomOffset();

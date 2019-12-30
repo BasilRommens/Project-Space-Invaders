@@ -81,3 +81,18 @@ double EntityNS::Entity::getDistance() const
 {
     return 0;
 }
+
+const Hitbox& EntityNS::Entity::getHitbox() const
+{
+    return *(new Hitbox(0, 0));
+}
+
+void EntityNS::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet)
+{
+
+}
+
+std::shared_ptr<EntityNS::Entity> EntityNS::Entity::spawnBullet()
+{
+    return std::shared_ptr<Entity>();
+}

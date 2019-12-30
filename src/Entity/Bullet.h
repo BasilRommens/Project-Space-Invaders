@@ -29,6 +29,8 @@ namespace EntityNS {
         bool inControl{false}; ///< Is a member variable to check if it is already in the controller class
         Hitbox hitbox;
     public:
+        Bullet(std::shared_ptr<Bullet> other);
+
         /**
          * @brief The destructor of the Bullet class
          */

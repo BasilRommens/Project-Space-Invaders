@@ -67,28 +67,10 @@ void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event even
     // TODO throw error when no entity is detected
     if (event==Utils::Event::FIRE_BULLET) {
         // Create a bullet with that needs to depart from the certain ship
-        std::shared_ptr<Entity> bullet = createBullet(entity);
+        std::shared_ptr<Entity> bullet = entity->spawnBullet();
         this->addEntity(bullet);
         notify(bullet, Utils::Event::NEW_DRAW);
     }
-}
-
-// TODO add a bullet representation in entity to create bullets
-std::shared_ptr<EntityNS::Entity> EntityNS::World::createBullet(std::shared_ptr<Entity> ship)
-{
-    // TODO remove fixed image of the bullet
-    // TODO remove fixed bullet speed
-    // TODO fix the spawning position of the bullet
-    Utils::Position pos(ship->getPos()->getX(), ship->getPos()->getY());
-    std::string image("img/laser.png");
-    Utils::Direction direction = (ship->getType()=="player") ? Utils::Direction::UP : Utils::Direction::DOWN;
-    double speed = 0.05;
-    double damage = ship->getDamage();
-    std::shared_ptr<Entity> bullet(new Bullet(image, direction, speed, damage, pos, ship));
-
-    // add the observer to be able to draw a bullet
-    bullet->addObserver(ship->getDrawShared());
-    return bullet;
 }
 
 EntityNS::World::~World()

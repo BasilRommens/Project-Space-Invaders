@@ -70,7 +70,7 @@ private:
 
     void wait();
 
-    std::shared_ptr<EntityNS::Bullet> createBullet(std::string fileName);
+    std::shared_ptr<EntityNS::Bullet> createBullet(std::string fileName, std::weak_ptr<EntityNS::Entity> entity);
 
 public:
 

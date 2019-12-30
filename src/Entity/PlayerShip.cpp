@@ -8,8 +8,8 @@
  */
 
 EntityNS::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        double damage, int bulletDelay, const Hitbox& hitbox, std::shared_ptr<Bullet> dummyBullet)
-        :Ship(image, pos, health, hSpeed, damage, bulletDelay, hitbox, dummyBullet) { }
+        int bulletDelay, const Hitbox& hitbox)
+        :Ship(image, pos, health, hSpeed, bulletDelay, hitbox) { }
 
 void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {

@@ -12,7 +12,6 @@
 #include <memory>
 
 #include "Entity.h"
-#include "../Hitbox.h"
 #include "../utils/Position.h"
 #include "Bullet.h"
 
@@ -43,8 +42,8 @@ namespace EntityNS {
     public:
         virtual ~Ship();
 
-        Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, double damage,
-                int bulletDelay, const Hitbox& hitbox, std::shared_ptr<Bullet> dummyBullet);
+        Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+                int bulletDelay, const Hitbox& hitbox);
 
         std::string getType() const override;
 
@@ -53,6 +52,12 @@ namespace EntityNS {
         void setPosition(Utils::Position newPos) final;
 
         double getDamage() const override;
+
+        const Hitbox& getHitbox() const final;
+
+        void addBullet(std::shared_ptr<Bullet> dummyBullet) final;
+
+        std::shared_ptr<EntityNS::Entity> spawnBullet() final;
     };
 
 }

@@ -109,11 +109,11 @@ void Game::loadPlayer(const std::string&& player)
     Utils::Position position(j["xPos"], j["yPos"]);
     double HP = j["HP"];
     double HSpeed = j["HSpeed"];
-    double damage = j["Damage"];
     Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
 
     std::shared_ptr<EntityNS::Entity> playerShip(
-            new EntityNS::PlayerShip(image, position, HP, HSpeed, damage, 20, hitbox));
+            new EntityNS::PlayerShip(image, position, HP, HSpeed, 20, hitbox));
+    playerShip->addBullet(createBullet(j["Bullet"], playerShip));
     world.addEntity(playerShip);
 
     std::shared_ptr<Observer> sharedWorld(&world);
@@ -131,17 +131,21 @@ void Game::loadEnemy(const std::string&& enemy)
     json j;
     i >> j;
 
+    double HSpeed = j["HSpeed"];
+    double VSpeed = j["VSpeed"];
+
     // TODO if type is a mismatch -> error
     for (auto ship: j["Ships"]) {
         std::string image = ship["Image"];
         Utils::Position position(ship["xPos"], ship["yPos"]);
         double HP = ship["HP"];
-        double HSpeed = ship["HSpeed"];
-        double VSpeed = ship["VSpeed"];
-        double damage = ship["Damage"];
+
+        Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
 
         auto enemyShip = std::make_shared<EntityNS::EnemyShip>(
-                EntityNS::EnemyShip(image, position, HP, HSpeed, damage, 30, VSpeed));
+                EntityNS::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed));
+
+        enemyShip->addBullet(createBullet(ship["Bullet"], enemyShip));
 
         std::shared_ptr<EntityNS::Entity> sharedEntity(enemyShip);
         world.addEntity(sharedEntity);
@@ -162,19 +166,32 @@ void Game::loadWorld(const std::string&& worldName)
     world = EntityNS::World(worldName);
 }
 
-std::shared_ptr<EntityNS::Bullet> Game::createBullet(std::string fileName)
+std::shared_ptr<EntityNS::Bullet> Game::createBullet(std::string fileName, std::weak_ptr<EntityNS::Entity> entity)
 {
     // Parse json file
     std::ifstream i(fileName);
     json j;
     i >> j;
 
-    std::string image = j[""];
-    auto sharedBullet = std::make_shared<EntityNS::Bullet>(new EntityNS::Bullet(, Utils::Direction
-    direction, double
-    speed, double
-    damage,
-    const Utils::Position& pos, std::weak_ptr<Entity>
-    from))
-    return std::shared_ptr<EntityNS::Bullet>();
+    Utils::Position position(entity.lock()->getHitbox().getWidth()/2, 0);
+    std::string image = j["Image"];
+    double damage = j["Damage"];
+    double speed = j["Speed"];
+    // TODO Clean up this mess
+    Hitbox hitbox{j["Hitbox"]["Width"], j["Hitbox"]["Height"]};
+    // Move the bullet so that it is centred over the entity
+    position.moveXPos(-hitbox.getWidth()/2);
+    Utils::Direction direction;
+    if (entity.lock()->getType()=="enemy") {
+        direction = Utils::Direction::DOWN;
+        position.moveYPos(hitbox.getHeight());
+
+    }
+    else if (entity.lock()->getType()=="player") {
+        direction = Utils::Direction::UP;
+        position.moveYPos(-entity.lock()->getHitbox().getHeight());
+    }
+
+    return std::make_shared<EntityNS::Bullet>(
+            EntityNS::Bullet(image, direction, speed, damage, Utils::Position(0, 0), entity, hitbox));
 }

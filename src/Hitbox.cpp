@@ -9,3 +9,13 @@
 
 Hitbox::Hitbox(double width, double height)
         :width(width), height(height) { }
+
+double Hitbox::getWidth() const
+{
+    return width;
+}
+
+double Hitbox::getHeight() const
+{
+    return height;
+}

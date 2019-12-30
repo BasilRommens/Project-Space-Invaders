@@ -74,3 +74,18 @@ EntityNS::Bullet::~Bullet()
 {
 
 }
+
+EntityNS::Bullet::Bullet(std::shared_ptr<Bullet> other)
+{
+    this->direction = other->direction;
+    this->hitbox = other->hitbox;
+    this->speed = other->speed;
+    this->pos = other->pos; // Needs modification later on
+    this->damage = other->damage;
+    this->from = other->from;
+    this->inControl = other->inControl;
+
+    // Move the position of the dummy bullet such that it is in the correct position relative to the entity that is firing it
+    this->pos.moveXPos(other->from.lock()->getPos()->getX());
+    this->pos.moveYPos(other->from.lock()->getPos()->getY());
+}

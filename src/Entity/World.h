@@ -40,8 +40,6 @@ namespace EntityNS {
         std::string getType() const override;
 
         void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) final;
-
-        std::shared_ptr<EntityNS::Entity> createBullet(std::shared_ptr<EntityNS::Entity> ship);
     };
 
 }

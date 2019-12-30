@@ -117,45 +117,6 @@ sf::Sprite Draw::createSprite(std::shared_ptr<EntityNS::Entity> entity)
     // 3. Set the scale of the sprite according to the window size
     // TODO add the default window size in utils namespace
     sprite.scale(sf::Vector2f(window->getSize().x/800.f, window->getSize().y/600.f));
-
-    // if it is a bullet do some moving of the sprite and only if it is not in control of itself
-    if (entity->getType()=="bullet") {
-        std::weak_ptr<EntityNS::Entity> fromShip = entity->getFrom();
-        std::shared_ptr<sf::Sprite> spriteFrom;
-        // Find the sprite to which we need to centre
-        for (const auto& sprite: sprites) {
-            if (sprite.first.get()==fromShip.lock().get()) {
-                spriteFrom = sprite.second;
-            }
-        }
-
-        double fromOffset = spriteFrom->getGlobalBounds().width/2.f;
-        double bulletOffset = sprite.getGlobalBounds().width/2.f;
-        double xOffset = fromOffset-bulletOffset;
-
-        double yOffset;
-        if (entity->getType()=="player") {
-            yOffset = sprite.getGlobalBounds().height;
-        }
-        else {
-            yOffset = -spriteFrom->getGlobalBounds().height;
-        }
-
-        // Change the location of the bullet by the offset
-        sprite.move(sf::Vector2f(xOffset, -yOffset));
-        // store it in the internal representation of the bullet
-        // TODO make it more legible
-        double xOffsetEntity =
-                xOffset/window->getSize().x*(Utils::CoordinateBound::UPPER_X-Utils::CoordinateBound::LOWER_X);
-        double yOffsetEntity =
-                yOffset/window->getSize().y*(Utils::CoordinateBound::UPPER_Y-Utils::CoordinateBound::LOWER_Y);
-
-        double xEntity = xOffsetEntity+entity->getPos()->getX();
-        double yEntity = yOffsetEntity+entity->getPos()->getY();
-        Utils::Position pos(xEntity, yEntity);
-        entity->setPosition(pos);
-    }
-
     return sprite;
 }
 
