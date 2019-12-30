@@ -57,6 +57,10 @@ bool Game::play(sf::RenderWindow& renderWindow)
         entity->addObserver(drawShared);
     }
 
+    // Add the world to the controller for observation
+    std::shared_ptr<Observer> sharedWorld(&world);
+    controller.addObserver(sharedWorld);
+
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
         // start the timing of the stopwatch

@@ -63,11 +63,16 @@ std::string EntityNS::World::getType() const
 
 void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
+    // TODO clean up this function
     if (event==Utils::Event::CHECK_COLLISIONS) {
         std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>> pairs;
         // Check for every entity except itself if it intersects with one
-        for (std::shared_ptr<Entity> thisEntity: entities) {
-            for (std::shared_ptr<Entity> otherEntity: entities) {
+        for (auto thisEntity: entities) {
+            for (auto otherEntity: entities) {
+                // TODO why is it behaving so weird
+                if (not thisEntity or not otherEntity) {
+                    continue;
+                }
                 if (thisEntity==otherEntity) {
                     continue;
                 }
@@ -77,12 +82,16 @@ void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event even
                     if ((pair.first==thisEntity and pair.second==otherEntity)
                             or (pair.first==otherEntity and pair.second==thisEntity)) {
                         foundPair = true;
+                        break;
                     }
                 }
                 // If we have found the pair then continue without further performing anything
                 // or we found that one of the entities is not able to collide
                 if (foundPair or not thisEntity->collidable() or not otherEntity->collidable()) {
                     continue;
+                } // If the pair is not found in the collections of pairs then add it
+                else {
+                    pairs.emplace_back(std::make_pair(thisEntity, otherEntity));
                 }
 
                 // If we haven't found it then we can check if the two objects collide with one another
