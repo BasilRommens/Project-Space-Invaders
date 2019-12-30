@@ -51,13 +51,15 @@ namespace EntityNS {
 
         void setPosition(Utils::Position newPos) final;
 
-        double getDamage() const override;
+        double getDamage() const final;
 
         const Hitbox& getHitbox() const final;
 
         void addBullet(std::shared_ptr<Bullet> dummyBullet) final;
 
         std::shared_ptr<EntityNS::Entity> spawnBullet() final;
+
+        std::shared_ptr<Bullet> getDummyBullet() const final;
     };
 
 }

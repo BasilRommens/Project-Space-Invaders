@@ -49,6 +49,8 @@ namespace EntityNS {
         void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) override;
 
     public:
+        explicit Entity(std::shared_ptr<Bullet> other);
+
         /**
          * @brief The destructor of this Entity class
          */
@@ -107,6 +109,8 @@ namespace EntityNS {
         virtual void addBullet(std::shared_ptr<Bullet> dummyBullet);
 
         virtual std::shared_ptr<Entity> spawnBullet();
+
+        virtual std::shared_ptr<Bullet> getDummyBullet() const;
     };
 
 }

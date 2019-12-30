@@ -37,7 +37,7 @@ namespace EntityNS {
 
         std::shared_ptr<EntityNS::Entity> getPlayer() const;
 
-        std::string getType() const override;
+        std::string getType() const final;
 
         void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) final;
     };

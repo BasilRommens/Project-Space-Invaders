@@ -46,7 +46,7 @@ void EntityNS::Ship::decreaseDelay()
 
 EntityNS::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
         int bulletDelay, const Hitbox& hitbox)
-        :Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox) { }
+        :Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox), bulletDelay(bulletDelay) { }
 
 const Hitbox& EntityNS::Ship::getHitbox() const
 {
@@ -60,6 +60,11 @@ void EntityNS::Ship::addBullet(std::shared_ptr<Bullet> dummyBullet)
 
 std::shared_ptr<EntityNS::Entity> EntityNS::Ship::spawnBullet()
 {
-    std::shared_ptr<Entity> newBullet(dummyBullet);
-    return newBullet;
+    Bullet newBullet(dummyBullet);
+    return std::make_shared<Bullet>(newBullet);
+}
+
+std::shared_ptr<EntityNS::Bullet> EntityNS::Ship::getDummyBullet() const
+{
+    return dummyBullet;
 }

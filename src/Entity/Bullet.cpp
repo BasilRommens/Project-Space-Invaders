@@ -84,6 +84,9 @@ EntityNS::Bullet::Bullet(std::shared_ptr<Bullet> other)
     this->damage = other->damage;
     this->from = other->from;
     this->inControl = other->inControl;
+    this->image = other->image;
+    this->texture = other->texture;
+    this->addObserver(other->retrieveObserver("world"));
 
     // Move the position of the dummy bullet such that it is in the correct position relative to the entity that is firing it
     this->pos.moveXPos(other->from.lock()->getPos()->getX());

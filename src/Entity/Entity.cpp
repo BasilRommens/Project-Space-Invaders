@@ -94,5 +94,15 @@ void EntityNS::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet)
 
 std::shared_ptr<EntityNS::Entity> EntityNS::Entity::spawnBullet()
 {
-    return std::shared_ptr<Entity>();
+    return nullptr;
+}
+
+EntityNS::Entity::Entity(std::shared_ptr<Bullet> other)
+{
+
+}
+
+std::shared_ptr<EntityNS::Bullet> EntityNS::Entity::getDummyBullet() const
+{
+    return nullptr;
 }

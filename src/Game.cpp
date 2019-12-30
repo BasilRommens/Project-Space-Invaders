@@ -44,6 +44,14 @@ bool Game::play(sf::RenderWindow& renderWindow)
     // add draw object to the world because it enables to spawn bullets
     world.addObserver(drawShared);
 
+    // Add the the observer to each of the dummy bullets of the players/enemies
+    for (auto entity: world.getEntities()) {
+        if (entity->getType()=="enemy" or entity->getType()=="player") {
+            std::shared_ptr<EntityNS::Bullet> bullet = entity->getDummyBullet();
+            bullet->addObserver(drawShared);
+        }
+    }
+
     // Add the draw object to each class
     for (const auto entity: world.getEntities()) {
         entity->addObserver(drawShared);
@@ -166,7 +174,8 @@ void Game::loadWorld(const std::string&& worldName)
     world = EntityNS::World(worldName);
 }
 
-std::shared_ptr<EntityNS::Bullet> Game::createBullet(std::string fileName, std::weak_ptr<EntityNS::Entity> entity)
+std::shared_ptr<EntityNS::Bullet>
+Game::createBullet(const std::string& fileName, std::weak_ptr<EntityNS::Entity> entity)
 {
     // Parse json file
     std::ifstream i(fileName);
@@ -181,17 +190,16 @@ std::shared_ptr<EntityNS::Bullet> Game::createBullet(std::string fileName, std::
     Hitbox hitbox{j["Hitbox"]["Width"], j["Hitbox"]["Height"]};
     // Move the bullet so that it is centred over the entity
     position.moveXPos(-hitbox.getWidth()/2);
-    Utils::Direction direction;
+    Utils::Direction direction{};
+    // TODO fix y spawning
     if (entity.lock()->getType()=="enemy") {
         direction = Utils::Direction::DOWN;
-        position.moveYPos(hitbox.getHeight());
-
+        position.moveYPos(-entity.lock()->getHitbox().getHeight());
     }
     else if (entity.lock()->getType()=="player") {
         direction = Utils::Direction::UP;
-        position.moveYPos(-entity.lock()->getHitbox().getHeight());
+        position.moveYPos(hitbox.getHeight());
     }
-
     return std::make_shared<EntityNS::Bullet>(
             EntityNS::Bullet(image, direction, speed, damage, position, entity, hitbox));
 }

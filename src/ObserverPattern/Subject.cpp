@@ -54,3 +54,16 @@ Subject::~Subject()
         observer.reset();
     }
 }
+
+std::shared_ptr<Observer> Subject::retrieveObserver(const std::string typeName) const
+{
+    // TODO fix false code
+    return observers[0];
+    for (auto observer: observers) {
+        std::string type = observer.get()->getType();
+        if (type=="world") {
+            return observer;
+        }
+    }
+    return nullptr;
+}

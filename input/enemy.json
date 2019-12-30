@@ -10,8 +10,8 @@
       "Image": "img/alien.png",
       "Bullet": "input/bullet.json",
       "Hitbox": {
-        "Width": 0.10125,
-        "Height": 0.1
+        "Width": 0.81,
+        "Height": 0.6
       }
     },
     {
@@ -21,8 +21,8 @@
       "Image": "img/alien.png",
       "Bullet": "input/bullet.json",
       "Hitbox": {
-        "Width": 0.10125,
-        "Height": 0.1
+        "Width": 0.81,
+        "Height": 0.6
       }
     },
     {
@@ -32,8 +32,8 @@
       "Image": "img/alien.png",
       "Bullet": "input/bullet.json",
       "Hitbox": {
-        "Width": 0.10125,
-        "Height": 0.1
+        "Width": 0.81,
+        "Height": 0.6
       }
     }
   ]

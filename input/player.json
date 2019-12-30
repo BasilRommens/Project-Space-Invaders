@@ -7,7 +7,7 @@
   "HP": 8,
   "Bullet": "input/bullet.json",
   "Hitbox": {
-    "Width": 0.1025,
-    "Height": 0.083
+    "Width": 0.82,
+    "Height": 0.5
   }
 }

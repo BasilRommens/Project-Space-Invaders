@@ -32,6 +32,8 @@ protected:
      */
     const std::vector<std::shared_ptr<Observer>>& getObservers() const;
 
+    std::shared_ptr<Observer> retrieveObserver(const std::string typeName) const;
+
 public:
     /**
      * @brief The default destructor of a subject
