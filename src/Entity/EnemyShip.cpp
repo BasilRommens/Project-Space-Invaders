@@ -67,7 +67,7 @@ void EntityNS::EnemyShip::moveRight()
     moved = true;
     // Keep track of the distance covered by the ship
     double prevPos = pos.getX();
-    pos.moveXPos(-HSpeed);
+    pos.moveXPos(-HSpeed, hitbox);
     double newPos = pos.getX();
     auto newDistance = std::abs(prevPos-newPos);
     // begin to move all the ships if the travelled distance is smaller than the
@@ -77,17 +77,17 @@ void EntityNS::EnemyShip::moveRight()
         for (const std::weak_ptr<EnemyShip> ship: otherShips) {
             swapDirection(ship.lock());
             // Move every ship down because we hit the end of the map
-            ship.lock()->pos.moveYPos(-VSpeed);
+            ship.lock()->pos.moveYPos(-VSpeed, hitbox);
             if (ship.lock().get()==this) {
                 continue;
             }
             if (ship.lock()->moved) {
                 // Move back the distance thats done too much according to this ship
-                ship.lock()->pos.moveXPos(HSpeed-distance);
+                ship.lock()->pos.moveXPos(HSpeed-distance, hitbox);
             }
             else {
                 // Move the not yet moved ships the distance that this ship has moved
-                ship.lock()->pos.moveXPos(distance);
+                ship.lock()->pos.moveXPos(distance, hitbox);
             }
             // Set moved to true such that the observer pattern will not update the ship again
             ship.lock()->moved = true;
@@ -100,7 +100,7 @@ void EntityNS::EnemyShip::moveLeft()
     moved = true;
     // Keep track of the distance covered by the ship
     double prevPos = pos.getX();
-    pos.moveXPos(HSpeed);
+    pos.moveXPos(HSpeed, hitbox);
     double newPos = pos.getX();
     auto newDistance = std::abs(prevPos-newPos);
     // begin to move all the ships if the travelled distance is smaller than the
@@ -110,17 +110,17 @@ void EntityNS::EnemyShip::moveLeft()
         for (const std::weak_ptr<EnemyShip> ship: otherShips) {
             swapDirection(ship.lock());
             // Move every ship down because we hit the end of the map
-            ship.lock()->pos.moveYPos(-VSpeed);
+            ship.lock()->pos.moveYPos(-VSpeed, hitbox);
             if (ship.lock().get()==this) {
                 continue;
             }
             if (ship.lock()->moved) {
                 // Move back the distance thats done too much according to this ship
-                ship.lock()->pos.moveXPos(distance-HSpeed);
+                ship.lock()->pos.moveXPos(distance-HSpeed, hitbox);
             }
             else {
                 // Move the not yet moved ships the distance that this ship has moved
-                ship.lock()->pos.moveXPos(-distance);
+                ship.lock()->pos.moveXPos(-distance, hitbox);
             }
             // Set moved to true such that the observer pattern will not update the ship again
             ship.lock()->moved = true;

@@ -9,7 +9,7 @@
 #define PROJECT_SPACE_INVADERS_POSITION_H
 
 #include "Transformation.h"
-
+#include "../Hitbox.h"
 
 /**
  * @addtogroup Utils
@@ -48,14 +48,16 @@ namespace Utils {
         /**
          * @brief moves the x value over a certain distance while keeping it in the bounds declared in the transformation file @see Transformation.h
          * @param distance: The distance over which we need to move the x value
+         * @param hitbox:
          */
-        void moveXPos(double distance);
+        void moveXPos(double distance, Hitbox hitbox);
 
         /**
          * @brief moves the y value over a certain distance while keeping it in the bounds declared in the transformation file @see Transformation.h
          * @param distance: The distance over which we need to move the y value
+         * @brief hitbox:
          */
-        void moveYPos(double distance);
+        void moveYPos(double distance, Hitbox hitbox);
 
         /**
          * @return The x value of the position

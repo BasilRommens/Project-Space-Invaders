@@ -189,16 +189,16 @@ Game::createBullet(const std::string& fileName, std::weak_ptr<EntityNS::Entity> 
     // TODO Clean up this mess
     Hitbox hitbox{j["Hitbox"]["Width"], j["Hitbox"]["Height"]};
     // Move the bullet so that it is centred over the entity
-    position.moveXPos(-hitbox.getWidth()/2);
+    position.moveXPos(-hitbox.getWidth()/2, hitbox);
     Utils::Direction direction{};
     // TODO fix y spawning
     if (entity.lock()->getType()=="enemy") {
         direction = Utils::Direction::DOWN;
-        position.moveYPos(-entity.lock()->getHitbox().getHeight());
+        position.moveYPos(-entity.lock()->getHitbox().getHeight(), hitbox);
     }
     else if (entity.lock()->getType()=="player") {
         direction = Utils::Direction::UP;
-        position.moveYPos(hitbox.getHeight());
+        position.moveYPos(hitbox.getHeight(), hitbox);
     }
     return std::make_shared<EntityNS::Bullet>(
             EntityNS::Bullet(image, direction, speed, damage, position, entity, hitbox));

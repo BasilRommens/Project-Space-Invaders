@@ -50,12 +50,12 @@ void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event
 
 void EntityNS::PlayerShip::moveRight()
 {
-    pos.moveXPos(HSpeed);
+    pos.moveXPos(HSpeed, hitbox);
 }
 
 void EntityNS::PlayerShip::moveLeft()
 {
-    pos.moveXPos(-HSpeed);
+    pos.moveXPos(-HSpeed, hitbox);
 }
 
 std::string EntityNS::PlayerShip::getType() const

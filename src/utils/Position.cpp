@@ -12,15 +12,15 @@
 Utils::Position::Position(double x, double y)
         :x(x), y(y) { }
 
-void Utils::Position::moveXPos(double distance)
+void Utils::Position::moveXPos(double distance, const Hitbox hitbox)
 {
     // Set the new possible x position
     double newXPos = x+distance;
 
     // TODO throw an error when out of bounds
-    if (newXPos>CoordinateBound::UPPER_X) {
+    if (newXPos+hitbox.getWidth()>CoordinateBound::UPPER_X) {
         std::cout << "hit upper bounds" << std::endl;
-        x = CoordinateBound::UPPER_X;
+        x = CoordinateBound::UPPER_X-hitbox.getWidth();
     }
     else if (newXPos<CoordinateBound::LOWER_X) {
         std::cout << "hit lower bounds" << std::endl;
@@ -31,7 +31,7 @@ void Utils::Position::moveXPos(double distance)
     }
 }
 
-void Utils::Position::moveYPos(double distance)
+void Utils::Position::moveYPos(double distance, const Hitbox hitbox)
 {
     // Set the new possible y position
     double newYPos = y+distance;
@@ -40,8 +40,8 @@ void Utils::Position::moveYPos(double distance)
     if (newYPos>CoordinateBound::UPPER_Y) {
         y = CoordinateBound::UPPER_Y;
     }
-    else if (newYPos<CoordinateBound::LOWER_Y) {
-        y = CoordinateBound::LOWER_Y;
+    else if (newYPos-hitbox.getHeight()<CoordinateBound::LOWER_Y) {
+        y = CoordinateBound::LOWER_Y+hitbox.getHeight();
     }
     else {
         y = newYPos;

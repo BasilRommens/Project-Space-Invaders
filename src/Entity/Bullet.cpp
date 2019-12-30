@@ -59,7 +59,7 @@ void EntityNS::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
     else {
         directionSpeed = speed;
     }
-    this->pos.moveYPos(directionSpeed);
+    this->pos.moveYPos(directionSpeed, hitbox);
 
     // notify that there needs to be a sprite move of the current bullet
     notify(shared_from_this(), Utils::Event::UPDATE_DRAW);
@@ -89,6 +89,6 @@ EntityNS::Bullet::Bullet(std::shared_ptr<Bullet> other)
     this->addObserver(other->retrieveObserver("world"));
 
     // Move the position of the dummy bullet such that it is in the correct position relative to the entity that is firing it
-    this->pos.moveXPos(other->from.lock()->getPos()->getX());
-    this->pos.moveYPos(other->from.lock()->getPos()->getY());
+    this->pos.moveXPos(other->from.lock()->getPos()->getX(), hitbox);
+    this->pos.moveYPos(other->from.lock()->getPos()->getY(), hitbox);
 }
