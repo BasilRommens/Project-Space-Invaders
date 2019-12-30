@@ -19,12 +19,12 @@ void Utils::Position::moveXPos(double distance, const Hitbox hitbox)
 
     // TODO throw an error when out of bounds
     if (newXPos+hitbox.getWidth()>CoordinateBound::UPPER_X) {
-        std::cout << "hit upper bounds" << std::endl;
         x = CoordinateBound::UPPER_X-hitbox.getWidth();
+        throw std::out_of_range("The entity tried to get out of range");
     }
     else if (newXPos<CoordinateBound::LOWER_X) {
-        std::cout << "hit lower bounds" << std::endl;
         x = CoordinateBound::LOWER_X;
+        throw std::out_of_range("The entity tried to get out of range");
     }
     else {
         x = newXPos;
@@ -36,12 +36,13 @@ void Utils::Position::moveYPos(double distance, const Hitbox hitbox)
     // Set the new possible y position
     double newYPos = y+distance;
 
-    // TODO throw an error when out of bounds
     if (newYPos>CoordinateBound::UPPER_Y) {
         y = CoordinateBound::UPPER_Y;
+        throw std::out_of_range("The entity tried to get out of range");
     }
     else if (newYPos-hitbox.getHeight()<CoordinateBound::LOWER_Y) {
         y = CoordinateBound::LOWER_Y+hitbox.getHeight();
+        throw std::out_of_range("The entity tried to get out of range");
     }
     else {
         y = newYPos;

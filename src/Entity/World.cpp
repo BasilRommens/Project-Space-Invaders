@@ -63,9 +63,41 @@ std::string EntityNS::World::getType() const
 
 void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
+    if (event==Utils::Event::CHECK_COLLISIONS) {
+        std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>> pairs;
+        // Check for every entity except itself if it intersects with one
+        for (std::shared_ptr<Entity> thisEntity: entities) {
+            for (std::shared_ptr<Entity> otherEntity: entities) {
+                if (thisEntity==otherEntity) {
+                    continue;
+                }
+                // TODO simplify this with a std algorithm function
+                auto foundPair = false;
+                for (const auto& pair: pairs) {
+                    if ((pair.first==thisEntity and pair.second==otherEntity)
+                            or (pair.first==otherEntity and pair.second==thisEntity)) {
+                        foundPair = true;
+                    }
+                }
+                // If we have found the pair then continue without further performing anything
+                // or we found that one of the entities is not able to collide
+                if (foundPair or not thisEntity->collidable() or not otherEntity->collidable()) {
+                    continue;
+                }
+
+                // If we haven't found it then we can check if the two objects collide with one another
+                if (areColliding(thisEntity, otherEntity)) {
+                    handleColliding(thisEntity, otherEntity);
+                }
+            }
+        }
+    }
 
     // TODO throw error when no entity is detected
-    if (event==Utils::Event::FIRE_BULLET) {
+    if (not entity and event==Utils::Event::FIRE_BULLET) {
+        throw std::domain_error("There is no entity to fire the bullet from");
+    }
+    if (event==Utils::Event::FIRE_BULLET and entity) {
         // Create a bullet with that needs to depart from the certain ship
         std::shared_ptr<Entity> bullet = entity->spawnBullet();
         this->addEntity(bullet);
@@ -76,4 +108,42 @@ void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event even
 EntityNS::World::~World()
 {
 
+}
+
+bool EntityNS::World::areColliding(const std::shared_ptr<Entity> thisEntity, const std::shared_ptr<Entity> otherEntity)
+{
+    return thisEntity->getPos()->getX()<otherEntity->getPos()->getX()+otherEntity->getHitbox().getWidth()
+            and thisEntity->getPos()->getX()+thisEntity->getHitbox().getWidth()>otherEntity->getPos()->getX()
+            and thisEntity->getPos()->getY()<otherEntity->getPos()->getY()+otherEntity->getHitbox().getHeight()
+            and thisEntity->getPos()->getY()+thisEntity->getHitbox().getHeight()>otherEntity->getPos()->getY();
+}
+
+void EntityNS::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity)
+{
+    // If we find that both the entities are not bullets then delete both the entities
+    // if both are bullets then delete them too
+    if ((thisEntity->getType()!="bullet" and otherEntity->getType()!="bullet")
+            or (thisEntity->getType()=="bullet" and otherEntity->getType()=="bullet")) {
+        // Delete the second entity from the world
+        entities.erase(std::find(entities.begin(), entities.end(), thisEntity));
+        // Delete the second entity from the world
+        entities.erase(std::find(entities.begin(), entities.end(), otherEntity));
+        // They wont be updated anymore but still drawn every iteration on the same spot
+        return;
+    }
+    // Decide which of the two entities is the bullet and then put it in a dedicated bullet variable
+    std::shared_ptr<Entity> bullet = ((thisEntity->getType()=="bullet") ? thisEntity : otherEntity);
+    // Take the other as the entity that is hit by the bullet
+    std::shared_ptr<Entity> entity = ((thisEntity->getType()=="bullet") ? otherEntity : thisEntity);
+
+    // TODO maybe improve the name of the function
+    entity->doDamage(bullet->getDamage());
+
+    // Delete the bullet from the world because it can not do damage anymore
+    entities.erase(std::find(entities.begin(), entities.end(), bullet));
+
+    // Delete the entity from the world if it has no health more left
+    if (entity->getHealth()<=0) {
+        entities.erase(std::find(entities.begin(), entities.end(), entity));
+    }
 }

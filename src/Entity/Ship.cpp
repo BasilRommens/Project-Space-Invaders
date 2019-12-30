@@ -19,7 +19,7 @@ std::shared_ptr<Utils::Position> EntityNS::Ship::getPos() const
 
 double EntityNS::Ship::getDamage() const
 {
-    return damage;
+    return 0.f;
 }
 
 void EntityNS::Ship::setPosition(Utils::Position newPos)
@@ -46,7 +46,10 @@ void EntityNS::Ship::decreaseDelay()
 
 EntityNS::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
         int bulletDelay, const Hitbox& hitbox)
-        :Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox), bulletDelay(bulletDelay) { }
+        :Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox), bulletDelay(bulletDelay)
+{
+    currentDelay = 0;
+}
 
 const Hitbox& EntityNS::Ship::getHitbox() const
 {
@@ -67,4 +70,19 @@ std::shared_ptr<EntityNS::Entity> EntityNS::Ship::spawnBullet()
 std::shared_ptr<EntityNS::Bullet> EntityNS::Ship::getDummyBullet() const
 {
     return dummyBullet;
+}
+
+void EntityNS::Ship::doDamage(double damage)
+{
+    health -= damage;
+}
+
+bool EntityNS::Ship::collidable() const
+{
+    return true;
+}
+
+double EntityNS::Ship::getHealth() const
+{
+    return health;
 }

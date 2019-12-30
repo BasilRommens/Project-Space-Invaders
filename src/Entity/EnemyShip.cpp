@@ -67,7 +67,12 @@ void EntityNS::EnemyShip::moveRight()
     moved = true;
     // Keep track of the distance covered by the ship
     double prevPos = pos.getX();
-    pos.moveXPos(-HSpeed, hitbox);
+    try {
+        pos.moveXPos(HSpeed, hitbox);
+    }
+    catch (std::exception& test) { // TODO add a better name
+        std::cout << "nothing to worry about" << std::endl;
+    }
     double newPos = pos.getX();
     auto newDistance = std::abs(prevPos-newPos);
     // begin to move all the ships if the travelled distance is smaller than the
@@ -100,7 +105,12 @@ void EntityNS::EnemyShip::moveLeft()
     moved = true;
     // Keep track of the distance covered by the ship
     double prevPos = pos.getX();
-    pos.moveXPos(HSpeed, hitbox);
+    try {
+        pos.moveXPos(-HSpeed, hitbox);
+    }
+    catch (std::exception& test) { // TODO change name of the variable
+        std::cout << "nothing to worry about" << std::endl;
+    }
     double newPos = pos.getX();
     auto newDistance = std::abs(prevPos-newPos);
     // begin to move all the ships if the travelled distance is smaller than the

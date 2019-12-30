@@ -59,7 +59,12 @@ void EntityNS::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
     else {
         directionSpeed = speed;
     }
-    this->pos.moveYPos(directionSpeed, hitbox);
+    try {
+        this->pos.moveYPos(directionSpeed, hitbox);
+    }
+    catch (std::exception& test) { // TODO improve the name of the variable
+        // try to despawn the bullet
+    }
 
     // notify that there needs to be a sprite move of the current bullet
     notify(shared_from_this(), Utils::Event::UPDATE_DRAW);
@@ -91,4 +96,9 @@ EntityNS::Bullet::Bullet(std::shared_ptr<Bullet> other)
     // Move the position of the dummy bullet such that it is in the correct position relative to the entity that is firing it
     this->pos.moveXPos(other->from.lock()->getPos()->getX(), hitbox);
     this->pos.moveYPos(other->from.lock()->getPos()->getY(), hitbox);
+}
+
+bool EntityNS::Bullet::collidable() const
+{
+    return true;
 }

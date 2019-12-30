@@ -22,7 +22,6 @@ namespace EntityNS {
         Utils::Position pos;
         double health;
         double HSpeed;
-        double damage;
         // TODO make the bullet delay in the input files
         const int bulletDelay{30};
         int currentDelay;
@@ -60,6 +59,12 @@ namespace EntityNS {
         std::shared_ptr<EntityNS::Entity> spawnBullet() final;
 
         std::shared_ptr<Bullet> getDummyBullet() const final;
+
+        void doDamage(double damage) final;
+
+        bool collidable() const final;
+
+        double getHealth() const;
     };
 
 }

@@ -27,7 +27,6 @@ namespace EntityNS {
          * @return The type ("BGTile") of the class
          */
         std::string getType() const final;
-
     };
 
 }

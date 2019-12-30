@@ -92,6 +92,8 @@ namespace EntityNS {
          * @param event: The event that happened and is passed trough
          */
         void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
+
+        bool collidable() const final;
     };
 
 }

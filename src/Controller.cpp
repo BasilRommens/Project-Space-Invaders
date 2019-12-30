@@ -8,6 +8,9 @@
 
 void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
 {
+    // notify the world that it needs to check all the collision
+    notify(nullptr, Utils::Event::CHECK_COLLISIONS);
+
     // TODO find something that can change input controls
     notify(nullptr, Utils::Event::UNMOVE); // Make all the enemy ships movable
 

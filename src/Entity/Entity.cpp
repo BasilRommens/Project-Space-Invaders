@@ -106,3 +106,18 @@ std::shared_ptr<EntityNS::Bullet> EntityNS::Entity::getDummyBullet() const
 {
     return nullptr;
 }
+
+void EntityNS::Entity::doDamage(double damage)
+{
+
+}
+
+bool EntityNS::Entity::collidable() const
+{
+    return false;
+}
+
+double EntityNS::Entity::getHealth() const
+{
+    return 0;
+}

@@ -22,6 +22,11 @@ namespace EntityNS {
     class World : public EntityNS::Entity {
     private:
         std::vector<std::shared_ptr<EntityNS::Entity>> entities;
+
+        bool areColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity);
+
+        void handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity);
+
     public:
         virtual ~World();
 

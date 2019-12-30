@@ -111,6 +111,12 @@ namespace EntityNS {
         virtual std::shared_ptr<Entity> spawnBullet();
 
         virtual std::shared_ptr<Bullet> getDummyBullet() const;
+
+        virtual void doDamage(double damage);
+
+        virtual bool collidable() const;
+
+        virtual double getHealth() const;
     };
 
 }

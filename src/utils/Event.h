@@ -26,7 +26,8 @@ namespace Utils {
         CLOSE_WINDOW,
         NEW_DRAW,
         UNMOVE,
-        DECREASE_DELAY
+        DECREASE_DELAY,
+        CHECK_COLLISIONS
     };
 
 }
