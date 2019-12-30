@@ -20,7 +20,7 @@ namespace EntityNS {
 
         void moveLeft();
 
-        void fireBullet() override;
+        void fireBullet() final;
 
     public:
         virtual ~PlayerShip();
@@ -28,7 +28,7 @@ namespace EntityNS {
         PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
                 int bulletDelay, const Hitbox& hitbox);
 
-        std::string getType() const override;
+        std::string getType() const final;
     };
 
 }

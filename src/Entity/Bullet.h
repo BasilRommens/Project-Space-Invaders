@@ -91,7 +91,7 @@ namespace EntityNS {
          * @param entity: The entity that is passed through
          * @param event: The event that happened and is passed trough
          */
-        void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) override;
+        void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
     };
 
 }
