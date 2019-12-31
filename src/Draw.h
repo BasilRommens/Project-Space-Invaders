@@ -10,7 +10,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ObserverPattern/Observer.h"
+#include "Utils/ObserverPattern/Observer.h"
 #include "utils/Transformation.h"
 #include "Entity/Entity.h"
 #include "Entity/EnemyShip.h"

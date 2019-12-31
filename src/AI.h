@@ -8,7 +8,7 @@
 #ifndef PROJECT_SPACE_INVADERS_AI_H
 #define PROJECT_SPACE_INVADERS_AI_H
 
-#include "ObserverPattern/Subject.h"
+#include "Utils/ObserverPattern/Subject.h"
 
 class AI : public ObserverPattern::Subject, public ObserverPattern::Observer {
 private:

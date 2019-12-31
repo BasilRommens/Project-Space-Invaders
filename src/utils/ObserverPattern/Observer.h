@@ -10,7 +10,7 @@
 
 #include <memory>
 
-#include "../utils/Event.h"
+#include "../Event.h"
 
 namespace Model {
 

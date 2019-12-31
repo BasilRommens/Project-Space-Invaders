@@ -11,8 +11,8 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "../ObserverPattern/Observer.h"
-#include "../ObserverPattern/Subject.h"
+#include "../Utils/ObserverPattern/Observer.h"
+#include "../Utils/ObserverPattern/Subject.h"
 #include "../utils/Position.h"
 #include "../Hitbox.h"
 
