@@ -14,9 +14,13 @@
 #include "Utils/ObserverPattern/Observer.h"
 #include "Entity/World.h"
 
-class Controller : public ObserverPattern::Subject {
-public:
-    void run(sf::RenderWindow& window, Model::World& world);
-};
+namespace Control {
+
+    class Controller : public ObserverPattern::Subject {
+    public:
+        void run(sf::RenderWindow& window, Model::World& world);
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_CONTROLLER_H

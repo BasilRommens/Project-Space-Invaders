@@ -6,7 +6,7 @@
  */
 #include "Controller.h"
 
-void Controller::run(sf::RenderWindow& window, Model::World& world)
+void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
 {
     // notify the world that it needs to check all the collision
     notify(nullptr, Utils::Event::CHECK_COLLISIONS);

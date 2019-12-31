@@ -33,7 +33,7 @@ private:
 
     Model::World world;
 
-    Controller controller;
+    Control::Controller controller;
 
     std::shared_ptr<Utils::Stopwatch> stopwatch = stopwatch->getStopwatch();
 
