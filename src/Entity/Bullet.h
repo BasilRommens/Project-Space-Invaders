@@ -94,6 +94,8 @@ namespace Model {
         void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
 
         bool collidable() const final;
+
+        double getDamage() const final;
     };
 
 }

@@ -103,3 +103,8 @@ bool Model::Bullet::collidable() const
 {
     return true;
 }
+
+double Model::Bullet::getDamage() const
+{
+    return damage;
+}
