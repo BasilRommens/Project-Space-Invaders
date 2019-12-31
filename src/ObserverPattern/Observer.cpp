@@ -7,9 +7,9 @@
 
 #include "Observer.h"
 
-Observer::~Observer() { }
+ObserverPattern::Observer::~Observer() { }
 
-std::string Observer::getType()
+std::string ObserverPattern::Observer::getType()
 {
     return "";
 }

@@ -7,7 +7,7 @@
 
 #include "Subject.h"
 
-void Subject::addObserver(std::shared_ptr<Observer> observer)
+void ObserverPattern::Subject::addObserver(std::shared_ptr<Observer> observer)
 {
     try {
         if (!observer) {
@@ -21,7 +21,7 @@ void Subject::addObserver(std::shared_ptr<Observer> observer)
     }
 }
 
-void Subject::removeObserver(std::shared_ptr<Observer> observer)
+void ObserverPattern::Subject::removeObserver(std::shared_ptr<Observer> observer)
 {
     try {
         if (!observer) {
@@ -35,7 +35,7 @@ void Subject::removeObserver(std::shared_ptr<Observer> observer)
     }
 }
 
-void Subject::notify(std::shared_ptr<Model::Entity> entity, Utils::Event event)
+void ObserverPattern::Subject::notify(std::shared_ptr<Model::Entity> entity, Utils::Event event)
 {
     for (std::shared_ptr<Observer> observer: observers) {
         // Let observer decide what to do onNotify
@@ -43,19 +43,19 @@ void Subject::notify(std::shared_ptr<Model::Entity> entity, Utils::Event event)
     }
 }
 
-const std::vector<std::shared_ptr<Observer>>& Subject::getObservers() const
+const std::vector<std::shared_ptr<ObserverPattern::Observer>>& ObserverPattern::Subject::getObservers() const
 {
     return observers;
 }
 
-Subject::~Subject()
+ObserverPattern::Subject::~Subject()
 {
     for (auto observer: observers) {
         observer.reset();
     }
 }
 
-std::shared_ptr<Observer> Subject::retrieveObserver(const std::string typeName) const
+std::shared_ptr<ObserverPattern::Observer> ObserverPattern::Subject::retrieveObserver(const std::string typeName) const
 {
     // TODO fix false code
     return observers[0];

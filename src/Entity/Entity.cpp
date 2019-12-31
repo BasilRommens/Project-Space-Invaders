@@ -37,7 +37,7 @@ double Model::Entity::getDamage() const
     return 0;
 }
 
-std::shared_ptr<Observer> Model::Entity::getDrawShared()
+std::shared_ptr<ObserverPattern::Observer> Model::Entity::getDrawShared()
 {
     for (auto observer: this->getObservers()) {
         if (observer->getType()=="draw") {

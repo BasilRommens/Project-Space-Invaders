@@ -14,7 +14,7 @@
 #include "ObserverPattern/Observer.h"
 #include "Entity/World.h"
 
-class Controller : public Subject {
+class Controller : public ObserverPattern::Subject {
 public:
     void run(sf::RenderWindow& window, Model::World& world);
 };

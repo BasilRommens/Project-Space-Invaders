@@ -38,7 +38,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
 {
     std::shared_ptr<sf::RenderWindow> window(&renderWindow);
     std::shared_ptr<Draw> draw(new Draw(window, world));
-    std::shared_ptr<Observer> drawShared(draw);
+    std::shared_ptr<ObserverPattern::Observer> drawShared(draw);
 
     // add draw object to the world because it enables to spawn bullets
     world.addObserver(drawShared);
@@ -58,7 +58,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
 
     // Add the world to the controller for observation in order to apply collision detection
     // TODO remove implications when drawing bullets twice
-    std::shared_ptr<Observer> sharedWorld(&world);
+    std::shared_ptr<ObserverPattern::Observer> sharedWorld(&world);
     controller.addObserver(sharedWorld);
 
     // run the program as long as the window is open
@@ -128,10 +128,10 @@ void Game::loadPlayer(const std::string&& player)
     playerShip->addBullet(createBullet(j["Bullet"], playerShip));
     world.addEntity(playerShip);
 
-    std::shared_ptr<Observer> sharedWorld(&world);
+    std::shared_ptr<ObserverPattern::Observer> sharedWorld(&world);
     playerShip->addObserver(sharedWorld);
 
-    std::shared_ptr<Observer> observerPlayer(playerShip);
+    std::shared_ptr<ObserverPattern::Observer> observerPlayer(playerShip);
     controller.addObserver(observerPlayer);
 }
 
@@ -162,10 +162,10 @@ void Game::loadEnemy(const std::string&& enemy)
         std::shared_ptr<Model::Entity> sharedEntity(enemyShip);
         world.addEntity(sharedEntity);
 
-        std::shared_ptr<Observer> sharedObserver(enemyShip);
+        std::shared_ptr<ObserverPattern::Observer> sharedObserver(enemyShip);
         controller.addObserver(sharedObserver);
 
-        std::shared_ptr<Observer> sharedWorld(&world);
+        std::shared_ptr<ObserverPattern::Observer> sharedWorld(&world);
         enemyShip->addObserver(sharedWorld);
 
         std::weak_ptr<Model::EnemyShip> weakEnemy = enemyShip;

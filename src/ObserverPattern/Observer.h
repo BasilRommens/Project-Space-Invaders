@@ -18,20 +18,24 @@ namespace Model {
 
 }
 
-class Observer {
-public:
-    /**
-     * @brief Destructor of the Observer
-     */
-    virtual ~Observer();
+namespace ObserverPattern {
 
-    /**
-     * @brief A pure virtual function that needs to act accordingly when certain events are passed through
-     * @param event: The event that took place
-     */
-    virtual void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) = 0;
+    class Observer {
+    public:
+        /**
+         * @brief Destructor of the Observer
+         */
+        virtual ~Observer();
 
-    virtual std::string getType();
-};
+        /**
+         * @brief A pure virtual function that needs to act accordingly when certain events are passed through
+         * @param event: The event that took place
+         */
+        virtual void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) = 0;
+
+        virtual std::string getType();
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_OBSERVER_H

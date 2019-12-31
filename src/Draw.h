@@ -24,7 +24,7 @@ namespace Model {
 
 }
 
-class Draw : public Observer {
+class Draw : public ObserverPattern::Observer {
 private:
     bool open{true}; ///< is a variable to check if the window still is open
 

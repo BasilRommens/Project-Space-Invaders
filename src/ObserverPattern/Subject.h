@@ -16,41 +16,45 @@
 
 #include "Observer.h"
 
-class Subject {
-private:
-    std::vector<std::shared_ptr<Observer>> observers;
-protected:
-    /**
-     * @brief Notifies every observer held by the subject
-     * @param entity: The entity on which the notification needs to be aplied
-     * @param event: The event that has happened
-     */
-    void notify(std::shared_ptr<Model::Entity> entity, Utils::Event event);
+namespace ObserverPattern {
 
-    /**
-     * @return The observers of the subject
-     */
-    const std::vector<std::shared_ptr<Observer>>& getObservers() const;
+    class Subject {
+    private:
+        std::vector<std::shared_ptr<Observer>> observers;
+    protected:
+        /**
+         * @brief Notifies every observer held by the subject
+         * @param entity: The entity on which the notification needs to be aplied
+         * @param event: The event that has happened
+         */
+        void notify(std::shared_ptr<Model::Entity> entity, Utils::Event event);
 
-    std::shared_ptr<Observer> retrieveObserver(const std::string typeName) const;
+        /**
+         * @return The observers of the subject
+         */
+        const std::vector<std::shared_ptr<Observer>>& getObservers() const;
 
-public:
-    /**
-     * @brief The default destructor of a subject
-     */
-    virtual ~Subject();
+        std::shared_ptr<Observer> retrieveObserver(const std::string typeName) const;
 
-    /**
-     * @brief Adds and observer to the list of observers the subject holds
-     * @param observer: The observer that will be added to the list of observers of the subject
-     */
-    void addObserver(std::shared_ptr<Observer> observer);
+    public:
+        /**
+         * @brief The default destructor of a subject
+         */
+        virtual ~Subject();
 
-    /**
-     * @brief Removes the requested observer from the class
-     * @param observer: The observer that needs to be removed
-     */
-    void removeObserver(std::shared_ptr<Observer> observer);
-};
+        /**
+         * @brief Adds and observer to the list of observers the subject holds
+         * @param observer: The observer that will be added to the list of observers of the subject
+         */
+        void addObserver(std::shared_ptr<Observer> observer);
+
+        /**
+         * @brief Removes the requested observer from the class
+         * @param observer: The observer that needs to be removed
+         */
+        void removeObserver(std::shared_ptr<Observer> observer);
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_SUBJECT_H

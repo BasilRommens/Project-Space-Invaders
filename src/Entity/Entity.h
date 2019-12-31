@@ -28,7 +28,10 @@ namespace Model {
 
     class Bullet;
 
-    class Entity : public Observer, public Subject, public std::enable_shared_from_this<Entity> {
+    class Entity
+            : public ObserverPattern::Observer,
+              public ObserverPattern::Subject,
+              public std::enable_shared_from_this<Entity> {
     protected:
         std::string image; ///< The image string which will represent the entity
 
@@ -46,7 +49,7 @@ namespace Model {
          * @param entity: The entity on which needs to be reacted
          * @param event: The event that has happened
          */
-        void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) override;
+        void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) override;
 
     public:
         explicit Entity(std::shared_ptr<Bullet> other);
@@ -94,7 +97,7 @@ namespace Model {
          */
         virtual double getDamage() const;
 
-        std::shared_ptr<Observer> getDrawShared();
+        std::shared_ptr<ObserverPattern::Observer> getDrawShared();
 
         virtual std::weak_ptr<Entity> getFrom() const;
 
