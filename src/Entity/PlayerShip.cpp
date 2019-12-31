@@ -49,12 +49,22 @@ void Model::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event ev
 
 void Model::PlayerShip::moveRight()
 {
-    pos.moveXPos(HSpeed, hitbox);
+    try {
+        pos.moveXPos(HSpeed, hitbox);
+    }
+    catch (std::exception& test) { // TODO find better name
+
+    }
 }
 
 void Model::PlayerShip::moveLeft()
 {
-    pos.moveXPos(-HSpeed, hitbox);
+    try {
+        pos.moveXPos(-HSpeed, hitbox);
+    }
+    catch (std::exception& test) { // TODO find better name
+
+    }
 }
 
 std::string Model::PlayerShip::getType() const
