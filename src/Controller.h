@@ -16,7 +16,7 @@
 
 class Controller : public Subject {
 public:
-    void run(sf::RenderWindow& window, EntityNS::World& world);
+    void run(sf::RenderWindow& window, Model::World& world);
 };
 
 #endif //PROJECT_SPACE_INVADERS_CONTROLLER_H

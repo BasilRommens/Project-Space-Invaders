@@ -12,7 +12,7 @@
 
 #include "../utils/Event.h"
 
-namespace EntityNS {
+namespace Model {
 
     class Entity;
 
@@ -29,7 +29,7 @@ public:
      * @brief A pure virtual function that needs to act accordingly when certain events are passed through
      * @param event: The event that took place
      */
-    virtual void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) = 0;
+    virtual void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) = 0;
 
     virtual std::string getType();
 };

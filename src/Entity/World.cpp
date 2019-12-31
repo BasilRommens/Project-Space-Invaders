@@ -7,7 +7,7 @@
 
 #include "World.h"
 
-void EntityNS::World::addEntity(std::shared_ptr<Entity> entity)
+void Model::World::addEntity(std::shared_ptr<Entity> entity)
 {
     try {
         if (!entity) {
@@ -21,7 +21,7 @@ void EntityNS::World::addEntity(std::shared_ptr<Entity> entity)
     }
 }
 
-void EntityNS::World::removeEntity(std::shared_ptr<Entity> entity)
+void Model::World::removeEntity(std::shared_ptr<Entity> entity)
 {
     try {
         if (!entity) {
@@ -35,17 +35,17 @@ void EntityNS::World::removeEntity(std::shared_ptr<Entity> entity)
     }
 }
 
-EntityNS::World::World(const std::string& image)
+Model::World::World(const std::string& image)
         :Entity(image) { }
 
-EntityNS::World::World() { }
+Model::World::World() { }
 
-const std::vector<std::shared_ptr<EntityNS::Entity>>& EntityNS::World::getEntities() const
+const std::vector<std::shared_ptr<Model::Entity>>& Model::World::getEntities() const
 {
     return entities;
 }
 
-std::shared_ptr<EntityNS::Entity> EntityNS::World::getPlayer() const
+std::shared_ptr<Model::Entity> Model::World::getPlayer() const
 {
     for (auto entity: entities) {
         std::string type = entity->getType();
@@ -56,12 +56,12 @@ std::shared_ptr<EntityNS::Entity> EntityNS::World::getPlayer() const
     return nullptr;
 }
 
-std::string EntityNS::World::getType() const
+std::string Model::World::getType() const
 {
     return "world";
 }
 
-void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // TODO clean up this function
     if (event==Utils::Event::CHECK_COLLISIONS) {
@@ -131,12 +131,12 @@ void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event even
     }
 }
 
-EntityNS::World::~World()
+Model::World::~World()
 {
     entities.clear();
 }
 
-bool EntityNS::World::areColliding(const std::shared_ptr<Entity> thisEntity, const std::shared_ptr<Entity> otherEntity)
+bool Model::World::areColliding(const std::shared_ptr<Entity> thisEntity, const std::shared_ptr<Entity> otherEntity)
 {
     return thisEntity->getPos()->getX()<otherEntity->getPos()->getX()+otherEntity->getHitbox().getWidth()
             and thisEntity->getPos()->getX()+thisEntity->getHitbox().getWidth()>otherEntity->getPos()->getX()
@@ -144,7 +144,7 @@ bool EntityNS::World::areColliding(const std::shared_ptr<Entity> thisEntity, con
             and thisEntity->getPos()->getY()+thisEntity->getHitbox().getHeight()>otherEntity->getPos()->getY();
 }
 
-void EntityNS::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity)
+void Model::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity)
 {
     // If we find that both the entities are not bullets then delete both the entities
     // if both are bullets then delete them too

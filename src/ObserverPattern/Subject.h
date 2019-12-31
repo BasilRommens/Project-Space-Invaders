@@ -25,7 +25,7 @@ protected:
      * @param entity: The entity on which the notification needs to be aplied
      * @param event: The event that has happened
      */
-    void notify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event);
+    void notify(std::shared_ptr<Model::Entity> entity, Utils::Event event);
 
     /**
      * @return The observers of the subject

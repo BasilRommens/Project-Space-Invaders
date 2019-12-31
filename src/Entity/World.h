@@ -16,12 +16,12 @@
 #include "Entity.h"
 #include "Bullet.h"
 
-namespace EntityNS {
+namespace Model {
 
 // TODO add window sizes to the world
-    class World : public EntityNS::Entity {
+    class World : public Model::Entity {
     private:
-        std::vector<std::shared_ptr<EntityNS::Entity>> entities;
+        std::vector<std::shared_ptr<Model::Entity>> entities;
 
         bool areColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity);
 
@@ -30,21 +30,21 @@ namespace EntityNS {
     public:
         virtual ~World();
 
-        void addEntity(std::shared_ptr<EntityNS::Entity> entity);
+        void addEntity(std::shared_ptr<Model::Entity> entity);
 
-        void removeEntity(std::shared_ptr<EntityNS::Entity> entity);
+        void removeEntity(std::shared_ptr<Model::Entity> entity);
 
         World(const std::string& image);
 
         World();
 
-        const std::vector<std::shared_ptr<EntityNS::Entity>>& getEntities() const;
+        const std::vector<std::shared_ptr<Model::Entity>>& getEntities() const;
 
-        std::shared_ptr<EntityNS::Entity> getPlayer() const;
+        std::shared_ptr<Model::Entity> getPlayer() const;
 
         std::string getType() const final;
 
-        void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) final;
+        void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) final;
     };
 
 }

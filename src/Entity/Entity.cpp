@@ -7,37 +7,37 @@
 
 #include "Entity.h"
 
-EntityNS::Entity::Entity(const std::string& image)
+Model::Entity::Entity(const std::string& image)
         :image(image)
 {
     texture.loadFromFile(image);
 }
 
-EntityNS::Entity::Entity() { }
+Model::Entity::Entity() { }
 
-void EntityNS::Entity::onNotify(std::shared_ptr<Entity> entity, Utils::Event event) { }
+void Model::Entity::onNotify(std::shared_ptr<Entity> entity, Utils::Event event) { }
 
-std::string EntityNS::Entity::getType() const
+std::string Model::Entity::getType() const
 {
     return std::string();
 }
 
-const sf::Texture& EntityNS::Entity::getTexture() const
+const sf::Texture& Model::Entity::getTexture() const
 {
     return texture;
 }
 
-const std::string& EntityNS::Entity::getImage() const
+const std::string& Model::Entity::getImage() const
 {
     return image;
 }
 
-double EntityNS::Entity::getDamage() const
+double Model::Entity::getDamage() const
 {
     return 0;
 }
 
-std::shared_ptr<Observer> EntityNS::Entity::getDrawShared()
+std::shared_ptr<Observer> Model::Entity::getDrawShared()
 {
     for (auto observer: this->getObservers()) {
         if (observer->getType()=="draw") {
@@ -47,82 +47,82 @@ std::shared_ptr<Observer> EntityNS::Entity::getDrawShared()
     return nullptr;
 }
 
-bool EntityNS::Entity::isInControl() const
+bool Model::Entity::isInControl() const
 {
     return false;
 }
 
-void EntityNS::Entity::setInControl()
+void Model::Entity::setInControl()
 {
     // Do nothing
 }
 
-std::shared_ptr<Utils::Position> EntityNS::Entity::getPos() const
+std::shared_ptr<Utils::Position> Model::Entity::getPos() const
 {
     return std::shared_ptr<Utils::Position>();
 }
 
-void EntityNS::Entity::setPosition(Utils::Position newPos)
+void Model::Entity::setPosition(Utils::Position newPos)
 {
 
 }
 
-EntityNS::Entity::~Entity()
+Model::Entity::~Entity()
 {
 
 }
 
-std::weak_ptr<EntityNS::Entity> EntityNS::Entity::getFrom() const
+std::weak_ptr<Model::Entity> Model::Entity::getFrom() const
 {
     return std::weak_ptr<Entity>();
 }
 
-double EntityNS::Entity::getDistance() const
+double Model::Entity::getDistance() const
 {
     return 0;
 }
 
-const Hitbox& EntityNS::Entity::getHitbox() const
+const Hitbox& Model::Entity::getHitbox() const
 {
     return *(new Hitbox(0, 0));
 }
 
-void EntityNS::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet)
+void Model::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet)
 {
 
 }
 
-std::shared_ptr<EntityNS::Entity> EntityNS::Entity::spawnBullet()
-{
-    return nullptr;
-}
-
-EntityNS::Entity::Entity(std::shared_ptr<Bullet> other)
-{
-
-}
-
-std::shared_ptr<EntityNS::Bullet> EntityNS::Entity::getDummyBullet() const
+std::shared_ptr<Model::Entity> Model::Entity::spawnBullet()
 {
     return nullptr;
 }
 
-void EntityNS::Entity::doDamage(double damage)
+Model::Entity::Entity(std::shared_ptr<Bullet> other)
 {
 
 }
 
-bool EntityNS::Entity::collidable() const
+std::shared_ptr<Model::Bullet> Model::Entity::getDummyBullet() const
+{
+    return nullptr;
+}
+
+void Model::Entity::doDamage(double damage)
+{
+
+}
+
+bool Model::Entity::collidable() const
 {
     return false;
 }
 
-double EntityNS::Entity::getHealth() const
+double Model::Entity::getHealth() const
 {
     return 0;
 }
 
-int EntityNS::Entity::getCurrentDelay() const
+int Model::Entity::getCurrentDelay() const
 {
     return 0;
 }

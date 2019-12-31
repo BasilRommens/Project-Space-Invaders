@@ -14,10 +14,10 @@
 #include "../utils/Position.h"
 
 /**
- * @addtogroup EntityNS
+ * @addtogroup Model
  * @{
  */
-namespace EntityNS {
+namespace Model {
 
     class Bullet : public Entity {
     private:

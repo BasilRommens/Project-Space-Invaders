@@ -7,7 +7,7 @@
 
 #include "EnemyShip.h"
 
-void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     if (Utils::Event::UNMOVE==event and moved) {
         // Set all the ships to not having moved such that the next tick the enemy ship can move
@@ -62,7 +62,7 @@ void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event 
     }
 }
 
-void EntityNS::EnemyShip::moveRight()
+void Model::EnemyShip::moveRight()
 {
     moved = true;
     // Keep track of the distance covered by the ship
@@ -100,7 +100,7 @@ void EntityNS::EnemyShip::moveRight()
     }
 }
 
-void EntityNS::EnemyShip::moveLeft()
+void Model::EnemyShip::moveLeft()
 {
     moved = true;
     // Keep track of the distance covered by the ship
@@ -138,27 +138,27 @@ void EntityNS::EnemyShip::moveLeft()
     }
 }
 
-void EntityNS::EnemyShip::fireBullet()
+void Model::EnemyShip::fireBullet()
 {
 
 }
 
-std::string EntityNS::EnemyShip::getType() const
+std::string Model::EnemyShip::getType() const
 {
     return "enemy";
 }
 
-EntityNS::EnemyShip::~EnemyShip()
+Model::EnemyShip::~EnemyShip()
 {
 
 }
 
-double EntityNS::EnemyShip::getDistance() const
+double Model::EnemyShip::getDistance() const
 {
     return distance;
 }
 
-inline void EntityNS::EnemyShip::swapDirection(std::shared_ptr<EnemyShip> ship)
+inline void Model::EnemyShip::swapDirection(std::shared_ptr<EnemyShip> ship)
 {
     if (ship->direction==Utils::Direction::LEFT) {
         ship->direction = Utils::Direction::RIGHT;
@@ -168,18 +168,18 @@ inline void EntityNS::EnemyShip::swapDirection(std::shared_ptr<EnemyShip> ship)
     }
 }
 
-void EntityNS::EnemyShip::addShip(std::weak_ptr<EnemyShip> ship)
+void Model::EnemyShip::addShip(std::weak_ptr<EnemyShip> ship)
 {
     otherShips.push_back(ship);
 }
 
-int EntityNS::EnemyShip::randomOffset()
+int Model::EnemyShip::randomOffset()
 {
     // half the Framerate * amount of ships + randRange(0, 360)
     return 60/2*(int) otherShips.size()+(int) random()%360;
 }
 
-EntityNS::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+Model::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
         int bulletDelay, const Hitbox& hitbox, double vSpeed)
         :Ship(image, pos, health, hSpeed, bulletDelay, hitbox), VSpeed(vSpeed)
 {

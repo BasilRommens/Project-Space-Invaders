@@ -13,10 +13,10 @@
 #include "Ship.h"
 
 /**
- * @addtogroup EntityNS
+ * @addtogroup Model
  * @{
  */
-namespace EntityNS {
+namespace Model {
 
     class EnemyShip : public Ship {
     private:

@@ -7,11 +7,11 @@
  * @brief ...
  */
 
-EntityNS::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+Model::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
         int bulletDelay, const Hitbox& hitbox)
         :Ship(image, pos, health, hSpeed, bulletDelay, hitbox) { }
 
-void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void Model::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // Notify if we need to close the window
     if (not entity and event==Utils::Event::CLOSE_WINDOW) {
@@ -47,27 +47,27 @@ void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event
     }
 }
 
-void EntityNS::PlayerShip::moveRight()
+void Model::PlayerShip::moveRight()
 {
     pos.moveXPos(HSpeed, hitbox);
 }
 
-void EntityNS::PlayerShip::moveLeft()
+void Model::PlayerShip::moveLeft()
 {
     pos.moveXPos(-HSpeed, hitbox);
 }
 
-std::string EntityNS::PlayerShip::getType() const
+std::string Model::PlayerShip::getType() const
 {
     return "player";
 }
 
-EntityNS::PlayerShip::~PlayerShip()
+Model::PlayerShip::~PlayerShip()
 {
 
 }
 
-void EntityNS::PlayerShip::fireBullet()
+void Model::PlayerShip::fireBullet()
 {
 
 }

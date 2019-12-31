@@ -7,39 +7,39 @@
 
 #include "Bullet.h"
 
-EntityNS::Bullet::Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
+Model::Bullet::Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
         const Utils::Position& pos, std::weak_ptr<Entity> from, Hitbox hitbox)
         :Entity(image), direction(direction), speed(speed), damage(damage), pos(pos), from(from), hitbox(hitbox)
 {
     texture.loadFromFile(image);
 }
 
-std::string EntityNS::Bullet::getType() const
+std::string Model::Bullet::getType() const
 {
     return "bullet";
 }
 
-std::shared_ptr<Utils::Position> EntityNS::Bullet::getPos() const
+std::shared_ptr<Utils::Position> Model::Bullet::getPos() const
 {
     return std::make_shared<Utils::Position>(pos);
 }
 
-std::weak_ptr<EntityNS::Entity> EntityNS::Bullet::getFrom() const
+std::weak_ptr<Model::Entity> Model::Bullet::getFrom() const
 {
     return from;
 }
 
-bool EntityNS::Bullet::isInControl() const
+bool Model::Bullet::isInControl() const
 {
     return inControl;
 }
 
-void EntityNS::Bullet::setInControl()
+void Model::Bullet::setInControl()
 {
     Bullet::inControl = true;
 }
 
-void EntityNS::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
+void Model::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // check that the bullet to update equals the bullet that is being called
     if (shared_from_this().get()!=entity.get()) {
@@ -71,17 +71,17 @@ void EntityNS::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
     notify(shared_from_this(), Utils::Event::UPDATE_DRAW);
 }
 
-void EntityNS::Bullet::setPosition(Utils::Position newPos)
+void Model::Bullet::setPosition(Utils::Position newPos)
 {
     pos.setPosition(newPos);
 }
 
-EntityNS::Bullet::~Bullet()
+Model::Bullet::~Bullet()
 {
 
 }
 
-EntityNS::Bullet::Bullet(std::shared_ptr<Bullet> other)
+Model::Bullet::Bullet(std::shared_ptr<Bullet> other)
 {
     this->direction = other->direction;
     this->hitbox = other->hitbox;
@@ -99,7 +99,7 @@ EntityNS::Bullet::Bullet(std::shared_ptr<Bullet> other)
     this->pos.moveYPos(other->from.lock()->getPos()->getY(), hitbox);
 }
 
-bool EntityNS::Bullet::collidable() const
+bool Model::Bullet::collidable() const
 {
     return true;
 }

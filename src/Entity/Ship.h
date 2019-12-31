@@ -15,7 +15,7 @@
 #include "../utils/Position.h"
 #include "Bullet.h"
 
-namespace EntityNS {
+namespace Model {
 
     class Ship : public Entity {
     protected:
@@ -56,7 +56,7 @@ namespace EntityNS {
 
         void addBullet(std::shared_ptr<Bullet> dummyBullet) final;
 
-        std::shared_ptr<EntityNS::Entity> spawnBullet() final;
+        std::shared_ptr<Model::Entity> spawnBullet() final;
 
         std::shared_ptr<Bullet> getDummyBullet() const final;
 

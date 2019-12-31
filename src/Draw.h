@@ -18,7 +18,7 @@
 #include "Entity/BGTile.h"
 #include "Entity/PlayerShip.h"
 
-namespace EntityNS {
+namespace Model {
 
     class World;
 
@@ -32,24 +32,24 @@ private:
 
     std::shared_ptr<sf::RenderWindow> window;
 
-    std::vector<std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>> sprites;
+    std::vector<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> sprites;
 
-    sf::Sprite createSprite(std::shared_ptr<EntityNS::Entity> entity);
+    sf::Sprite createSprite(std::shared_ptr<Model::Entity> entity);
 
 public:
-    Draw(const std::shared_ptr<sf::RenderWindow>& window, const EntityNS::World& world);
+    Draw(const std::shared_ptr<sf::RenderWindow>& window, const Model::World& world);
 
-    void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) final;
+    void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) final;
 
-    void updateD(std::shared_ptr<EntityNS::Entity> entity);
+    void updateD(std::shared_ptr<Model::Entity> entity);
 
-    void newD(std::shared_ptr<EntityNS::Entity> entity);
+    void newD(std::shared_ptr<Model::Entity> entity);
 
     void view() const;
 
-    void addSprite(std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>& sprite);
+    void addSprite(std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>& sprite);
 
-    void removeSprite(std::shared_ptr<EntityNS::Entity> entityToRemove);
+    void removeSprite(std::shared_ptr<Model::Entity> entityToRemove);
 
     std::string getType() final;
 

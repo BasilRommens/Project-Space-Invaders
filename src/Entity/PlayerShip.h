@@ -10,7 +10,7 @@
 
 #include "Ship.h"
 
-namespace EntityNS {
+namespace Model {
 
     class PlayerShip : public Ship {
     private:

@@ -31,7 +31,7 @@ class Game {
 private:
     AI ai;
 
-    EntityNS::World world;
+    Model::World world;
 
     Controller controller;
 
@@ -70,7 +70,7 @@ private:
 
     void wait();
 
-    std::shared_ptr<EntityNS::Bullet> createBullet(const std::string& fileName, std::weak_ptr<EntityNS::Entity> entity);
+    std::shared_ptr<Model::Bullet> createBullet(const std::string& fileName, std::weak_ptr<Model::Entity> entity);
 
 public:
 

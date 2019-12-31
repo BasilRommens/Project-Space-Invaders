@@ -6,7 +6,7 @@
  */
 #include "Controller.h"
 
-void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
+void Controller::run(sf::RenderWindow& window, Model::World& world)
 {
     // notify the world that it needs to check all the collision
     notify(nullptr, Utils::Event::CHECK_COLLISIONS);
@@ -28,7 +28,7 @@ void Controller::run(sf::RenderWindow& window, EntityNS::World& world)
 
     // check all the window's events that were triggered since the last iteration of the loop
     sf::Event event;
-    std::shared_ptr<EntityNS::Entity> player = world.getPlayer();
+    std::shared_ptr<Model::Entity> player = world.getPlayer();
     while (window.pollEvent(event)) {
         // "close requested" event: we close the window
         if (event.type==sf::Event::Closed) {

@@ -8,9 +8,9 @@
 #include "Game.h"
 #include "Entity/EnemyShip.h"
 
-double EntityNS::EnemyShip::distance = 0.f;
+double Model::EnemyShip::distance = 0.f;
 
-std::vector<std::weak_ptr<EntityNS::EnemyShip>> EntityNS::EnemyShip::otherShips = {};
+std::vector<std::weak_ptr<Model::EnemyShip>> Model::EnemyShip::otherShips = {};
 
 int main(int argc, char** argv)
 {

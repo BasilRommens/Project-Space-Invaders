@@ -46,7 +46,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
     // Add the the observer to each of the dummy bullets of the players/enemies
     for (auto entity: world.getEntities()) {
         if (entity->getType()=="enemy" or entity->getType()=="player") {
-            std::shared_ptr<EntityNS::Bullet> bullet = entity->getDummyBullet();
+            std::shared_ptr<Model::Bullet> bullet = entity->getDummyBullet();
             bullet->addObserver(drawShared);
         }
     }
@@ -123,8 +123,8 @@ void Game::loadPlayer(const std::string&& player)
     double HSpeed = j["HSpeed"];
     Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
 
-    std::shared_ptr<EntityNS::Entity> playerShip(
-            new EntityNS::PlayerShip(image, position, HP, HSpeed, 20, hitbox));
+    std::shared_ptr<Model::Entity> playerShip(
+            new Model::PlayerShip(image, position, HP, HSpeed, 20, hitbox));
     playerShip->addBullet(createBullet(j["Bullet"], playerShip));
     world.addEntity(playerShip);
 
@@ -154,12 +154,12 @@ void Game::loadEnemy(const std::string&& enemy)
 
         Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
 
-        auto enemyShip = std::make_shared<EntityNS::EnemyShip>(
-                EntityNS::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed));
+        auto enemyShip = std::make_shared<Model::EnemyShip>(
+                Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed));
 
         enemyShip->addBullet(createBullet(ship["Bullet"], enemyShip));
 
-        std::shared_ptr<EntityNS::Entity> sharedEntity(enemyShip);
+        std::shared_ptr<Model::Entity> sharedEntity(enemyShip);
         world.addEntity(sharedEntity);
 
         std::shared_ptr<Observer> sharedObserver(enemyShip);
@@ -168,18 +168,18 @@ void Game::loadEnemy(const std::string&& enemy)
         std::shared_ptr<Observer> sharedWorld(&world);
         enemyShip->addObserver(sharedWorld);
 
-        std::weak_ptr<EntityNS::EnemyShip> weakEnemy = enemyShip;
+        std::weak_ptr<Model::EnemyShip> weakEnemy = enemyShip;
         enemyShip->addShip(weakEnemy);
     }
 }
 
 void Game::loadWorld(const std::string&& worldName)
 {
-    world = EntityNS::World(worldName);
+    world = Model::World(worldName);
 }
 
-std::shared_ptr<EntityNS::Bullet>
-Game::createBullet(const std::string& fileName, std::weak_ptr<EntityNS::Entity> entity)
+std::shared_ptr<Model::Bullet>
+Game::createBullet(const std::string& fileName, std::weak_ptr<Model::Entity> entity)
 {
     // Parse json file
     std::ifstream i(fileName);
@@ -204,6 +204,6 @@ Game::createBullet(const std::string& fileName, std::weak_ptr<EntityNS::Entity> 
         direction = Utils::Direction::UP;
         position.moveYPos(hitbox.getHeight(), hitbox);
     }
-    return std::make_shared<EntityNS::Bullet>(
-            EntityNS::Bullet(image, direction, speed, damage, position, entity, hitbox));
+    return std::make_shared<Model::Bullet>(
+            Model::Bullet(image, direction, speed, damage, position, entity, hitbox));
 }

@@ -18,11 +18,11 @@
 
 class Observer;
 /**
- * @addtogroup EntityNS
+ * @addtogroup Model
  * @{
  */
 
-namespace EntityNS {
+namespace Model {
 
     class Ship;
 

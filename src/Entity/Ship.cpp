@@ -7,87 +7,87 @@
 
 #include "Ship.h"
 
-std::string EntityNS::Ship::getType() const
+std::string Model::Ship::getType() const
 {
     return "";
 }
 
-std::shared_ptr<Utils::Position> EntityNS::Ship::getPos() const
+std::shared_ptr<Utils::Position> Model::Ship::getPos() const
 {
     return std::make_shared<Utils::Position>(pos);
 }
 
-double EntityNS::Ship::getDamage() const
+double Model::Ship::getDamage() const
 {
     return 0.f;
 }
 
-void EntityNS::Ship::setPosition(Utils::Position newPos)
+void Model::Ship::setPosition(Utils::Position newPos)
 {
     pos.setPosition(newPos);
 }
 
-EntityNS::Ship::~Ship()
+Model::Ship::~Ship()
 {
 
 }
 
-void EntityNS::Ship::resetDelay()
+void Model::Ship::resetDelay()
 {
     currentDelay = bulletDelay;
 }
 
-void EntityNS::Ship::decreaseDelay()
+void Model::Ship::decreaseDelay()
 {
     if (currentDelay!=0) {
         --currentDelay;
     }
 }
 
-EntityNS::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
+Model::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
         int bulletDelay, const Hitbox& hitbox)
         :Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox), bulletDelay(bulletDelay)
 {
     currentDelay = 0;
 }
 
-const Hitbox& EntityNS::Ship::getHitbox() const
+const Hitbox& Model::Ship::getHitbox() const
 {
     return hitbox;
 }
 
-void EntityNS::Ship::addBullet(std::shared_ptr<Bullet> dummyBullet)
+void Model::Ship::addBullet(std::shared_ptr<Bullet> dummyBullet)
 {
     this->dummyBullet = dummyBullet;
 }
 
-std::shared_ptr<EntityNS::Entity> EntityNS::Ship::spawnBullet()
+std::shared_ptr<Model::Entity> Model::Ship::spawnBullet()
 {
     Bullet newBullet(dummyBullet);
     return std::make_shared<Bullet>(newBullet);
 }
 
-std::shared_ptr<EntityNS::Bullet> EntityNS::Ship::getDummyBullet() const
+std::shared_ptr<Model::Bullet> Model::Ship::getDummyBullet() const
 {
     return dummyBullet;
 }
 
-void EntityNS::Ship::doDamage(double damage)
+void Model::Ship::doDamage(double damage)
 {
     health -= damage;
 }
 
-bool EntityNS::Ship::collidable() const
+bool Model::Ship::collidable() const
 {
     return true;
 }
 
-double EntityNS::Ship::getHealth() const
+double Model::Ship::getHealth() const
 {
     return health;
 }
 
-int EntityNS::Ship::getCurrentDelay() const
+int Model::Ship::getCurrentDelay() const
 {
     return currentDelay;
 }

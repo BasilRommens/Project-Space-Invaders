@@ -16,7 +16,7 @@
  */
 namespace Model {
 
-    class BGTile : public EntityNS::Entity {
+    class BGTile : public Entity {
     public:
         /**
          * @brief The destructor of the BGTile class
