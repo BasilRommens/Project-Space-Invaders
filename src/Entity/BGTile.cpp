@@ -7,12 +7,12 @@
 
 #include "BGTile.h"
 
-std::string EntityNS::BGTile::getType() const
+std::string Model::BGTile::getType() const
 {
     return "BgTile";
 }
 
-EntityNS::BGTile::~BGTile()
+Model::BGTile::~BGTile()
 {
 
 }

@@ -65,6 +65,8 @@ namespace EntityNS {
         bool collidable() const final;
 
         double getHealth() const;
+
+        int getCurrentDelay() const final;
     };
 
 }

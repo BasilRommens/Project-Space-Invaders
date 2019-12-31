@@ -39,7 +39,7 @@ private:
 public:
     Draw(const std::shared_ptr<sf::RenderWindow>& window, const EntityNS::World& world);
 
-    void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) override;
+    void onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event) final;
 
     void updateD(std::shared_ptr<EntityNS::Entity> entity);
 
@@ -49,9 +49,9 @@ public:
 
     void addSprite(std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>& sprite);
 
-    void removeSprite(std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>& sprite);
+    void removeSprite(std::shared_ptr<EntityNS::Entity> entityToRemove);
 
-    std::string getType() override;
+    std::string getType() final;
 
     bool isOpen() const;
 };

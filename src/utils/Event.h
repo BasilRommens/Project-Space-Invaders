@@ -27,7 +27,8 @@ namespace Utils {
         NEW_DRAW,
         UNMOVE,
         DECREASE_DELAY,
-        CHECK_COLLISIONS
+        CHECK_COLLISIONS,
+        REMOVE
     };
 
 }

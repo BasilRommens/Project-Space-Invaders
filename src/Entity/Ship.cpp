@@ -86,3 +86,8 @@ double EntityNS::Ship::getHealth() const
 {
     return health;
 }
+
+int EntityNS::Ship::getCurrentDelay() const
+{
+    return currentDelay;
+}

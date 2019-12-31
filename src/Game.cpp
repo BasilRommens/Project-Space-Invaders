@@ -36,7 +36,6 @@ void Game::start(std::vector<std::string> levels)
 
 bool Game::play(sf::RenderWindow& renderWindow)
 {
-    // TODO add the visualization of the world and all its entities
     std::shared_ptr<sf::RenderWindow> window(&renderWindow);
     std::shared_ptr<Draw> draw(new Draw(window, world));
     std::shared_ptr<Observer> drawShared(draw);
@@ -57,7 +56,8 @@ bool Game::play(sf::RenderWindow& renderWindow)
         entity->addObserver(drawShared);
     }
 
-    // Add the world to the controller for observation
+    // Add the world to the controller for observation in order to apply collision detection
+    // TODO remove implications when drawing bullets twice
     std::shared_ptr<Observer> sharedWorld(&world);
     controller.addObserver(sharedWorld);
 

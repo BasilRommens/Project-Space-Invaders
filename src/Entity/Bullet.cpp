@@ -63,7 +63,8 @@ void EntityNS::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
         this->pos.moveYPos(directionSpeed, hitbox);
     }
     catch (std::exception& test) { // TODO improve the name of the variable
-        // try to despawn the bullet
+        notify(shared_from_this(), Utils::Event::REMOVE);
+        return;
     }
 
     // notify that there needs to be a sprite move of the current bullet

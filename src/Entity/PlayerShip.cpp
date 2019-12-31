@@ -38,13 +38,12 @@ void EntityNS::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event
         break;
     case Utils::Event::FIRE_BULLET:
         if (not currentDelay) {
-            std::cout << "fire bullet" << std::endl;
             notify(shared_from_this(), Utils::Event::FIRE_BULLET);
             resetDelay(); // reset currentDelay
         }
         break;
     default:
-        std::cout << "default triggered" << std::endl;
+        break;
     }
 }
 

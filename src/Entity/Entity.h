@@ -117,6 +117,8 @@ namespace EntityNS {
         virtual bool collidable() const;
 
         virtual double getHealth() const;
+
+        virtual int getCurrentDelay() const;
     };
 
 }

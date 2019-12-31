@@ -11,12 +11,12 @@
 #include "Entity.h"
 
 /**
- * @addtogroup EntityNS
+ * @addtogroup Model
  * @{
  */
-namespace EntityNS {
+namespace Model {
 
-    class BGTile : public Entity {
+    class BGTile : public EntityNS::Entity {
     public:
         /**
          * @brief The destructor of the BGTile class

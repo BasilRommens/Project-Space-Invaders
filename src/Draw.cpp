@@ -5,6 +5,7 @@
  * @brief The cpp file of the class Draw
  */
 
+#include <sstream>
 #include "Draw.h"
 #include "Entity/World.h"
 
@@ -26,6 +27,9 @@ void Draw::onNotify(std::shared_ptr<EntityNS::Entity> entity, Utils::Event event
         std::cout << "close" << std::endl;
         window->close();
         open = false;
+        break;
+    case Utils::Event::REMOVE:
+        removeSprite(entity);
         break;
     default:
         break;
@@ -75,6 +79,29 @@ void Draw::view() const
     for (const auto& sprite: sprites) {
         window->draw(*sprite.second);
     }
+    /// Junk code for displaying text on to the screen
+    /*
+    sf::Text text;
+
+    // select the font
+    sf::Font font;
+    font.loadFromFile("input/Kulim_Park/KulimPark-Bold.ttf");
+    text.setFont(font); // font is a sf::Font
+
+    // set the string to display
+    int a = sprites.size();
+    std::stringstream ss;
+    ss << a;
+    std::string str = ss.str();
+    text.setString(str);
+
+    // set the character size
+    text.setCharacterSize(24);
+
+    text.setOrigin(30, 30);
+
+    text.setFillColor(sf::Color::Red);
+     */
     window->display();
 }
 
@@ -83,11 +110,11 @@ void Draw::addSprite(std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_pt
     sprites.push_back(sprite);
 }
 
-void Draw::removeSprite(std::pair<std::shared_ptr<EntityNS::Entity>, std::shared_ptr<sf::Sprite>>& sprite)
+void Draw::removeSprite(std::shared_ptr<EntityNS::Entity> entityToRemove)
 {
-    for (auto _sprite = sprites.begin(); _sprite!=sprites.end(); ++_sprite) {
-        if (_sprite->first.get()==sprite.first.get() and _sprite->second.get()==sprite.second.get()) {
-            sprites.erase(_sprite);
+    for (auto sprite = sprites.begin(); sprite!=sprites.end(); ++sprite) {
+        if (sprite->first.get()==entityToRemove.get()) {
+            sprites.erase(sprite);
             break;
         }
     }

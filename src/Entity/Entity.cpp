@@ -121,3 +121,8 @@ double EntityNS::Entity::getHealth() const
 {
     return 0;
 }
+
+int EntityNS::Entity::getCurrentDelay() const
+{
+    return 0;
+}

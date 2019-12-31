@@ -94,8 +94,21 @@ void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event even
                     pairs.emplace_back(std::make_pair(thisEntity, otherEntity));
                 }
 
+                // TODO add extra checks for bullets passing enemy ships when the bullet is enemy
+                std::shared_ptr<Entity> bullet;
+                std::shared_ptr<Entity> entity;
+                // Trying to identify the bullet entity
+                if (thisEntity->getType()=="bullet") {
+                    bullet = thisEntity;
+                    entity = otherEntity;
+                }
+                else {
+                    bullet = otherEntity;
+                    entity = thisEntity;
+                }
+
                 // If we haven't found it then we can check if the two objects collide with one another
-                if (areColliding(thisEntity, otherEntity)) {
+                if (areColliding(thisEntity, otherEntity) and bullet->getFrom().lock().get()!=entity.get()) {
                     handleColliding(thisEntity, otherEntity);
                 }
             }
@@ -107,16 +120,20 @@ void EntityNS::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event even
         throw std::domain_error("There is no entity to fire the bullet from");
     }
     if (event==Utils::Event::FIRE_BULLET and entity) {
-        // Create a bullet with that needs to depart from the certain ship
-        std::shared_ptr<Entity> bullet = entity->spawnBullet();
-        this->addEntity(bullet);
-        notify(bullet, Utils::Event::NEW_DRAW);
+        // Ensure that the type that is firing the bullet is of the ship type (dynamic casting to check doesnt work)
+        // and have it so that there still needs to be a delay present between firing the bullets the current delay cant be more than 0
+        if ((entity->getType()=="player" or entity->getType()=="enemy") and not entity->getCurrentDelay()) {
+            // Create a bullet with that needs to depart from the certain ship
+            std::shared_ptr<Entity> bullet = entity->spawnBullet();
+            this->addEntity(bullet);
+            notify(bullet, Utils::Event::NEW_DRAW);
+        }
     }
 }
 
 EntityNS::World::~World()
 {
-
+    entities.clear();
 }
 
 bool EntityNS::World::areColliding(const std::shared_ptr<Entity> thisEntity, const std::shared_ptr<Entity> otherEntity)
@@ -135,8 +152,10 @@ void EntityNS::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::s
             or (thisEntity->getType()=="bullet" and otherEntity->getType()=="bullet")) {
         // Delete the second entity from the world
         entities.erase(std::find(entities.begin(), entities.end(), thisEntity));
+        notify(thisEntity, Utils::Event::REMOVE); // Notify that there are entities to be removed
         // Delete the second entity from the world
         entities.erase(std::find(entities.begin(), entities.end(), otherEntity));
+        notify(otherEntity, Utils::Event::REMOVE); // Notify that there are entities to be removed
         // They wont be updated anymore but still drawn every iteration on the same spot
         return;
     }
@@ -150,9 +169,10 @@ void EntityNS::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::s
 
     // Delete the bullet from the world because it can not do damage anymore
     entities.erase(std::find(entities.begin(), entities.end(), bullet));
-
+    notify(bullet, Utils::Event::REMOVE); // Notify that there are entities to be removed
     // Delete the entity from the world if it has no health more left
     if (entity->getHealth()<=0) {
         entities.erase(std::find(entities.begin(), entities.end(), entity));
+        notify(entity, Utils::Event::REMOVE); // Notify that there are entities to be removed
     }
 }

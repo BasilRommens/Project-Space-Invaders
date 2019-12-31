@@ -18,10 +18,10 @@ void EntityNS::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event 
     else if (event==Utils::Event::DECREASE_DELAY) {
         decreaseDelay();
         if (currentDelay==0) {
-            // create new delay
-            currentDelay = bulletDelay+randomOffset();
             // Fire a bullet
             notify(shared_from_this(), Utils::Event::FIRE_BULLET);
+            // create new delay
+            currentDelay = bulletDelay+randomOffset();
         }
     }
 
