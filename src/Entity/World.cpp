@@ -138,10 +138,18 @@ Model::World::~World()
 
 bool Model::World::areColliding(const std::shared_ptr<Entity> thisEntity, const std::shared_ptr<Entity> otherEntity)
 {
-    return thisEntity->getPos()->getX()<otherEntity->getPos()->getX()+otherEntity->getHitbox().getWidth()
-            and thisEntity->getPos()->getX()+thisEntity->getHitbox().getWidth()>otherEntity->getPos()->getX()
-            and thisEntity->getPos()->getY()<otherEntity->getPos()->getY()+otherEntity->getHitbox().getHeight()
-            and thisEntity->getPos()->getY()+thisEntity->getHitbox().getHeight()>otherEntity->getPos()->getY();
+    /// @see https://www.gamedevelopment.blog/collision-detection-circles-rectangles-and-polygons/ (31 december 2019 13:48)
+    double topEdge1 = thisEntity->getPos()->getY();
+    double rightEdge1 = thisEntity->getPos()->getX()+thisEntity->getHitbox().getWidth();
+    double leftEdge1 = thisEntity->getPos()->getX();
+    double bottomEdge1 = thisEntity->getPos()->getY()-thisEntity->getHitbox().getHeight();
+
+    double topEdge2 = otherEntity->getPos()->getY();
+    double rightEdge2 = otherEntity->getPos()->getX()+otherEntity->getHitbox().getWidth();
+    double leftEdge2 = otherEntity->getPos()->getX();
+    double bottomEdge2 = otherEntity->getPos()->getY()-otherEntity->getHitbox().getHeight();
+
+    return leftEdge1<rightEdge2 && rightEdge1>leftEdge2 && bottomEdge1<topEdge2 && topEdge1>bottomEdge2;
 }
 
 void Model::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity)
