@@ -37,7 +37,7 @@ void Game::start(std::vector<std::string> levels)
 bool Game::play(sf::RenderWindow& renderWindow)
 {
     std::shared_ptr<sf::RenderWindow> window(&renderWindow);
-    std::shared_ptr<Draw> draw(new Draw(window, world));
+    std::shared_ptr<View::Draw> draw(new View::Draw(window, world));
     std::shared_ptr<ObserverPattern::Observer> drawShared(draw);
 
     // add draw object to the world because it enables to spawn bullets

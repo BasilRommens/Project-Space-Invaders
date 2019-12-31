@@ -24,36 +24,40 @@ namespace Model {
 
 }
 
-class Draw : public ObserverPattern::Observer {
-private:
-    bool open{true}; ///< is a variable to check if the window still is open
+namespace View {
 
-    std::vector<sf::Texture> textures;
+    class Draw : public ObserverPattern::Observer {
+    private:
+        bool open{true}; ///< is a variable to check if the window still is open
 
-    std::shared_ptr<sf::RenderWindow> window;
+        std::vector<sf::Texture> textures;
 
-    std::vector<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> sprites;
+        std::shared_ptr<sf::RenderWindow> window;
 
-    sf::Sprite createSprite(std::shared_ptr<Model::Entity> entity);
+        std::vector<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> sprites;
 
-public:
-    Draw(const std::shared_ptr<sf::RenderWindow>& window, const Model::World& world);
+        sf::Sprite createSprite(std::shared_ptr<Model::Entity> entity);
 
-    void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) final;
+    public:
+        Draw(const std::shared_ptr<sf::RenderWindow>& window, const Model::World& world);
 
-    void updateD(std::shared_ptr<Model::Entity> entity);
+        void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) final;
 
-    void newD(std::shared_ptr<Model::Entity> entity);
+        void updateD(std::shared_ptr<Model::Entity> entity);
 
-    void view() const;
+        void newD(std::shared_ptr<Model::Entity> entity);
 
-    void addSprite(std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>& sprite);
+        void view() const;
 
-    void removeSprite(std::shared_ptr<Model::Entity> entityToRemove);
+        void addSprite(std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>& sprite);
 
-    std::string getType() final;
+        void removeSprite(std::shared_ptr<Model::Entity> entityToRemove);
 
-    bool isOpen() const;
-};
+        std::string getType() final;
+
+        bool isOpen() const;
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_DRAW_H

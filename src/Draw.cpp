@@ -12,7 +12,7 @@
 // set the instance of the transformation to nullptr to be not pointing to anything
 std::shared_ptr<Utils::Transformation> Utils::Transformation::instance = nullptr;
 
-void Draw::onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event)
+void View::Draw::onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event)
 {
     switch (event) {
     case Utils::Event::UPDATE_DRAW:
@@ -36,7 +36,7 @@ void Draw::onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event)
     }
 }
 
-void Draw::updateD(std::shared_ptr<Model::Entity> entity)
+void View::Draw::updateD(std::shared_ptr<Model::Entity> entity)
 {
     std::shared_ptr<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> spriteToUpdate;
     for (auto sprite: sprites) {
@@ -58,14 +58,14 @@ void Draw::updateD(std::shared_ptr<Model::Entity> entity)
     spriteToUpdate->second->setPosition(spriteCoordinates.first, spriteCoordinates.second);
 }
 
-void Draw::newD(std::shared_ptr<Model::Entity> entity)
+void View::Draw::newD(std::shared_ptr<Model::Entity> entity)
 {
     std::shared_ptr<sf::Sprite> spritePointer = std::make_shared<sf::Sprite>(createSprite(entity));
     std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>> newSprite(entity, spritePointer);
     addSprite(newSprite);
 }
 
-Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const Model::World& world)
+View::Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const Model::World& world)
         :window(window)
 {
     for (auto entity: world.getEntities()) {
@@ -73,7 +73,7 @@ Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const Model::World& 
     }
 }
 
-void Draw::view() const
+void View::Draw::view() const
 {
     window->clear();
     for (const auto& sprite: sprites) {
@@ -105,12 +105,12 @@ void Draw::view() const
     window->display();
 }
 
-void Draw::addSprite(std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>& sprite)
+void View::Draw::addSprite(std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>& sprite)
 {
     sprites.push_back(sprite);
 }
 
-void Draw::removeSprite(std::shared_ptr<Model::Entity> entityToRemove)
+void View::Draw::removeSprite(std::shared_ptr<Model::Entity> entityToRemove)
 {
     for (auto sprite = sprites.begin(); sprite!=sprites.end(); ++sprite) {
         if (sprite->first.get()==entityToRemove.get()) {
@@ -120,7 +120,7 @@ void Draw::removeSprite(std::shared_ptr<Model::Entity> entityToRemove)
     }
 }
 
-sf::Sprite Draw::createSprite(std::shared_ptr<Model::Entity> entity)
+sf::Sprite View::Draw::createSprite(std::shared_ptr<Model::Entity> entity)
 {
     // TODO fix representation in texture in the model because it doesnt belong there
     // create an object of the transform class
@@ -147,12 +147,12 @@ sf::Sprite Draw::createSprite(std::shared_ptr<Model::Entity> entity)
     return sprite;
 }
 
-std::string Draw::getType()
+std::string View::Draw::getType()
 {
     return "draw";
 }
 
-bool Draw::isOpen() const
+bool View::Draw::isOpen() const
 {
     return open;
 }
