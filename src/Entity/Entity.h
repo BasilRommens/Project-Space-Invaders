@@ -21,7 +21,7 @@ class Observer;
  * @addtogroup Model
  * @{
  */
-
+/// TODO clean up this fucking mess of a class by casting pointers
 namespace Model {
 
     class Ship;
@@ -52,6 +52,10 @@ namespace Model {
         void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) override;
 
     public:
+        /**
+         * @brief The entity constructor specifically made for the constructing a bullet from a shared pointer
+         * @param other: The other entity to initialize, is specific for the bullet so that it also gets called when the bullet constructor is called for correctly copying it
+         */
         explicit Entity(std::shared_ptr<Bullet> other);
 
         /**
@@ -97,30 +101,84 @@ namespace Model {
          */
         virtual double getDamage() const;
 
+        /**
+         * @return The shared draw of the world class
+         */
         std::shared_ptr<ObserverPattern::Observer> getDrawShared();
 
+        /**
+         * @see Bullet.h
+         * @return where the bullet comes from
+         */
         virtual std::weak_ptr<Entity> getFrom() const;
 
+        /**
+         * @see Bullet.h
+         * @return If the object itself already has been through the control and is being observed
+         */
         virtual bool isInControl() const;
 
+        /**
+         * @see Bullet.h
+         * @brief Sets the control member variable to true to indicate it is observed by the control
+         */
         virtual void setInControl();
 
+        /**
+         * @see EnemyShip.h
+         * @return The distance that an enemyship has travelled in one step
+         * @detail It is a static variable that is set by the ship that has travelled the least distance. It is used in the case where one of the ships has hit the screen border
+         */
         virtual double getDistance() const;
 
+        /**
+         * @return The hitbox of an entity if it has one
+         */
         virtual const Hitbox& getHitbox() const;
 
+        /**
+         * @see Ship.h
+         * @brief Adds a dummy bullet to one of the ship entities as a base to create bullets from more easily
+         * @param dummyBullet: The bullet that is used as a base to shoot bullets into the void
+         * TODO check that the dummy bullet is of the class
+         */
         virtual void addBullet(std::shared_ptr<Bullet> dummyBullet);
 
+        /**
+         * @see Ship.h
+         * @return Creates a bullet based on the current position of the ship
+         * TODO check if the dummy bullet exists
+         */
         virtual std::shared_ptr<Entity> spawnBullet();
 
+        /**
+         * @see Ship.h
+         * @return The dummy bullet of the ship
+         */
         virtual std::shared_ptr<Bullet> getDummyBullet() const;
 
+        /**
+         * @see Ship.h
+         * @brief applies the damage that is passed through to the ship
+         * @param damage: The damage that needs to be done to the ship
+         */
         virtual void doDamage(double damage);
 
+        /**
+         * @return If the entity can be collided with
+         */
         virtual bool collidable() const;
 
+        /**
+         * @see Ship.h
+         * @return The health of the current ship
+         */
         virtual double getHealth() const;
 
+        /**
+         * @see Ship.h
+         * @return The delay that the bullet has before being shot again
+         */
         virtual int getCurrentDelay() const;
     };
 

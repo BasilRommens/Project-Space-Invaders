@@ -9,6 +9,15 @@
 
 void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
+    if (Utils::Event::REMOVE==event and entity.get()==this) {
+        // TODO better name for otherShip
+        for (auto otherShip = otherShips.begin(); otherShip!=otherShips.end(); ++otherShip) {
+            if ((*otherShip).lock().get()==this) {
+                otherShips.erase(otherShip);
+                break;
+            }
+        }
+    }
     if (Utils::Event::UNMOVE==event and moved) {
         // Set all the ships to not having moved such that the next tick the enemy ship can move
         for (auto ship: otherShips) {

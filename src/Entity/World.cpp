@@ -65,54 +65,65 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
     // TODO clean up this function
     if (event==Utils::Event::CHECK_COLLISIONS) {
-        std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>> pairs;
-        // Check for every entity except itself if it intersects with one
-        for (auto thisEntity: entities) {
-            for (auto otherEntity: entities) {
-                // TODO why is it behaving so weird
-                if (not thisEntity or not otherEntity) {
-                    continue;
-                }
-                if (thisEntity==otherEntity) {
-                    continue;
-                }
-                // TODO simplify this with a std algorithm function
-                auto foundPair = false;
-                for (const auto& pair: pairs) {
-                    if ((pair.first==thisEntity and pair.second==otherEntity)
-                            or (pair.first==otherEntity and pair.second==thisEntity)) {
-                        foundPair = true;
+        bool doubleBreak;
+        do {
+            doubleBreak = false;
+            std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>> pairs;
+            // Check for every entity except itself if it intersects with one
+            for (auto thisEntity: entities) {
+                for (auto otherEntity: entities) {
+                    // TODO why is it behaving so weird
+                    if (not thisEntity or not otherEntity) {
+                        continue;
+                    }
+                    if (thisEntity==otherEntity) {
+                        continue;
+                    }
+                    // TODO simplify this with a std algorithm function
+                    auto foundPair = false;
+                    for (const auto& pair: pairs) {
+                        if ((pair.first==thisEntity and pair.second==otherEntity)
+                                or (pair.first==otherEntity and pair.second==thisEntity)) {
+                            foundPair = true;
+                            break;
+                        }
+                    }
+                    // If we have found the pair then continue without further performing anything
+                    // or we found that one of the entities is not able to collide
+                    if (foundPair or not thisEntity->collidable() or not otherEntity->collidable()) {
+                        continue;
+                    } // If the pair is not found in the collections of pairs then add it
+                    else {
+                        pairs.emplace_back(std::make_pair(thisEntity, otherEntity));
+                    }
+
+                    // TODO add extra checks for bullets passing enemy ships when the bullet is enemy
+                    std::shared_ptr<Entity> bullet;
+                    std::shared_ptr<Entity> entity;
+                    // Trying to identify the bullet entity
+                    if (thisEntity->getType()=="bullet") {
+                        bullet = thisEntity;
+                        entity = otherEntity;
+                    }
+                    else {
+                        bullet = otherEntity;
+                        entity = thisEntity;
+                    }
+
+                    // If we haven't found it then we can check if the two objects collide with one another
+                    if (areColliding(thisEntity, otherEntity) and bullet->getFrom().lock().get()!=entity.get()) {
+                        handleColliding(thisEntity, otherEntity);
+                        // because there are entities that are deleted
+                        doubleBreak = true;
                         break;
                     }
                 }
-                // If we have found the pair then continue without further performing anything
-                // or we found that one of the entities is not able to collide
-                if (foundPair or not thisEntity->collidable() or not otherEntity->collidable()) {
-                    continue;
-                } // If the pair is not found in the collections of pairs then add it
-                else {
-                    pairs.emplace_back(std::make_pair(thisEntity, otherEntity));
-                }
-
-                // TODO add extra checks for bullets passing enemy ships when the bullet is enemy
-                std::shared_ptr<Entity> bullet;
-                std::shared_ptr<Entity> entity;
-                // Trying to identify the bullet entity
-                if (thisEntity->getType()=="bullet") {
-                    bullet = thisEntity;
-                    entity = otherEntity;
-                }
-                else {
-                    bullet = otherEntity;
-                    entity = thisEntity;
-                }
-
-                // If we haven't found it then we can check if the two objects collide with one another
-                if (areColliding(thisEntity, otherEntity) and bullet->getFrom().lock().get()!=entity.get()) {
-                    handleColliding(thisEntity, otherEntity);
+                if (doubleBreak) {
+                    break;
                 }
             }
         }
+        while (doubleBreak);
     }
 
     // TODO throw error when no entity is detected
@@ -133,6 +144,9 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 
 Model::World::~World()
 {
+    for (auto entity: entities) {
+        entity.reset();
+    }
     entities.clear();
 }
 
@@ -161,9 +175,11 @@ void Model::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shar
         // Delete the second entity from the world
         entities.erase(std::find(entities.begin(), entities.end(), thisEntity));
         notify(thisEntity, Utils::Event::REMOVE); // Notify that there are entities to be removed
+        removeObserver(thisEntity);
         // Delete the second entity from the world
         entities.erase(std::find(entities.begin(), entities.end(), otherEntity));
         notify(otherEntity, Utils::Event::REMOVE); // Notify that there are entities to be removed
+        removeObserver(otherEntity);
         // They wont be updated anymore but still drawn every iteration on the same spot
         return;
     }
@@ -182,5 +198,6 @@ void Model::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shar
     if (entity->getHealth()<=0) {
         entities.erase(std::find(entities.begin(), entities.end(), entity));
         notify(entity, Utils::Event::REMOVE); // Notify that there are entities to be removed
+        removeObserver(entity);
     }
 }

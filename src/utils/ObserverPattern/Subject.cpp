@@ -24,11 +24,12 @@ void ObserverPattern::Subject::addObserver(std::shared_ptr<Observer> observer)
 void ObserverPattern::Subject::removeObserver(std::shared_ptr<Observer> observer)
 {
     try {
-        if (!observer) {
-            throw std::invalid_argument(
-                    "No observer has been passed through in the method removeObserver from the class Subject");
-        }
+          if (!observer) {
+              throw std::invalid_argument(
+                      "No observer has been passed through in the method removeObserver from the class Subject");
+          }
         observers.erase(std::find(observers.begin(), observers.end(), observer));
+        observer.reset();
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
@@ -53,6 +54,7 @@ ObserverPattern::Subject::~Subject()
     for (auto observer: observers) {
         observer.reset();
     }
+    observers.clear();
 }
 
 std::shared_ptr<ObserverPattern::Observer> ObserverPattern::Subject::retrieveObserver(const std::string typeName) const

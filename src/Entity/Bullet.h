@@ -19,6 +19,9 @@
  */
 namespace Model {
 
+    /**
+     * @brief The class that describes a bullet
+     */
     class Bullet : public Entity {
     private:
         Utils::Direction direction; ///< The direction in which the bullet is travelling
@@ -27,8 +30,13 @@ namespace Model {
         Utils::Position pos; ///< The position of the bullet
         std::weak_ptr<Entity> from; ///< The entity that has created the bullet it is a weak pointer because it doesnt own it
         bool inControl{false}; ///< Is a member variable to check if it is already in the controller class
-        Hitbox hitbox;
+        Hitbox hitbox; ///< The hitbox of the bullet measured from the top left of the sprite
     public:
+        /**
+         * @brief constructor that makes another bullet based on another bullet that is passed through via a shared pointer
+         * @param other: The name of the other bullet that is to be copied
+         * TODO needs to be checked if the invariant is alright
+         */
         Bullet(std::shared_ptr<Bullet> other);
 
         /**
@@ -55,7 +63,6 @@ namespace Model {
                 const Utils::Position& pos, std::weak_ptr<Entity> from, Hitbox hitbox);
 
         /**
-         *
          * @return The type of the entity ("Bullet")
          */
         std::string getType() const final;
@@ -93,8 +100,14 @@ namespace Model {
          */
         void onNotify(std::shared_ptr<Entity> entity, Utils::Event event) final;
 
+        /**
+         * @return if the object itself can be collided with other entities
+         */
         bool collidable() const final;
 
+        /**
+         * @return The amount of damage the bullet can do
+         */
         double getDamage() const final;
     };
 

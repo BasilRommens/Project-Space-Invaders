@@ -16,6 +16,9 @@
  */
 namespace Model {
 
+    /**
+     * @brief The class that is the description of one background tile
+     */
     class BGTile : public Entity {
     public:
         /**

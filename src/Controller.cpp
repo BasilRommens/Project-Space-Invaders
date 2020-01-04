@@ -52,6 +52,27 @@ void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
         }
     }
 
+    // TODO clean up this mess
+    // Remove all the objects that we can't observe in the controller
+    // We do this by checking for all the observers if they are still in the world
+    for (auto observer: getObservers()) {
+        // Do not proceed checking if the observer is the world itself
+        if (observer.get()==&world) {
+            continue;
+        }
+        bool found = false;
+        for (auto entity: world.getEntities()) {
+            if (observer.get()==entity.get()) {
+                found = true;
+                break;
+            }
+        }
+        // If we did not find it in the world then we can delete it
+        if (not found) {
+            removeObserver(observer);
+        }
+    }
+
     // Move all the enemy ships
     notify(nullptr, Utils::Event::MOVE);
     // Decrease the player/enemy firing delay with 1 every frame

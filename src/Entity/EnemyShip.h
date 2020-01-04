@@ -81,9 +81,11 @@ namespace Model {
          * @param hSpeed: The horizontal speed at which the ship will travel
          * @param damage: The damage that will be done by a bullet
          * @param bulletDelay: The delay of shooting the next bullet, by a base
+         * @param hitbox: The hitbox of the enemyship, used from the position (right up corner)
          * @param vSpeed: The vertical speed at which the enemyShip will move down
          */
         // TODO add checks for all these variables
+        // TODO parse the enemyship from inside instead of a big constructor
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
                 int bulletDelay, const Hitbox& hitbox, double vSpeed);
 
