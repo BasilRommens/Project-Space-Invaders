@@ -10,7 +10,7 @@
 
 #include "Entity.h"
 #include "Ship.h"
-#include "../Hitbox.h"
+#include "../utils/Hitbox.h"
 #include "../utils/Position.h"
 
 /**

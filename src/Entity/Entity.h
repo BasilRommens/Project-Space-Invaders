@@ -14,7 +14,7 @@
 #include "../Utils/ObserverPattern/Observer.h"
 #include "../Utils/ObserverPattern/Subject.h"
 #include "../utils/Position.h"
-#include "../Hitbox.h"
+#include "../utils/Hitbox.h"
 
 class Observer;
 /**

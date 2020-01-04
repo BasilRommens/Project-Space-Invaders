@@ -9,7 +9,7 @@
 #define PROJECT_SPACE_INVADERS_POSITION_H
 
 #include "Transformation.h"
-#include "../Hitbox.h"
+#include "Hitbox.h"
 
 /**
  * @addtogroup Utils
