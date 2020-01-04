@@ -10,9 +10,9 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Utils/ObserverPattern/Subject.h"
-#include "Utils/ObserverPattern/Observer.h"
-#include "../Entity/World.h"
+#include "../Utils/ObserverPattern/Subject.h"
+#include "../Utils/ObserverPattern/Observer.h"
+#include "../Model/World.h"
 
 namespace Control {
 

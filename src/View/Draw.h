@@ -10,13 +10,13 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Utils/ObserverPattern/Observer.h"
+#include "../Utils/ObserverPattern/Observer.h"
 #include "../utils/Transformation.h"
-#include "../Entity/Entity.h"
-#include "../Entity/EnemyShip.h"
-#include "../Entity/Bullet.h"
-#include "../Entity/BGTile.h"
-#include "../Entity/PlayerShip.h"
+#include "../Model/Entity.h"
+#include "../Model/EnemyShip.h"
+#include "../Model/Bullet.h"
+#include "../Model/BGTile.h"
+#include "../Model/PlayerShip.h"
 
 namespace Model {
 

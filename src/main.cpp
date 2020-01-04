@@ -6,7 +6,7 @@
  */
 
 #include "Game.h"
-#include "Entity/EnemyShip.h"
+#include "Model/EnemyShip.h"
 
 double Model::EnemyShip::distance = 0.f;
 

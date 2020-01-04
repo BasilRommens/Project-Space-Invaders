@@ -15,10 +15,10 @@
 #include <unistd.h>
 #include <SFML/Graphics.hpp>
 
-#include "Entity/PlayerShip.h"
-#include "Entity/EnemyShip.h"
-#include "Entity/Bullet.h"
-#include "Entity/World.h"
+#include "Model/PlayerShip.h"
+#include "Model/EnemyShip.h"
+#include "Model/Bullet.h"
+#include "Model/World.h"
 #include "utils/Stopwatch.h"
 #include "utils/json.hpp"
 #include "Control/Controller.h"
