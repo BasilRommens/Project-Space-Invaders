@@ -22,7 +22,7 @@
 #include "utils/Stopwatch.h"
 #include "utils/json.hpp"
 #include "Control/Controller.h"
-#include "Draw.h"
+#include "View/Draw.h"
 
 using json = nlohmann::json;
 

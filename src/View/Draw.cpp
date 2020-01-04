@@ -7,7 +7,7 @@
 
 #include <sstream>
 #include "Draw.h"
-#include "Entity/World.h"
+#include "../Entity/World.h"
 
 // set the instance of the transformation to nullptr to be not pointing to anything
 std::shared_ptr<Utils::Transformation> Utils::Transformation::instance = nullptr;

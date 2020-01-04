@@ -11,12 +11,12 @@
 #include <SFML/Graphics.hpp>
 
 #include "Utils/ObserverPattern/Observer.h"
-#include "utils/Transformation.h"
-#include "Entity/Entity.h"
-#include "Entity/EnemyShip.h"
-#include "Entity/Bullet.h"
-#include "Entity/BGTile.h"
-#include "Entity/PlayerShip.h"
+#include "../utils/Transformation.h"
+#include "../Entity/Entity.h"
+#include "../Entity/EnemyShip.h"
+#include "../Entity/Bullet.h"
+#include "../Entity/BGTile.h"
+#include "../Entity/PlayerShip.h"
 
 namespace Model {
 
