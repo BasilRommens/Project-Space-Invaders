@@ -16,6 +16,10 @@
 
 #include "Observer.h"
 
+/**
+ * @addtogroup ObserverPattern
+ * @{
+ */
 namespace ObserverPattern {
 
     class Subject {
@@ -34,6 +38,11 @@ namespace ObserverPattern {
          */
         const std::vector<std::shared_ptr<Observer>>& getObservers() const;
 
+        /**
+         * @brief Searches and returns the observer by the type that is asked
+         * @param typeName: The name of the type that is searched
+         * @return The observer item of that type
+         */
         std::shared_ptr<Observer> retrieveObserver(const std::string typeName) const;
 
     public:
@@ -56,5 +65,8 @@ namespace ObserverPattern {
     };
 
 }
+/**
+ * @}
+ */
 
 #endif //PROJECT_SPACE_INVADERS_SUBJECT_H
