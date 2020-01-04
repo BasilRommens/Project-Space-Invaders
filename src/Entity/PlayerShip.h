@@ -48,7 +48,7 @@ namespace Model {
         /**
          * @brief The constructor of the player ship
          * @param image: The image which will be used to determine the player ships texture
-         * @param pos: The position of the player ship
+         * @param pos: The position of the player ship, the top left corner
          * @param health: The health of the player ship
          * @param hSpeed: The horizontal speed at which the player ship will move
          * @param bulletDelay: The maximum delay the bullet needs to wait after each reload

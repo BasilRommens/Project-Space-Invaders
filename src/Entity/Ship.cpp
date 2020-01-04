@@ -17,11 +17,6 @@ std::shared_ptr<Utils::Position> Model::Ship::getPos() const
     return std::make_shared<Utils::Position>(pos);
 }
 
-double Model::Ship::getDamage() const
-{
-    return 0.f;
-}
-
 void Model::Ship::setPosition(Utils::Position newPos)
 {
     pos.setPosition(newPos);
