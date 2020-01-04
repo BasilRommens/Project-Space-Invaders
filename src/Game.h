@@ -21,7 +21,7 @@
 #include "Entity/World.h"
 #include "utils/Stopwatch.h"
 #include "utils/json.hpp"
-#include "Controller.h"
+#include "Control/Controller.h"
 #include "Draw.h"
 
 using json = nlohmann::json;

@@ -12,7 +12,7 @@
 
 #include "Utils/ObserverPattern/Subject.h"
 #include "Utils/ObserverPattern/Observer.h"
-#include "Entity/World.h"
+#include "../Entity/World.h"
 
 namespace Control {
 

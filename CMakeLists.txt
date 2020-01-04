@@ -21,7 +21,7 @@ add_executable(Project-Space-Invaders
         src/utils/ObserverPattern/Observer.cpp
         src/Draw.cpp
         src/utils/json.hpp
-        src/Controller.cpp
+        src/Control/Controller.cpp
         src/utils/Hitbox.cpp)
 
 
@@ -44,7 +44,7 @@ add_executable(test
         src/utils/ObserverPattern/Observer.cpp
         src/Draw.cpp
         src/utils/json.hpp
-        src/Controller.cpp
+        src/Control/Controller.cpp
         src/utils/Event.h
         src/utils/Hitbox.cpp)
 
