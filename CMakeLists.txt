@@ -5,13 +5,13 @@ SET(CMAKE_CXX_STANDARD 14)
 
 add_executable(Project-Space-Invaders
         src/main.cpp
-        src/Entity/Entity.cpp
-        src/Entity/Ship.cpp
-        src/Entity/PlayerShip.cpp
-        src/Entity/EnemyShip.cpp
-        src/Entity/Bullet.cpp
-        src/Entity/World.cpp
-        src/Entity/BGTile.cpp
+        src/Model/Entity.cpp
+        src/Model/Ship.cpp
+        src/Model/PlayerShip.cpp
+        src/Model/EnemyShip.cpp
+        src/Model/Bullet.cpp
+        src/Model/World.cpp
+        src/Model/BGTile.cpp
         src/utils/Position.cpp
         src/utils/Stopwatch.cpp
         src/utils/Transformation.cpp
@@ -29,13 +29,13 @@ target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsf
 
 add_executable(test
         src/testMain.cpp
-        src/Entity/Entity.cpp
-        src/Entity/Ship.cpp
-        src/Entity/PlayerShip.cpp
-        src/Entity/EnemyShip.cpp
-        src/Entity/Bullet.cpp
-        src/Entity/World.cpp
-        src/Entity/BGTile.cpp
+        src/Model/Entity.cpp
+        src/Model/Ship.cpp
+        src/Model/PlayerShip.cpp
+        src/Model/EnemyShip.cpp
+        src/Model/Bullet.cpp
+        src/Model/World.cpp
+        src/Model/BGTile.cpp
         src/utils/Position.cpp
         src/Game.cpp
         src/utils/Stopwatch.cpp

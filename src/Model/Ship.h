@@ -63,7 +63,7 @@ namespace Model {
         /**
          * @brief The constructor of a ship
          * @param image: The image which is used for the texture of the ship
-         * @see Entity.h
+         * @see Model.h
          * @param pos: The position of the ship (Top left corner)
          * @param health: The health of the ship
          * @param hSpeed: The horizontal speed at which the ship will move

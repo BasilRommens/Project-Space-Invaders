@@ -1,8 +1,8 @@
 /**
- * @file Entity.h
+ * @file Model.h
  * @author Basil Rommens
  * @date 22/11/2019
- * @brief The header file of the Entity class
+ * @brief The header file of the Model class
  */
 
 #ifndef PROJECT_SPACE_INVADERS_ENTITY_H
@@ -35,7 +35,7 @@ namespace Model {
     protected:
         std::string image; ///< The image string which will represent the entity
 
-        sf::Texture texture; ///< The texture of the Entity (faster moving of sprites)
+        sf::Texture texture; ///< The texture of the Model (faster moving of sprites)
 
         /**
          * @brief the protected entity constructor because it is an abstract class
@@ -59,12 +59,12 @@ namespace Model {
         explicit Entity(std::shared_ptr<Bullet> other);
 
         /**
-         * @brief The destructor of this Entity class
+         * @brief The destructor of this Model class
          */
         ~Entity() override;
 
         /**
-         * @brief The default constructor of the Entity class
+         * @brief The default constructor of the Model class
          */
         Entity();
 
@@ -86,7 +86,7 @@ namespace Model {
         virtual void setPosition(Utils::Position newPos);
 
         /**
-         * @return The texture of the Entity for quick sprite creation
+         * @return The texture of the Model for quick sprite creation
          */
         const sf::Texture& getTexture() const;
 
