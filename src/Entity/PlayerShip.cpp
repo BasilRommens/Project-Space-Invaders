@@ -8,7 +8,7 @@
  */
 
 Model::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        int bulletDelay, const Hitbox& hitbox)
+        int bulletDelay, const Utils::Hitbox& hitbox)
         :Ship(image, pos, health, hSpeed, bulletDelay, hitbox) { }
 
 void Model::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)

@@ -189,7 +189,7 @@ int Model::EnemyShip::randomOffset()
 }
 
 Model::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        int bulletDelay, const Hitbox& hitbox, double vSpeed)
+        int bulletDelay, const Utils::Hitbox& hitbox, double vSpeed)
         :Ship(image, pos, health, hSpeed, bulletDelay, hitbox), VSpeed(vSpeed)
 {
     moved = false;

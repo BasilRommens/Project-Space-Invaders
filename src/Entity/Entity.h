@@ -134,7 +134,7 @@ namespace Model {
         /**
          * @return The hitbox of an entity if it has one
          */
-        virtual const Hitbox& getHitbox() const;
+        virtual const Utils::Hitbox& getHitbox() const;
 
         /**
          * @see Ship.h

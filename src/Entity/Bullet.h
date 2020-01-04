@@ -30,7 +30,7 @@ namespace Model {
         Utils::Position pos; ///< The position of the bullet
         std::weak_ptr<Entity> from; ///< The entity that has created the bullet it is a weak pointer because it doesnt own it
         bool inControl{false}; ///< Is a member variable to check if it is already in the controller class
-        Hitbox hitbox; ///< The hitbox of the bullet measured from the top left of the sprite
+        Utils::Hitbox hitbox; ///< The hitbox of the bullet measured from the top left of the sprite
     public:
         /**
          * @brief constructor that makes another bullet based on another bullet that is passed through via a shared pointer
@@ -60,7 +60,7 @@ namespace Model {
         // TODO add assertion for pos
         // TODO add assertion for from
         Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
-                const Utils::Position& pos, std::weak_ptr<Entity> from, Hitbox hitbox);
+                const Utils::Position& pos, std::weak_ptr<Entity> from, Utils::Hitbox hitbox);
 
         /**
          * @return The type of the entity ("Bullet")

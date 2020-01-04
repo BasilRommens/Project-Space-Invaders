@@ -25,7 +25,7 @@ namespace Model {
         // TODO make the bullet delay in the input files
         const int bulletDelay{30}; ///< The time a ship must wait before it can shoot another bullet
         int currentDelay; ///< The delay which can be reset when there is a bullet shot if the counter = 0
-        Hitbox hitbox; ///< The hitbox that the ship posseses
+        Utils::Hitbox hitbox; ///< The hitbox that the ship posseses
         std::shared_ptr<Bullet> dummyBullet; ///< The dummybullet of the ship which is used to make a new bullet that can be shot from the ship
 
         /**
@@ -72,7 +72,7 @@ namespace Model {
          * TODO add the necessary checks
          */
         Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-                int bulletDelay, const Hitbox& hitbox);
+                int bulletDelay, const Utils::Hitbox& hitbox);
 
         /**
          * @return The type of the entity ("ship")
@@ -94,7 +94,7 @@ namespace Model {
         /**
          * @return The hitbox of the object of the ship
          */
-        const Hitbox& getHitbox() const final;
+        const Utils::Hitbox& getHitbox() const final;
 
         /**
          * @brief adds a dummy bullet to the ship

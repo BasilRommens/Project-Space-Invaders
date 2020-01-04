@@ -8,7 +8,7 @@
 #include "Bullet.h"
 
 Model::Bullet::Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
-        const Utils::Position& pos, std::weak_ptr<Entity> from, Hitbox hitbox)
+        const Utils::Position& pos, std::weak_ptr<Entity> from, Utils::Hitbox hitbox)
         :Entity(image), direction(direction), speed(speed), damage(damage), pos(pos), from(from), hitbox(hitbox)
 {
     texture.loadFromFile(image);

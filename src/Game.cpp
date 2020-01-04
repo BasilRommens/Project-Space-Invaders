@@ -121,7 +121,7 @@ void Game::loadPlayer(const std::string&& player)
     Utils::Position position(j["xPos"], j["yPos"]);
     double HP = j["HP"];
     double HSpeed = j["HSpeed"];
-    Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
+    Utils::Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
 
     std::shared_ptr<Model::Entity> playerShip(
             new Model::PlayerShip(image, position, HP, HSpeed, 20, hitbox));
@@ -152,7 +152,7 @@ void Game::loadEnemy(const std::string&& enemy)
         Utils::Position position(ship["xPos"], ship["yPos"]);
         double HP = ship["HP"];
 
-        Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
+        Utils::Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
 
         auto enemyShip = std::make_shared<Model::EnemyShip>(
                 Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed));
@@ -191,7 +191,7 @@ Game::createBullet(const std::string& fileName, std::weak_ptr<Model::Entity> ent
     double damage = j["Damage"];
     double speed = j["Speed"];
     // TODO Clean up this mess
-    Hitbox hitbox{j["Hitbox"]["Width"], j["Hitbox"]["Height"]};
+    Utils::Hitbox hitbox{j["Hitbox"]["Width"], j["Hitbox"]["Height"]};
     // Move the bullet so that it is centred over the entity
     position.moveXPos(-hitbox.getWidth()/2, hitbox);
     Utils::Direction direction{};

@@ -40,13 +40,13 @@ void Model::Ship::decreaseDelay()
 }
 
 Model::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        int bulletDelay, const Hitbox& hitbox)
+        int bulletDelay, const Utils::Hitbox& hitbox)
         :Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox), bulletDelay(bulletDelay)
 {
     currentDelay = 0;
 }
 
-const Hitbox& Model::Ship::getHitbox() const
+const Utils::Hitbox& Model::Ship::getHitbox() const
 {
     return hitbox;
 }

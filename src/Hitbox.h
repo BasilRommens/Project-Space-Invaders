@@ -8,16 +8,20 @@
 #ifndef PROJECT_SPACE_INVADERS_HITBOX_H
 #define PROJECT_SPACE_INVADERS_HITBOX_H
 
-class Hitbox {
-private:
-    double width{};
-    double height{};
-public:
-    Hitbox(double width = 0.f, double height = 0.f);
+namespace Utils {
 
-    double getWidth() const;
+    class Hitbox {
+    private:
+        double width{};
+        double height{};
+    public:
+        Hitbox(double width = 0.f, double height = 0.f);
 
-    double getHeight() const;
-};
+        double getWidth() const;
+
+        double getHeight() const;
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_HITBOX_H

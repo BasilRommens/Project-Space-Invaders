@@ -87,7 +87,7 @@ namespace Model {
         // TODO add checks for all these variables
         // TODO parse the enemyship from inside instead of a big constructor
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-                int bulletDelay, const Hitbox& hitbox, double vSpeed);
+                int bulletDelay, const Utils::Hitbox& hitbox, double vSpeed);
 
         /**
          * @return The type of the entity ("enemy")

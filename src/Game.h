@@ -23,14 +23,11 @@
 #include "utils/json.hpp"
 #include "Controller.h"
 #include "Draw.h"
-#include "AI.h"
 
 using json = nlohmann::json;
 
 class Game {
 private:
-    AI ai;
-
     Model::World world;
 
     Control::Controller controller;

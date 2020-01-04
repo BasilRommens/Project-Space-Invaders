@@ -82,9 +82,9 @@ double Model::Entity::getDistance() const
     return 0;
 }
 
-const Hitbox& Model::Entity::getHitbox() const
+const Utils::Hitbox& Model::Entity::getHitbox() const
 {
-    return *(new Hitbox(0, 0));
+    return *(new Utils::Hitbox(0, 0));
 }
 
 void Model::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet)
