@@ -129,14 +129,16 @@ sf::Sprite View::Draw::createSprite(std::shared_ptr<Model::Entity> entity)
     std::pair<int, int> spriteCoordinates = (*transform)(entity->getPos()->getX(),
             entity->getPos()->getY(), window->getSize().x, window->getSize().y);
 
-    sf::Texture texture;
-    texture.loadFromFile(entity->getImage());
-    textures.push_back(texture);
+    std::shared_ptr<sf::Texture> texture = std::make_shared<sf::Texture>(sf::Texture());
+    if (not textures[entity->getImage()]) {
+        texture->loadFromFile(entity->getImage());
+        textures[entity->getImage()] = texture;
+    }
 
     // create the sprite and apply the next 3 actions on it
     sf::Sprite sprite;
     // 1. Decide the texture of the sprite
-    sprite.setTexture(entity->getTexture());
+    sprite.setTexture(*textures[entity->getImage()]);
 
     // 2. Place the sprite at the right position
     sprite.setPosition(spriteCoordinates.first, spriteCoordinates.second);
