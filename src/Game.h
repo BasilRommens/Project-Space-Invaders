@@ -57,9 +57,9 @@ private:
 
     /**
      * @brief Loads the world from a string given to it
-     * @param worldName: The filename of the graphical representation of the world
+     * @param worldName: The filename of the world to parse
      */
-    void loadWorld(const std::string&& worldName);
+    void loadWorld(const std::string& worldName);
 
     /**
      * @brief Plays the level currently loaded in the model

@@ -35,8 +35,8 @@ void Model::World::removeEntity(std::shared_ptr<Entity> entity)
     }
 }
 
-Model::World::World(const std::string& image)
-        :Entity(image) { }
+Model::World::World(const std::string& image, double endLine)
+        :Entity(image), endLine(endLine) { }
 
 Model::World::World() { }
 
@@ -124,6 +124,12 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
             }
         }
         while (doubleBreak);
+    }
+    else if (entity and event==Utils::Event::MOVED_DOWN) {
+        // TODO Fix this code because it will error big time
+        if (entity->getPos()->getY()<endLine) {
+            throw;
+        }
     }
 
     // TODO throw error when no entity is detected

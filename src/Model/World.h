@@ -26,6 +26,8 @@ namespace Model {
     private:
         std::vector<std::shared_ptr<Model::Entity>> entities; ///< All the entities of the game itself
 
+        double endLine{0.f};
+
         /**
          * @brief checks if two already collidable entities are colliding
          * @param thisEntity: The first entity to check
@@ -66,7 +68,7 @@ namespace Model {
          * @param image: The image to use
          * TODO check if the image is usable
          */
-        World(const std::string& image);
+        World(const std::string& image, double endLine);
 
         /**
          * @brief The default constructor of the world

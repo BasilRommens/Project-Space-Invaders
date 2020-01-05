@@ -22,7 +22,7 @@ add_executable(Project-Space-Invaders
         src/View/Draw.cpp
         src/utils/json.hpp
         src/Control/Controller.cpp
-        src/utils/Hitbox.cpp)
+        src/utils/Hitbox.cpp src/Parser.cpp src/Parser.h)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")
@@ -46,6 +46,6 @@ add_executable(test
         src/utils/json.hpp
         src/Control/Controller.cpp
         src/utils/Event.h
-        src/utils/Hitbox.cpp)
+        src/utils/Hitbox.cpp src/Parser.cpp src/Parser.h)
 
 target_link_libraries(test "-lsfml-graphics -lsfml-window -lsfml-system")

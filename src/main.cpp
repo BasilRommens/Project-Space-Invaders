@@ -12,6 +12,16 @@ double Model::EnemyShip::distance = 0.f;
 
 std::vector<std::weak_ptr<Model::EnemyShip>> Model::EnemyShip::otherShips = {};
 
+void Model::EnemyShip::removeThis()
+{
+    for (auto otherShipIt = otherShips.begin(); otherShipIt!=otherShips.end(); ++otherShipIt) {
+        if (otherShipIt->lock().get()==this) {
+            otherShips.erase(otherShipIt);
+            break;
+        }
+    }
+}
+
 int main(int argc, char** argv)
 {
     Game g;

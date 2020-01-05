@@ -24,12 +24,24 @@ void ObserverPattern::Subject::addObserver(std::shared_ptr<Observer> observer)
 void ObserverPattern::Subject::removeObserver(std::shared_ptr<Observer> observer)
 {
     try {
-          if (!observer) {
-              throw std::invalid_argument(
-                      "No observer has been passed through in the method removeObserver from the class Subject");
-          }
-        observers.erase(std::find(observers.begin(), observers.end(), observer));
-        observer.reset();
+        if (!observer) {
+            throw std::invalid_argument(
+                    "No observer has been passed through in the method removeObserver from the class Subject");
+        }
+        // Variable that checks if the observer has been found
+        bool found{false};
+        std::vector<std::shared_ptr<Observer>>::iterator observerIt;
+        for (observerIt = observers.begin(); observerIt!=observers.end(); ++observerIt) {
+            if (*observerIt==observer) {
+                found = true;
+                break;
+            }
+        }
+        // If we have found the observer to delete then delete it
+        if (found) {
+            observers.erase(observerIt);
+        }
+        std::cout << observer.use_count() << std::endl;
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;

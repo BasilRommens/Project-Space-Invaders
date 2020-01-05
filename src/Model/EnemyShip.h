@@ -105,6 +105,12 @@ namespace Model {
          */
         // TODO add check to it to check that the ship is indeed an enemy type
         static void addShip(std::weak_ptr<EnemyShip> ship);
+
+        /**
+         * @brief remove this ship from the other ships
+         * TODO find better name
+         */
+        void removeThis() final;
     };
 }
 /**

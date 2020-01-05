@@ -52,12 +52,17 @@ void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
         }
     }
 
+    /*
     // TODO clean up this mess
     // Remove all the objects that we can't observe in the controller
     // We do this by checking for all the observers if they are still in the world
-    for (auto observer: getObservers()) {
+    for (auto observer: this->getObservers()) {
         // Do not proceed checking if the observer is the world itself
         if (observer.get()==&world) {
+            continue;
+        }
+        // If the observer is a nullpointer just continue to the next one
+        if (not observer) {
             continue;
         }
         bool found = false;
@@ -69,9 +74,15 @@ void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
         }
         // If we did not find it in the world then we can delete it
         if (not found) {
-            removeObserver(observer);
+            if (observer->getType() == "enemy") {
+                std::shared_ptr<Model::Entity> entity = std::static_pointer_cast<Model::Entity>(observer);
+                entity->removeThis();
+            }
+            std::cout << observer.use_count() << std::endl;
+            this->removeObserver(observer);
         }
     }
+     */
 
     // Move all the enemy ships
     notify(nullptr, Utils::Event::MOVE);

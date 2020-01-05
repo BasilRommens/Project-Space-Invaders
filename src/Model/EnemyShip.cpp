@@ -9,6 +9,7 @@
 
 void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
+    // TODO clean up function
     if (Utils::Event::REMOVE==event and entity.get()==this) {
         // TODO better name for otherShip
         for (auto otherShip = otherShips.begin(); otherShip!=otherShips.end(); ++otherShip) {
@@ -106,6 +107,7 @@ void Model::EnemyShip::moveRight()
             // Set moved to true such that the observer pattern will not update the ship again
             ship.lock()->moved = true;
         }
+        notify(shared_from_this(), Utils::Event::MOVED_DOWN);
     }
 }
 
@@ -144,6 +146,7 @@ void Model::EnemyShip::moveLeft()
             // Set moved to true such that the observer pattern will not update the ship again
             ship.lock()->moved = true;
         }
+        notify(shared_from_this(), Utils::Event::MOVED_DOWN);
     }
 }
 

@@ -18,6 +18,7 @@ namespace Utils {
      * @enum Event: All the events possible in the game
      */
     enum Event {
+        MOVED_DOWN,
         UPDATE_DRAW,
         MOVE_RIGHT,
         MOVE_LEFT,

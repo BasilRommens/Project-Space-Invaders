@@ -126,3 +126,8 @@ int Model::Entity::getCurrentDelay() const
 {
     return 0;
 }
+
+void Model::Entity::removeThis()
+{
+
+}

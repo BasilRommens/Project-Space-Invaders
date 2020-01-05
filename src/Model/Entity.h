@@ -13,8 +13,8 @@
 
 #include "../Utils/ObserverPattern/Observer.h"
 #include "../Utils/ObserverPattern/Subject.h"
-#include "../utils/Position.h"
-#include "../utils/Hitbox.h"
+#include "../Utils/Position.h"
+#include "../Utils/Hitbox.h"
 
 class Observer;
 /**
@@ -180,6 +180,13 @@ namespace Model {
          * @return The delay that the bullet has before being shot again
          */
         virtual int getCurrentDelay() const;
+
+        /**
+         * @see EnemyShip.h
+         * @brief Remove the ship from the list of otherShips
+         * TODO find better name
+         */
+        virtual void removeThis();
     };
 
 }

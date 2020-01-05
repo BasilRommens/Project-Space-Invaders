@@ -38,13 +38,18 @@ void View::Draw::onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event ev
 
 void View::Draw::updateD(std::shared_ptr<Model::Entity> entity)
 {
-    std::shared_ptr<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> spriteToUpdate;
+    std::shared_ptr<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> spriteToUpdate{};
     for (auto sprite: sprites) {
-        if (sprite.first.get()==entity.get()) {
+        if (sprite.first==entity) {
             spriteToUpdate = std::make_shared<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>>(
                     sprite);
             break;
         }
+    }
+
+    // TODO remove the invisible flying alien
+    if (not spriteToUpdate) {
+        return;
     }
 
     // TODO reduce code duplication with create sprite in this class

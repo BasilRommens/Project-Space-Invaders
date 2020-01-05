@@ -173,9 +173,14 @@ void Game::loadEnemy(const std::string&& enemy)
     }
 }
 
-void Game::loadWorld(const std::string&& worldName)
+void Game::loadWorld(const std::string& worldName)
 {
-    world = Model::World(worldName);
+    // Parse json file
+    std::ifstream i(worldName);
+    json j;
+    i >> j;
+
+    world = Model::World(j["Image"], j["End"]);
 }
 
 std::shared_ptr<Model::Bullet>
