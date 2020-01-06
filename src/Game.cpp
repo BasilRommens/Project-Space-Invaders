@@ -128,8 +128,7 @@ void Game::loadPlayer(const std::string&& player)
     playerShip->addBullet(createBullet(j["Bullet"], playerShip));
     world.addEntity(playerShip);
 
-    std::shared_ptr<ObserverPattern::Observer> sharedWorld(&world);
-    playerShip->addObserver(sharedWorld);
+    playerShip->addWorld(std::make_shared<Model::World>(world));
 
     std::shared_ptr<ObserverPattern::Observer> observerPlayer(playerShip);
     controller.addObserver(observerPlayer);
@@ -165,11 +164,10 @@ void Game::loadEnemy(const std::string&& enemy)
         std::shared_ptr<ObserverPattern::Observer> sharedObserver(enemyShip);
         controller.addObserver(sharedObserver);
 
-        std::shared_ptr<ObserverPattern::Observer> sharedWorld(&world);
-        enemyShip->addObserver(sharedWorld);
-
         std::weak_ptr<Model::EnemyShip> weakEnemy = enemyShip;
         enemyShip->addShip(weakEnemy);
+
+        enemyShip->addWorld(std::make_shared<Model::World>(world));
     }
 }
 

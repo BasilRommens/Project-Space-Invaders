@@ -131,3 +131,8 @@ void Model::Entity::removeThis()
 {
 
 }
+
+void Model::Entity::addWorld(std::shared_ptr<Model::Entity> worldToAdd)
+{
+
+}

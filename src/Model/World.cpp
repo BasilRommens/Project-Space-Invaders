@@ -136,16 +136,6 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     if (not entity and event==Utils::Event::FIRE_BULLET) {
         throw std::domain_error("There is no entity to fire the bullet from");
     }
-    if (event==Utils::Event::FIRE_BULLET and entity) {
-        // Ensure that the type that is firing the bullet is of the ship type (dynamic casting to check doesnt work)
-        // and have it so that there still needs to be a delay present between firing the bullets the current delay cant be more than 0
-        if ((entity->getType()=="player" or entity->getType()=="enemy") and not entity->getCurrentDelay()) {
-            // Create a bullet with that needs to depart from the certain ship
-            std::shared_ptr<Entity> bullet = entity->spawnBullet();
-            this->addEntity(bullet);
-            notify(bullet, Utils::Event::NEW_DRAW);
-        }
-    }
 }
 
 Model::World::~World()
@@ -202,5 +192,17 @@ void Model::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shar
         entities.erase(std::find(entities.begin(), entities.end(), entity));
         notify(entity, Utils::Event::REMOVE); // Notify that there are entities to be removed
         removeObserver(entity);
+    }
+}
+
+void Model::World::fireBullet(std::shared_ptr<Model::Entity> entity)
+{
+    // TODO Ensure that the type that is firing the bullet is of the ship type (dynamic casting to check doesnt work)
+    // and have it so that there still needs to be a delay present between firing the bullets the current delay cant be more than 0
+    if ((entity->getType()=="player" or entity->getType()=="enemy") and not entity->getCurrentDelay()) {
+        // Create a bullet with that needs to depart from the certain ship
+        std::shared_ptr<Entity> bullet = entity->spawnBullet();
+        this->addEntity(bullet);
+        notify(bullet, Utils::Event::NEW_DRAW);
     }
 }

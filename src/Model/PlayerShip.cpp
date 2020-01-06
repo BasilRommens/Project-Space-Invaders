@@ -1,11 +1,11 @@
-#include "PlayerShip.h"
-
 /**
- * @file
+ * @file PlayerShip.h
  * @author Basil Rommens
  * @date 22/11/2019
- * @brief ...
+ * @brief The header file of PlayerShip class
  */
+#include "PlayerShip.h"
+#include "World.h" // TODO check if possible in h file
 
 Model::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
         int bulletDelay, const Utils::Hitbox& hitbox)
@@ -38,7 +38,7 @@ void Model::PlayerShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event ev
         break;
     case Utils::Event::FIRE_BULLET:
         if (not currentDelay) {
-            notify(shared_from_this(), Utils::Event::FIRE_BULLET);
+            world.lock()->fireBullet(shared_from_this());
             resetDelay(); // reset currentDelay
         }
         break;

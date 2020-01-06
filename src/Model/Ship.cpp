@@ -6,6 +6,7 @@
  */
 
 #include "Ship.h"
+#include "World.h"
 
 std::string Model::Ship::getType() const
 {
@@ -85,4 +86,11 @@ double Model::Ship::getHealth() const
 int Model::Ship::getCurrentDelay() const
 {
     return currentDelay;
+}
+
+void Model::Ship::addWorld(std::shared_ptr<Model::Entity> worldToAdd)
+{
+    // TODO check if the world to add is effective the world
+    std::shared_ptr<Model::World> sharedWorld = std::static_pointer_cast<Model::World>(worldToAdd);
+    world = sharedWorld; // assign the shared world to the weak pointer of the world
 }

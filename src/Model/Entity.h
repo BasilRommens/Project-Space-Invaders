@@ -187,6 +187,13 @@ namespace Model {
          * TODO find better name
          */
         virtual void removeThis();
+
+        /**
+         * @see Ship.h
+         * @brief adds the world that needs to be updated for bullets
+         * @param worldToAdd: The world in which the entity resides
+         */
+        virtual void addWorld(std::shared_ptr<Model::Entity> worldToAdd);
     };
 
 }

@@ -96,6 +96,8 @@ namespace Model {
          * @param event: The event that has made this notification possible
          */
         void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) final;
+
+        void fireBullet(std::shared_ptr<Model::Entity> entity);
     };
 
 }

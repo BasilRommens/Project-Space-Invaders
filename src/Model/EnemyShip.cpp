@@ -6,6 +6,7 @@
  */
 
 #include "EnemyShip.h"
+#include "World.h" // TODO check if possible in h file
 
 void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
@@ -29,7 +30,7 @@ void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
         decreaseDelay();
         if (currentDelay==0) {
             // Fire a bullet
-            notify(shared_from_this(), Utils::Event::FIRE_BULLET);
+            world.lock()->fireBullet(shared_from_this());
             // create new delay
             currentDelay = bulletDelay+randomOffset();
         }

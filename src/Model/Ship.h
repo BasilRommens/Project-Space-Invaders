@@ -17,6 +17,8 @@
 
 namespace Model {
 
+    class World;
+
     class Ship : public Entity {
     protected:
         Utils::Position pos; ///< The current position, top right corner, of the ship in the coordinate system that is decided by the variables in utils as upper...
@@ -27,6 +29,7 @@ namespace Model {
         int currentDelay; ///< The delay which can be reset when there is a bullet shot if the counter = 0
         Utils::Hitbox hitbox; ///< The hitbox that the ship posseses
         std::shared_ptr<Bullet> dummyBullet; ///< The dummybullet of the ship which is used to make a new bullet that can be shot from the ship
+        std::weak_ptr<World> world; ///< Needed to update the world if there are bullets shot
 
         /**
          * @brief a pure virtual member function to move the ship right
@@ -132,6 +135,12 @@ namespace Model {
          * @return The amount of time that is left before the ship can shoot another bullet
          */
         int getCurrentDelay() const final;
+
+        /**
+         * @brief adds the world that needs to be updated for bullets
+         * @param worldToAdd: The world in which the ship resides
+         */
+        void addWorld(std::shared_ptr<Model::Entity> worldToAdd);
     };
 
 }
