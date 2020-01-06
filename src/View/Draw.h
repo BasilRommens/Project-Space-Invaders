@@ -11,7 +11,6 @@
 #include <map>
 #include <SFML/Graphics.hpp>
 
-#include "../Utils/ObserverPattern/Observer.h"
 #include "../utils/Transformation.h"
 #include "../Model/Entity.h"
 #include "../Model/EnemyShip.h"
@@ -107,7 +106,7 @@ namespace View {
          * @return The type of the observer ("draw")
          * @details must be implemented because the getType function is pure virtual in the observer class
          */
-        std::string getType() final;
+        std::string getType() const final;
 
         /**
          * @return true if the window is open otherwise it is closed

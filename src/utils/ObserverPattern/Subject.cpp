@@ -28,20 +28,13 @@ void ObserverPattern::Subject::removeObserver(std::shared_ptr<Observer> observer
             throw std::invalid_argument(
                     "No observer has been passed through in the method removeObserver from the class Subject");
         }
-        // Variable that checks if the observer has been found
-        bool found{false};
-        std::vector<std::shared_ptr<Observer>>::iterator observerIt;
-        for (observerIt = observers.begin(); observerIt!=observers.end(); ++observerIt) {
+        // Loop till the iterator of the observer has been found, if not then it will do nothing
+        for (auto observerIt = observers.begin(); observerIt!=observers.end(); ++observerIt) {
             if (*observerIt==observer) {
-                found = true;
+                observers.erase(observerIt);
                 break;
             }
         }
-        // If we have found the observer to delete then delete it
-        if (found) {
-            observers.erase(observerIt);
-        }
-        std::cout << observer.use_count() << std::endl;
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
@@ -63,9 +56,6 @@ const std::vector<std::shared_ptr<ObserverPattern::Observer>>& ObserverPattern::
 
 ObserverPattern::Subject::~Subject()
 {
-    for (auto observer: observers) {
-        observer.reset();
-    }
     observers.clear();
 }
 
@@ -80,4 +70,9 @@ std::shared_ptr<ObserverPattern::Observer> ObserverPattern::Subject::retrieveObs
         }
     }
     return nullptr;
+}
+
+void ObserverPattern::Subject::clearObservers()
+{
+    observers.clear();
 }

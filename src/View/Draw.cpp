@@ -47,11 +47,6 @@ void View::Draw::updateD(std::shared_ptr<Model::Entity> entity)
         }
     }
 
-    // TODO remove the invisible flying alien
-    if (not spriteToUpdate) {
-        return;
-    }
-
     // TODO reduce code duplication with create sprite in this class
     // create an object of the transform class
     std::shared_ptr<Utils::Transformation> transform = transform->getTransformation();
@@ -154,7 +149,7 @@ sf::Sprite View::Draw::createSprite(std::shared_ptr<Model::Entity> entity)
     return sprite;
 }
 
-std::string View::Draw::getType()
+std::string View::Draw::getType() const
 {
     return "draw";
 }

@@ -47,7 +47,7 @@ namespace ObserverPattern {
         /**
          * @return The type of the observer, when inherited it is especially useful
          */
-        virtual std::string getType();
+        virtual std::string getType() const = 0;
     };
 
 }

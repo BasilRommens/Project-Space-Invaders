@@ -11,10 +11,10 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "../Utils/ObserverPattern/Observer.h"
-#include "../Utils/ObserverPattern/Subject.h"
-#include "../Utils/Position.h"
-#include "../Utils/Hitbox.h"
+#include "../utils/ObserverPattern/Observer.h"
+#include "../utils/ObserverPattern/Subject.h"
+#include "../utils/Position.h"
+#include "../utils/Hitbox.h"
 
 class Observer;
 /**

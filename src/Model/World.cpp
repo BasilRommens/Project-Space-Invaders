@@ -150,9 +150,6 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 
 Model::World::~World()
 {
-    for (auto entity: entities) {
-        entity.reset();
-    }
     entities.clear();
 }
 

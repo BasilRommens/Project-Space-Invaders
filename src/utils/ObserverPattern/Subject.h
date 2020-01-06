@@ -62,6 +62,11 @@ namespace ObserverPattern {
          * @param observer: The observer that needs to be removed
          */
         void removeObserver(std::shared_ptr<Observer> observer);
+
+        /**
+         * @brief clears all the observers from the subject
+         */
+        void clearObservers();
     };
 
 }

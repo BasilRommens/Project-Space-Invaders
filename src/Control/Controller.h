@@ -10,8 +10,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../Utils/ObserverPattern/Subject.h"
-#include "../Utils/ObserverPattern/Observer.h"
+#include "../utils/ObserverPattern/Subject.h"
+#include "../utils/ObserverPattern/Observer.h"
 #include "../Model/World.h"
 
 /**

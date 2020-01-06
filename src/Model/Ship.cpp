@@ -24,7 +24,7 @@ void Model::Ship::setPosition(Utils::Position newPos)
 
 Model::Ship::~Ship()
 {
-
+    dummyBullet.reset();
 }
 
 void Model::Ship::resetDelay()
