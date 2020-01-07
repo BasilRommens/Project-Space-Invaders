@@ -131,8 +131,3 @@ void Model::Entity::removeThis()
 {
 
 }
-
-void Model::Entity::addWorld(Model::World& worldToAdd)
-{
-
-}
