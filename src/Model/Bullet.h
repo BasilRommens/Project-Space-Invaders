@@ -109,6 +109,8 @@ namespace Model {
          * @return The amount of damage the bullet can do
          */
         double getDamage() const final;
+
+        Utils::Direction getDirection() const final;
     };
 
 }

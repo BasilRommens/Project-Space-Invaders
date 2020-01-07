@@ -35,6 +35,17 @@
         "Width": 0.81,
         "Height": 0.6
       }
+    },
+    {
+      "xPos": -0.4,
+      "yPos": 1.2,
+      "HP": 4,
+      "Image": "img/alien.png",
+      "Bullet": "input/bullet.json",
+      "Hitbox": {
+        "Width": 0.81,
+        "Height": 0.6
+      }
     }
   ]
 }

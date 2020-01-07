@@ -66,9 +66,10 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     // TODO clean up this function
     if (event==Utils::Event::CHECK_COLLISIONS) {
         bool doubleBreak;
+        std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>> pairs;
         do {
             doubleBreak = false;
-            std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>> pairs;
+
             // Check for every entity except itself if it intersects with one
             for (auto thisEntity: entities) {
                 for (auto otherEntity: entities) {
@@ -180,6 +181,16 @@ void Model::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shar
     std::shared_ptr<Entity> bullet = ((thisEntity->getType()=="bullet") ? thisEntity : otherEntity);
     // Take the other as the entity that is hit by the bullet
     std::shared_ptr<Entity> entity = ((thisEntity->getType()=="bullet") ? otherEntity : thisEntity);
+
+    // TODO Make this piece a little bit neater
+    // If we find that the bullet is travelling down and it is an enemy then do nothing
+    if (bullet->getDirection()==Utils::Direction::DOWN and entity->getType()=="enemy") {
+        return;
+    }
+    // If we find that the bullet is travelling up and it is a player then do nothing
+    if (bullet->getDirection()==Utils::Direction::UP and entity->getType()=="player") {
+        return;
+    }
 
     // TODO maybe improve the name of the function
     entity->doDamage(bullet->getDamage());

@@ -97,6 +97,10 @@ namespace Model {
          */
         void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) final;
 
+        /**
+         * @brief fires the bullet from a certain entity, and adds it to the world
+         * @param entity: The entity from which the bullet needs to be fired
+         */
         void fireBullet(std::shared_ptr<Model::Entity> entity);
     };
 

@@ -108,3 +108,8 @@ double Model::Bullet::getDamage() const
 {
     return damage;
 }
+
+Utils::Direction Model::Bullet::getDirection() const
+{
+    return direction;
+}

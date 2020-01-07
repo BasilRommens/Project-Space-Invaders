@@ -113,3 +113,8 @@ int Model::Entity::getCurrentDelay() const
 }
 
 void Model::Entity::removeThis() { }
+
+Utils::Direction Model::Entity::getDirection() const
+{
+    return Utils::Direction::UP;
+}

@@ -188,6 +188,12 @@ namespace Model {
          * TODO find better name
          */
         virtual void removeThis();
+
+        /**
+         * @see Bullet.h
+         * @return The direction in which an entity is travelling
+         */
+        virtual Utils::Direction getDirection() const;
     };
 
 }
