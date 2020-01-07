@@ -16,7 +16,6 @@
 #include "../utils/Position.h"
 #include "../utils/Hitbox.h"
 
-class Observer;
 /**
  * @addtogroup Model
  * @{
@@ -27,6 +26,8 @@ namespace Model {
     class Ship;
 
     class Bullet;
+
+    class World;
 
     class Entity
             : public ObserverPattern::Observer,
@@ -193,7 +194,7 @@ namespace Model {
          * @brief adds the world that needs to be updated for bullets
          * @param worldToAdd: The world in which the entity resides
          */
-        virtual void addWorld(std::shared_ptr<Model::Entity> worldToAdd);
+        virtual void addWorld(Model::World& worldToAdd);
     };
 
 }

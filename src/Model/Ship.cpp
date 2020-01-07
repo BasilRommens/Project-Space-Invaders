@@ -41,8 +41,8 @@ void Model::Ship::decreaseDelay()
 }
 
 Model::Ship::Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        int bulletDelay, const Utils::Hitbox& hitbox)
-        :Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox), bulletDelay(bulletDelay)
+        int bulletDelay, const Utils::Hitbox& hitbox, Model::World& world)
+        :Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox), bulletDelay(bulletDelay), world(world)
 {
     currentDelay = 0;
 }
@@ -86,11 +86,4 @@ double Model::Ship::getHealth() const
 int Model::Ship::getCurrentDelay() const
 {
     return currentDelay;
-}
-
-void Model::Ship::addWorld(std::shared_ptr<Model::Entity> worldToAdd)
-{
-    // TODO check if the world to add is effective the world
-    std::shared_ptr<Model::World> sharedWorld = std::static_pointer_cast<Model::World>(worldToAdd);
-    world = sharedWorld; // assign the shared world to the weak pointer of the world
 }

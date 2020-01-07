@@ -29,7 +29,7 @@ namespace Model {
         int currentDelay; ///< The delay which can be reset when there is a bullet shot if the counter = 0
         Utils::Hitbox hitbox; ///< The hitbox that the ship posseses
         std::shared_ptr<Bullet> dummyBullet; ///< The dummybullet of the ship which is used to make a new bullet that can be shot from the ship
-        std::weak_ptr<World> world; ///< Needed to update the world if there are bullets shot
+        Model::World& world; ///< Needed to update the world if there are bullets shot
 
         /**
          * @brief a pure virtual member function to move the ship right
@@ -75,7 +75,7 @@ namespace Model {
          * TODO add the necessary checks
          */
         Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-                int bulletDelay, const Utils::Hitbox& hitbox);
+                int bulletDelay, const Utils::Hitbox& hitbox, Model::World& world);
 
         /**
          * @return The type of the entity ("ship")
@@ -140,7 +140,7 @@ namespace Model {
          * @brief adds the world that needs to be updated for bullets
          * @param worldToAdd: The world in which the ship resides
          */
-        void addWorld(std::shared_ptr<Model::Entity> worldToAdd);
+        void addWorld(Model::World& worldToAdd);
     };
 
 }

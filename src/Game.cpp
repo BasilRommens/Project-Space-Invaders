@@ -124,11 +124,11 @@ void Game::loadPlayer(const std::string&& player)
     Utils::Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
 
     std::shared_ptr<Model::Entity> playerShip(
-            new Model::PlayerShip(image, position, HP, HSpeed, 20, hitbox));
+            new Model::PlayerShip(image, position, HP, HSpeed, 20, hitbox, world));
     playerShip->addBullet(createBullet(j["Bullet"], playerShip));
     world.addEntity(playerShip);
 
-    playerShip->addWorld(std::make_shared<Model::World>(world));
+    //playerShip->addWorld(world);
 
     std::shared_ptr<ObserverPattern::Observer> observerPlayer(playerShip);
     controller.addObserver(observerPlayer);
@@ -154,7 +154,7 @@ void Game::loadEnemy(const std::string&& enemy)
         Utils::Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
 
         auto enemyShip = std::make_shared<Model::EnemyShip>(
-                Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed));
+                Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed, world));
 
         enemyShip->addBullet(createBullet(ship["Bullet"], enemyShip));
 
@@ -167,7 +167,7 @@ void Game::loadEnemy(const std::string&& enemy)
         std::weak_ptr<Model::EnemyShip> weakEnemy = enemyShip;
         enemyShip->addShip(weakEnemy);
 
-        enemyShip->addWorld(std::make_shared<Model::World>(world));
+        //enemyShip->addWorld(world);
     }
 }
 

@@ -30,7 +30,7 @@ void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
         decreaseDelay();
         if (currentDelay==0) {
             // Fire a bullet
-            world.lock()->fireBullet(shared_from_this());
+            world.fireBullet(shared_from_this());
             // create new delay
             currentDelay = bulletDelay+randomOffset();
         }
@@ -193,8 +193,8 @@ int Model::EnemyShip::randomOffset()
 }
 
 Model::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-        int bulletDelay, const Utils::Hitbox& hitbox, double vSpeed)
-        :Ship(image, pos, health, hSpeed, bulletDelay, hitbox), VSpeed(vSpeed)
+        int bulletDelay, const Utils::Hitbox& hitbox, double vSpeed, Model::World& world)
+        :Ship(image, pos, health, hSpeed, bulletDelay, hitbox, world), VSpeed(vSpeed)
 {
     moved = false;
     currentDelay += randomOffset();

@@ -55,7 +55,7 @@ namespace Model {
          * @param hitbox: The hitbox of the current player ship
          */
         PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-                int bulletDelay, const Utils::Hitbox& hitbox);
+                int bulletDelay, const Utils::Hitbox& hitbox, Model::World& world);
 
         /**
          * @return The type of the entity ("player")
