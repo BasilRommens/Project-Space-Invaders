@@ -62,15 +62,9 @@ std::shared_ptr<Utils::Position> Model::Entity::getPos() const
     return std::shared_ptr<Utils::Position>();
 }
 
-void Model::Entity::setPosition(Utils::Position newPos)
-{
+void Model::Entity::setPosition(Utils::Position newPos) { }
 
-}
-
-Model::Entity::~Entity()
-{
-
-}
+Model::Entity::~Entity() { }
 
 std::weak_ptr<Model::Entity> Model::Entity::getFrom() const
 {
@@ -87,30 +81,21 @@ const Utils::Hitbox& Model::Entity::getHitbox() const
     return *(new Utils::Hitbox(0, 0));
 }
 
-void Model::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet)
-{
-
-}
+void Model::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet) { }
 
 std::shared_ptr<Model::Entity> Model::Entity::spawnBullet()
 {
     return nullptr;
 }
 
-Model::Entity::Entity(std::shared_ptr<Bullet> other)
-{
-
-}
+Model::Entity::Entity(std::shared_ptr<Bullet> other) { }
 
 std::shared_ptr<Model::Bullet> Model::Entity::getDummyBullet() const
 {
     return nullptr;
 }
 
-void Model::Entity::doDamage(double damage)
-{
-
-}
+void Model::Entity::doDamage(double damage) { }
 
 bool Model::Entity::collidable() const
 {
@@ -127,7 +112,4 @@ int Model::Entity::getCurrentDelay() const
     return 0;
 }
 
-void Model::Entity::removeThis()
-{
-
-}
+void Model::Entity::removeThis() { }
