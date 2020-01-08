@@ -50,22 +50,17 @@ namespace Model {
         void moveLeft() final;
 
         /**
-         * @brief fires a bullet
-         */
-        void fireBullet() final;
-
-        /**
          * @brief swaps the direction of the ship passed through
          * @param ship: The ship of which the direction needs to be changed
          */
-        void swapDirection(std::shared_ptr<EnemyShip> ship);
+        void swapDirection(std::shared_ptr<EnemyShip> ship) const;
 
         /**
          * @brief The function calculates a random offset for the bullet to travel and then returns it
          * @details It is based of of the framerate at which we play the game and the number of ships in the game (to prevent the too much of bullets)
          * @return It returns a random offset
          */
-        int randomOffset();
+        int randomOffset() const;
 
     public:
         /**

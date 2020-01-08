@@ -151,11 +151,6 @@ void Model::EnemyShip::moveLeft()
     }
 }
 
-void Model::EnemyShip::fireBullet()
-{
-
-}
-
 std::string Model::EnemyShip::getType() const
 {
     return "enemy";
@@ -171,7 +166,7 @@ double Model::EnemyShip::getDistance() const
     return distance;
 }
 
-inline void Model::EnemyShip::swapDirection(std::shared_ptr<EnemyShip> ship)
+inline void Model::EnemyShip::swapDirection(std::shared_ptr<EnemyShip> ship) const
 {
     if (ship->direction==Utils::Direction::LEFT) {
         ship->direction = Utils::Direction::RIGHT;
@@ -186,7 +181,7 @@ void Model::EnemyShip::addShip(std::weak_ptr<EnemyShip> ship)
     otherShips.push_back(ship);
 }
 
-int Model::EnemyShip::randomOffset()
+inline int Model::EnemyShip::randomOffset() const
 {
     // half the Framerate * amount of ships + randRange(0, 360)
     return 60/2*(int) otherShips.size()+(int) random()%360;

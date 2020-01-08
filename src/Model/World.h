@@ -35,7 +35,7 @@ namespace Model {
          * @return if the two entities do indeed collide
          * TODO check if the two entities can collide indeed
          */
-        bool areColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity);
+        bool areColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity) const;
 
         /**
          * @brief This member function chooses what to do with 2 colliding entities

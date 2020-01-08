@@ -144,7 +144,8 @@ Model::World::~World()
     entities.clear();
 }
 
-bool Model::World::areColliding(const std::shared_ptr<Entity> thisEntity, const std::shared_ptr<Entity> otherEntity)
+bool
+Model::World::areColliding(const std::shared_ptr<Entity> thisEntity, const std::shared_ptr<Entity> otherEntity) const
 {
     /// @see https://www.gamedevelopment.blog/collision-detection-circles-rectangles-and-polygons/ (31 december 2019 13:48)
     double topEdge1 = thisEntity->getPos()->getY();

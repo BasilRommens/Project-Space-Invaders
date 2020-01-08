@@ -110,6 +110,9 @@ namespace Model {
          */
         double getDamage() const final;
 
+        /**
+         * @return The direction in which the bullet is travelling
+         */
         Utils::Direction getDirection() const final;
     };
 

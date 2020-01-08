@@ -42,11 +42,6 @@ namespace Model {
         virtual void moveLeft() = 0;
 
         /**
-         * @brief a pure virtual member function to let the ship fire a bullet
-         */
-        virtual void fireBullet() = 0;
-
-        /**
          * @brief Resets the current delay of the ship to fire a bullet
          */
         void resetDelay();
@@ -108,7 +103,7 @@ namespace Model {
         /**
          * @return Creates a new bullet instance that can be shot from the ship to be shot at the other ships
          */
-        std::shared_ptr<Model::Entity> spawnBullet() final;
+        std::shared_ptr<Model::Entity> spawnBullet() const final;
 
         /**
          * @return The dummy bullet that can be used to recreate in another ship entity
@@ -135,12 +130,6 @@ namespace Model {
          * @return The amount of time that is left before the ship can shoot another bullet
          */
         int getCurrentDelay() const final;
-
-        /**
-         * @brief adds the world that needs to be updated for bullets
-         * @param worldToAdd: The world in which the ship resides
-         */
-        void addWorld(Model::World& worldToAdd);
     };
 
 }

@@ -76,8 +76,3 @@ Model::PlayerShip::~PlayerShip()
 {
 
 }
-
-void Model::PlayerShip::fireBullet()
-{
-
-}

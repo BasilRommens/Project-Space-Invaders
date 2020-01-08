@@ -37,7 +37,7 @@ double Model::Entity::getDamage() const
     return 0;
 }
 
-std::shared_ptr<ObserverPattern::Observer> Model::Entity::getDrawShared()
+std::shared_ptr<ObserverPattern::Observer> Model::Entity::getDrawShared() const
 {
     for (auto observer: this->getObservers()) {
         if (observer->getType()=="draw") {
@@ -83,7 +83,7 @@ const Utils::Hitbox& Model::Entity::getHitbox() const
 
 void Model::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet) { }
 
-std::shared_ptr<Model::Entity> Model::Entity::spawnBullet()
+std::shared_ptr<Model::Entity> Model::Entity::spawnBullet() const
 {
     return nullptr;
 }

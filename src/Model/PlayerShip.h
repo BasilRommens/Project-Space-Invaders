@@ -34,11 +34,6 @@ namespace Model {
          */
         void moveLeft();
 
-        /**
-         * @brief fires a bullet from the current position of the player ship
-         */
-        void fireBullet() final;
-
     public:
         /**
          * @brief The destructor of the player ship

@@ -57,7 +57,7 @@ void Model::Ship::addBullet(std::shared_ptr<Bullet> dummyBullet)
     this->dummyBullet = dummyBullet;
 }
 
-std::shared_ptr<Model::Entity> Model::Ship::spawnBullet()
+std::shared_ptr<Model::Entity> Model::Ship::spawnBullet() const
 {
     Bullet newBullet(dummyBullet);
     return std::make_shared<Bullet>(newBullet);

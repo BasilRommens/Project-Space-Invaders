@@ -72,7 +72,7 @@ namespace Model {
         /**
          * @return The type of the entity ("")
          */
-        virtual std::string getType() const;
+        std::string getType() const override;
 
         /**
          * @return The position of the entity
@@ -101,11 +101,6 @@ namespace Model {
          * @return The damage done by a bullet
          */
         virtual double getDamage() const;
-
-        /**
-         * @return The shared draw of the world class
-         */
-        std::shared_ptr<ObserverPattern::Observer> getDrawShared();
 
         /**
          * @see Bullet.h
@@ -150,7 +145,7 @@ namespace Model {
          * @return Creates a bullet based on the current position of the ship
          * TODO check if the dummy bullet exists
          */
-        virtual std::shared_ptr<Entity> spawnBullet();
+        virtual std::shared_ptr<Entity> spawnBullet() const;
 
         /**
          * @see Ship.h
@@ -194,6 +189,8 @@ namespace Model {
          * @return The direction in which an entity is travelling
          */
         virtual Utils::Direction getDirection() const;
+
+        std::shared_ptr<ObserverPattern::Observer> getDrawShared() const;
     };
 
 }
