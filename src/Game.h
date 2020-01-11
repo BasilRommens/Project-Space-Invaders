@@ -64,9 +64,10 @@ private:
     /**
      * @brief Plays the level currently loaded in the model
      * @param renderWindow: The window which shows the game that needs to run
+     * @param sharedWorld: The world that is a shared pointer
      * @return If the level was succesfully finished
      */
-    bool play(sf::RenderWindow& renderWindow);
+    bool play(sf::RenderWindow& renderWindow, std::shared_ptr<ObserverPattern::Observer> sharedWorld);
 
     /**
      * @brief adds a delay to the game in order to preserve its framerate, and skips when it already passed its frame count
@@ -94,7 +95,7 @@ public:
      * @brief Starts playing levels in the order they are passed through
      * @param levels: The levels that will be played in order when succesfully completed
      */
-    void start(std::vector<std::string> levels);
+    void start(const std::vector<std::string>& levels);
 };
 
 #endif //PROJECT_SPACE_INVADERS_GAME_H

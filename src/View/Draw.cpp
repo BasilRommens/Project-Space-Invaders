@@ -158,3 +158,10 @@ bool View::Draw::isOpen() const
 {
     return open;
 }
+
+View::Draw::~Draw()
+{
+    sprites.clear();
+    textures.clear();
+    window.reset();
+}

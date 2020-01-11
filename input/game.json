@@ -1,6 +1,7 @@
 {
-  "levels": [
-    "level1.json",
-    "level2.json"
+  "Type": "game",
+  "Levels": [
+    "input/level1.json",
+    "input/level2.json"
   ]
 }

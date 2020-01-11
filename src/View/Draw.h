@@ -56,6 +56,11 @@ namespace View {
 
     public:
         /**
+         * @brief destructor of draw
+         */
+        virtual ~Draw();
+
+        /**
          * @brief The constructor of Draw
          * @param window: The window in which we will draw all the sprites
          * @param world: The world which is used for adding the entities

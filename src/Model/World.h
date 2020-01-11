@@ -103,10 +103,21 @@ namespace Model {
          */
         void fireBullet(std::shared_ptr<Model::Entity> entity);
 
+        // TODO has.* has duplicate code need to remove it
         /**
          * @return if the world still contains a playership
          */
         bool hasPlayer();
+
+        /**
+         * @return if the world has no enemies left then go to the next level
+         */
+        bool hasEnemies();
+
+        /**
+         * @brief will reset the world, i.e. removing all the entities from itself and removing all the observers
+         */
+        void reset();
     };
 
 }

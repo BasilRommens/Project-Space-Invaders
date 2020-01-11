@@ -230,3 +230,21 @@ bool Model::World::hasPlayer()
     // If we didnt find the player then return false
     return false;
 }
+
+void Model::World::reset()
+{
+    entities.clear();
+    this->clearObservers();
+}
+
+bool Model::World::hasEnemies()
+{
+    for (auto entity: entities) {
+        // If we found an enemy in the world then return true
+        if (entity->getType()=="enemy") {
+            return true;
+        }
+    }
+    // If we didnt find an enemy then return false
+    return false;
+}

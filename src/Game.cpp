@@ -12,15 +12,18 @@ std::shared_ptr<Utils::Stopwatch> Utils::Stopwatch::instance = nullptr;
 
 Game::Game() { }
 
-void Game::start(std::vector<std::string> levels)
+void Game::start(const std::vector<std::string>& levels)
 {
     sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
 
+    // TODO causes error because it probably is a member variable :( FIX
+    std::shared_ptr<ObserverPattern::Observer> sharedWorld(&world);
+
     bool failure{};
 
-    for (auto level: levels) {
+    for (const auto& level: levels) {
         load(level);
-        failure = play(renderWindow);
+        failure = play(renderWindow, sharedWorld);
         if (failure) {
             break;
         }
@@ -29,13 +32,15 @@ void Game::start(std::vector<std::string> levels)
         }
     }
 
-    if (failure) {
-        // TODO Display failure message
+    if (failure and renderWindow.isOpen()) {
+
     }
 }
 
-bool Game::play(sf::RenderWindow& renderWindow)
+bool Game::play(sf::RenderWindow& renderWindow, std::shared_ptr<ObserverPattern::Observer> sharedWorld)
 {
+    bool failure = false;
+
     std::shared_ptr<sf::RenderWindow> window(&renderWindow);
     std::shared_ptr<View::Draw> draw(new View::Draw(window, world));
     std::shared_ptr<ObserverPattern::Observer> drawShared(draw);
@@ -57,8 +62,6 @@ bool Game::play(sf::RenderWindow& renderWindow)
     }
 
     // Add the world to the controller for observation in order to apply collision detection
-    // TODO remove implications when drawing bullets twice
-    std::shared_ptr<ObserverPattern::Observer> sharedWorld(&world);
     controller.addObserver(sharedWorld);
 
     // run the program as long as the window is open
@@ -76,7 +79,11 @@ bool Game::play(sf::RenderWindow& renderWindow)
         }
         // if the player has been destroyed
         if (not world.hasPlayer()) {
-            std::cout << "game over" << std::endl;
+            failure = true;
+            break;
+        }
+        // if there are no enemies left in space
+        if (not world.hasEnemies()) {
             break;
         }
         draw->view();
@@ -84,7 +91,9 @@ bool Game::play(sf::RenderWindow& renderWindow)
         wait();
     }
 
-    return false;
+    world.reset();
+    controller.clearObservers();
+    return failure;
 }
 
 void Game::wait()
