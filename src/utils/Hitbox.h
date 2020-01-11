@@ -27,7 +27,7 @@ namespace Utils {
          * @brief The constructor of the hitbox class
          * TODO ensure that the width and height isnt negative else throw an error
          */
-        Hitbox(double width = 0.f, double height = 0.f);
+        explicit Hitbox(double width = 0.f, double height = 0.f);
 
         /**
          * @return The width of the hitbox

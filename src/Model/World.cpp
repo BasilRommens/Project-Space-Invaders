@@ -218,3 +218,15 @@ void Model::World::fireBullet(std::shared_ptr<Model::Entity> entity)
         notify(bullet, Utils::Event::NEW_DRAW);
     }
 }
+
+bool Model::World::hasPlayer()
+{
+    for (auto entity: entities) {
+        // If we found the player in the world then return true
+        if (entity->getType()=="player") {
+            return true;
+        }
+    }
+    // If we didnt find the player then return false
+    return false;
+}

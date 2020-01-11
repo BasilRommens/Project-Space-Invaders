@@ -102,6 +102,11 @@ namespace Model {
          * @param entity: The entity from which the bullet needs to be fired
          */
         void fireBullet(std::shared_ptr<Model::Entity> entity);
+
+        /**
+         * @return if the world still contains a playership
+         */
+        bool hasPlayer();
     };
 
 }

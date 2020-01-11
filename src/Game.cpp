@@ -74,6 +74,11 @@ bool Game::play(sf::RenderWindow& renderWindow)
         if (not draw->isOpen()) {
             break;
         }
+        // if the player has been destroyed
+        if (not world.hasPlayer()) {
+            std::cout << "game over" << std::endl;
+            break;
+        }
         draw->view();
 
         wait();
