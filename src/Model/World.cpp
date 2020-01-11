@@ -219,7 +219,7 @@ void Model::World::fireBullet(std::shared_ptr<Model::Entity> entity)
     }
 }
 
-bool Model::World::hasPlayer()
+bool Model::World::hasPlayer() const
 {
     for (auto entity: entities) {
         // If we found the player in the world then return true
@@ -237,7 +237,7 @@ void Model::World::reset()
     this->clearObservers();
 }
 
-bool Model::World::hasEnemies()
+bool Model::World::hasEnemies() const
 {
     for (auto entity: entities) {
         // If we found an enemy in the world then return true

@@ -38,6 +38,12 @@ private:
     std::shared_ptr<Utils::Stopwatch> stopwatch = stopwatch->getStopwatch(); ///< The stopwatch of the game, is used to keep the game at a correct pace
 
     /**
+     * @brief will display if the player has lost on the current active window
+     * TODO add a check for the window if it is still open
+     */
+    void displayLost(sf::RenderWindow& renderWindow);
+
+    /**
      * @brief loads a level from a json file
      * @param level: The filename of the level to be loaded
      */

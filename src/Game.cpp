@@ -32,8 +32,9 @@ void Game::start(const std::vector<std::string>& levels)
         }
     }
 
+    // TODO try to do this inside loop to restart game
     if (failure and renderWindow.isOpen()) {
-
+        displayLost(renderWindow);
     }
 }
 
@@ -223,4 +224,32 @@ Game::createBullet(const std::string& fileName, std::weak_ptr<Model::Entity> ent
     }
     return std::make_shared<Model::Bullet>(
             Model::Bullet(image, direction, speed, damage, position, entity, hitbox));
+}
+
+void Game::displayLost(sf::RenderWindow& renderWindow)
+{
+    sf::Text text;
+
+    sf::Font font;
+
+    if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
+        std::cout << "failed to load font" << std::endl;
+    }
+
+    // select the font
+    text.setFont(font); // font is a sf::Font
+
+    // set the string to display
+    text.setString("Game over");
+
+    // set the character size
+    text.setCharacterSize(60); // in pixels, not points!
+
+    // set the color
+    text.setFillColor(sf::Color::White);
+    text.setPosition(renderWindow.getPosition().x/2-text.getGlobalBounds().width/4, 0);
+
+    renderWindow.draw(text);
+    renderWindow.display();
+    while (true) { }
 }

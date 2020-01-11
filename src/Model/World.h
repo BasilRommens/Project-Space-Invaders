@@ -107,12 +107,12 @@ namespace Model {
         /**
          * @return if the world still contains a playership
          */
-        bool hasPlayer();
+        bool hasPlayer() const;
 
         /**
          * @return if the world has no enemies left then go to the next level
          */
-        bool hasEnemies();
+        bool hasEnemies() const;
 
         /**
          * @brief will reset the world, i.e. removing all the entities from itself and removing all the observers
