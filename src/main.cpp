@@ -6,6 +6,7 @@
  */
 
 #include "Game.h"
+#include "GameParser.h"
 #include "Model/EnemyShip.h"
 
 double Model::EnemyShip::distance = 0.f;
@@ -25,16 +26,8 @@ void Model::EnemyShip::removeThis()
 int main(int argc, char** argv)
 {
     try {
-        // Parse json file of the game
-        std::ifstream i(argv[1]);
-        json j;
-        i >> j;
-
-        // add all the levels from the game json to the levels vector
-        std::vector<std::string> levels{};
-        for (const auto& levelFile: j["Levels"]) {
-            levels.push_back(levelFile);
-        }
+        GameParser gameParser{};
+        std::vector<std::string> levels = gameParser.parseGame(argv[1]);
 
         // Start the game
         Game g;

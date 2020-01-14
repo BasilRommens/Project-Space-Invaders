@@ -78,7 +78,7 @@ void Model::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     try {
         this->pos.moveYPos(directionSpeed, hitbox);
     }
-    catch (std::exception& test) { // TODO improve the name of the variable
+    catch (std::exception& e) {
         notify(shared_from_this(), Utils::Event::REMOVE);
         return;
     }

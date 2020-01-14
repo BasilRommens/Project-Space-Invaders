@@ -6,7 +6,6 @@
  */
 
 #include "EnemyShip.h"
-#include "World.h" // TODO check if possible in h file
 
 void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
@@ -81,8 +80,8 @@ void Model::EnemyShip::moveRight()
     try {
         pos.moveXPos(HSpeed, hitbox);
     }
-    catch (std::exception& test) { // TODO add a better name
-        std::cout << "nothing to worry about" << std::endl;
+    catch (std::exception& e) {
+        std::cout << "Enemyship hit the wall" << std::endl;
     }
     double newPos = pos.getX();
     auto newDistance = std::abs(prevPos-newPos);
@@ -120,8 +119,8 @@ void Model::EnemyShip::moveLeft()
     try {
         pos.moveXPos(-HSpeed, hitbox);
     }
-    catch (std::exception& test) { // TODO change name of the variable
-        std::cout << "nothing to worry about" << std::endl;
+    catch (std::exception& e) {
+        std::cout << "Enemyship hit the wall" << std::endl;
     }
     double newPos = pos.getX();
     auto newDistance = std::abs(prevPos-newPos);

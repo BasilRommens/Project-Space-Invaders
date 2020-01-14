@@ -24,13 +24,15 @@
 #include "Control/Controller.h"
 #include "View/Draw.h"
 
-using json = nlohmann::json;
+class GameParser;
 
 /**
  * @brief The class that can be used to create a new game
  */
 class Game {
 private:
+    friend GameParser; ///< used to simplify code writing, prone to errors (without get/set)
+
     Model::World world; ///< The world that is used for containing all the entities
 
     Control::Controller controller; ///< The controller will be used to control the game
@@ -42,30 +44,6 @@ private:
      * TODO add a check for the window if it is still open
      */
     void displayLost(sf::RenderWindow& renderWindow);
-
-    /**
-     * @brief loads a level from a json file
-     * @param level: The filename of the level to be loaded
-     */
-    void load(const std::string& level);
-
-    /**
-     * @brief Loads the player from a string given with it
-     * @param player: The filename which to parse
-     */
-    void loadPlayer(const std::string&& player);
-
-    /**
-     * @brief Loads the enemy from a string given to it
-     * @param enemy: The filename which to parse
-     */
-    void loadEnemy(const std::string&& enemy);
-
-    /**
-     * @brief Loads the world from a string given to it
-     * @param worldName: The filename of the world to parse
-     */
-    void loadWorld(const std::string& worldName);
 
     /**
      * @brief Plays the level currently loaded in the model
@@ -80,16 +58,6 @@ private:
      */
     void wait();
 
-    /**
-     * @brief The bullet that is used to shoot from one of the ships
-     * @param fileName: The name of the file from where to parse the bullets
-     * @param entity: The name of the entity from which the bullet supposedly comes
-     * @return The bullet in a shared ptr type
-     * TODO add a check if the weakptr is valid
-     * TODO add a check if the filename is valid
-     */
-    std::shared_ptr<Model::Bullet> createBullet(const std::string& fileName, std::weak_ptr<Model::Entity> entity);
-
 public:
 
     /**
@@ -102,6 +70,12 @@ public:
      * @param levels: The levels that will be played in order when succesfully completed
      */
     void start(const std::vector<std::string>& levels);
+
+    /**
+     * @brief sets the world with another world
+     * @param world: The world that will replace the current world
+     */
+    void setWorld(Model::World world);
 };
 
 #endif //PROJECT_SPACE_INVADERS_GAME_H

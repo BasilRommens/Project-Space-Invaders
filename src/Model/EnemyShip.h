@@ -11,6 +11,7 @@
 #include <random>
 
 #include "Ship.h"
+#include "World.h"
 
 /**
  * @addtogroup Model

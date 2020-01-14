@@ -190,6 +190,7 @@ namespace Model {
          */
         virtual Utils::Direction getDirection() const;
 
+        // TODO figure out what this thing does
         std::shared_ptr<ObserverPattern::Observer> getDrawShared() const;
     };
 
