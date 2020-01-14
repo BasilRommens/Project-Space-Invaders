@@ -9,8 +9,24 @@
 
 Model::Bullet::Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
         const Utils::Position& pos, std::weak_ptr<Entity> from, Utils::Hitbox hitbox)
-        :Entity(image), direction(direction), speed(speed), damage(damage), pos(pos), from(from), hitbox(hitbox)
+        :Entity(image), pos(pos), hitbox(hitbox)
 {
+    if (direction==Utils::Direction::LEFT or direction==Utils::Direction::RIGHT) {
+        throw std::domain_error("The bullet is given a faulty direction");
+    }
+    else if (speed<=0) {
+        throw std::domain_error("The bullet will remain stationary or won't move the right direction");
+    }
+    else if (damage<0) {
+        throw std::domain_error("The bullet will heal instead of doing damage to an entity");
+    }
+    else if (from.expired()) {
+        throw std::domain_error("The bullet couldn't be made because it has no entity from which it departed");
+    }
+    this->direction = direction;
+    this->speed = speed;
+    this->damage = damage;
+    this->from = from;
     texture.loadFromFile(image);
 }
 

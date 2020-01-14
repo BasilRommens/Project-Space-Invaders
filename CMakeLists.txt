@@ -11,7 +11,6 @@ add_executable(Project-Space-Invaders
         src/Model/EnemyShip.cpp
         src/Model/Bullet.cpp
         src/Model/World.cpp
-        src/Model/BGTile.cpp
         src/utils/Position.cpp
         src/utils/Stopwatch.cpp
         src/utils/Transformation.cpp

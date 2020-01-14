@@ -15,7 +15,6 @@
 #include "../Model/Entity.h"
 #include "../Model/EnemyShip.h"
 #include "../Model/Bullet.h"
-#include "../Model/BGTile.h"
 #include "../Model/PlayerShip.h"
 
 /**

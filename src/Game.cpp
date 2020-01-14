@@ -232,9 +232,8 @@ void Game::displayLost(sf::RenderWindow& renderWindow)
 
     sf::Font font;
 
-    // TODO throw exception
     if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
-        std::cout << "failed to load font" << std::endl;
+        throw std::domain_error("failed to load font");
     }
 
     // select the font

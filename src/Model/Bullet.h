@@ -53,12 +53,6 @@ namespace Model {
          * @param pos: The position at which we can find the bullet
          * @param from: The entity that is shooting this particular bullet with a weak pointer
          */
-        // TODO use RAII
-        // TODO add assertion for bullet direction
-        // TODO add assertion for bullet speed
-        // TODO add assertion for bullet damage
-        // TODO add assertion for pos
-        // TODO add assertion for from
         Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
                 const Utils::Position& pos, std::weak_ptr<Entity> from, Utils::Hitbox hitbox);
 

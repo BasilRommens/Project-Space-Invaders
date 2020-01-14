@@ -22,7 +22,6 @@ void Model::EnemyShip::removeThis()
     }
 }
 
-// TODO add exception handling if wrong filetype
 int main(int argc, char** argv)
 {
     try {
@@ -33,7 +32,7 @@ int main(int argc, char** argv)
 
         // add all the levels from the game json to the levels vector
         std::vector<std::string> levels{};
-        for (auto levelFile: j["Levels"]) {
+        for (const auto& levelFile: j["Levels"]) {
             levels.push_back(levelFile);
         }
 
@@ -41,7 +40,11 @@ int main(int argc, char** argv)
         Game g;
         g.start(levels);
     }
-    catch (...) {
-        std::cout << ":(" << std::endl;
+        // https://nlohmann.github.io/json/classnlohmann_1_1basic__json_a9a0aced019cb1d65bb49703406c84970.html (consulted on 14/01/2020)
+    catch (json::exception& e) {
+        if (e.id==101) {
+            std::cerr << "The path to your json file is probably wrong" << std::endl
+                      << "or your json file is faulty" << std::endl;
+        }
     }
 }
