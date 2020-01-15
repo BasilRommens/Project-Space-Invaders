@@ -16,7 +16,6 @@ void View::Draw::onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event ev
 {
     switch (event) {
     case Utils::Event::UPDATE_DRAW:
-        std::cout << "update" << std::endl;
         updateD(entity);
         break;
     case Utils::Event::NEW_DRAW:
@@ -79,29 +78,6 @@ void View::Draw::view() const
     for (const auto& sprite: sprites) {
         window->draw(*sprite.second);
     }
-    /// Junk code for displaying text on to the screen
-    /*
-    sf::Text text;
-
-    // select the font
-    sf::Font font;
-    font.loadFromFile("input/Kulim_Park/KulimPark-Bold.ttf");
-    text.setFont(font); // font is a sf::Font
-
-    // set the string to display
-    int a = sprites.size();
-    std::stringstream ss;
-    ss << a;
-    std::string str = ss.str();
-    text.setString(str);
-
-    // set the character size
-    text.setCharacterSize(24);
-
-    text.setOrigin(30, 30);
-
-    text.setFillColor(sf::Color::Red);
-     */
     window->display();
 }
 

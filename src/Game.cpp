@@ -22,11 +22,10 @@ void Game::start(const std::vector<std::string>& levels)
 
     bool failure{};
 
-    GameParser gameParser{};
+    GameParser gameParser{*this};
     for (const auto& level: levels) {
         // Parse the level and then set all the parsed elements on the current game
         gameParser.parseLevel(level);
-        gameParser.setGame(*this);
 
         failure = play(renderWindow, sharedWorld);
         if (failure) {

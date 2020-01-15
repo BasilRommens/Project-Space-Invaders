@@ -26,11 +26,11 @@ void Model::EnemyShip::removeThis()
 int main(int argc, char** argv)
 {
     try {
-        GameParser gameParser{};
+        Game g;
+        GameParser gameParser{g};
         std::vector<std::string> levels = gameParser.parseGame(argv[1]);
 
         // Start the game
-        Game g;
         g.start(levels);
     }
         // https://nlohmann.github.io/json/classnlohmann_1_1basic__json_a9a0aced019cb1d65bb49703406c84970.html (consulted on 14/01/2020)

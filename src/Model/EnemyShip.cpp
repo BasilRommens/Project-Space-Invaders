@@ -47,11 +47,9 @@ void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
     switch (event) {
     case Utils::Event::MOVE:
         if (direction==Utils::Direction::LEFT) {
-            std::cout << "left move" << std::endl;
             moveLeft();
         }
         else {
-            std::cout << "right move" << std::endl;
             moveRight();
         }
 
@@ -68,7 +66,7 @@ void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
         }
         break;
     default:
-        std::cout << "default triggered" << std::endl;
+        break;
     }
 }
 

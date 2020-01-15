@@ -8,6 +8,9 @@
 #include "GameParser.h"
 #include "Game.h"
 
+GameParser::GameParser(Game& game)
+        :game(game) { }
+
 std::vector<std::string> GameParser::parseGame(const std::string& gameFile)
 {
     // Parse json file of the game
@@ -54,14 +57,14 @@ void GameParser::parsePlayer(const std::string&& player)
     Utils::Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
 
     std::shared_ptr<Model::Entity> playerShip(
-            new Model::PlayerShip(image, position, HP, HSpeed, 20, hitbox, game->world));
+            new Model::PlayerShip(image, position, HP, HSpeed, 20, hitbox, game.world));
     playerShip->addBullet(createBullet(j["Bullet"], playerShip));
-    game->world.addEntity(playerShip);
+    game.world.addEntity(playerShip);
 
     //playerShip->addWorld(world);
 
     std::shared_ptr<ObserverPattern::Observer> observerPlayer(playerShip);
-    game->controller.addObserver(observerPlayer);
+    game.controller.addObserver(observerPlayer);
 }
 
 // TODO error on empty filename
@@ -84,15 +87,15 @@ void GameParser::parseEnemy(const std::string&& enemy)
         Utils::Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
 
         auto enemyShip = std::make_shared<Model::EnemyShip>(
-                Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed, game->world));
+                Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed, game.world));
 
         enemyShip->addBullet(createBullet(ship["Bullet"], enemyShip));
 
         std::shared_ptr<Model::Entity> sharedEntity(enemyShip);
-        game->world.addEntity(sharedEntity);
+        game.world.addEntity(sharedEntity);
 
         std::shared_ptr<ObserverPattern::Observer> sharedObserver(enemyShip);
-        game->controller.addObserver(sharedObserver);
+        game.controller.addObserver(sharedObserver);
 
         std::weak_ptr<Model::EnemyShip> weakEnemy = enemyShip;
         enemyShip->addShip(weakEnemy);
@@ -108,7 +111,7 @@ void GameParser::parseWorld(const std::string& worldName)
     json j;
     i >> j;
 
-    game->world = Model::World(j["Image"], j["End"]);
+    game.world = Model::World(j["Image"], j["End"]);
 }
 
 std::shared_ptr<Model::Bullet>
@@ -140,12 +143,3 @@ GameParser::createBullet(const std::string& fileName, std::weak_ptr<Model::Entit
     return std::make_shared<Model::Bullet>(
             Model::Bullet(image, direction, speed, damage, position, entity, hitbox));
 }
-
-void GameParser::setGame(Game& newGame) const
-{
-    newGame.controller = game->controller;
-    newGame.world = game->world;
-}
-
-GameParser::GameParser()
-        :game(new Game) { }

@@ -23,7 +23,7 @@ class Game;
 
 class GameParser {
 private:
-    std::shared_ptr<Game> game; ///< The new game that will be set
+    Game& game; ///< The current game that will be parsed
 
     /**
      * @brief Loads the player from a string given with it
@@ -57,7 +57,7 @@ public:
     /**
      * @brief The default constructor of the class GameParser
      */
-    GameParser();
+    GameParser(Game& game);
 
     /**
      * @brief Parses a single level file
@@ -71,8 +71,6 @@ public:
      * @return The names of the level files in order
      */
     std::vector<std::string> parseGame(const std::string& gameFile);
-
-    void setGame(Game& newGame) const;
 };
 
 #endif //PROJECT_SPACE_INVADERS_GAMEPARSER_H
