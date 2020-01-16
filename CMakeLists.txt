@@ -22,7 +22,7 @@ add_executable(Project-Space-Invaders
         src/utils/json.hpp
         src/Control/Controller.cpp
         src/utils/Hitbox.cpp
-        src/GameParser.cpp)
+        src/GameParser.cpp src/bad_type.cpp src/bad_type.h src/bad_file.cpp src/bad_file.h)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")

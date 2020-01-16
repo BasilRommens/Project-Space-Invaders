@@ -53,6 +53,7 @@ void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::W
     }
 
     // TODO clean up this mess
+    // TODO find out how to make this neater
     // Remove all the objects that we can't observe in the controller
     // We do this by checking for all the observers if they are still in the world
     for (auto observer: this->getObservers()) {

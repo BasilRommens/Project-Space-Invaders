@@ -16,6 +16,8 @@
 #include "Model/World.h"
 #include "Model/PlayerShip.h"
 #include "Model/EnemyShip.h"
+#include "bad_type.h"
+#include "bad_file.h"
 
 using json = nlohmann::json;
 

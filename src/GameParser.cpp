@@ -46,9 +46,15 @@ void GameParser::parseLevel(const std::string& levelFile)
     }
 
     // TODO make extra functions for applying the observer pattern
-    parseWorld(j["World"]);
-    parsePlayer(j["Player"]);
-    parseEnemy(j["Enemies"]);
+    try {
+        parseWorld(j["World"]);
+        parsePlayer(j["Player"]);
+        parseEnemy(j["Enemies"]);
+    }
+    catch (const bad_type& e) {
+        std::cout << e.what() << std::endl;
+        throw bad_type("One of the files couldnt be parsed due to being the wrong type");
+    }
 }
 
 // TODO error on empty filename
@@ -61,7 +67,7 @@ void GameParser::parsePlayer(const std::string&& player)
 
     // TODO make throw clearer
     if (j["Type"]!="player") {
-        throw;
+        throw bad_type("The type of the player file is wrong");
     }
 
     // downcast the world to the right type to have the right functions at hand
@@ -93,37 +99,57 @@ void GameParser::parseEnemy(const std::string&& enemy)
 
     // TODO make throw clearer
     if (j["Type"]!="enemy") {
-        throw;
+        throw bad_type("The type of the enemy file is wrong");
     }
 
     // downcast the world to the right type to have the right functions at hand
     std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(game.worldObserver);
 
-    double HSpeed = j["HSpeed"];
-    double VSpeed = j["VSpeed"];
+    try {
+        double HSpeed = j["HSpeed"];
+        double VSpeed = j["VSpeed"];
 
-    // TODO if type is a mismatch -> error
-    for (auto ship: j["Ships"]) {
-        std::string image = ship["Image"];
-        Utils::Position position(ship["xPos"], ship["yPos"]);
-        double HP = ship["HP"];
+        // TODO if type is a mismatch -> error
+        for (auto ship: j["Ships"]) {
+            try {
+                std::string image = ship["Image"];
+                Utils::Position position(ship["xPos"], ship["yPos"]);
+                double HP = ship["HP"];
 
-        Utils::Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
+                Utils::Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
 
-        auto enemyShip = std::make_shared<Model::EnemyShip>(
-                Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed, *world));
+                auto enemyShip = std::make_shared<Model::EnemyShip>(
+                        Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed, *world));
 
-        enemyShip->addBullet(createBullet(ship["Bullet"], enemyShip));
+                enemyShip->addBullet(createBullet(ship["Bullet"], enemyShip));
 
-        std::shared_ptr<Model::Entity> sharedEntity(enemyShip);
-        world->addEntity(sharedEntity);
+                std::shared_ptr<Model::Entity> sharedEntity(enemyShip);
+                world->addEntity(sharedEntity);
 
-        std::shared_ptr<ObserverPattern::Observer> sharedObserver(enemyShip);
-        game.controller.addObserver(sharedObserver);
+                std::shared_ptr<ObserverPattern::Observer> sharedObserver(enemyShip);
+                game.controller.addObserver(sharedObserver);
 
-        std::weak_ptr<Model::EnemyShip> weakEnemy = enemyShip;
-        enemyShip->addShip(weakEnemy);
+                std::weak_ptr<Model::EnemyShip> weakEnemy = enemyShip;
+                enemyShip->addShip(weakEnemy);
+            }
+            catch (const json::exception& e) {
+                std::cerr << e.what() << std::endl;
+                std::cerr << "One of the attributes that an enemy needed wasn't available in the json file"
+                          << std::endl;
+                continue; // nothing has been added so we can continue
+            }
+            catch (const bad_type& e) {
+                std::cerr << e.what() << std::endl;
+                std::cout << "The enemy couldn't be created" << std::endl;
+                continue;
+            }
+        }
     }
+    catch (const json::exception& e) {
+        std::cout << e.what() << std::endl;
+        throw bad_file("The enemy type file wasnt correct");
+    }
+
 }
 
 void GameParser::parseWorld(const std::string& worldName)
@@ -135,7 +161,7 @@ void GameParser::parseWorld(const std::string& worldName)
 
     // TODO make throw clearer
     if (j["Type"]!="world") {
-        throw;
+        throw bad_type("The type of the world file is wrong");
     }
 
     game.worldObserver = std::make_shared<Model::World>(Model::World(j["Image"], j["End"]));
@@ -151,7 +177,7 @@ GameParser::createBullet(const std::string& fileName, std::weak_ptr<Model::Entit
 
     // TODO make throw clearer
     if (j["Type"]!="bullet") {
-        throw;
+        throw bad_type("The type of the bullet file is wrong");
     }
 
     Utils::Position position(entity.lock()->getHitbox().getWidth()/2, 0);
