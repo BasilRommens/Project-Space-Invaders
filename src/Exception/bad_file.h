@@ -14,10 +14,17 @@ namespace Exception {
 
     class bad_file : public std::exception {
     private:
-        const char* info;
+        const char* info; ///< Variable that keeps the info about the error that occurred
     public:
+        /**
+         * @return The info about the error that occurred
+         */
         const char* what() const noexcept;
 
+        /**
+         * @brief makes a new object of the type bad_file
+         * @param message: The message that keeps the info about the exception
+         */
         explicit bad_file(const char* message);
     };
 

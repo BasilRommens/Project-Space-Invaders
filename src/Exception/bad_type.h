@@ -13,13 +13,19 @@
 
 namespace Exception {
 
-// TODO add documentation
     class bad_type : public std::exception {
     private:
-        const char* info;
+        const char* info; ///< Variable that keeps the info about the error that occurred
     public:
+        /**
+         * @return The info about the error that occurred
+         */
         const char* what() const noexcept;
 
+        /**
+         * @brief makes a new object of the type bad_type
+         * @param message: The message that keeps the info about the exception
+         */
         explicit bad_type(const char* message);
     };
 
