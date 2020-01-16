@@ -21,7 +21,7 @@ namespace Utils {
     const double frameDuration = 1.0/60.0*1000000.0; ///< The duration of 1 frame
 
     /**
-     * @class Stopwatch: The class that is implemented to be used as a stopwatch
+     * @brief The class that is implemented to be used as a stopwatch
      * @details The class is implemented as a singleton pattern
      * @see [Singleton pattern](https://stackoverflow.com/questions/47558290/singleton-class-with-smart-pointers-and-destructor-being-called)
      */

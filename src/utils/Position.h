@@ -27,6 +27,11 @@ namespace Utils {
         RIGHT
     };
 
+    /**
+     * @brief The class that keeps a 2 dimensional position of the world
+     * @details It needs to stay inside the bounds that are defined in the Transformation.h file
+     * @see Transformation.h
+     */
     class Position {
     private:
         double x{}; ///< The x position in the coordinate system bounded by the transformation file @see Transformation.h

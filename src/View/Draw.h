@@ -36,6 +36,9 @@ namespace Model {
  */
 namespace View {
 
+    /**
+     * @brief This class can be used to draw something on the display with sprites
+     */
     class Draw : public ObserverPattern::Observer {
     private:
         bool open{true}; ///< is a variable to check if the window still is open
@@ -52,6 +55,20 @@ namespace View {
          * @return The sprite that needs to be placed on the screen
          */
         sf::Sprite createSprite(std::shared_ptr<Model::Entity> entity);
+
+        /**
+         * @brief Says to update the position of the entity
+         * @param entity: The entity that needs to be updated
+         * TODO add an error for when there is no entity is passed
+         */
+        void updateD(std::shared_ptr<Model::Entity> entity);
+
+        /**
+         * @brief says that the entity needs to be added to hte
+         * @param entity: The entity that needs to be created as a sprite and displayed
+         * TODO add an error for when there is no entity is passed
+         */
+        void newD(std::shared_ptr<Model::Entity> entity);
 
     public:
         /**
@@ -74,20 +91,6 @@ namespace View {
          * @param event: The event that happened and triggered the notification
          */
         void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) final;
-
-        /**
-         * @brief Says to update the position of the entity
-         * @param entity: The entity that needs to be updated
-         * TODO add an error for when there is no entity is passed
-         */
-        void updateD(std::shared_ptr<Model::Entity> entity);
-
-        /**
-         * @brief says that the entity needs to be added to hte
-         * @param entity: The entity that needs to be created as a sprite and displayed
-         * TODO add an error for when there is no entity is passed
-         */
-        void newD(std::shared_ptr<Model::Entity> entity);
 
         /**
          * @brief make the current sprites visible on the display

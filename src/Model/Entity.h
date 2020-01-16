@@ -29,6 +29,9 @@ namespace Model {
 
     class World;
 
+    /**
+     * @brief is the superclass of all the possible entities in the game
+     */
     class Entity
             : public ObserverPattern::Observer,
               public ObserverPattern::Subject,

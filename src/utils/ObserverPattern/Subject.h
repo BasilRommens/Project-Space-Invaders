@@ -22,6 +22,9 @@
  */
 namespace ObserverPattern {
 
+    /**
+     * @brief The subject class is created so that it can notify each of its observers if something interesting happens
+     */
     class Subject {
     private:
         std::vector<std::shared_ptr<Observer>> observers;

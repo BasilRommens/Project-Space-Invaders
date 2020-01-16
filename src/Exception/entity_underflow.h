@@ -12,6 +12,9 @@
 
 namespace Exception {
 
+    /**
+     * @brief This exception is thrown whenever there aren't enough entities created
+     */
     class entity_underflow : public std::exception {
     private:
         const char* info; ///< Variable that keeps the info about the error that occurred

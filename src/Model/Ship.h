@@ -19,6 +19,9 @@ namespace Model {
 
     class World;
 
+    /**
+     * @brief The general class of the enemy ship and the player ship
+     */
     class Ship : public Entity {
     protected:
         Utils::Position pos; ///< The current position, top right corner, of the ship in the coordinate system that is decided by the variables in utils as upper...

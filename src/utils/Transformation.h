@@ -35,6 +35,10 @@ namespace Utils {
      * @}
      */
 
+    /**
+     * @brief This class returns the values from the given coordinate system to the display in pixels
+     * @details This class has just the call operator implemented (forget the constructor for a little while) in order to simplify the use of transformations in the game
+     */
     class Transformation {
     private:
         static std::shared_ptr<Transformation> instance; ///< The sole instance of the Transformation class
@@ -60,7 +64,6 @@ namespace Utils {
     };
 
 }
-
 /**
  * @}
  */

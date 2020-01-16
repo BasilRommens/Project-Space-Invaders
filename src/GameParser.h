@@ -24,6 +24,9 @@ using json = nlohmann::json;
 
 class Game;
 
+/**
+ * @brief This class is used to parse the game and put it directly in the game itself (not a good design i know)
+ */
 class GameParser {
 private:
     Game& game; ///< The current game that will be parsed

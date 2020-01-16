@@ -31,6 +31,9 @@ namespace Model {
  */
 namespace ObserverPattern {
 
+    /**
+     * @brief The observer class is used to get notified by the subject
+     */
     class Observer {
     public:
         /**

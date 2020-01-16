@@ -19,6 +19,9 @@
  */
 namespace Model {
 
+    /**
+     * @brief This class describes an enemy ship
+     */
     class EnemyShip : public Ship {
     private:
         double VSpeed; ///< The distance the enemyShip will move each time it hits the border of the map in the vertical direction

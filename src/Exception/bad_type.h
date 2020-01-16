@@ -13,6 +13,9 @@
 
 namespace Exception {
 
+    /**
+     * @brief You can throw an exception of this type when the type you have used is not of the correct type
+     */
     class bad_type : public std::exception {
     private:
         const char* info; ///< Variable that keeps the info about the error that occurred
