@@ -10,14 +10,18 @@
 
 #include <exception>
 
-// TODO add documentation
-class entity_underflow : public std::exception {
-private:
-    const char* info;
-public:
-    const char* what() const noexcept;
+namespace Exception {
 
-    explicit entity_underflow(const char* message);
-};
+// TODO add documentation
+    class entity_underflow : public std::exception {
+    private:
+        const char* info;
+    public:
+        const char* what() const noexcept;
+
+        explicit entity_underflow(const char* message);
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_UNDERFLOW_H

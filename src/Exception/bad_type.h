@@ -11,14 +11,18 @@
 
 #include <exception>
 
-// TODO add documentation
-class bad_type : public std::exception {
-private:
-    const char* info;
-public:
-    const char* what() const noexcept;
+namespace Exception {
 
-    explicit bad_type(const char* message);
-};
+// TODO add documentation
+    class bad_type : public std::exception {
+    private:
+        const char* info;
+    public:
+        const char* what() const noexcept;
+
+        explicit bad_type(const char* message);
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_BAD_TYPE_H

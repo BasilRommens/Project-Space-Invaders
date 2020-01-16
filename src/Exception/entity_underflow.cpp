@@ -7,12 +7,12 @@
 
 #include "entity_underflow.h"
 
-entity_underflow::entity_underflow(const char* message)
+Exception::entity_underflow::entity_underflow(const char* message)
 {
     info = message;
 }
 
-const char* entity_underflow::what() const noexcept
+const char* Exception::entity_underflow::what() const noexcept
 {
     return info;
 }

@@ -7,12 +7,12 @@
 
 #include "bad_file.h"
 
-bad_file::bad_file(const char* message)
+Exception::bad_file::bad_file(const char* message)
 {
     info = message;
 }
 
-const char* bad_file::what() const noexcept
+const char* Exception::bad_file::what() const noexcept
 {
     return info;
 }

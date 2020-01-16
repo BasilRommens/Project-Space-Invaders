@@ -10,13 +10,17 @@
 
 #include <exception>
 
-class bad_file : public std::exception {
-private:
-    const char* info;
-public:
-    const char* what() const noexcept;
+namespace Exception {
 
-    explicit bad_file(const char* message);
-};
+    class bad_file : public std::exception {
+    private:
+        const char* info;
+    public:
+        const char* what() const noexcept;
+
+        explicit bad_file(const char* message);
+    };
+
+}
 
 #endif //PROJECT_SPACE_INVADERS_BAD_FILE_H
