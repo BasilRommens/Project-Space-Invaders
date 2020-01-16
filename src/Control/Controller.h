@@ -30,7 +30,7 @@ namespace Control {
          * @param window: The window that is used for graphically displaying the game
          * @param world: The world that is used to view all the entities and use them
          */
-        void run(sf::RenderWindow& window, Model::World& world);
+        void run(sf::RenderWindow& window, std::shared_ptr<Model::World> world);
     };
 
 }

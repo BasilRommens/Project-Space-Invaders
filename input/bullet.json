@@ -1,5 +1,5 @@
 {
-  "Type": "Bullet",
+  "Type": "bullet",
   "Damage": 3,
   "Image": "img/laser.png",
   "Speed": 0.05,

@@ -6,7 +6,7 @@
  */
 #include "Controller.h"
 
-void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
+void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::World> world)
 {
     // notify the world that it needs to check all the collision
     notify(nullptr, Utils::Event::CHECK_COLLISIONS);
@@ -15,7 +15,7 @@ void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
     notify(nullptr, Utils::Event::UNMOVE); // Make all the enemy ships movable
 
     // Update the position of all the bullets
-    for (auto entity: world.getEntities()) {
+    for (auto entity: world->getEntities()) {
         if (entity->getType()=="bullet") {
             // If it is already being observed by the controller class do nothing
             if (not entity->isInControl()) {
@@ -28,7 +28,7 @@ void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
 
     // check all the window's events that were triggered since the last iteration of the loop
     sf::Event event;
-    std::shared_ptr<Model::Entity> player = world.getPlayer();
+    std::shared_ptr<Model::Entity> player = world->getPlayer();
     while (window.pollEvent(event)) {
         // "close requested" event: we close the window
         if (event.type==sf::Event::Closed) {
@@ -57,7 +57,7 @@ void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
     // We do this by checking for all the observers if they are still in the world
     for (auto observer: this->getObservers()) {
         // Do not proceed checking if the observer is the world itself
-        if (observer.get()==&world) {
+        if (observer.get()==world.get()) {
             continue;
         }
         // If the observer is a nullpointer just continue to the next one
@@ -65,7 +65,7 @@ void Control::Controller::run(sf::RenderWindow& window, Model::World& world)
             continue;
         }
         bool found = false;
-        for (auto entity: world.getEntities()) {
+        for (auto entity: world->getEntities()) {
             if (observer==entity) {
                 found = true;
                 break;

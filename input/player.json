@@ -1,5 +1,5 @@
 {
-  "Type": "Player",
+  "Type": "player",
   "xPos": -0.4,
   "yPos": -2,
   "HSpeed": 0.1,

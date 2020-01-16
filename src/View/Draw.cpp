@@ -64,10 +64,10 @@ void View::Draw::newD(std::shared_ptr<Model::Entity> entity)
     addSprite(newSprite);
 }
 
-View::Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const Model::World& world)
+View::Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const std::shared_ptr<Model::World> world)
         :window(window)
 {
-    for (auto entity: world.getEntities()) {
+    for (auto entity: world->getEntities()) {
         newD(entity);
     }
 }

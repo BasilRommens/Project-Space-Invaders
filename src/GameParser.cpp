@@ -18,6 +18,11 @@ std::vector<std::string> GameParser::parseGame(const std::string& gameFile)
     json j;
     i >> j;
 
+    // TODO make throw clearer
+    if (j["Type"]!="game") {
+        throw;
+    }
+
     // add all the levels from the game json to the levels vector
     std::vector<std::string> levels{};
     for (const auto& levelFile: j["Levels"]) {
@@ -35,6 +40,11 @@ void GameParser::parseLevel(const std::string& levelFile)
     json j;
     i >> j;
 
+    // TODO make throw clearer
+    if (j["Type"]!="level") {
+        throw;
+    }
+
     // TODO make extra functions for applying the observer pattern
     parseWorld(j["World"]);
     parsePlayer(j["Player"]);
@@ -49,6 +59,14 @@ void GameParser::parsePlayer(const std::string&& player)
     json j;
     i >> j;
 
+    // TODO make throw clearer
+    if (j["Type"]!="player") {
+        throw;
+    }
+
+    // downcast the world to the right type to have the right functions at hand
+    std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(game.worldObserver);
+
     // TODO if type is a mismatch -> error
     std::string image = j["Image"];
     Utils::Position position(j["xPos"], j["yPos"]);
@@ -57,11 +75,9 @@ void GameParser::parsePlayer(const std::string&& player)
     Utils::Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
 
     std::shared_ptr<Model::Entity> playerShip(
-            new Model::PlayerShip(image, position, HP, HSpeed, 20, hitbox, game.world));
+            new Model::PlayerShip(image, position, HP, HSpeed, 20, hitbox, *world));
     playerShip->addBullet(createBullet(j["Bullet"], playerShip));
-    game.world.addEntity(playerShip);
-
-    //playerShip->addWorld(world);
+    world->addEntity(playerShip);
 
     std::shared_ptr<ObserverPattern::Observer> observerPlayer(playerShip);
     game.controller.addObserver(observerPlayer);
@@ -75,6 +91,14 @@ void GameParser::parseEnemy(const std::string&& enemy)
     json j;
     i >> j;
 
+    // TODO make throw clearer
+    if (j["Type"]!="enemy") {
+        throw;
+    }
+
+    // downcast the world to the right type to have the right functions at hand
+    std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(game.worldObserver);
+
     double HSpeed = j["HSpeed"];
     double VSpeed = j["VSpeed"];
 
@@ -87,20 +111,18 @@ void GameParser::parseEnemy(const std::string&& enemy)
         Utils::Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};
 
         auto enemyShip = std::make_shared<Model::EnemyShip>(
-                Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed, game.world));
+                Model::EnemyShip(image, position, HP, HSpeed, 30, hitbox, VSpeed, *world));
 
         enemyShip->addBullet(createBullet(ship["Bullet"], enemyShip));
 
         std::shared_ptr<Model::Entity> sharedEntity(enemyShip);
-        game.world.addEntity(sharedEntity);
+        world->addEntity(sharedEntity);
 
         std::shared_ptr<ObserverPattern::Observer> sharedObserver(enemyShip);
         game.controller.addObserver(sharedObserver);
 
         std::weak_ptr<Model::EnemyShip> weakEnemy = enemyShip;
         enemyShip->addShip(weakEnemy);
-
-        //enemyShip->addWorld(world);
     }
 }
 
@@ -111,7 +133,12 @@ void GameParser::parseWorld(const std::string& worldName)
     json j;
     i >> j;
 
-    game.world = Model::World(j["Image"], j["End"]);
+    // TODO make throw clearer
+    if (j["Type"]!="world") {
+        throw;
+    }
+
+    game.worldObserver = std::make_shared<Model::World>(Model::World(j["Image"], j["End"]));
 }
 
 std::shared_ptr<Model::Bullet>
@@ -121,6 +148,11 @@ GameParser::createBullet(const std::string& fileName, std::weak_ptr<Model::Entit
     std::ifstream i(fileName);
     json j;
     i >> j;
+
+    // TODO make throw clearer
+    if (j["Type"]!="bullet") {
+        throw;
+    }
 
     Utils::Position position(entity.lock()->getHitbox().getWidth()/2, 0);
     std::string image = j["Image"];

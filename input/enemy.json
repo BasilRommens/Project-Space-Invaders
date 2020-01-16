@@ -1,5 +1,5 @@
 {
-  "Type": "Enemy",
+  "Type": "enemy",
   "VSpeed": 0.4,
   "HSpeed": 0.01,
   "Ships": [

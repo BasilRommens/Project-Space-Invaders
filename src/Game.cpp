@@ -18,7 +18,6 @@ void Game::start(const std::vector<std::string>& levels)
     sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
 
     // TODO causes error because it probably is a member variable :( FIX
-    std::shared_ptr<ObserverPattern::Observer> sharedWorld(&world);
 
     bool failure{};
 
@@ -27,7 +26,7 @@ void Game::start(const std::vector<std::string>& levels)
         // Parse the level and then set all the parsed elements on the current game
         gameParser.parseLevel(level);
 
-        failure = play(renderWindow, sharedWorld);
+        failure = play(renderWindow);
         if (failure) {
             break;
         }
@@ -40,21 +39,29 @@ void Game::start(const std::vector<std::string>& levels)
     if (failure and renderWindow.isOpen()) {
         displayLost(renderWindow);
     }
+
+    // Downcast worldObserver
+    std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(worldObserver);
+
+    this->controller.clearObservers();
 }
 
-bool Game::play(sf::RenderWindow& renderWindow, std::shared_ptr<ObserverPattern::Observer> sharedWorld)
+bool Game::play(sf::RenderWindow& renderWindow)
 {
     bool failure = false;
+
+    // Downcast worldObserver
+    std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(worldObserver);
 
     std::shared_ptr<sf::RenderWindow> window(&renderWindow);
     std::shared_ptr<View::Draw> draw(new View::Draw(window, world));
     std::shared_ptr<ObserverPattern::Observer> drawShared(draw);
 
-    // add draw object to the world because it enables to spawn bullets
-    world.addObserver(drawShared);
+    // add draw object to the worldObserver because it enables to spawn bullets
+    world->addObserver(drawShared);
 
     // Add the the observer to each of the dummy bullets of the players/enemies
-    for (auto entity: world.getEntities()) {
+    for (auto entity: world->getEntities()) {
         if (entity->getType()=="enemy" or entity->getType()=="player") {
             std::shared_ptr<Model::Bullet> bullet = entity->getDummyBullet();
             bullet->addObserver(drawShared);
@@ -62,12 +69,12 @@ bool Game::play(sf::RenderWindow& renderWindow, std::shared_ptr<ObserverPattern:
     }
 
     // Add the draw object to each class
-    for (const auto entity: world.getEntities()) {
+    for (const auto entity: world->getEntities()) {
         entity->addObserver(drawShared);
     }
 
-    // Add the world to the controller for observation in order to apply collision detection
-    controller.addObserver(sharedWorld);
+    // Add the worldObserver to the controller for observation in order to apply collision detection
+    controller.addObserver(worldObserver);
 
     // run the program as long as the window is open
     while (renderWindow.isOpen()) {
@@ -83,12 +90,12 @@ bool Game::play(sf::RenderWindow& renderWindow, std::shared_ptr<ObserverPattern:
             break;
         }
         // if the player has been destroyed
-        if (not world.hasPlayer()) {
+        if (not world->hasPlayer()) {
             failure = true;
             break;
         }
         // if there are no enemies left in space
-        if (not world.hasEnemies()) {
+        if (not world->hasEnemies()) {
             break;
         }
         draw->view();
@@ -96,7 +103,7 @@ bool Game::play(sf::RenderWindow& renderWindow, std::shared_ptr<ObserverPattern:
         wait();
     }
 
-    world.reset();
+    worldObserver.reset();
     controller.clearObservers();
     return failure;
 }
@@ -137,9 +144,4 @@ void Game::displayLost(sf::RenderWindow& renderWindow)
     renderWindow.draw(text);
     renderWindow.display();
     while (true) { }
-}
-
-void Game::setWorld(const Model::World world)
-{
-    Game::world = world;
 }

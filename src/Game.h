@@ -33,7 +33,7 @@ class Game {
 private:
     friend GameParser; ///< used to simplify code writing, prone to errors (without get/set)
 
-    Model::World world; ///< The world that is used for containing all the entities
+    std::shared_ptr<ObserverPattern::Observer> worldObserver; ///< The world that is used for containing all the entities is a shared pointer because it is used later
 
     Control::Controller controller; ///< The controller will be used to control the game
 
@@ -51,7 +51,7 @@ private:
      * @param sharedWorld: The world that is a shared pointer
      * @return If the level was succesfully finished
      */
-    bool play(sf::RenderWindow& renderWindow, std::shared_ptr<ObserverPattern::Observer> sharedWorld);
+    bool play(sf::RenderWindow& renderWindow);
 
     /**
      * @brief adds a delay to the game in order to preserve its framerate, and skips when it already passed its frame count
@@ -70,12 +70,6 @@ public:
      * @param levels: The levels that will be played in order when succesfully completed
      */
     void start(const std::vector<std::string>& levels);
-
-    /**
-     * @brief sets the world with another world
-     * @param world: The world that will replace the current world
-     */
-    void setWorld(Model::World world);
 };
 
 #endif //PROJECT_SPACE_INVADERS_GAME_H
