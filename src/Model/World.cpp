@@ -10,10 +10,24 @@
 void Model::World::addEntity(std::shared_ptr<Entity> entity)
 {
     try {
+        // If the entity doesnt point to anything then dont add it to the file
         if (!entity) {
-            throw std::invalid_argument(
-                    "No observer has been passed through in the method addObserver from the class Subject");
+            std::cerr << "No observer has been passed through in the method addObserver from the class Subject"
+                      << std::endl;
+            return;
+
         }
+        // here we are going to check if all the element to insert isnt going to collide with the other elements otherwise we cant add it
+        for (auto worldEntity: entities) {
+            // If the entity to be added is colliding with an entity of the world then quit the function and display error message
+            if (areColliding(worldEntity, entity)) {
+                std::cerr
+                        << "The current to be inserted entity is colliding with the entities already in the world, therefore it won't be added"
+                        << std::endl;
+                return;
+            }
+        }
+        // add the entity to the entities
         entities.push_back(entity);
     }
     catch (std::exception& e) {
