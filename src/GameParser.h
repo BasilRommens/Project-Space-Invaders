@@ -58,13 +58,13 @@ private:
          * TODO add a check if the weakptr is valid
          * TODO add a check if the filename is valid
          */
-        std::shared_ptr<Model::Bullet> createBullet(const std::string& fileName, std::weak_ptr<Model::Entity> entity);
+        static std::shared_ptr<Model::Bullet> createBullet(const std::string& fileName, std::weak_ptr<Model::Entity> entity);
 
 public:
         /**
          * @brief The default constructor of the class GameParser
          */
-        GameParser(Game& game);
+        explicit GameParser(Game& game);
 
         /**
          * @brief Parses a single level file
@@ -77,7 +77,7 @@ public:
          * @param gameFile: The file name of the game to parse
          * @return The names of the level files in order
          */
-        std::vector<std::string> parseGame(const std::string& gameFile);
+        static std::vector<std::string> parseGame(const std::string& gameFile);
 };
 
 #endif // PROJECT_SPACE_INVADERS_GAMEPARSER_H

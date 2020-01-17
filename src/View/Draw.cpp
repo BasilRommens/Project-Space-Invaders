@@ -38,7 +38,7 @@ void View::Draw::onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event ev
 void View::Draw::updateD(std::shared_ptr<Model::Entity> entity)
 {
         std::shared_ptr<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> spriteToUpdate{};
-        for (auto sprite : sprites) {
+        for (const auto& sprite : sprites) {
                 if (sprite.first == entity) {
                         spriteToUpdate =
                             std::make_shared<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>>(
@@ -65,11 +65,11 @@ void View::Draw::newD(std::shared_ptr<Model::Entity> entity)
         addSprite(newSprite);
 }
 
-View::Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const std::shared_ptr<Model::World> world)
-    : window(window)
+View::Draw::Draw(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Model::World> world)
+    : window(std::move(window))
 {
         newD(world);
-        for (auto entity : world->getEntities()) {
+        for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
                 newD(entity);
         }
 }

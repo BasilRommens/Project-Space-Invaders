@@ -77,7 +77,7 @@ public:
         /**
          * @brief destructor of draw
          */
-        virtual ~Draw();
+        ~Draw() final;
 
         /**
          * @brief The constructor of Draw
@@ -86,7 +86,7 @@ public:
          * TODO add an error for when there is no window is passed
          * TODO add an error for when there is no world is passed
          */
-        Draw(const std::shared_ptr<sf::RenderWindow>& window, const std::shared_ptr<Model::World> world);
+        Draw(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Model::World> world);
 
         /**
          * @brief The function inherited from the class Observer, used to receive notifications from their subjects

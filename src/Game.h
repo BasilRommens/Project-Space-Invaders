@@ -67,7 +67,7 @@ public:
         /**
          * @brief The default game constructor
          */
-        Game();
+        Game() = default;
 
         /**
          * @brief Starts playing levels in the order they are passed through

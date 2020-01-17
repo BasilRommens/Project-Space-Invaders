@@ -11,8 +11,6 @@
 // set the instance of the Stopwatch to nullptr to be not pointing to anything
 std::shared_ptr<Utils::Stopwatch> Utils::Stopwatch::instance = nullptr;
 
-Game::Game() {}
-
 void Game::start(const std::vector<std::string>& levels)
 {
         sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
@@ -61,7 +59,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
         world->addObserver(drawShared);
 
         // Add the the observer to each of the dummy bullets of the players/enemies
-        for (auto entity : world->getEntities()) {
+        for (const std::shared_ptr<Model::Entity> entity : world->getEntities()) {
                 if (entity->getType() == "enemy" or entity->getType() == "player") {
                         std::shared_ptr<Model::Bullet> bullet = entity->getDummyBullet();
                         bullet->addObserver(drawShared);
@@ -69,7 +67,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
         }
 
         // Add the draw object to each class
-        for (const auto entity : world->getEntities()) {
+        for (const std::shared_ptr<Model::Entity> entity : world->getEntities()) {
                 entity->addObserver(drawShared);
         }
 
@@ -111,7 +109,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
 void Game::wait() const
 {
         // TODO remove the 1000000.f because its ugly
-        int elapsedTime = stopwatch->get_lap().count() * 1000000.f;
+        int elapsedTime = floor(stopwatch->get_lap().count() * 1000000.f);
         if (elapsedTime < Utils::frameDuration) {
                 // multiplied by 100 cause framerate doesnt seem right
                 usleep(Utils::frameDuration - elapsedTime);
@@ -141,7 +139,7 @@ void Game::displayLost(sf::RenderWindow& renderWindow) const
 
         // set the color
         text.setColor(sf::Color::White);
-        text.setPosition(renderWindow.getPosition().x / 2 - text.getGlobalBounds().width / 4, 0);
+        text.setPosition(renderWindow.getPosition().x / 2.f - text.getGlobalBounds().width / 4.f, 0.f);
 
         renderWindow.clear();
         renderWindow.draw(text);
