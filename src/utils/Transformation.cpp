@@ -7,8 +7,6 @@
 
 #include "Transformation.h"
 
-Utils::Transformation::Transformation() {}
-
 std::shared_ptr<Utils::Transformation>& Utils::Transformation::getTransformation()
 {
         // If the Transformation object has not yet been constructed

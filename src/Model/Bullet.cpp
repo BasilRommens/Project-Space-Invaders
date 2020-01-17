@@ -68,10 +68,9 @@ void Model::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 
 void Model::Bullet::setPosition(Utils::Position newPos) { pos.setPosition(newPos); }
 
-Model::Bullet::Bullet(std::shared_ptr<Bullet> other): Entity(other->getImage())
+Model::Bullet::Bullet(std::shared_ptr<Bullet> other): hitbox(other->hitbox), Entity(other->getImage())
 {
         this->direction = other->direction;
-        this->hitbox = other->hitbox;
         this->speed = other->speed;
         this->pos = other->pos; // Needs modification later on
         this->damage = other->damage;
@@ -90,3 +89,8 @@ bool Model::Bullet::collidable() const { return true; }
 double Model::Bullet::getDamage() const { return damage; }
 
 Utils::Direction Model::Bullet::getDirection() const { return direction; }
+
+const Utils::Hitbox& Model::Bullet::getHitbox() const
+{
+        return hitbox;
+}

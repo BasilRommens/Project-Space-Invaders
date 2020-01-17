@@ -13,8 +13,6 @@ std::chrono::duration<double> Utils::Stopwatch::get_lap() const { return std::ch
 
 void Utils::Stopwatch::stop() { stopTime = std::chrono::system_clock::now(); }
 
-std::chrono::duration<double> Utils::Stopwatch::getTotalDif() const { return startTime - stopTime; }
-
 void Utils::Stopwatch::reset() { start(); }
 
 std::shared_ptr<Utils::Stopwatch>& Utils::Stopwatch::getStopwatch()

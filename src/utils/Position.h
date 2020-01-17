@@ -8,6 +8,8 @@
 #ifndef PROJECT_SPACE_INVADERS_POSITION_H
 #define PROJECT_SPACE_INVADERS_POSITION_H
 
+#include <stdexcept>
+
 #include "Hitbox.h"
 #include "Transformation.h"
 
@@ -37,22 +39,16 @@ class Position
 {
 private:
         double
-            x{}; ///< The x position in the coordinate system bounded by the transformation file @see Transformation.h
+            x; ///< The x position in the coordinate system bounded by the transformation file @see Transformation.h
         double
-            y{}; ///< The x position in the coordinate system decided by the transformation file @see Transformation.h
+            y; ///< The x position in the coordinate system decided by the transformation file @see Transformation.h
 public:
         /**
-         * @brief The default constructor of the Position class
-         */
-        Position();
-
-        /**
          * @brief The constructor of the Position class with both the x and y value to be set
-         * @param x: The x value to be set as the x position
-         * @param y: The y value to be set as the y position
+         * @param x: The x value to be set as the x position (default 0)
+         * @param y: The y value to be set as the y position (default 0)
          */
-        // TODO add a check if within bounds
-        Position(double x, double y);
+        explicit Position(double x = 0.f, double y = 0.f);
 
         /**
          * @brief moves the x value over a certain distance while keeping it in the bounds declared in the

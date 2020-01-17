@@ -59,12 +59,6 @@ public:
         void stop();
 
         /**
-         *
-         * @return the duration from the start time to the stop time
-         */
-        std::chrono::duration<double> getTotalDif() const;
-
-        /**
          * @brief resets the stopwatch by setting the start time to the current time
          */
         void reset();

@@ -8,6 +8,8 @@
 #ifndef PROJECT_SPACE_INVADERS_HITBOX_H
 #define PROJECT_SPACE_INVADERS_HITBOX_H
 
+#include <stdexcept>
+
 /**
  * @addtogroup Utils
  * @{
@@ -21,8 +23,8 @@ namespace Utils {
 class Hitbox
 {
 private:
-        double width{};  ///< The width of the Hitbox
-        double height{}; ///< The height of the Hitbox
+        double width;  ///< The width of the Hitbox
+        double height; ///< The height of the Hitbox
 public:
         /**
          * @brief The constructor of the hitbox class

@@ -16,18 +16,20 @@ void Model::World::addEntity(std::shared_ptr<Entity> entity)
                             << "No observer has been passed through in the method addObserver from the class Subject"
                             << std::endl;
                         return;
-                }
-                // here we are going to check if all the element to insert isnt going to collide with the other elements
-                // otherwise we cant add it
-                for (std::shared_ptr<Entity> worldEntity : entities) {
+                } // If the entity type is a bullet then quit the procedure to check for collisions
+                else if (entity->getType() != "bullet") {
+                    // here we are going to check if all the element to insert isnt going to collide with the other elements
+                    // otherwise we cant add it
+                    for (std::shared_ptr<Entity> worldEntity : entities) {
                         // If the entity to be added is colliding with an entity of the world then quit the function and
                         // display error message
                         if (areColliding(worldEntity, entity)) {
-                                std::cerr << "The current to be inserted entity is colliding with the entities already "
-                                             "in the world, therefore it won't be added"
-                                          << std::endl;
-                                return;
+                            std::cerr << "The current to be inserted entity is colliding with the entities already "
+                                         "in the world, therefore it won't be added"
+                                      << std::endl;
+                            return;
                         }
+                    }
                 }
                 // add the entity to the entities
                 entities.push_back(entity);
@@ -71,6 +73,8 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
                                         }
                                         if (thisEntity == otherEntity) {
                                                 continue;
+                                        } else if (thisEntity->getType() == "world" or otherEntity->getType() == "world") {
+                                            continue;
                                         }
                                         // TODO simplify this with a std algorithm function
                                         auto foundPair = false;

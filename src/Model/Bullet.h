@@ -106,6 +106,11 @@ public:
          * @return The direction in which the bullet is travelling
          */
         Utils::Direction getDirection() const final;
+
+        /**
+         * @return The hitbox of the bullet
+         */
+        const Utils::Hitbox& getHitbox() const final;
 };
 
 } // namespace Model

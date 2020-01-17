@@ -48,7 +48,7 @@ private:
         /**
          * @brief The default constructor of Transformation
          */
-        Transformation();
+        Transformation() = default;
 
 public:
         /**
