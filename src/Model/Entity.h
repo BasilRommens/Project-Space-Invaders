@@ -84,8 +84,8 @@ public:
         /**
          * @brief Will set the position of the entity
          * @param newPos: The new position of the entity
+         * @see Ship.h
          */
-        // TODO check if the position is valid
         virtual void setPosition(Utils::Position newPos);
 
         /**
@@ -139,14 +139,12 @@ public:
          * @see Ship.h
          * @brief Adds a dummy bullet to one of the ship entities as a base to create bullets from more easily
          * @param dummyBullet: The bullet that is used as a base to shoot bullets into the void
-         * TODO check that the dummy bullet is of the class
          */
         virtual void addBullet(std::shared_ptr<Bullet> dummyBullet);
 
         /**
          * @see Ship.h
          * @return Creates a bullet based on the current position of the ship
-         * TODO check if the dummy bullet exists
          */
         virtual std::shared_ptr<Entity> spawnBullet() const;
 
@@ -183,7 +181,6 @@ public:
         /**
          * @see EnemyShip.h
          * @brief Remove the ship from the list of otherShips
-         * TODO find better name
          */
         virtual void removeThis();
 

@@ -5,7 +5,6 @@
  * @brief The header file of PlayerShip class
  */
 #include "PlayerShip.h"
-#include "World.h" // TODO check if possible in h file
 
 Model::PlayerShip::PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
                               int bulletDelay, const Utils::Hitbox& hitbox, Model::World& world)
@@ -53,7 +52,7 @@ void Model::PlayerShip::moveRight()
 {
         try {
                 pos.moveXPos(HSpeed, hitbox);
-        } catch (std::exception& test) { // TODO find better name
+        } catch (std::exception& e) { // This is a structure to detect if the player has hit the wall
         }
 }
 
@@ -61,7 +60,7 @@ void Model::PlayerShip::moveLeft()
 {
         try {
                 pos.moveXPos(-HSpeed, hitbox);
-        } catch (std::exception& test) { // TODO find better name
+        } catch (std::exception& e) { // This is a structure to detect if the player has hit the wall
         }
 }
 

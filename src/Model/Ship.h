@@ -91,7 +91,6 @@ public:
         /**
          * @brief sets the new position of the current ship according to the parameter passed through
          * @param newPos: The position to set for the ship
-         * TODO add a check to check if the new position is valid in the new system
          */
         void setPosition(Utils::Position newPos) final;
 

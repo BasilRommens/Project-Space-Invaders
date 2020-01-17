@@ -30,6 +30,10 @@ namespace Control {
 class Controller : public ObserverPattern::Subject
 {
 private:
+    /**
+     * @brief removes all the observers that arent found anymore in the world as entities
+     * @param world: The world in which to check for entities
+     */
     void removeUnnecessaryObservers(std::shared_ptr<Model::World> world);
 public:
         /**'

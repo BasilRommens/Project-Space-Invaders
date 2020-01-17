@@ -70,7 +70,6 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
             // Check for every entity except itself if it intersects with one
             for (std::shared_ptr<Entity> thisEntity : entities) {
                 for (std::shared_ptr<Entity> otherEntity : entities) {
-                    // TODO why is it behaving so weird
                     if (not thisEntity or not otherEntity) {
                         continue;
                     }
@@ -99,7 +98,6 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
                         pairs.emplace_back(std::make_pair(thisEntity, otherEntity));
                     }
 
-                    // TODO add extra checks for bullets passing enemy ships when the bullet is
                     // enemy
                     std::shared_ptr<Entity> bullet;
                     std::shared_ptr<Entity> localEntity;

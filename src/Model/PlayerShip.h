@@ -9,6 +9,7 @@
 #define PROJECT_SPACE_INVADERS_PLAYERSHIP_H
 
 #include "Ship.h"
+#include "World.h"
 
 namespace Model {
 
