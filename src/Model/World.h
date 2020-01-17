@@ -15,6 +15,7 @@
 
 #include "Entity.h"
 #include "Bullet.h"
+#include "../Exception/entity_underflow.h"
 
 namespace Model {
 
@@ -26,7 +27,9 @@ namespace Model {
     private:
         std::vector<std::shared_ptr<Model::Entity>> entities; ///< All the entities of the game itself
 
-        double endLine{0.f};
+        double endLine{0.f}; ///< The variable that keeps the end of the world
+
+        bool end{false}; ///< indicates if this world has ended
 
         /**
          * @brief checks if two already collidable entities are colliding
@@ -118,6 +121,23 @@ namespace Model {
          * @brief will reset the world, i.e. removing all the entities from itself and removing all the observers
          */
         void reset();
+
+        /**
+         * @param entity: The entity that we need to check for if it has crossed the endline
+         * @return if the entity has crossed the endLine
+         */
+        bool hitEndLine(std::shared_ptr<Model::Entity> entity);
+
+        /**
+         * @return If the world has ended
+         */
+        bool isEnd() const;
+
+        /**
+         * @brief Sets the new end state of the world
+         * @param end: The variable that will set the end of the world
+         */
+        void setEnd(bool end);
     };
 
 }

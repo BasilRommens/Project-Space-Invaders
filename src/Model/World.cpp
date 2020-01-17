@@ -128,14 +128,11 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
     }
     else if (entity and event==Utils::Event::MOVED_DOWN) {
         // TODO Fix this code because it will error big time
-        if (entity->getPos()->getY()<endLine) {
-            throw;
-        }
+
     }
 
-    // TODO throw error when no entity is detected
     if (not entity and event==Utils::Event::FIRE_BULLET) {
-        throw std::domain_error("There is no entity to fire the bullet from");
+        throw Exception::entity_underflow("There is no entity to fire the bullet from");
     }
 }
 
@@ -247,4 +244,22 @@ bool Model::World::hasEnemies() const
     }
     // If we didnt find an enemy then return false
     return false;
+}
+
+bool Model::World::hitEndLine(std::shared_ptr<Model::Entity> entity)
+{
+    if (entity->getPos()->getY()<endLine) {
+        return true;
+    }
+    return false;
+}
+
+bool Model::World::isEnd() const
+{
+    return end;
+}
+
+void Model::World::setEnd(bool end)
+{
+    World::end = end;
 }

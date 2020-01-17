@@ -74,7 +74,7 @@ void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::W
         }
         // If we did not find it in the world then we can delete it
         if (not found) {
-            if (observer->getType() == "enemy") {
+            if (observer->getType()=="enemy") {
                 std::shared_ptr<Model::Entity> entity = std::static_pointer_cast<Model::Entity>(observer);
                 entity->removeThis();
                 entity->clearObservers();

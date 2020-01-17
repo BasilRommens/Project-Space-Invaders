@@ -68,11 +68,6 @@ namespace Model {
 
     public:
         /**
-         * @brief The destructor of the enemyShip
-         */
-        virtual ~EnemyShip();
-
-        /**
          * @brief The constructor of the enemyShip
          * @param image: The image which will define the enemyships appearance
          * @param pos: The position of the enemyShip (top left corner)

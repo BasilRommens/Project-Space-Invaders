@@ -89,8 +89,8 @@ bool Game::play(sf::RenderWindow& renderWindow)
         if (not draw->isOpen()) {
             break;
         }
-        // if the player has been destroyed
-        if (not world->hasPlayer()) {
+        // if the player has been destroyed or the enemies hit the endLine
+        if (not world->hasPlayer() or world->isEnd()) {
             failure = true;
             break;
         }

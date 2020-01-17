@@ -83,7 +83,8 @@ void Model::EnemyShip::moveRight()
     }
     double newPos = pos.getX();
     auto newDistance = std::abs(prevPos-newPos);
-    // begin to move all the ships if the travelled distance is smaller than the
+    // begin to move all the ships if the travelled distance is smaller than the speed
+    // (with a small offset to ensure floating point errors dont account for this distance)
     if (newDistance<HSpeed*.98) {
         distance = newDistance;
         // Update all the ships with the new distance
@@ -91,6 +92,12 @@ void Model::EnemyShip::moveRight()
             swapDirection(ship.lock());
             // Move every ship down because we hit the end of the map
             ship.lock()->pos.moveYPos(-VSpeed, hitbox);
+
+            // If the endline has been hit by one of the ships set the end of the world to true
+            if (world.hitEndLine(ship.lock())) {
+                world.setEnd(true);
+            }
+
             if (ship.lock().get()==this) {
                 continue;
             }
@@ -130,6 +137,12 @@ void Model::EnemyShip::moveLeft()
             swapDirection(ship.lock());
             // Move every ship down because we hit the end of the map
             ship.lock()->pos.moveYPos(-VSpeed, hitbox);
+
+            // If the endline has been hit by one of the ships set the end of the world to true
+            if (world.hitEndLine(ship.lock())) {
+                world.setEnd(true);
+            }
+
             if (ship.lock().get()==this) {
                 continue;
             }
@@ -151,11 +164,6 @@ void Model::EnemyShip::moveLeft()
 std::string Model::EnemyShip::getType() const
 {
     return "enemy";
-}
-
-Model::EnemyShip::~EnemyShip()
-{
-
 }
 
 double Model::EnemyShip::getDistance() const
