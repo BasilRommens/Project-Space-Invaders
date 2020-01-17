@@ -125,6 +125,7 @@ void Game::displayLost(sf::RenderWindow& renderWindow)
 
     sf::Font font;
 
+    // TODO make this a const thing
     if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
         throw std::domain_error("failed to load font");
     }

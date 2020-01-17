@@ -17,10 +17,13 @@
 #include "../utils/Hitbox.h"
 
 /**
+ * @namespace Model This namespace exists to indicate all the entities in the game
+ */
+
+/**
  * @addtogroup Model
  * @{
  */
-/// TODO clean up this fucking mess of a class by casting pointers
 namespace Model {
 
     class Ship;
@@ -32,6 +35,7 @@ namespace Model {
     /**
      * @brief is the superclass of all the possible entities in the game
      */
+    /// TODO clean up this fucking mess of a class by casting pointers
     class Entity
             : public ObserverPattern::Observer,
               public ObserverPattern::Subject,

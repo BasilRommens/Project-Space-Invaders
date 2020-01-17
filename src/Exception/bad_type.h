@@ -11,6 +11,10 @@
 
 #include <exception>
 
+/**
+ * @addtogroup Exception
+ * @{
+ */
 namespace Exception {
 
     /**
@@ -33,5 +37,8 @@ namespace Exception {
     };
 
 }
+/**
+ * @}
+ */
 
 #endif //PROJECT_SPACE_INVADERS_BAD_TYPE_H

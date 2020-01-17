@@ -15,6 +15,10 @@
 #include "../Model/World.h"
 
 /**
+ * @namespace Control The namespace Control can be used to indicate the parts of the control
+ */
+
+/**
  * @addtogroup Control
  * @{
  */

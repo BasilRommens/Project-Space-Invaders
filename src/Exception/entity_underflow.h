@@ -10,6 +10,10 @@
 
 #include <exception>
 
+/**
+ * @addtogroup Exception
+ * @{
+ */
 namespace Exception {
 
     /**
@@ -32,5 +36,8 @@ namespace Exception {
     };
 
 }
+/**
+ * @}
+ */
 
 #endif //PROJECT_SPACE_INVADERS_ENTITY_UNDERFLOW_H
