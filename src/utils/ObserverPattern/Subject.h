@@ -48,7 +48,7 @@ protected:
          * @param typeName: The name of the type that is searched
          * @return The observer item of that type
          */
-        std::shared_ptr<Observer> retrieveObserver(const std::string typeName) const;
+        std::shared_ptr<Observer> retrieveObserver(const std::string& typeName) const;
 
 public:
         /**

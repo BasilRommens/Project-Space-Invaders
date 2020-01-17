@@ -17,12 +17,14 @@ add_executable(Project-Space-Invaders
         src/utils/Event.h
         src/Game.cpp
         src/utils/ObserverPattern/Subject.cpp
-        src/utils/ObserverPattern/Observer.cpp
         src/View/Draw.cpp
         src/utils/json.hpp
         src/Control/Controller.cpp
         src/utils/Hitbox.cpp
-        src/GameParser.cpp src/Exception/bad_type.cpp src/Exception/bad_type.h src/Exception/bad_file.cpp src/Exception/bad_file.h src/Exception/entity_underflow.cpp src/Exception/entity_underflow.h)
+        src/GameParser.cpp
+        src/Exception/bad_type.cpp
+        src/Exception/bad_file.cpp
+        src/Exception/entity_underflow.cpp)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")

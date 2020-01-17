@@ -6,6 +6,7 @@
  */
 
 #include "Subject.h"
+#include "../../Model/World.h"
 
 void ObserverPattern::Subject::addObserver(std::shared_ptr<Observer> observer)
 {
@@ -54,14 +55,15 @@ const std::vector<std::shared_ptr<ObserverPattern::Observer>>& ObserverPattern::
 
 ObserverPattern::Subject::~Subject() { observers.clear(); }
 
-std::shared_ptr<ObserverPattern::Observer> ObserverPattern::Subject::retrieveObserver(const std::string typeName) const
+std::shared_ptr<ObserverPattern::Observer> ObserverPattern::Subject::retrieveObserver(const std::string& typeName) const
 {
-        // TODO fix false code
-        return observers[0];
         for (auto observer : observers) {
-                std::string type = observer.get()->getType();
-                if (type == "world") {
+                try {
+                        // try to downcast to world in order to get the correct type that way
+                        std::static_pointer_cast<Model::World>(observer);
                         return observer;
+                }catch (...) {
+                        // Do nothing
                 }
         }
         return nullptr;

@@ -44,7 +44,7 @@ public:
         /**
          * @brief Destructor of the Observer
          */
-        virtual ~Observer();
+        virtual ~Observer() = default;
 
         /**
          * @brief A pure virtual function that needs to act accordingly when certain events are passed through
