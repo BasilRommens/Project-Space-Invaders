@@ -7,54 +7,50 @@
 
 #include "Transformation.h"
 
-Utils::Transformation::Transformation() { }
+Utils::Transformation::Transformation() {}
 
 std::shared_ptr<Utils::Transformation>& Utils::Transformation::getTransformation()
 {
-    // If the Transformation object has not yet been constructed
-    if (!instance) {
-        instance = std::shared_ptr<Transformation>(new Transformation());
-    }
-    return instance;
+        // If the Transformation object has not yet been constructed
+        if (!instance) {
+                instance = std::shared_ptr<Transformation>(new Transformation());
+        }
+        return instance;
 }
 
 std::pair<int, int> Utils::Transformation::operator()(double x, double y, unsigned int width, unsigned int height)
 {
-    // TODO fix faulty code
-    double scaleWidth = width/(-CoordinateBound::LOWER_X+CoordinateBound::UPPER_X);
-    double scaleHeight = height/(-CoordinateBound::LOWER_Y+CoordinateBound::UPPER_Y);
+        // TODO fix faulty code
+        double scaleWidth = width / (-CoordinateBound::LOWER_X + CoordinateBound::UPPER_X);
+        double scaleHeight = height / (-CoordinateBound::LOWER_Y + CoordinateBound::UPPER_Y);
 
-    try {
-        // change the coordinates in the [-4,4] x [-3,3] system to the screen pixels
-        double retX = (x-CoordinateBound::LOWER_X)*scaleWidth;
-        double retY = -(y-CoordinateBound::UPPER_Y)*scaleHeight;
+        try {
+                // change the coordinates in the [-4,4] x [-3,3] system to the screen pixels
+                double retX = (x - CoordinateBound::LOWER_X) * scaleWidth;
+                double retY = -(y - CoordinateBound::UPPER_Y) * scaleHeight;
 
-        // exception handling
-        std::string e; // Initializing the out of range exception with nothing
-        bool throwIt = false;
-        if (retX<0) {
-            e = "retX is too small to be on screen\n";
-            throwIt = true;
-        }
-        else if (retX>width) {
-            e = "retX is too big to be on screen\n";
-            throwIt = true;
-        }
+                // exception handling
+                std::string e; // Initializing the out of range exception with nothing
+                bool throwIt = false;
+                if (retX < 0) {
+                        e = "retX is too small to be on screen\n";
+                        throwIt = true;
+                } else if (retX > width) {
+                        e = "retX is too big to be on screen\n";
+                        throwIt = true;
+                }
 
-        if (retY<0) {
-            throw std::out_of_range(e+"retY is too small to be on screen");
-        }
-        else if (retY>height) {
-            throw std::out_of_range(e+"retY is too big to be on screen");
-        }
-        else if (throwIt) {
-            throw std::out_of_range(e);
-        }
+                if (retY < 0) {
+                        throw std::out_of_range(e + "retY is too small to be on screen");
+                } else if (retY > height) {
+                        throw std::out_of_range(e + "retY is too big to be on screen");
+                } else if (throwIt) {
+                        throw std::out_of_range(e);
+                }
 
-        return std::make_pair(std::round(retX), std::round(retY));
-    }
-    catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
-        return std::make_pair(0, 0);
-    }
+                return std::make_pair(std::round(retX), std::round(retY));
+        } catch (std::exception& e) {
+                std::cout << e.what() << std::endl;
+                return std::make_pair(0, 0);
+        }
 }

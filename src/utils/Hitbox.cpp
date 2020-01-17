@@ -7,15 +7,8 @@
 
 #include "Hitbox.h"
 
-Utils::Hitbox::Hitbox(double width, double height)
-        :width(width), height(height) { }
+Utils::Hitbox::Hitbox(double width, double height) : width(width), height(height) {}
 
-double Utils::Hitbox::getWidth() const
-{
-    return width;
-}
+double Utils::Hitbox::getWidth() const { return width; }
 
-double Utils::Hitbox::getHeight() const
-{
-    return height;
-}
+double Utils::Hitbox::getHeight() const { return height; }

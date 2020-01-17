@@ -18,15 +18,15 @@
  */
 namespace Model {
 
-    class Entity;
-
+class Entity;
 }
 /**
  * @}
  */
 
 /**
- * @namespace ObserverPattern The namespace that contains every class that is necessary to make the observer pattern come true
+ * @namespace ObserverPattern The namespace that contains every class that is necessary to make the observer pattern
+ * come true
  */
 
 /**
@@ -35,11 +35,12 @@ namespace Model {
  */
 namespace ObserverPattern {
 
-    /**
-     * @brief The observer class is used to get notified by the subject
-     */
-    class Observer {
-    public:
+/**
+ * @brief The observer class is used to get notified by the subject
+ */
+class Observer
+{
+public:
         /**
          * @brief Destructor of the Observer
          */
@@ -55,11 +56,11 @@ namespace ObserverPattern {
          * @return The type of the observer, when inherited it is especially useful
          */
         virtual std::string getType() const = 0;
-    };
+};
 
-}
+} // namespace ObserverPattern
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_OBSERVER_H
+#endif // PROJECT_SPACE_INVADERS_OBSERVER_H

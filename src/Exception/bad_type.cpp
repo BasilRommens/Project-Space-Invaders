@@ -7,12 +7,6 @@
 
 #include "bad_type.h"
 
-Exception::bad_type::bad_type(const char* message)
-{
-    info = message;
-}
+Exception::bad_type::bad_type(const char* message) { info = message; }
 
-const char* Exception::bad_type::what() const noexcept
-{
-    return info;
-}
+const char* Exception::bad_type::what() const noexcept { return info; }

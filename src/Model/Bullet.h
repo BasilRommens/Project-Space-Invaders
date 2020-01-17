@@ -8,10 +8,10 @@
 #ifndef PROJECT_SPACE_INVADERS_BULLET_H
 #define PROJECT_SPACE_INVADERS_BULLET_H
 
-#include "Entity.h"
-#include "Ship.h"
 #include "../utils/Hitbox.h"
 #include "../utils/Position.h"
+#include "Entity.h"
+#include "Ship.h"
 
 /**
  * @addtogroup Model
@@ -19,21 +19,24 @@
  */
 namespace Model {
 
-    /**
-     * @brief The class that describes a bullet
-     */
-    class Bullet : public Entity {
-    private:
+/**
+ * @brief The class that describes a bullet
+ */
+class Bullet : public Entity
+{
+private:
         Utils::Direction direction; ///< The direction in which the bullet is travelling
-        double speed; ///< The speed at which the bullet is travelling
-        double damage; ///< The damage the bullet will make when it hits an entity
-        Utils::Position pos; ///< The position of the bullet
-        std::weak_ptr<Entity> from; ///< The entity that has created the bullet it is a weak pointer because it doesnt own it
+        double speed;               ///< The speed at which the bullet is travelling
+        double damage;              ///< The damage the bullet will make when it hits an entity
+        Utils::Position pos;        ///< The position of the bullet
+        std::weak_ptr<Entity>
+            from;              ///< The entity that has created the bullet it is a weak pointer because it doesnt own it
         bool inControl{false}; ///< Is a member variable to check if it is already in the controller class
-        Utils::Hitbox hitbox; ///< The hitbox of the bullet measured from the top left of the sprite
-    public:
+        Utils::Hitbox hitbox;  ///< The hitbox of the bullet measured from the top left of the sprite
+public:
         /**
-         * @brief constructor that makes another bullet based on another bullet that is passed through via a shared pointer
+         * @brief constructor that makes another bullet based on another bullet that is passed through via a shared
+         * pointer
          * @param other: The name of the other bullet that is to be copied
          * TODO needs to be checked if the invariant is alright
          */
@@ -54,7 +57,7 @@ namespace Model {
          * @param from: The entity that is shooting this particular bullet with a weak pointer
          */
         Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
-                const Utils::Position& pos, std::weak_ptr<Entity> from, Utils::Hitbox hitbox);
+               const Utils::Position& pos, std::weak_ptr<Entity> from, Utils::Hitbox hitbox);
 
         /**
          * @return The type of the entity ("Bullet")
@@ -108,11 +111,11 @@ namespace Model {
          * @return The direction in which the bullet is travelling
          */
         Utils::Direction getDirection() const final;
-    };
+};
 
-}
+} // namespace Model
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_BULLET_H
+#endif // PROJECT_SPACE_INVADERS_BULLET_H

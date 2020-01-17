@@ -12,11 +12,12 @@
 
 namespace Model {
 
-    /**
-     * @brief The ship that is the ship controlled by the player
-     */
-    class PlayerShip : public Ship {
-    private:
+/**
+ * @brief The ship that is the ship controlled by the player
+ */
+class PlayerShip : public Ship
+{
+private:
         /**
          * @brief will be notified by all the subjects that contain the player ship in it
          * @param entity: The entity that is used in the member function
@@ -34,7 +35,7 @@ namespace Model {
          */
         void moveLeft();
 
-    public:
+public:
         /**
          * @brief The destructor of the player ship
          */
@@ -49,15 +50,15 @@ namespace Model {
          * @param bulletDelay: The maximum delay the bullet needs to wait after each reload
          * @param hitbox: The hitbox of the current player ship
          */
-        PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-                int bulletDelay, const Utils::Hitbox& hitbox, Model::World& world);
+        PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, int bulletDelay,
+                   const Utils::Hitbox& hitbox, Model::World& world);
 
         /**
          * @return The type of the entity ("player")
          */
         std::string getType() const final;
-    };
+};
 
-}
+} // namespace Model
 
-#endif //PROJECT_SPACE_INVADERS_PLAYERSHIP_H
+#endif // PROJECT_SPACE_INVADERS_PLAYERSHIP_H

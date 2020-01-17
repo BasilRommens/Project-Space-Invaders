@@ -14,15 +14,16 @@
  */
 namespace Utils {
 
-    /**
-     * @brief The class that is used to describe the hitbox of the entity that uses it
-     * @details it can be measured from the top right corner
-     */
-    class Hitbox {
-    private:
-        double width{}; ///< The width of the Hitbox
+/**
+ * @brief The class that is used to describe the hitbox of the entity that uses it
+ * @details it can be measured from the top right corner
+ */
+class Hitbox
+{
+private:
+        double width{};  ///< The width of the Hitbox
         double height{}; ///< The height of the Hitbox
-    public:
+public:
         /**
          * @brief The constructor of the hitbox class
          * TODO ensure that the width and height isnt negative else throw an error
@@ -38,11 +39,11 @@ namespace Utils {
          * @return The height of the hitbox
          */
         double getHeight() const;
-    };
+};
 
-}
+} // namespace Utils
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_HITBOX_H
+#endif // PROJECT_SPACE_INVADERS_HITBOX_H

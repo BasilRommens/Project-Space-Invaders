@@ -16,13 +16,14 @@
  */
 namespace Exception {
 
-    /**
-     * @brief This exception is thrown whenever there aren't enough entities created
-     */
-    class entity_underflow : public std::exception {
-    private:
+/**
+ * @brief This exception is thrown whenever there aren't enough entities created
+ */
+class entity_underflow : public std::exception
+{
+private:
         const char* info; ///< Variable that keeps the info about the error that occurred
-    public:
+public:
         /**
          * @return The info about the error that occurred
          */
@@ -33,11 +34,11 @@ namespace Exception {
          * @param message: The message that keeps the info about the exception
          */
         explicit entity_underflow(const char* message);
-    };
+};
 
-}
+} // namespace Exception
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_ENTITY_UNDERFLOW_H
+#endif // PROJECT_SPACE_INVADERS_ENTITY_UNDERFLOW_H

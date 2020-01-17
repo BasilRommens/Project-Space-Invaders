@@ -8,23 +8,24 @@
 #ifndef PROJECT_SPACE_INVADERS_WORLD_H
 #define PROJECT_SPACE_INVADERS_WORLD_H
 
-#include <vector>
-#include <memory>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include <memory>
+#include <vector>
 
-#include "Entity.h"
-#include "Bullet.h"
 #include "../Exception/entity_underflow.h"
+#include "Bullet.h"
+#include "Entity.h"
 
 namespace Model {
 
 // TODO add window sizes to the world
-    /**
-     * @brief The class that describes the world in the game
-     */
-    class World : public Model::Entity {
-    private:
+/**
+ * @brief The class that describes the world in the game
+ */
+class World : public Model::Entity
+{
+private:
         std::vector<std::shared_ptr<Model::Entity>> entities; ///< All the entities of the game itself
 
         double endLine{0.f}; ///< The variable that keeps the end of the world
@@ -48,7 +49,7 @@ namespace Model {
          */
         void handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity);
 
-    public:
+public:
         /**
          * @brief The destructor of an object of the world class
          */
@@ -67,7 +68,8 @@ namespace Model {
         void removeEntity(std::shared_ptr<Model::Entity> entity);
 
         /**
-         * @brief The constructor of a world object uses an image which it converts to a texture to use later in the game
+         * @brief The constructor of a world object uses an image which it converts to a texture to use later in the
+         * game
          * @param image: The image to use
          * TODO check if the image is usable
          */
@@ -138,8 +140,8 @@ namespace Model {
          * @param end: The variable that will set the end of the world
          */
         void setEnd(bool end);
-    };
+};
 
-}
+} // namespace Model
 
-#endif //PROJECT_SPACE_INVADERS_WORLD_H
+#endif // PROJECT_SPACE_INVADERS_WORLD_H

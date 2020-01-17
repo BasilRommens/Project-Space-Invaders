@@ -11,28 +11,31 @@
 #include <iostream>
 #include <memory>
 
-#include "Entity.h"
 #include "../utils/Position.h"
 #include "Bullet.h"
+#include "Entity.h"
 
 namespace Model {
 
-    class World;
+class World;
 
-    /**
-     * @brief The general class of the enemy ship and the player ship
-     */
-    class Ship : public Entity {
-    protected:
-        Utils::Position pos; ///< The current position, top right corner, of the ship in the coordinate system that is decided by the variables in utils as upper...
-        double health; ///< The health of the ship
-        double HSpeed; ///< The horizontal speed at which the ship can move
+/**
+ * @brief The general class of the enemy ship and the player ship
+ */
+class Ship : public Entity
+{
+protected:
+        Utils::Position pos; ///< The current position, top right corner, of the ship in the coordinate system that is
+                             ///< decided by the variables in utils as upper...
+        double health;       ///< The health of the ship
+        double HSpeed;       ///< The horizontal speed at which the ship can move
         // TODO make the bullet delay in the input files
         const int bulletDelay{30}; ///< The time a ship must wait before it can shoot another bullet
-        int currentDelay; ///< The delay which can be reset when there is a bullet shot if the counter = 0
-        Utils::Hitbox hitbox; ///< The hitbox that the ship posseses
-        std::shared_ptr<Bullet> dummyBullet; ///< The dummybullet of the ship which is used to make a new bullet that can be shot from the ship
-        Model::World& world; ///< Needed to update the world if there are bullets shot
+        int currentDelay;          ///< The delay which can be reset when there is a bullet shot if the counter = 0
+        Utils::Hitbox hitbox;      ///< The hitbox that the ship posseses
+        std::shared_ptr<Bullet> dummyBullet; ///< The dummybullet of the ship which is used to make a new bullet that
+                                             ///< can be shot from the ship
+        Model::World& world;                 ///< Needed to update the world if there are bullets shot
 
         /**
          * @brief a pure virtual member function to move the ship right
@@ -55,7 +58,7 @@ namespace Model {
          */
         void decreaseDelay();
 
-    public:
+public:
         /**
          * @brief The destructor of a ship
          */
@@ -72,8 +75,8 @@ namespace Model {
          * @param hitbox: The hitbox of the ship which is measured from the top left corner
          * TODO add the necessary checks
          */
-        Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-                int bulletDelay, const Utils::Hitbox& hitbox, Model::World& world);
+        Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, int bulletDelay,
+             const Utils::Hitbox& hitbox, Model::World& world);
 
         /**
          * @return The type of the entity ("ship")
@@ -133,8 +136,8 @@ namespace Model {
          * @return The amount of time that is left before the ship can shoot another bullet
          */
         int getCurrentDelay() const final;
-    };
+};
 
-}
+} // namespace Model
 
-#endif //PROJECT_SPACE_INVADERS_SHIP_H
+#endif // PROJECT_SPACE_INVADERS_SHIP_H

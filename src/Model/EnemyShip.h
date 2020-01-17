@@ -19,18 +19,21 @@
  */
 namespace Model {
 
-    /**
-     * @brief This class describes an enemy ship
-     */
-    class EnemyShip : public Ship {
-    private:
-        double VSpeed; ///< The distance the enemyShip will move each time it hits the border of the map in the vertical direction
+/**
+ * @brief This class describes an enemy ship
+ */
+class EnemyShip : public Ship
+{
+private:
+        double VSpeed; ///< The distance the enemyShip will move each time it hits the border of the map in the vertical
+                       ///< direction
 
         static double distance; ///< Variable that keeps the distance travelled by the ship
 
         static std::vector<std::weak_ptr<EnemyShip>> otherShips; ///< The other entemies that are in the game
 
-        bool moved; ///< Variable to keep track if the ship already has moved (for difficulties with the observer pattern)
+        bool moved; ///< Variable to keep track if the ship already has moved (for difficulties with the observer
+                    ///< pattern)
 
         Utils::Direction direction{Utils::Direction::LEFT}; ///< It keeps the current direction the ship is moving
 
@@ -43,13 +46,15 @@ namespace Model {
 
         /**
          * @brief Moves the enemyShip 1 HSpeed to the right
-         * @details If the enemy ship hits the wall it will take that distance and move the other ships in the member variable accordingly such that no weird travels occur
+         * @details If the enemy ship hits the wall it will take that distance and move the other ships in the member
+         * variable accordingly such that no weird travels occur
          */
         void moveRight() final;
 
         /**
          * @brief Moves the enemyShip 1 HSpeed to the left
-         * @details If the enemy ship hits the wall it will take that distance and move the other ships in the member variable accordingly such that no weird travels occur
+         * @details If the enemy ship hits the wall it will take that distance and move the other ships in the member
+         * variable accordingly such that no weird travels occur
          */
         void moveLeft() final;
 
@@ -61,12 +66,13 @@ namespace Model {
 
         /**
          * @brief The function calculates a random offset for the bullet to travel and then returns it
-         * @details It is based of of the framerate at which we play the game and the number of ships in the game (to prevent the too much of bullets)
+         * @details It is based of of the framerate at which we play the game and the number of ships in the game (to
+         * prevent the too much of bullets)
          * @return It returns a random offset
          */
         int randomOffset() const;
 
-    public:
+public:
         /**
          * @brief The constructor of the enemyShip
          * @param image: The image which will define the enemyships appearance
@@ -80,8 +86,8 @@ namespace Model {
          */
         // TODO add checks for all these variables
         // TODO parse the enemyship from inside instead of a big constructor
-        EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
-                int bulletDelay, const Utils::Hitbox& hitbox, double vSpeed, Model::World& world);
+        EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, int bulletDelay,
+                  const Utils::Hitbox& hitbox, double vSpeed, Model::World& world);
 
         /**
          * @return The type of the entity ("enemy")
@@ -105,10 +111,10 @@ namespace Model {
          * TODO find better name
          */
         void removeThis() final;
-    };
-}
+};
+} // namespace Model
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_ENEMYSHIP_H
+#endif // PROJECT_SPACE_INVADERS_ENEMYSHIP_H

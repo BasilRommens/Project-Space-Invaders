@@ -20,13 +20,14 @@
  */
 namespace Exception {
 
-    /**
-     * @brief this exception can be used when a file is corrupted or wrongly formatted, just something with a file
-     */
-    class bad_file : public std::exception {
-    private:
+/**
+ * @brief this exception can be used when a file is corrupted or wrongly formatted, just something with a file
+ */
+class bad_file : public std::exception
+{
+private:
         const char* info; ///< Variable that keeps the info about the error that occurred
-    public:
+public:
         /**
          * @return The info about the error that occurred
          */
@@ -37,11 +38,11 @@ namespace Exception {
          * @param message: The message that keeps the info about the exception
          */
         explicit bad_file(const char* message);
-    };
+};
 
-}
+} // namespace Exception
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_BAD_FILE_H
+#endif // PROJECT_SPACE_INVADERS_BAD_FILE_H

@@ -8,11 +8,11 @@
 #ifndef PROJECT_SPACE_INVADERS_SUBJECT_H
 #define PROJECT_SPACE_INVADERS_SUBJECT_H
 
-#include <vector>
-#include <stdexcept>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <memory>
+#include <stdexcept>
+#include <vector>
 
 #include "Observer.h"
 
@@ -22,13 +22,15 @@
  */
 namespace ObserverPattern {
 
-    /**
-     * @brief The subject class is created so that it can notify each of its observers if something interesting happens
-     */
-    class Subject {
-    private:
+/**
+ * @brief The subject class is created so that it can notify each of its observers if something interesting happens
+ */
+class Subject
+{
+private:
         std::vector<std::shared_ptr<Observer>> observers;
-    protected:
+
+protected:
         /**
          * @brief Notifies every observer held by the subject
          * @param entity: The entity on which the notification needs to be aplied
@@ -48,7 +50,7 @@ namespace ObserverPattern {
          */
         std::shared_ptr<Observer> retrieveObserver(const std::string typeName) const;
 
-    public:
+public:
         /**
          * @brief The default destructor of a subject
          */
@@ -70,11 +72,11 @@ namespace ObserverPattern {
          * @brief clears all the observers from the subject
          */
         void clearObservers();
-    };
+};
 
-}
+} // namespace ObserverPattern
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_SUBJECT_H
+#endif // PROJECT_SPACE_INVADERS_SUBJECT_H

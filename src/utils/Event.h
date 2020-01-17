@@ -6,7 +6,8 @@
  */
 
 /**
- * @namespace Utils We can use this namespace in order to indicate the files that are useful for the creation of the project
+ * @namespace Utils We can use this namespace in order to indicate the files that are useful for the creation of the
+ * project
  */
 
 /**
@@ -15,10 +16,11 @@
  */
 namespace Utils {
 
-    /**
-     * @enum Event: All the events possible in the game
-     */
-    enum Event {
+/**
+ * @enum Event: All the events possible in the game
+ */
+enum Event
+{
         MOVED_DOWN,
         UPDATE_DRAW,
         MOVE_RIGHT,
@@ -31,9 +33,9 @@ namespace Utils {
         DECREASE_DELAY,
         CHECK_COLLISIONS,
         REMOVE
-    };
+};
 
-}
+} // namespace Utils
 
 /**
  * @}

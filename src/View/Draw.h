@@ -8,14 +8,14 @@
 #ifndef PROJECT_SPACE_INVADERS_DRAW_H
 #define PROJECT_SPACE_INVADERS_DRAW_H
 
-#include <map>
 #include <SFML/Graphics.hpp>
+#include <map>
 
-#include "../utils/Transformation.h"
-#include "../Model/Entity.h"
-#include "../Model/EnemyShip.h"
 #include "../Model/Bullet.h"
+#include "../Model/EnemyShip.h"
+#include "../Model/Entity.h"
 #include "../Model/PlayerShip.h"
+#include "../utils/Transformation.h"
 
 /**
  * @addtogroup Model
@@ -23,8 +23,7 @@
  */
 namespace Model {
 
-    class World;
-
+class World;
 }
 
 /**
@@ -37,18 +36,21 @@ namespace Model {
  */
 namespace View {
 
-    /**
-     * @brief This class can be used to draw something on the display with sprites
-     */
-    class Draw : public ObserverPattern::Observer {
-    private:
+/**
+ * @brief This class can be used to draw something on the display with sprites
+ */
+class Draw : public ObserverPattern::Observer
+{
+private:
         bool open{true}; ///< is a variable to check if the window still is open
 
-        std::map<std::string, std::shared_ptr<sf::Texture>> textures; ///< Contains all the textures of all the sprites used in the game, based on a map
+        std::map<std::string, std::shared_ptr<sf::Texture>>
+            textures; ///< Contains all the textures of all the sprites used in the game, based on a map
 
         std::shared_ptr<sf::RenderWindow> window; ///< The window at which we can view what happens
 
-        std::vector<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> sprites; ///< The collection of sprites and entities related with them
+        std::vector<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>>
+            sprites; ///< The collection of sprites and entities related with them
 
         /**
          * @brief makes a new sprite based of of the entity that is passed through uses the texture that it gives back
@@ -71,7 +73,7 @@ namespace View {
          */
         void newD(std::shared_ptr<Model::Entity> entity);
 
-    public:
+public:
         /**
          * @brief destructor of draw
          */
@@ -120,11 +122,11 @@ namespace View {
          * @return true if the window is open otherwise it is closed
          */
         bool isOpen() const;
-    };
+};
 
-}
+} // namespace View
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_DRAW_H
+#endif // PROJECT_SPACE_INVADERS_DRAW_H

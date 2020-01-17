@@ -8,13 +8,13 @@
 #ifndef PROJECT_SPACE_INVADERS_ENTITY_H
 #define PROJECT_SPACE_INVADERS_ENTITY_H
 
-#include <string>
 #include <SFML/Graphics.hpp>
+#include <string>
 
+#include "../utils/Hitbox.h"
 #include "../utils/ObserverPattern/Observer.h"
 #include "../utils/ObserverPattern/Subject.h"
 #include "../utils/Position.h"
-#include "../utils/Hitbox.h"
 
 /**
  * @namespace Model This namespace exists to indicate all the entities in the game
@@ -26,21 +26,21 @@
  */
 namespace Model {
 
-    class Ship;
+class Ship;
 
-    class Bullet;
+class Bullet;
 
-    class World;
+class World;
 
-    /**
-     * @brief is the superclass of all the possible entities in the game
-     */
-    /// TODO clean up this fucking mess of a class by casting pointers
-    class Entity
-            : public ObserverPattern::Observer,
-              public ObserverPattern::Subject,
-              public std::enable_shared_from_this<Entity> {
-    protected:
+/**
+ * @brief is the superclass of all the possible entities in the game
+ */
+/// TODO clean up this fucking mess of a class by casting pointers
+class Entity : public ObserverPattern::Observer,
+               public ObserverPattern::Subject,
+               public std::enable_shared_from_this<Entity>
+{
+protected:
         std::string image; ///< The image string which will represent the entity
 
         sf::Texture texture; ///< The texture of the Model (faster moving of sprites)
@@ -59,10 +59,11 @@ namespace Model {
          */
         void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) override;
 
-    public:
+public:
         /**
          * @brief The entity constructor specifically made for the constructing a bullet from a shared pointer
-         * @param other: The other entity to initialize, is specific for the bullet so that it also gets called when the bullet constructor is called for correctly copying it
+         * @param other: The other entity to initialize, is specific for the bullet so that it also gets called when the
+         * bullet constructor is called for correctly copying it
          */
         explicit Entity(std::shared_ptr<Bullet> other);
 
@@ -130,7 +131,8 @@ namespace Model {
         /**
          * @see EnemyShip.h
          * @return The distance that an enemyship has travelled in one step
-         * @detail It is a static variable that is set by the ship that has travelled the least distance. It is used in the case where one of the ships has hit the screen border
+         * @detail It is a static variable that is set by the ship that has travelled the least distance. It is used in
+         * the case where one of the ships has hit the screen border
          */
         virtual double getDistance() const;
 
@@ -199,11 +201,11 @@ namespace Model {
 
         // TODO figure out what this thing does
         std::shared_ptr<ObserverPattern::Observer> getDrawShared() const;
-    };
+};
 
-}
+} // namespace Model
 /**
  * @}
  */
 
-#endif //PROJECT_SPACE_INVADERS_ENTITY_H
+#endif // PROJECT_SPACE_INVADERS_ENTITY_H
