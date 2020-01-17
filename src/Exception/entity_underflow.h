@@ -8,7 +8,7 @@
 #ifndef PROJECT_SPACE_INVADERS_ENTITY_UNDERFLOW_H
 #define PROJECT_SPACE_INVADERS_ENTITY_UNDERFLOW_H
 
-#include <exception>
+#include <stdexcept>
 
 /**
  * @addtogroup Exception

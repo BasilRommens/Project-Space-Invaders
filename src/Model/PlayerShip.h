@@ -28,18 +28,18 @@ private:
         /**
          * @brief Moves the player ship to the right
          */
-        void moveRight();
+        void moveRight() final;
 
         /**
          * @brief Moves the player ship to the left
          */
-        void moveLeft();
+        void moveLeft() final;
 
 public:
         /**
          * @brief The destructor of the player ship
          */
-        virtual ~PlayerShip();
+        ~PlayerShip() final = default;
 
         /**
          * @brief The constructor of the player ship

@@ -66,5 +66,3 @@ void Model::PlayerShip::moveLeft()
 }
 
 std::string Model::PlayerShip::getType() const { return "player"; }
-
-Model::PlayerShip::~PlayerShip() {}

@@ -9,9 +9,11 @@ Site: https://basilrommens.github.io/Project-Space-Invaders/
 
 The coordinate system used to drive this game is by default \[-4, 4\]x\[-3, 3\].
 
-## Playing the game
-To play you need to navigate to the directory in which the project is cloned i.e. the root of the project. The you have to execute:
+## Downloading and playing the game
+
 ```bash
+$ git clone https://github.com/BasilRommens/Project-Space-Invaders
+$ cd Project-Space-Invaders
 $ chmod +x run.sh
 $ ./run.sh
 ```
@@ -26,6 +28,8 @@ $ ./run.sh
 | ESC           | Quit the game |
 
 ## Config files
+
+> All the variable names that are used here have no default value therefore no variable can be excluded!
 
 ### Game
 | Variable name|Description|Variable type|

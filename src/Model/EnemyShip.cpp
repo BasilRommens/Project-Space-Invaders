@@ -21,7 +21,7 @@ void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
         }
         if (Utils::Event::UNMOVE == event and moved) {
                 // Set all the ships to not having moved such that the next tick the enemy ship can move
-                for (auto ship : otherShips) {
+                for (const std::weak_ptr<EnemyShip> ship: otherShips) {
                         ship.lock()->moved = false;
                 }
         } else if (event == Utils::Event::DECREASE_DELAY) {
@@ -43,28 +43,24 @@ void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
         // Is outside of the switch statement because it doesnt work there
         bool notAllMoved = false;
 
-        switch (event) {
-        case Utils::Event::MOVE:
+        if (event == Utils::Event::MOVE) {
                 if (direction == Utils::Direction::LEFT) {
                         moveLeft();
                 } else {
                         moveRight();
                 }
 
-                for (auto ship : otherShips) {
+                for (const std::weak_ptr<EnemyShip> ship : otherShips) {
                         if (not ship.lock()->moved) {
                                 notAllMoved = true;
                         }
                 }
                 // If all the ships have been moved then draw all of them
                 if (not notAllMoved) {
-                        for (auto ship : otherShips) {
+                        for (const std::weak_ptr<EnemyShip> ship : otherShips) {
                                 ship.lock()->notify(ship.lock(), Utils::Event::UPDATE_DRAW);
                         }
                 }
-                break;
-        default:
-                break;
         }
 }
 
@@ -161,6 +157,7 @@ double Model::EnemyShip::getDistance() const { return distance; }
 
 inline void Model::EnemyShip::swapDirection(std::shared_ptr<EnemyShip> ship) const
 {
+        // Swap the direction of the ship
         if (ship->direction == Utils::Direction::LEFT) {
                 ship->direction = Utils::Direction::RIGHT;
         } else {

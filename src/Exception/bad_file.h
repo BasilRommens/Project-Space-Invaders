@@ -8,7 +8,7 @@
 #ifndef PROJECT_SPACE_INVADERS_BAD_FILE_H
 #define PROJECT_SPACE_INVADERS_BAD_FILE_H
 
-#include <exception>
+#include <stdexcept>
 
 /**
  * @namespace Exception The namespace indicates all the classes that are supposed to be thrown as exceptions

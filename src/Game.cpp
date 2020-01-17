@@ -108,7 +108,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
         return failure;
 }
 
-void Game::wait()
+void Game::wait() const
 {
         // TODO remove the 1000000.f because its ugly
         int elapsedTime = stopwatch->get_lap().count() * 1000000.f;
@@ -119,7 +119,7 @@ void Game::wait()
 }
 
 // TODO move this function elsewhere cause it doesnt belong here
-void Game::displayLost(sf::RenderWindow& renderWindow)
+void Game::displayLost(sf::RenderWindow& renderWindow) const
 {
         sf::Text text;
 

@@ -24,7 +24,6 @@ Model::Bullet::Bullet(const std::string& image, Utils::Direction direction, doub
         this->speed = speed;
         this->damage = damage;
         this->from = from;
-        texture.loadFromFile(image);
 }
 
 std::string Model::Bullet::getType() const { return "bullet"; }
@@ -69,9 +68,7 @@ void Model::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 
 void Model::Bullet::setPosition(Utils::Position newPos) { pos.setPosition(newPos); }
 
-Model::Bullet::~Bullet() {}
-
-Model::Bullet::Bullet(std::shared_ptr<Bullet> other)
+Model::Bullet::Bullet(std::shared_ptr<Bullet> other): Entity(other->getImage())
 {
         this->direction = other->direction;
         this->hitbox = other->hitbox;
@@ -80,8 +77,6 @@ Model::Bullet::Bullet(std::shared_ptr<Bullet> other)
         this->damage = other->damage;
         this->from = other->from;
         this->inControl = other->inControl;
-        this->image = other->image;
-        this->texture = other->texture;
         this->addObserver(other->retrieveObserver("world"));
 
         // Move the position of the dummy bullet such that it is in the correct position relative to the entity that is

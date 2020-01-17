@@ -19,7 +19,7 @@ void Model::World::addEntity(std::shared_ptr<Entity> entity)
                 }
                 // here we are going to check if all the element to insert isnt going to collide with the other elements
                 // otherwise we cant add it
-                for (auto worldEntity : entities) {
+                for (std::shared_ptr<Entity> worldEntity : entities) {
                         // If the entity to be added is colliding with an entity of the world then quit the function and
                         // display error message
                         if (areColliding(worldEntity, entity)) {
@@ -36,22 +36,7 @@ void Model::World::addEntity(std::shared_ptr<Entity> entity)
         }
 }
 
-void Model::World::removeEntity(std::shared_ptr<Entity> entity)
-{
-        try {
-                if (!entity) {
-                        throw std::invalid_argument(
-                            "No observer has been passed through in the method removeObserver from the class Subject");
-                }
-                entities.erase(std::find(entities.begin(), entities.end(), entity));
-        } catch (std::exception& e) {
-                std::cout << e.what() << std::endl;
-        }
-}
-
 Model::World::World(const std::string& image, double endLine) : Entity(image), endLine(endLine) {}
-
-Model::World::World() {}
 
 const std::vector<std::shared_ptr<Model::Entity>>& Model::World::getEntities() const { return entities; }
 
@@ -78,8 +63,8 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
                         doubleBreak = false;
 
                         // Check for every entity except itself if it intersects with one
-                        for (auto thisEntity : entities) {
-                                for (auto otherEntity : entities) {
+                        for (std::shared_ptr<Entity> thisEntity : entities) {
+                                for (std::shared_ptr<Entity> otherEntity : entities) {
                                         // TODO why is it behaving so weird
                                         if (not thisEntity or not otherEntity) {
                                                 continue;
@@ -109,20 +94,20 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
                                         // TODO add extra checks for bullets passing enemy ships when the bullet is
                                         // enemy
                                         std::shared_ptr<Entity> bullet;
-                                        std::shared_ptr<Entity> entity;
+                                        std::shared_ptr<Entity> localEntity;
                                         // Trying to identify the bullet entity
                                         if (thisEntity->getType() == "bullet") {
                                                 bullet = thisEntity;
-                                                entity = otherEntity;
+                                                localEntity = otherEntity;
                                         } else {
                                                 bullet = otherEntity;
-                                                entity = thisEntity;
+                                                localEntity = thisEntity;
                                         }
 
                                         // If we haven't found it then we can check if the two objects collide with one
                                         // another
                                         if (areColliding(thisEntity, otherEntity) and
-                                            bullet->getFrom().lock().get() != entity.get()) {
+                                            bullet->getFrom().lock().get() != localEntity.get()) {
                                                 handleColliding(thisEntity, otherEntity);
                                                 // because there are entities that are deleted
                                                 doubleBreak = true;
@@ -242,7 +227,7 @@ void Model::World::reset()
 
 bool Model::World::hasEnemies() const
 {
-        for (auto entity : entities) {
+        for (std::shared_ptr<Entity> entity : entities) {
                 // If we found an enemy in the world then return true
                 if (entity->getType() == "enemy") {
                         return true;
@@ -254,12 +239,9 @@ bool Model::World::hasEnemies() const
 
 bool Model::World::hitEndLine(std::shared_ptr<Model::Entity> entity)
 {
-        if (entity->getPos()->getY() < endLine) {
-                return true;
-        }
-        return false;
+    return entity->getPos()->getY()<endLine;
 }
 
 bool Model::World::isEnd() const { return end; }
 
-void Model::World::setEnd(bool end) { World::end = end; }
+void Model::World::setEnd(bool localEnd) { World::end = localEnd; }

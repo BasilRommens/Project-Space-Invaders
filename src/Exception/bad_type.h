@@ -9,7 +9,7 @@
 #ifndef PROJECT_SPACE_INVADERS_BAD_TYPE_H
 #define PROJECT_SPACE_INVADERS_BAD_TYPE_H
 
-#include <exception>
+#include <stdexcept>
 
 /**
  * @addtogroup Exception

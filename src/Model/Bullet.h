@@ -43,11 +43,6 @@ public:
         Bullet(std::shared_ptr<Bullet> other);
 
         /**
-         * @brief The destructor of the Bullet class
-         */
-        virtual ~Bullet();
-
-        /**
          * @brief The constructor of the Bullet class
          * @param image: The image that will be used as the representation of the bullet
          * @param direction: The direction in which we want the bullet to travel (UP or DOWN)

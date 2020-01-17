@@ -47,7 +47,7 @@ private:
          * @brief will display if the player has lost on the current active window
          * TODO add a check for the window if it is still open
          */
-        void displayLost(sf::RenderWindow& renderWindow);
+        void displayLost(sf::RenderWindow& renderWindow) const;
 
         /**
          * @brief Plays the level currently loaded in the model
@@ -61,7 +61,7 @@ private:
          * @brief adds a delay to the game in order to preserve its framerate, and skips when it already passed its
          * frame count
          */
-        void wait();
+        void wait() const;
 
 public:
         /**

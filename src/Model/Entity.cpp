@@ -9,8 +9,6 @@
 
 Model::Entity::Entity(const std::string& image) : image(image) { texture.loadFromFile(image); }
 
-Model::Entity::Entity() {}
-
 void Model::Entity::onNotify(std::shared_ptr<Entity> entity, Utils::Event event) {}
 
 std::string Model::Entity::getType() const { return std::string(); }
@@ -20,16 +18,6 @@ const sf::Texture& Model::Entity::getTexture() const { return texture; }
 const std::string& Model::Entity::getImage() const { return image; }
 
 double Model::Entity::getDamage() const { return 0; }
-
-std::shared_ptr<ObserverPattern::Observer> Model::Entity::getDrawShared() const
-{
-        for (auto observer : this->getObservers()) {
-                if (observer->getType() == "draw") {
-                        return observer;
-                }
-        }
-        return nullptr;
-}
 
 bool Model::Entity::isInControl() const { return false; }
 
@@ -45,8 +33,6 @@ std::shared_ptr<Utils::Position> Model::Entity::getPos() const
 
 void Model::Entity::setPosition(Utils::Position newPos) {}
 
-Model::Entity::~Entity() {}
-
 std::weak_ptr<Model::Entity> Model::Entity::getFrom() const { return std::weak_ptr<Entity>(); }
 
 double Model::Entity::getDistance() const { return 0; }
@@ -56,8 +42,6 @@ const Utils::Hitbox& Model::Entity::getHitbox() const { return *(new Utils::Hitb
 void Model::Entity::addBullet(std::shared_ptr<Bullet> dummyBullet) {}
 
 std::shared_ptr<Model::Entity> Model::Entity::spawnBullet() const { return nullptr; }
-
-Model::Entity::Entity(std::shared_ptr<Bullet> other) {}
 
 std::shared_ptr<Model::Bullet> Model::Entity::getDummyBullet() const { return nullptr; }
 

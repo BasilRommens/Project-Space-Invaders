@@ -53,19 +53,13 @@ public:
         /**
          * @brief The destructor of an object of the world class
          */
-        virtual ~World();
+        ~World() final;
 
         /**
          * @brief adds an entity to the world class
          * @param entity: The entity that will be part of the world class
          */
         void addEntity(std::shared_ptr<Model::Entity> entity);
-
-        /**
-         * @brief removes an entity to the world class
-         * @param entity: The entity that will be removed from the world class
-         */
-        void removeEntity(std::shared_ptr<Model::Entity> entity);
 
         /**
          * @brief The constructor of a world object uses an image which it converts to a texture to use later in the
@@ -78,7 +72,7 @@ public:
         /**
          * @brief The default constructor of the world
          */
-        World();
+        World() = default;
 
         /**
          * @return The entities of the world
@@ -137,9 +131,9 @@ public:
 
         /**
          * @brief Sets the new end state of the world
-         * @param end: The variable that will set the end of the world
+         * @param localEnd: The variable that will set the end of the world
          */
-        void setEnd(bool end);
+        void setEnd(bool localEnd);
 };
 
 } // namespace Model

@@ -40,11 +40,12 @@ class Entity : public ObserverPattern::Observer,
                public ObserverPattern::Subject,
                public std::enable_shared_from_this<Entity>
 {
-protected:
+private:
         std::string image; ///< The image string which will represent the entity
 
         sf::Texture texture; ///< The texture of the Model (faster moving of sprites)
 
+protected:
         /**
          * @brief the protected entity constructor because it is an abstract class
          * @param image: The image that needs to be used for the entity
@@ -61,21 +62,14 @@ protected:
 
 public:
         /**
-         * @brief The entity constructor specifically made for the constructing a bullet from a shared pointer
-         * @param other: The other entity to initialize, is specific for the bullet so that it also gets called when the
-         * bullet constructor is called for correctly copying it
-         */
-        explicit Entity(std::shared_ptr<Bullet> other);
-
-        /**
          * @brief The destructor of this Model class
          */
-        ~Entity() override;
+        ~Entity() override = default;
 
         /**
          * @brief The default constructor of the Model class
          */
-        Entity();
+        Entity() = default;
 
         /**
          * @return The type of the entity ("")
@@ -91,7 +85,7 @@ public:
          * @brief Will set the position of the entity
          * @param newPos: The new position of the entity
          */
-        // TODO check if the postion is valid
+        // TODO check if the position is valid
         virtual void setPosition(Utils::Position newPos);
 
         /**
@@ -198,9 +192,6 @@ public:
          * @return The direction in which an entity is travelling
          */
         virtual Utils::Direction getDirection() const;
-
-        // TODO figure out what this thing does
-        std::shared_ptr<ObserverPattern::Observer> getDrawShared() const;
 };
 
 } // namespace Model
