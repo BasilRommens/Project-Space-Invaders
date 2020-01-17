@@ -1,8 +1,8 @@
 /**
- * @file Model.cpp
+ * @file Entity.cpp
  * @author Basil Rommens
  * @date 22/11/2019
- * @brief The cpp file of the class Model
+ * @brief The cpp file of the class Entity
  */
 
 #include "Entity.h"

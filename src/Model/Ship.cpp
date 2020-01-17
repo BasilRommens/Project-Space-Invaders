@@ -1,8 +1,8 @@
 /**
- * @file
+ * @file Ship.cpp
  * @author Basil Rommens
  * @date 22/11/2019
- * @brief ...
+ * @brief The cpp file of the class Ship
  */
 
 #include "Ship.h"

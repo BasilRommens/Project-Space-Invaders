@@ -1,8 +1,8 @@
 /**
- * @file
+ * @file Subject.cpp
  * @author Basil Rommens
  * @date 12/15/19
- * @brief ...
+ * @brief The cpp file of the class Subject
  */
 
 #include "Subject.h"

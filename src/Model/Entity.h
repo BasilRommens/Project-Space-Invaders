@@ -1,8 +1,8 @@
 /**
- * @file Model.h
+ * @file Entity.h
  * @author Basil Rommens
  * @date 22/11/2019
- * @brief The header file of the Model class
+ * @brief The header file of the Entity class
  */
 
 #ifndef PROJECT_SPACE_INVADERS_ENTITY_H
