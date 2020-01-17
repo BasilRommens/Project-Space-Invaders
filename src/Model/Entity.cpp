@@ -59,7 +59,7 @@ void Model::Entity::setInControl()
 
 std::shared_ptr<Utils::Position> Model::Entity::getPos() const
 {
-    return std::shared_ptr<Utils::Position>();
+    return std::make_shared<Utils::Position>(Utils::Position(0, 0));
 }
 
 void Model::Entity::setPosition(Utils::Position newPos) { }

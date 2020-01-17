@@ -67,6 +67,7 @@ void View::Draw::newD(std::shared_ptr<Model::Entity> entity)
 View::Draw::Draw(const std::shared_ptr<sf::RenderWindow>& window, const std::shared_ptr<Model::World> world)
         :window(window)
 {
+    newD(world);
     for (auto entity: world->getEntities()) {
         newD(entity);
     }
