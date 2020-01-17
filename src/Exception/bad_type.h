@@ -28,7 +28,7 @@ public:
         /**
          * @return The info about the error that occurred
          */
-        const char* what() const noexcept;
+        const char* what() const noexcept final;
 
         /**
          * @brief makes a new object of the type bad_type

@@ -15,7 +15,7 @@ void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::W
         notify(nullptr, Utils::Event::UNMOVE); // Make all the enemy ships movable
 
         // Update the position of all the bullets
-        for (auto entity : world->getEntities()) {
+        for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
                 if (entity->getType() == "bullet") {
                         // If it is already being observed by the controller class do nothing
                         if (not entity->isInControl()) {
@@ -52,7 +52,7 @@ void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::W
         // TODO find out how to make this neater
         // Remove all the objects that we can't observe in the controller
         // We do this by checking for all the observers if they are still in the world
-        for (auto observer : this->getObservers()) {
+        for (std::shared_ptr<ObserverPattern::Observer> observer : this->getObservers()) {
                 // Do not proceed checking if the observer is the world itself
                 if (observer.get() == world.get()) {
                         continue;
@@ -62,7 +62,7 @@ void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::W
                         continue;
                 }
                 bool found = false;
-                for (auto entity : world->getEntities()) {
+                for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
                         if (observer == entity) {
                                 found = true;
                                 break;
