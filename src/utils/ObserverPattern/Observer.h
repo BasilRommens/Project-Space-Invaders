@@ -26,6 +26,10 @@ namespace Model {
  */
 
 /**
+ * @namespace ObserverPattern The namespace that contains every class that is necessary to make the observer pattern come true
+ */
+
+/**
  * @addtogroup ObserverPattern
  * @{
  */

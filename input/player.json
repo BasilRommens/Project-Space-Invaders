@@ -1,7 +1,9 @@
 {
   "Type": "player",
-  "xPos": -0.4,
-  "yPos": -2,
+  "Position": {
+    "x": -0.4,
+    "y": -2
+  },
   "HSpeed": 0.1,
   "Image": "img/player.png",
   "HP": 8,

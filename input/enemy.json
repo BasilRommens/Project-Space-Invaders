@@ -4,8 +4,10 @@
   "HSpeed": 0.01,
   "Ships": [
     {
-      "xPos": -0.4,
-      "yPos": 2,
+      "Position": {
+        "x": -0.4,
+        "y": 2
+      },
       "HP": 4,
       "Image": "img/alien.png",
       "Bullet": "input/bullet.json",
@@ -15,8 +17,10 @@
       }
     },
     {
-      "xPos": 0.6,
-      "yPos": 2,
+      "Position": {
+        "x": 0.6,
+        "y": 2
+      },
       "HP": 4,
       "Image": "img/alien.png",
       "Bullet": "input/bullet.json",
@@ -26,8 +30,10 @@
       }
     },
     {
-      "xPos": -1.4,
-      "yPos": 2,
+      "Position": {
+        "x": -1.4,
+        "y": 2
+      },
       "HP": 4,
       "Image": "img/alien.png",
       "Bullet": "input/bullet.json",
@@ -37,8 +43,10 @@
       }
     },
     {
-      "xPos": -0.4,
-      "yPos": 1.2,
+      "Position": {
+        "x": -0.4,
+        "y": 1.2
+      },
       "HP": 4,
       "Image": "img/alien.png",
       "Bullet": "input/bullet.json",

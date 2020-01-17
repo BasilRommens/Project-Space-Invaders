@@ -80,7 +80,7 @@ void GameParser::parsePlayer(const std::string&& player)
     // TODO
     try {
         std::string image = j["Image"];
-        Utils::Position position(j["xPos"], j["yPos"]);
+        Utils::Position position(j["Position"]["x"], j["Position"]["y"]);
         double HP = j["HP"];
         double HSpeed = j["HSpeed"];
         Utils::Hitbox hitbox(j["Hitbox"]["Width"], j["Hitbox"]["Height"]);
@@ -129,7 +129,7 @@ void GameParser::parseEnemy(const std::string&& enemy)
         for (auto ship: j["Ships"]) {
             try {
                 std::string image = ship["Image"];
-                Utils::Position position(ship["xPos"], ship["yPos"]);
+                Utils::Position position(ship["Position"]["x"], ship["Position"]["y"]);
                 double HP = ship["HP"];
 
                 Utils::Hitbox hitbox{ship["Hitbox"]["Width"], ship["Hitbox"]["Height"]};

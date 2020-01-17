@@ -143,7 +143,22 @@ void Game::displayLost(sf::RenderWindow& renderWindow)
     text.setColor(sf::Color::White);
     text.setPosition(renderWindow.getPosition().x/2-text.getGlobalBounds().width/4, 0);
 
+    renderWindow.clear();
     renderWindow.draw(text);
     renderWindow.display();
-    while (true) { }
+
+    // TODO fix this to be cleaner
+    // check all the window's events that were triggered since the last iteration of the loop
+    sf::Event event;
+    bool doubleBreak = false;
+    while (not doubleBreak) {
+        while (renderWindow.pollEvent(event)) {
+            // "close requested" event: we close the window
+            if (event.type==sf::Event::Closed or event.key.code==sf::Keyboard::Escape) {
+                doubleBreak = true;
+                renderWindow.close();
+                break;
+            }
+        }
+    }
 }
