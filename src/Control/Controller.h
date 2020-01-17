@@ -29,6 +29,8 @@ namespace Control {
  */
 class Controller : public ObserverPattern::Subject
 {
+private:
+    void removeUnnecessaryObservers(std::shared_ptr<Model::World> world);
 public:
         /**'
          * @brief runs the controller during one game tick

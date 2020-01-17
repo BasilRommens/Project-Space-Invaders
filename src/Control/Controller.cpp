@@ -48,40 +48,43 @@ void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::W
                         }
                 }
         }
-
-        // TODO find out how to make this neater
         // Remove all the objects that we can't observe in the controller
         // We do this by checking for all the observers if they are still in the world
-        for (std::shared_ptr<ObserverPattern::Observer> observer : this->getObservers()) {
-                // Do not proceed checking if the observer is the world itself
-                if (observer.get() == world.get()) {
-                        continue;
-                }
-                // If the observer is a nullpointer just continue to the next one
-                if (not observer) {
-                        continue;
-                }
-                bool found = false;
-                for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
-                        if (observer == entity) {
-                                found = true;
-                                break;
-                        }
-                }
-                // If we did not find it in the world then we can delete it
-                if (not found) {
-                        if (observer->getType() == "enemy") {
-                                std::shared_ptr<Model::Entity> entity =
-                                    std::static_pointer_cast<Model::Entity>(observer);
-                                entity->removeThis();
-                                entity->clearObservers();
-                        }
-                        this->removeObserver(observer);
-                }
-        }
+        removeUnnecessaryObservers(world);
 
         // Move all the enemy ships
         notify(nullptr, Utils::Event::MOVE);
         // Decrease the player/enemy firing delay with 1 every frame
         notify(nullptr, Utils::Event::DECREASE_DELAY);
+}
+
+void Control::Controller::removeUnnecessaryObservers(std::shared_ptr<Model::World> world)
+{
+    for (std::shared_ptr<ObserverPattern::Observer> observer : this->getObservers()) {
+        // Do not proceed checking if the observer is the world itself
+        if (observer.get() == world.get()) {
+            continue;
+        }
+        // If the observer is a nullpointer just continue to the next one
+        if (not observer) {
+            continue;
+        }
+        bool found = false;
+        for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
+            if (observer == entity) {
+                found = true;
+                break;
+            }
+        }
+        // If we did not find it in the world then we can delete it
+        if (not found) {
+            if (observer->getType() == "enemy") {
+                std::shared_ptr<Model::Entity> entity =
+                        std::static_pointer_cast<Model::Entity>(observer);
+                entity->removeThis();
+                entity->clearObservers();
+            }
+            this->removeObserver(observer);
+        }
+    }
 }

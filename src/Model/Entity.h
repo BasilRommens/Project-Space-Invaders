@@ -49,8 +49,8 @@ protected:
         /**
          * @brief the protected entity constructor because it is an abstract class
          * @param image: The image that needs to be used for the entity
+         * @throws std::exception In fact i do not know this type of exception
          */
-        // TODO check if the image is correct otherwise throw an error
         explicit Entity(const std::string& image);
 
         /**

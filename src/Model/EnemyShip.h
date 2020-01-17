@@ -85,7 +85,6 @@ public:
          * @param vSpeed: The vertical speed at which the enemyShip will move down
          */
         // TODO add checks for all these variables
-        // TODO parse the enemyship from inside instead of a big constructor
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, int bulletDelay,
                   const Utils::Hitbox& hitbox, double vSpeed, Model::World& world);
 
@@ -103,12 +102,10 @@ public:
          * @brief adds a ship to the other ships in the enemyship
          * @param ship: The ship that needs to be added to the other ships
          */
-        // TODO add check to it to check that the ship is indeed an enemy type
         static void addShip(std::weak_ptr<EnemyShip> ship);
 
         /**
          * @brief remove this ship from the other ships
-         * TODO find better name
          */
         void removeThis() final;
 };

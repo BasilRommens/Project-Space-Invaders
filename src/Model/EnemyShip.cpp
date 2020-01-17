@@ -11,7 +11,6 @@ void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
 {
         // TODO clean up function
         if (Utils::Event::REMOVE == event and entity.get() == this) {
-                // TODO better name for otherShip
                 for (auto otherShip = otherShips.begin(); otherShip != otherShips.end(); ++otherShip) {
                         if ((*otherShip).lock().get() == this) {
                                 otherShips.erase(otherShip);

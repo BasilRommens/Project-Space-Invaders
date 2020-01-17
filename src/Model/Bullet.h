@@ -38,7 +38,6 @@ public:
          * @brief constructor that makes another bullet based on another bullet that is passed through via a shared
          * pointer
          * @param other: The name of the other bullet that is to be copied
-         * TODO needs to be checked if the invariant is alright
          */
         Bullet(std::shared_ptr<Bullet> other);
 
