@@ -118,6 +118,7 @@ void Game::wait()
     }
 }
 
+// TODO move this function elsewhere cause it doesnt belong here
 void Game::displayLost(sf::RenderWindow& renderWindow)
 {
     sf::Text text;
@@ -138,7 +139,7 @@ void Game::displayLost(sf::RenderWindow& renderWindow)
     text.setCharacterSize(60); // in pixels, not points!
 
     // set the color
-    text.setFillColor(sf::Color::White);
+    text.setColor(sf::Color::White);
     text.setPosition(renderWindow.getPosition().x/2-text.getGlobalBounds().width/4, 0);
 
     renderWindow.draw(text);
