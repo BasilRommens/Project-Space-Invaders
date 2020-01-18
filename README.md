@@ -97,3 +97,19 @@ Instead of handling the parameter Ships in enemies as a list of entities, we wil
 |HP| The total amount of HP the enemy has (damage is done by bullets)|double |
 |Bullet | The file that is used to represent a bullet of the enemy | string |
 |Hitbox| The hitbox of the enemy measured from the top right of the enemy| Hitbox (see above)|
+
+## Creating and opening the documentation
+
+You are supposed to be in the root of the project in order to be able to create the documentation. Subsequently you need to execute the following bash commands.
+> Doxygen is required to be installed on the PC
+
+```bash
+$ cd doc
+$ doxygen Doxyfile
+```
+
+To be able to open the files you then need to navigate to the html directory and open the index file with following commands.
+```bash
+$ cd html
+$ xdg-open index.html
+```
