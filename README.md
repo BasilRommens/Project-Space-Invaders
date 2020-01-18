@@ -23,7 +23,7 @@ $ ./run.sh
 | Control Key   | Control       |
 | :-----------: | :------------ |
 | A             | Move left     |
-| D             | Move right    |
+| D             | Move left    |
 | SPACE         | Fire a bullet |
 | ESC           | Quit the game |
 
@@ -55,7 +55,7 @@ $ ./run.sh
 ### Hitbox
 | Variable name|Description|Variable type|
 | :--- | :--- | :--- |
-|Width| The width of the hitbox measured to the right|double|
+|Width| The width of the hitbox measured to the left|double|
 |Height| The height of a hitbox measured downwards|double|
 
 ### Position
@@ -70,18 +70,18 @@ $ ./run.sh
 | Type             | The type of the entity ("bullet")    |string|
 | Damage             | The total damage that a bullet will do    |double|
 |Image| The image to be used for the bullet|string|
-| HitBox           | The hitbox of a bullet measured from the top right of the bullet |Hitbox (see above)|
+| HitBox           | The hitbox of a bullet measured from the top left of the bullet |Hitbox (see above)|
 
 ### Player
 | Variable name|Description|Variable type|
 | :--- | :--- | :--- |
 | Type| The type of the entity ("player") | string |
-| Position | The position of the player in the coordinate system given (always measured from top right) | Position (see above)|
+| Position | The position of the player in the coordinate system given (always measured from top left) | Position (see above)|
 |HSpeed| The horizontal speed of the player this will get updated every frame with every click of button | double|
 |Image| The image to represent the player on screen| string|
 |HP| The total amount of HP the player has (damage is done by bullets)|double |
 |Bullet | The file that is used to represent a bullet of the player | string |
-|Hitbox| The hitbox of the player measured from the top right of the player| Hitbox (see above)|
+|Hitbox| The hitbox of the player measured from the top left of the player| Hitbox (see above)|
 
 ### Enemies
 
@@ -92,11 +92,11 @@ Instead of handling the parameter Ships in enemies as a list of entities, we wil
 | Type| The type of the entity ("enemy") | string |
 |HSpeed| The horizontal speed of the player this will get updated every frame | double|
 |VSpeed| The vertical speed of the enemy this will get updated every time the enemy hits the wall | double|
-| Position | The position of the enemy in the coordinate system given (always measured from top right) | Position (see above)|
+| Position | The position of the enemy in the coordinate system given (always measured from top left) | Position (see above)|
 |Image| The image to represent the enemy on screen| string|
 |HP| The total amount of HP the enemy has (damage is done by bullets)|double |
 |Bullet | The file that is used to represent a bullet of the enemy | string |
-|Hitbox| The hitbox of the enemy measured from the top right of the enemy| Hitbox (see above)|
+|Hitbox| The hitbox of the enemy measured from the top left of the enemy| Hitbox (see above)|
 
 ## Creating and opening the documentation
 
