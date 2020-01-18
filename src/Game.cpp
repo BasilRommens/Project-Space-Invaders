@@ -15,8 +15,6 @@ void Game::start(const std::vector<std::string>& levels)
 {
         sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
 
-        // TODO causes error because it probably is a member variable :( FIX
-
         bool failure{};
 
         GameParser gameParser{*this};
@@ -36,6 +34,9 @@ void Game::start(const std::vector<std::string>& levels)
         // TODO try to do this inside loop to restart game
         if (failure and renderWindow.isOpen()) {
                 displayLost(renderWindow);
+        }// otherwise you have won
+        else if (not failure and renderWindow.isOpen()) {
+                displayWon(renderWindow);
         }
 
         // Downcast worldObserver
@@ -119,44 +120,54 @@ void Game::wait() const
 // TODO move this function elsewhere cause it doesnt belong here
 void Game::displayLost(sf::RenderWindow& renderWindow) const
 {
-        sf::Text text;
+        displayText("Game Over", renderWindow);
+}
 
-        sf::Font font;
+void Game::displayWon(sf::RenderWindow& renderWindow) const
+{
+    displayText("Victory", renderWindow);
+}
 
-        // TODO make this a const thing
-        if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
-                throw std::domain_error("failed to load font");
+void Game::displayText(const std::string& textToDisplay, sf::RenderWindow& renderWindow) const
+{
+    sf::Text text;
+
+    sf::Font font;
+
+    // TODO make this a const thing
+    if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
+        throw std::domain_error("failed to load font");
+    }
+
+    // select the font
+    text.setFont(font); // font is a sf::Font
+
+    // set the string to display
+    text.setString(textToDisplay);
+
+    // set the character size
+    text.setCharacterSize(60); // in pixels, not points!
+
+    // set the color
+    text.setColor(sf::Color::White);
+    text.setPosition(renderWindow.getPosition().x / 2.f - text.getGlobalBounds().width / 4.f, 0.f);
+
+    renderWindow.clear();
+    renderWindow.draw(text);
+    renderWindow.display();
+
+    // TODO fix this to be cleaner
+    // check all the window's events that were triggered since the last iteration of the loop
+    sf::Event event;
+    bool doubleBreak = false;
+    while (not doubleBreak) {
+        while (renderWindow.pollEvent(event)) {
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed or event.key.code == sf::Keyboard::Escape) {
+                doubleBreak = true;
+                renderWindow.close();
+                break;
+            }
         }
-
-        // select the font
-        text.setFont(font); // font is a sf::Font
-
-        // set the string to display
-        text.setString("Game over");
-
-        // set the character size
-        text.setCharacterSize(60); // in pixels, not points!
-
-        // set the color
-        text.setColor(sf::Color::White);
-        text.setPosition(renderWindow.getPosition().x / 2.f - text.getGlobalBounds().width / 4.f, 0.f);
-
-        renderWindow.clear();
-        renderWindow.draw(text);
-        renderWindow.display();
-
-        // TODO fix this to be cleaner
-        // check all the window's events that were triggered since the last iteration of the loop
-        sf::Event event;
-        bool doubleBreak = false;
-        while (not doubleBreak) {
-                while (renderWindow.pollEvent(event)) {
-                        // "close requested" event: we close the window
-                        if (event.type == sf::Event::Closed or event.key.code == sf::Keyboard::Escape) {
-                                doubleBreak = true;
-                                renderWindow.close();
-                                break;
-                        }
-                }
-        }
+    }
 }

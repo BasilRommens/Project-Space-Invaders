@@ -43,11 +43,25 @@ private:
         std::shared_ptr<Utils::Stopwatch> stopwatch =
             stopwatch->getStopwatch(); ///< The stopwatch of the game, is used to keep the game at a correct pace
 
+            /**
+             * @brief will display the text passed through on the current active window
+             * @param textToDisplay: The text that will be displayed on the window
+             * @param renderWindow: The renderWindow on which to display the message
+             */
+            void displayText(const std::string& textToDisplay, sf::RenderWindow& renderWindow) const;
+
         /**
-         * @brief will display if the player has lost on the current active window
+         * @brief will display that the player has lost on the current active window
+         * @param renderWindow: The window on which to display the losing message
          * TODO add a check for the window if it is still open
          */
         void displayLost(sf::RenderWindow& renderWindow) const;
+
+        /**
+         * @brief will display that the player has lost on the current active window
+         * @param renderWindow: The window on which to display the winning message
+         */
+        void displayWon(sf::RenderWindow& renderWindow) const;
 
         /**
          * @brief Plays the level currently loaded in the model
