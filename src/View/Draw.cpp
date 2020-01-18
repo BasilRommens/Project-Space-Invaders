@@ -104,8 +104,14 @@ sf::Sprite View::Draw::createSprite(std::shared_ptr<Model::Entity> entity)
         // create an object of the transform class
         std::shared_ptr<Utils::Transformation> transform = transform->getTransformation();
         // Retrieve the sprite coordinates of the pixels
-        std::pair<int, int> spriteCoordinates =
-            (*transform)(entity->getPos()->getX(), entity->getPos()->getY(), window->getSize().x, window->getSize().y);
+        std::pair<int, int> spriteCoordinates; // sprite coordinates on the view
+        // If the entity is a world then set the coordinates of the sprite to the top left of the screen
+        if (entity->getType() == "world") {
+            spriteCoordinates = std::make_pair<int, int>
+        } else {
+            spriteCoordinates =
+                    (*transform)(entity->getPos()->getX(), entity->getPos()->getY(), window->getSize().x, window->getSize().y);
+        }
 
         std::shared_ptr<sf::Texture> texture = std::make_shared<sf::Texture>(sf::Texture());
         if (not textures[entity->getImage()]) {
