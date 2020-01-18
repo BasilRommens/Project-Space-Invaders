@@ -42,6 +42,13 @@ public:
          * @param world: The world that is used to view all the entities and use them
          */
         void run(sf::RenderWindow& window, std::shared_ptr<Model::World> world);
+
+        /**
+         * @brief This function serves as a loop to wait for players input to restart the game
+         * @param renderWindow: The window which renders the game
+         * @return If the game can be replayed
+         */
+        bool replay(sf::RenderWindow& renderWindow);
 };
 
 } // namespace Control

@@ -26,6 +26,7 @@ $ ./run.sh
 | D             | Move left    |
 | SPACE         | Fire a bullet |
 | ESC           | Quit the game |
+| R | Replay the game when a victory or game over message shows on screen |
 
 ## Config files
 

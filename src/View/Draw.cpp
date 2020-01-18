@@ -19,11 +19,9 @@ void View::Draw::onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event ev
                 updateD(entity);
                 break;
         case Utils::Event::NEW_DRAW:
-                std::cout << "new" << std::endl;
                 newD(entity);
                 break;
         case Utils::Event::CLOSE_WINDOW:
-                std::cout << "close" << std::endl;
                 window->close();
                 open = false;
                 break;

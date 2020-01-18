@@ -14,35 +14,44 @@ std::shared_ptr<Utils::Stopwatch> Utils::Stopwatch::instance = nullptr;
 void Game::start(const std::vector<std::string>& levels)
 {
         sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
+        bool replay;
 
-        bool failure{};
+        do {
+            bool failure{};
 
-        GameParser gameParser{*this};
-        for (const auto& level : levels) {
+            GameParser gameParser{*this};
+            for (const auto& level : levels) {
                 // Parse the level and then set all the parsed elements on the current game
                 gameParser.parseLevel(level);
 
                 failure = play(renderWindow);
                 if (failure) {
-                        break;
+                    break;
                 }
                 if (not renderWindow.isOpen()) {
-                        break;
+                    break;
                 }
-        }
+            }
 
-        // TODO try to do this inside loop to restart game
-        if (failure and renderWindow.isOpen()) {
+            // end the game if no window is open
+            if (not renderWindow.isOpen()) {
+                break;
+            }
+            // TODO try to do this inside loop to restart game
+
+            if (failure) { // display lost message
                 displayLost(renderWindow);
-        }// otherwise you have won
-        else if (not failure and renderWindow.isOpen()) {
+            }// otherwise you have won
+            else if (not failure) {
                 displayWon(renderWindow);
-        }
+            }
 
-        // Downcast worldObserver
-        std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(worldObserver);
+            replay = controller.replay(renderWindow);
+        } while (renderWindow.isOpen() and replay);
+    // Downcast worldObserver
+    std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(worldObserver);
 
-        this->controller.clearObservers();
+    this->controller.clearObservers();
 }
 
 bool Game::play(sf::RenderWindow& renderWindow)
@@ -120,7 +129,7 @@ void Game::wait() const
 // TODO move this function elsewhere cause it doesnt belong here
 void Game::displayLost(sf::RenderWindow& renderWindow) const
 {
-        displayText("Game Over", renderWindow);
+    displayText("Game Over", renderWindow);
 }
 
 void Game::displayWon(sf::RenderWindow& renderWindow) const
@@ -150,24 +159,9 @@ void Game::displayText(const std::string& textToDisplay, sf::RenderWindow& rende
 
     // set the color
     text.setColor(sf::Color::White);
-    text.setPosition(renderWindow.getPosition().x / 2.f - text.getGlobalBounds().width / 4.f, 0.f);
+    text.setPosition(renderWindow.getSize().x / 2.f, 0.f);
 
     renderWindow.clear();
     renderWindow.draw(text);
     renderWindow.display();
-
-    // TODO fix this to be cleaner
-    // check all the window's events that were triggered since the last iteration of the loop
-    sf::Event event;
-    bool doubleBreak = false;
-    while (not doubleBreak) {
-        while (renderWindow.pollEvent(event)) {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed or event.key.code == sf::Keyboard::Escape) {
-                doubleBreak = true;
-                renderWindow.close();
-                break;
-            }
-        }
-    }
 }

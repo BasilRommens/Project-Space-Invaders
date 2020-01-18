@@ -88,3 +88,22 @@ void Control::Controller::removeUnnecessaryObservers(std::shared_ptr<Model::Worl
         }
     }
 }
+
+bool Control::Controller::replay(sf::RenderWindow& renderWindow)
+{
+    // check all the window's events that were triggered since the last iteration of the loop
+    sf::Event event;
+    while (true) {
+        while (renderWindow.pollEvent(event)) {
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed or event.key.code == sf::Keyboard::Escape) {
+                notify(nullptr, Utils::Event::CLOSE_WINDOW);
+                return false;
+            } // If the event that happened has pressed R then it signals a restart
+            else if (event.key.code == sf::Keyboard::R) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
