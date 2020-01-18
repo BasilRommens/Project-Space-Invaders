@@ -1,7 +1,7 @@
 {
   "Type": "bullet",
-  "Damage": 1,
-  "Image": "img/laser.png",
+  "Damage": 2,
+  "Image": "img/laserExtra.png",
   "Speed": 0.05,
   "Hitbox": {
     "Width": 0.12,

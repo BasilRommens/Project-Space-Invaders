@@ -47,9 +47,9 @@
         "x": -0.4,
         "y": 1.2
       },
-      "HP": 1,
-      "Image": "img/alien.png",
-      "Bullet": "input/bullet.json",
+      "HP": 3,
+      "Image": "img/alienExtra.png",
+      "Bullet": "input/bulletExtra.json",
       "Hitbox": {
         "Width": 0.81,
         "Height": 0.6

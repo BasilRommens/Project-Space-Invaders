@@ -1,6 +1,6 @@
 {
   "Type": "level",
-  "Enemies": "input/enemy.json",
+  "Enemies": "input/enemyExtra.json",
   "Player": "input/player.json",
   "World": "input/world.json"
 }
