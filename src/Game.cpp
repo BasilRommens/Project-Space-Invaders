@@ -15,43 +15,44 @@ void Game::start(const std::vector<std::string>& levels)
 {
         sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
         bool replay;
+        GameParser gameParser{*this};
 
         do {
-            bool failure{};
+                bool failure{};
 
-            GameParser gameParser{*this};
-            for (const auto& level : levels) {
-                // Parse the level and then set all the parsed elements on the current game
-                gameParser.parseLevel(level);
+                for (const auto& level : levels) {
+                        // Parse the level and then set all the parsed elements on the current game
+                        gameParser.parseLevel(level);
 
-                failure = play(renderWindow);
-                if (failure) {
-                    break;
+                        failure = play(renderWindow);
+                        if (failure) {
+                                break;
+                        }
+                        if (not renderWindow.isOpen()) {
+                                break;
+                        }
                 }
+
+                // end the game if no window is open
                 if (not renderWindow.isOpen()) {
-                    break;
+                        break;
                 }
-            }
+                // TODO try to do this inside loop to restart game: fix error when lost
 
-            // end the game if no window is open
-            if (not renderWindow.isOpen()) {
-                break;
-            }
-            // TODO try to do this inside loop to restart game
+                if (failure) { // display lost message
+                        displayLost(renderWindow);
+                } // otherwise you have won
+                else if (not failure) {
+                        displayWon(renderWindow);
+                }
 
-            if (failure) { // display lost message
-                displayLost(renderWindow);
-            }// otherwise you have won
-            else if (not failure) {
-                displayWon(renderWindow);
-            }
-
-            replay = controller.replay(renderWindow);
+                replay = controller.replay(renderWindow);
+                renderWindow.clear();
         } while (renderWindow.isOpen() and replay);
-    // Downcast worldObserver
-    std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(worldObserver);
+        // Downcast worldObserver
+        std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(worldObserver);
 
-    this->controller.clearObservers();
+        this->controller.clearObservers();
 }
 
 bool Game::play(sf::RenderWindow& renderWindow)
@@ -127,41 +128,35 @@ void Game::wait() const
 }
 
 // TODO move this function elsewhere cause it doesnt belong here
-void Game::displayLost(sf::RenderWindow& renderWindow) const
-{
-    displayText("Game Over", renderWindow);
-}
+void Game::displayLost(sf::RenderWindow& renderWindow) const { displayText("Game Over", renderWindow); }
 
-void Game::displayWon(sf::RenderWindow& renderWindow) const
-{
-    displayText("Victory", renderWindow);
-}
+void Game::displayWon(sf::RenderWindow& renderWindow) const { displayText("Victory", renderWindow); }
 
 void Game::displayText(const std::string& textToDisplay, sf::RenderWindow& renderWindow) const
 {
-    sf::Text text;
+        sf::Text text;
 
-    sf::Font font;
+        sf::Font font;
 
-    // TODO make this a const thing
-    if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
-        throw std::domain_error("failed to load font");
-    }
+        // TODO make this a const thing
+        if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
+                throw std::domain_error("failed to load font");
+        }
 
-    // select the font
-    text.setFont(font); // font is a sf::Font
+        // select the font
+        text.setFont(font); // font is a sf::Font
 
-    // set the string to display
-    text.setString(textToDisplay);
+        // set the string to display
+        text.setString(textToDisplay);
 
-    // set the character size
-    text.setCharacterSize(60); // in pixels, not points!
+        // set the character size
+        text.setCharacterSize(60); // in pixels, not points!
 
-    // set the color
-    text.setColor(sf::Color::White);
-    text.setPosition(renderWindow.getSize().x / 2.f, 0.f);
+        // set the color
+        text.setColor(sf::Color::White);
+        text.setPosition(renderWindow.getSize().x / 2.f, 0.f);
 
-    renderWindow.clear();
-    renderWindow.draw(text);
-    renderWindow.display();
+        renderWindow.clear();
+        renderWindow.draw(text);
+        renderWindow.display();
 }

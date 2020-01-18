@@ -20,7 +20,7 @@ void Model::EnemyShip::onNotify(std::shared_ptr<Entity> entity, Utils::Event eve
         }
         if (Utils::Event::UNMOVE == event and moved) {
                 // Set all the ships to not having moved such that the next tick the enemy ship can move
-                for (const std::weak_ptr<EnemyShip> ship: otherShips) {
+                for (const std::weak_ptr<EnemyShip> ship : otherShips) {
                         ship.lock()->moved = false;
                 }
         } else if (event == Utils::Event::DECREASE_DELAY) {

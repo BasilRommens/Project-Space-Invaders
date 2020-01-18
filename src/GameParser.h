@@ -58,7 +58,8 @@ private:
          * TODO add a check if the weakptr is valid
          * TODO add a check if the filename is valid
          */
-        static std::shared_ptr<Model::Bullet> createBullet(const std::string& fileName, std::weak_ptr<Model::Entity> entity);
+        static std::shared_ptr<Model::Bullet> createBullet(const std::string& fileName,
+                                                           std::weak_ptr<Model::Entity> entity);
 
 public:
         /**

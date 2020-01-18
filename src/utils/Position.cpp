@@ -9,11 +9,12 @@
 
 // TODO remove duplication from moveXPos and moveYPos
 
-Utils::Position::Position(double x, double y) {
+Utils::Position::Position(double x, double y)
+{
         if (x < CoordinateBound::LOWER_X or x > CoordinateBound::UPPER_X) {
                 throw std::domain_error("The x coordinate is out of bounds and the position can not be determined");
         } else if (y < CoordinateBound::LOWER_Y or y > CoordinateBound::UPPER_Y) {
-            throw std::domain_error("The y coordinate is out of bounds and the position can not be determined");
+                throw std::domain_error("The y coordinate is out of bounds and the position can not be determined");
         }
         this->x = x;
         this->y = y;
@@ -56,12 +57,13 @@ double Utils::Position::getX() const { return x; }
 
 double Utils::Position::getY() const { return y; }
 
-void Utils::Position::setPosition(Utils::Position newPos) {
-    if (newPos.x < CoordinateBound::LOWER_X or newPos.x > CoordinateBound::UPPER_X) {
-        throw std::domain_error("The x coordinate is out of bounds and the position can not be determined");
-    } else if (newPos.y < CoordinateBound::LOWER_Y or newPos.y > CoordinateBound::UPPER_Y) {
-        throw std::domain_error("The y coordinate is out of bounds and the position can not be determined");
-    }
+void Utils::Position::setPosition(Utils::Position newPos)
+{
+        if (newPos.x < CoordinateBound::LOWER_X or newPos.x > CoordinateBound::UPPER_X) {
+                throw std::domain_error("The x coordinate is out of bounds and the position can not be determined");
+        } else if (newPos.y < CoordinateBound::LOWER_Y or newPos.y > CoordinateBound::UPPER_Y) {
+                throw std::domain_error("The y coordinate is out of bounds and the position can not be determined");
+        }
 
-    *this = newPos;
+        *this = newPos;
 }

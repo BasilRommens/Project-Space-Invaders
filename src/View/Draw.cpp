@@ -105,11 +105,11 @@ sf::Sprite View::Draw::createSprite(std::shared_ptr<Model::Entity> entity)
         std::pair<int, int> spriteCoordinates; // sprite coordinates on the view
         // If the entity is a world then set the coordinates of the sprite to the top left of the screen
         if (entity->getType() == "world") {
-            spriteCoordinates = std::make_pair<int, int>(0, 0);
+                spriteCoordinates = std::make_pair<int, int>(0, 0);
         } // Otherwise change the coordinates of the sprite according to the current entity position
         else {
-            spriteCoordinates =
-                    (*transform)(entity->getPos()->getX(), entity->getPos()->getY(), window->getSize().x, window->getSize().y);
+                spriteCoordinates = (*transform)(entity->getPos()->getX(), entity->getPos()->getY(),
+                                                 window->getSize().x, window->getSize().y);
         }
 
         std::shared_ptr<sf::Texture> texture = std::make_shared<sf::Texture>(sf::Texture());
@@ -130,10 +130,10 @@ sf::Sprite View::Draw::createSprite(std::shared_ptr<Model::Entity> entity)
         // TODO add the default window size in utils namespace
         // If it is of the type world then we need to fit the image over the whole screen
         if (entity->getType() == "world") {
-            sprite.scale(800.f / sprite.getGlobalBounds().width, 600.f / sprite.getGlobalBounds().height);
+                sprite.scale(800.f / sprite.getGlobalBounds().width, 600.f / sprite.getGlobalBounds().height);
         } // Otherwise we mustn't and we scale according to the standard screen size
         else {
-            sprite.scale(sf::Vector2f(window->getSize().x/800.f, window->getSize().y/600.f));
+                sprite.scale(sf::Vector2f(window->getSize().x / 800.f, window->getSize().y / 600.f));
         }
         return sprite;
 }

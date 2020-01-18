@@ -1,6 +1,6 @@
-Language : Cpp
+---Language : Cpp
 #BasedOnStyle : LLVM
-               AccessModifierOffset : -8 AlignAfterOpenBracket : Align AlignConsecutiveAssignments
+                  AccessModifierOffset : -8 AlignAfterOpenBracket : Align AlignConsecutiveAssignments
     : false AlignConsecutiveDeclarations : false AlignEscapedNewlinesLeft : false AlignOperands
     : true AlignTrailingComments : true AllowAllParametersOfDeclarationOnNextLine : true AllowShortBlocksOnASingleLine
     : false AllowShortCaseLabelsOnASingleLine : false AllowShortFunctionsOnASingleLine
@@ -15,9 +15,8 @@ Language : Cpp
     : false ConstructorInitializerIndentWidth : 4 ContinuationIndentWidth : 4 Cpp11BracedListStyle
     : true DerivePointerAlignment : false DisableFormat : false ForEachMacros :
     [ foreach, Q_FOREACH, BOOST_FOREACH ] IncludeCategories : -Regex : '"' Priority : 1 -
-                                                                       Regex : '\<boost/' Priority : 2 -
-                                                                               Regex
-    : '\<' Priority : 3 IndentCaseLabels : false IndentWidth : 8 IndentWrappedFunctionNames
+    Regex : '\<boost/' Priority : 2 -
+            Regex : '\<' Priority : 3 IndentCaseLabels : false IndentWidth : 8 IndentWrappedFunctionNames
     : false KeepEmptyLinesAtTheStartOfBlocks : true MacroBlockBegin : '' MacroBlockEnd
     :   '' MaxEmptyLinesToKeep : 1 NamespaceIndentation : None ObjCBlockIndentWidth : 2 ObjCSpaceAfterProperty
     : false ObjCSpaceBeforeProtocolList
@@ -26,4 +25,4 @@ Language : Cpp
     : true SpaceBeforeParens : ControlStatements SpaceInEmptyParentheses
     : false SpacesBeforeTrailingComments : 1 SpacesInAngles : false SpacesInContainerLiterals
     : true SpacesInCStyleCastParentheses : false SpacesInParentheses : false SpacesInSquareBrackets : false Standard
-    : Cpp11 TabWidth : 8 UseTab : Never...
+    : Cpp11 TabWidth : 8 UseTab : Never

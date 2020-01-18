@@ -62,7 +62,7 @@ std::shared_ptr<ObserverPattern::Observer> ObserverPattern::Subject::retrieveObs
                         // try to downcast to world in order to get the correct type that way
                         std::static_pointer_cast<Model::World>(observer);
                         return observer;
-                }catch (...) {
+                } catch (...) {
                         // Do nothing
                 }
         }

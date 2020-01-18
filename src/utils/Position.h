@@ -38,10 +38,8 @@ enum Direction
 class Position
 {
 private:
-        double
-            x; ///< The x position in the coordinate system bounded by the transformation file @see Transformation.h
-        double
-            y; ///< The x position in the coordinate system decided by the transformation file @see Transformation.h
+        double x; ///< The x position in the coordinate system bounded by the transformation file @see Transformation.h
+        double y; ///< The x position in the coordinate system decided by the transformation file @see Transformation.h
 public:
         /**
          * @brief The constructor of the Position class with both the x and y value to be set

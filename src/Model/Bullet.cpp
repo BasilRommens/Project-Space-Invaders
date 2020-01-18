@@ -68,7 +68,8 @@ void Model::Bullet::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 
 void Model::Bullet::setPosition(Utils::Position newPos) { pos.setPosition(newPos); }
 
-Model::Bullet::Bullet(std::shared_ptr<Bullet> other): Bullet(other->getImage(), other->direction, other->speed, other->damage, other->pos, other->from, other->hitbox)
+Model::Bullet::Bullet(std::shared_ptr<Bullet> other)
+    : Bullet(other->getImage(), other->direction, other->speed, other->damage, other->pos, other->from, other->hitbox)
 {
         this->inControl = other->inControl;
         this->addObserver(other->retrieveObserver("world"));
@@ -85,7 +86,4 @@ double Model::Bullet::getDamage() const { return damage; }
 
 Utils::Direction Model::Bullet::getDirection() const { return direction; }
 
-const Utils::Hitbox& Model::Bullet::getHitbox() const
-{
-        return hitbox;
-}
+const Utils::Hitbox& Model::Bullet::getHitbox() const { return hitbox; }

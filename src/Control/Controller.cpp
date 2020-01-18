@@ -60,50 +60,50 @@ void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::W
 
 void Control::Controller::removeUnnecessaryObservers(std::shared_ptr<Model::World> world)
 {
-    for (std::shared_ptr<ObserverPattern::Observer> observer : this->getObservers()) {
-        // Do not proceed checking if the observer is the world itself
-        if (observer.get() == world.get()) {
-            continue;
+        for (std::shared_ptr<ObserverPattern::Observer> observer : this->getObservers()) {
+                // Do not proceed checking if the observer is the world itself
+                if (observer.get() == world.get()) {
+                        continue;
+                }
+                // If the observer is a nullpointer just continue to the next one
+                if (not observer) {
+                        continue;
+                }
+                bool found = false;
+                for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
+                        if (observer == entity) {
+                                found = true;
+                                break;
+                        }
+                }
+                // If we did not find it in the world then we can delete it
+                if (not found) {
+                        if (observer->getType() == "enemy") {
+                                std::shared_ptr<Model::Entity> entity =
+                                    std::static_pointer_cast<Model::Entity>(observer);
+                                entity->removeThis();
+                                entity->clearObservers();
+                        }
+                        this->removeObserver(observer);
+                }
         }
-        // If the observer is a nullpointer just continue to the next one
-        if (not observer) {
-            continue;
-        }
-        bool found = false;
-        for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
-            if (observer == entity) {
-                found = true;
-                break;
-            }
-        }
-        // If we did not find it in the world then we can delete it
-        if (not found) {
-            if (observer->getType() == "enemy") {
-                std::shared_ptr<Model::Entity> entity =
-                        std::static_pointer_cast<Model::Entity>(observer);
-                entity->removeThis();
-                entity->clearObservers();
-            }
-            this->removeObserver(observer);
-        }
-    }
 }
 
 bool Control::Controller::replay(sf::RenderWindow& renderWindow)
 {
-    // check all the window's events that were triggered since the last iteration of the loop
-    sf::Event event;
-    while (true) {
-        while (renderWindow.pollEvent(event)) {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed or event.key.code == sf::Keyboard::Escape) {
-                notify(nullptr, Utils::Event::CLOSE_WINDOW);
-                return false;
-            } // If the event that happened has pressed R then it signals a restart
-            else if (event.key.code == sf::Keyboard::R) {
-                return true;
-            }
+        // check all the window's events that were triggered since the last iteration of the loop
+        sf::Event event;
+        while (true) {
+                while (renderWindow.pollEvent(event)) {
+                        // "close requested" event: we close the window
+                        if (event.type == sf::Event::Closed or event.key.code == sf::Keyboard::Escape) {
+                                notify(nullptr, Utils::Event::CLOSE_WINDOW);
+                                return false;
+                        } // If the event that happened has pressed R then it signals a restart
+                        else if (event.key.code == sf::Keyboard::R) {
+                                return true;
+                        }
+                }
         }
-    }
-    return false;
+        return false;
 }
