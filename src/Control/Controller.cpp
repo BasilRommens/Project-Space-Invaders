@@ -6,26 +6,9 @@
  */
 #include "Controller.h"
 
-void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::World> world)
+void Control::Controller::handleInput(sf::RenderWindow& window, std::shared_ptr<Model::World> world)
 {
-        // notify the world that it needs to check all the collision
-        notify(nullptr, Utils::Event::CHECK_COLLISIONS);
-
         // TODO find something that can change input controls
-        notify(nullptr, Utils::Event::UNMOVE); // Make all the enemy ships movable
-
-        // Update the position of all the bullets
-        for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
-                if (entity->getType() == "bullet") {
-                        // If it is already being observed by the controller class do nothing
-                        if (not entity->isInControl()) {
-                                this->addObserver(entity);
-                                entity->setInControl();
-                        }
-                        notify(entity, Utils::Event::UPDATE_DRAW);
-                }
-        }
-
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         std::shared_ptr<Model::Entity> player = world->getPlayer();
@@ -48,14 +31,6 @@ void Control::Controller::run(sf::RenderWindow& window, std::shared_ptr<Model::W
                         }
                 }
         }
-        // Remove all the objects that we can't observe in the controller
-        // We do this by checking for all the observers if they are still in the world
-        removeUnnecessaryObservers(world);
-
-        // Move all the enemy ships
-        notify(nullptr, Utils::Event::MOVE);
-        // Decrease the player/enemy firing delay with 1 every frame
-        notify(nullptr, Utils::Event::DECREASE_DELAY);
 }
 
 void Control::Controller::removeUnnecessaryObservers(std::shared_ptr<Model::World> world)
@@ -105,5 +80,32 @@ bool Control::Controller::replay(sf::RenderWindow& renderWindow)
                         }
                 }
         }
-        return false;
+}
+
+void Control::Controller::update(std::shared_ptr<Model::World> world)
+{
+        // notify the world that it needs to check all the collision
+        notify(nullptr, Utils::Event::CHECK_COLLISIONS);
+        // Remove all the objects that we can't observe in the controller
+        // We do this by checking for all the observers if they are still in the world
+        removeUnnecessaryObservers(world);
+
+        notify(nullptr, Utils::Event::UNMOVE); // Make all the enemy ships movable
+
+        // Update the position of all the bullets
+        for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
+                if (entity->getType() == "bullet") {
+                        // If it is already being observed by the controller class do nothing
+                        if (not entity->isInControl()) {
+                                this->addObserver(entity);
+                                entity->setInControl();
+                        }
+                        notify(entity, Utils::Event::UPDATE_DRAW);
+                }
+        }
+
+        // Move all the enemy ships
+        notify(nullptr, Utils::Event::MOVE);
+        // Decrease the player/enemy firing delay with 1 every frame
+        notify(nullptr, Utils::Event::DECREASE_DELAY);
 }

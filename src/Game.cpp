@@ -15,6 +15,7 @@ void Game::start(const std::vector<std::string>& levels)
 {
         sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
         bool replay;
+        // construct gameparser with this game as a default
         GameParser gameParser{*this};
 
         do {
@@ -91,7 +92,10 @@ bool Game::play(sf::RenderWindow& renderWindow)
                 stopwatch->start();
 
                 /// Part of control
-                controller.run(renderWindow, world);
+                // handles the collisions and player input
+                controller.handleInput(renderWindow, world);
+                // updates the world
+                controller.update(world);
 
                 /// Part of view
                 // if the window has been closed then exit the level

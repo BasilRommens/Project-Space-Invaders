@@ -38,11 +38,17 @@ private:
 
 public:
         /**'
-         * @brief runs the controller during one game tick
+         * @brief handles the input
          * @param window: The window that is used for graphically displaying the game
          * @param world: The world that is used to view all the entities and use them
          */
-        void run(sf::RenderWindow& window, std::shared_ptr<Model::World> world);
+        void handleInput(sf::RenderWindow& window, std::shared_ptr<Model::World> world);
+
+        /**
+         * @brief updates the world with the bullets and the enemy ships
+         * @param world: The world that needs to be updated
+         */
+        void update(std::shared_ptr<Model::World> world);
 
         /**
          * @brief This function serves as a loop to wait for players input to restart the game

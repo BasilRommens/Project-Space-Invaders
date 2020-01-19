@@ -8,7 +8,7 @@
 #ifndef PROJECT_SPACE_INVADERS_COLLISION_H
 #define PROJECT_SPACE_INVADERS_COLLISION_H
 
-#include "Model/Entity.h"
+#include "../Model/Entity.h"
 
 /**
  * @addtogroup Utils
@@ -16,9 +16,9 @@
  */
 namespace Utils {
 
-    /**
-     * We use this class to make using collision detection easier
-     */
+/**
+ * We use this class to make using collision detection easier
+ */
 class Collision
 {
 private:

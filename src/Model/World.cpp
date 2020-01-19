@@ -6,7 +6,7 @@
  */
 
 #include "World.h"
-#include "../Collision.h"
+#include "../utils/Collision.h"
 
 void Model::World::addEntity(std::shared_ptr<Entity> entity)
 {
