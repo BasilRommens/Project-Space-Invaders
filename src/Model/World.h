@@ -37,7 +37,6 @@ private:
          * @param thisEntity: The first entity to check
          * @param otherEntity: The second entity to check
          * @return if the two entities do indeed collide
-         * TODO check if the two entities can collide indeed
          */
         bool areColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity) const;
 
@@ -45,9 +44,51 @@ private:
          * @brief This member function chooses what to do with 2 colliding entities
          * @param thisEntity: The entity that needs to be checked
          * @param otherEntity: The other entity that needs to be checked
-         * TODO check if they are indeed colliding
          */
         void handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity);
+
+        /**
+         * @brief checks if the entity can fire a bullet
+         * @param entity: The entity to be checked if it can fire a bullet
+         * @return True if it can fire a vullet
+         */
+        bool canFire(std::shared_ptr<Model::Entity> entity) const;
+
+        /**
+         * @brief Will check all the objects in the world to check for collisions and handle them if there are
+         * @param pairs: All The collision pairs that already have been checked
+         * @return If the pairs vector didnt grow
+         */
+        bool checkCollisions(std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs);
+
+        /**
+         * @brief checks if the two entities can collide with one another
+         * @param thisEntity: The first entity
+         * @param otherEntity: The other entity
+         * @param pairs: All the collision pairs
+         * @return if they can collide
+         */
+        bool validCollisionPair(std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity,
+                                std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs);
+
+        /**
+         * @brief will determine if the pair already does exist in the pairs vector
+         * @param pairs: The vector in which to check
+         * @param thisEntity: First entity
+         * @param otherEntity: Second entity
+         * @return True if it is in the pairs
+         */
+        bool inPairs(std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs,
+                     std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity);
+
+        /**
+         * @brief determines which of the 2 entities is the bullet
+         * @param thisEntity: The first entity
+         * @param otherEntity: The second entity
+         * @return a pair of a bullet (always first) and entity (always second) can be both bullets
+         */
+        std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>> determineBulletEntity(
+            std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity);
 
 public:
         /**
@@ -66,7 +107,6 @@ public:
          * game
          * @param image: The image to use
          * @param endLine: The end of the world, when passed the game will end
-         * TODO check if the image is usable
          */
         World(const std::string& image, double endLine);
 
@@ -102,10 +142,10 @@ public:
         /**
          * @brief fires the bullet from a certain entity, and adds it to the world
          * @param entity: The entity from which the bullet needs to be fired
+         * @throws std::invalid_argument If the entity is not of the ship type then it cant fire a bullet
          */
         void fireBullet(std::shared_ptr<Model::Entity> entity);
 
-        // TODO has.* has duplicate code need to remove it
         /**
          * @return if the world still contains a playership
          */
@@ -115,6 +155,13 @@ public:
          * @return if the world has no enemies left then go to the next level
          */
         bool hasEnemies() const;
+
+        /**
+         * @brief checks if there is at least one of the entities in the game
+         * @param entityType: The type that needs to be checked
+         * @return True if the entity is present in the world
+         */
+        bool hasEntity(const std::string& entityType) const;
 
         /**
          * @brief will reset the world, i.e. removing all the entities from itself and removing all the observers

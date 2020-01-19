@@ -119,8 +119,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
 
 void Game::wait() const
 {
-        // TODO remove the 1000000.f because its ugly
-        int elapsedTime = floor(stopwatch->get_lap().count() * 1000000.f);
+        int elapsedTime = floor(stopwatch->get_lap().count() * Utils::count);
         if (elapsedTime < Utils::frameDuration) {
                 // multiplied by 100 cause framerate doesnt seem right
                 usleep(Utils::frameDuration - elapsedTime);
@@ -142,8 +141,7 @@ void Game::displayText(const std::string& textToDisplay, sf::RenderWindow& rende
 
         sf::Font font;
 
-        // TODO make this a const thing
-        if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
+        if (!font.loadFromFile(Utils::font)) {
                 throw std::runtime_error("Failed to load font");
         }
 

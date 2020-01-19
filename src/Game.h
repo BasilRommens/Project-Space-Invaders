@@ -21,6 +21,7 @@
 #include "Model/PlayerShip.h"
 #include "Model/World.h"
 #include "View/Draw.h"
+#include "utils/Global.h"
 #include "utils/Stopwatch.h"
 #include "utils/json.hpp"
 
@@ -54,7 +55,6 @@ private:
         /**
          * @brief will display that the player has lost on the current active window
          * @param renderWindow: The window on which to display the losing message
-         * TODO add a check for the window if it is still open
          */
         void displayLost(sf::RenderWindow& renderWindow) const;
 

@@ -28,18 +28,15 @@ std::vector<std::string> GameParser::parseGame(const std::string& gameFile)
         return levels;
 }
 
-// TODO add check for when entity is not a valid pointer
 void GameParser::parseLevel(const std::string& levelFile)
 {
         json j = parse(levelFile);
 
-        // TODO make throw clearer
         if (j["Type"] != "level") {
                 throw Exception::bad_type(
                     "GameParser::parseLevel(const std::string&) : The type of the file was wrong");
         }
 
-        // TODO make extra functions for applying the observer pattern
         try {
                 parseWorld(j["World"]);
                 parsePlayer(j["Player"]);
@@ -55,7 +52,6 @@ void GameParser::parseLevel(const std::string& levelFile)
         }
 }
 
-// TODO error on empty filename
 void GameParser::parsePlayer(const std::string&& player)
 {
         json j = parse(player);
@@ -68,7 +64,6 @@ void GameParser::parsePlayer(const std::string&& player)
         // downcast the world to the right type to have the right functions at hand
         std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(game.worldObserver);
 
-        // TODO
         try {
                 std::string image = j["Image"];
                 Utils::Position position(j["Position"]["x"], j["Position"]["y"]);
@@ -98,12 +93,10 @@ void GameParser::parsePlayer(const std::string&& player)
         }
 }
 
-// TODO error on empty filename
 void GameParser::parseEnemy(const std::string&& enemy)
 {
         json j = parse(enemy);
 
-        // TODO make throw clearer
         if (j["Type"] != "enemy") {
                 throw Exception::bad_type(
                     "GameParser::parseEnemy(const std::string&&) : The type of the enemy file is wrong");
@@ -118,7 +111,6 @@ void GameParser::parseEnemy(const std::string&& enemy)
 
                 int initialEntityCount = world->getEntities().size();
 
-                // TODO if type is a mismatch -> error
                 for (auto ship : j["Ships"]) {
                         try {
                                 std::string image = ship["Image"];
@@ -174,7 +166,6 @@ void GameParser::parseWorld(const std::string& worldName)
 {
         json j = parse(worldName);
 
-        // TODO make throw clearer
         if (j["Type"] != "world") {
                 throw Exception::bad_type(
                     "GameParser::parseWorld(const std::string&) : The type of the world file is wrong");

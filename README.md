@@ -1,4 +1,4 @@
-# Project-Space-Invaders
+#Project - Space - Invaders
 Exam task for GP (Gevorderd Programmeren)
 
 Build status: [![Build Status](https://travis-ci.com/BasilRommens/Project-Space-Invaders.svg?token=ngBY2shRs4ANxmwKfR7w&branch=master)](https://travis-ci.com/BasilRommens/Project-Space-Invaders)
@@ -17,6 +17,10 @@ $ cd Project-Space-Invaders
 $ chmod +x run.sh
 $ ./run.sh
 ```
+
+## Modifying the jsons
+
+This can be done but expect a lot of errors when doing so, also sometimes enemies wont be loaded, because of collisions. Sprites are seen as used from the top left corner. They are scaled based on a default screen size of 800x600. There are no defaults when leaving variables out. When using different images and when you use run.sh from the root of the project. The files will be read from the root of the project. So relative paths to these files.
 
 ## Controls
 

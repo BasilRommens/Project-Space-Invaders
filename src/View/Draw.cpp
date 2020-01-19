@@ -7,6 +7,7 @@
 
 #include "Draw.h"
 #include "../Model/World.h"
+#include "../utils/Global.h"
 #include <sstream>
 
 // set the instance of the transformation to nullptr to be not pointing to anything
@@ -35,6 +36,10 @@ void View::Draw::onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event ev
 
 void View::Draw::updateD(std::shared_ptr<Model::Entity> entity)
 {
+        if (not entity) {
+                throw std::invalid_argument("View::Draw::updateD(std::shared_ptr<Model::Entity>) : There is no entity "
+                                            "which we can update the sprite from");
+        }
         std::shared_ptr<std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>>> spriteToUpdate{};
         for (const auto& sprite : sprites) {
                 if (sprite.first == entity) {
@@ -45,7 +50,6 @@ void View::Draw::updateD(std::shared_ptr<Model::Entity> entity)
                 }
         }
 
-        // TODO reduce code duplication with create sprite in this class
         // create an object of the transform class
         std::shared_ptr<Utils::Transformation> transform = transform->getTransformation();
         // Retrieve the sprite coordinates of the pixels
@@ -58,14 +62,23 @@ void View::Draw::updateD(std::shared_ptr<Model::Entity> entity)
 
 void View::Draw::newD(std::shared_ptr<Model::Entity> entity)
 {
+        if (not entity) {
+                throw std::invalid_argument("View::Draw::newD(std::shared_ptr<Model::Entity>) : There is no entity "
+                                            "from which we can draw the sprite");
+        }
         std::shared_ptr<sf::Sprite> spritePointer = std::make_shared<sf::Sprite>(createSprite(entity));
         std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<sf::Sprite>> newSprite(entity, spritePointer);
         addSprite(newSprite);
 }
 
 View::Draw::Draw(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Model::World> world)
-    : window(std::move(window))
 {
+        if (not window) {
+                throw std::invalid_argument("View::Draw::Draw(...) : There is no window to be found");
+        } else if (not world) {
+                throw std::invalid_argument("View::Draw::Draw(...) : There is no world to be found");
+        }
+        this->window = std::move(window);
         newD(world);
         for (std::shared_ptr<Model::Entity> entity : world->getEntities()) {
                 newD(entity);
@@ -98,7 +111,6 @@ void View::Draw::removeSprite(std::shared_ptr<Model::Entity> entityToRemove)
 
 sf::Sprite View::Draw::createSprite(std::shared_ptr<Model::Entity> entity)
 {
-        // TODO fix representation in texture in the model because it doesnt belong there
         // create an object of the transform class
         std::shared_ptr<Utils::Transformation> transform = transform->getTransformation();
         // Retrieve the sprite coordinates of the pixels
@@ -127,13 +139,14 @@ sf::Sprite View::Draw::createSprite(std::shared_ptr<Model::Entity> entity)
         sprite.setPosition(spriteCoordinates.first, spriteCoordinates.second);
 
         // 3. Set the scale of the sprite according to the window size
-        // TODO add the default window size in utils namespace
         // If it is of the type world then we need to fit the image over the whole screen
         if (entity->getType() == "world") {
-                sprite.scale(800.f / sprite.getGlobalBounds().width, 600.f / sprite.getGlobalBounds().height);
+                sprite.scale(Utils::windowWidth / sprite.getGlobalBounds().width,
+                             Utils::windowHeight / sprite.getGlobalBounds().height);
         } // Otherwise we mustn't and we scale according to the standard screen size
         else {
-                sprite.scale(sf::Vector2f(window->getSize().x / 800.f, window->getSize().y / 600.f));
+                sprite.scale(
+                    sf::Vector2f(window->getSize().x / Utils::windowWidth, window->getSize().y / Utils::windowHeight));
         }
         return sprite;
 }

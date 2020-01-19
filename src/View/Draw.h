@@ -65,14 +65,14 @@ private:
         /**
          * @brief Says to update the position of the entity
          * @param entity: The entity that needs to be updated
-         * TODO add an error for when there is no entity is passed
+         * @throws std::invalid_argument if no entity is to be found as an argument
          */
         void updateD(std::shared_ptr<Model::Entity> entity);
 
         /**
          * @brief says that the entity needs to be added to hte
          * @param entity: The entity that needs to be created as a sprite and displayed
-         * TODO add an error for when there is no entity is passed
+         * @throws std::invalid_argument if no entity is to be found as an argument
          */
         void newD(std::shared_ptr<Model::Entity> entity);
 
@@ -86,8 +86,7 @@ public:
          * @brief The constructor of Draw
          * @param window: The window in which we will draw all the sprites
          * @param world: The world which is used for adding the entities
-         * TODO add an error for when there is no window is passed
-         * TODO add an error for when there is no world is passed
+         * @throws std::invalid_argument If no window or world is passed
          */
         Draw(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Model::World> world);
 
