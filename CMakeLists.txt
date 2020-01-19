@@ -24,7 +24,8 @@ add_executable(Project-Space-Invaders
         src/Parser/GameParser.cpp
         src/Exception/bad_type.cpp
         src/Exception/bad_file.cpp
-        src/Exception/entity_underflow.cpp)
+        src/Exception/entity_underflow.cpp
+        src/Collision.cpp)
 
 
 target_link_libraries(Project-Space-Invaders "-lsfml-graphics -lsfml-window -lsfml-system")

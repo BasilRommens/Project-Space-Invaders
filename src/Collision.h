@@ -10,7 +10,15 @@
 
 #include "Model/Entity.h"
 
+/**
+ * @addtogroup Utils
+ * @{
+ */
 namespace Utils {
+
+    /**
+     * We use this class to make using collision detection easier
+     */
 class Collision
 {
 private:
@@ -75,5 +83,8 @@ public:
 };
 
 } // namespace Utils
+/**
+ * @}
+ */
 
 #endif // PROJECT_SPACE_INVADERS_COLLISION_H
