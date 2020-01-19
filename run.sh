@@ -10,4 +10,4 @@ make
 
 cd ..
 
-build/Project-Space-Invaders
+build/Project-Space-Invaders input/game.json
