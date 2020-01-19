@@ -134,13 +134,17 @@ void Game::displayWon(sf::RenderWindow& renderWindow) const { displayText("Victo
 
 void Game::displayText(const std::string& textToDisplay, sf::RenderWindow& renderWindow) const
 {
+        // This function returns whenever the renderWindow is closed
+        if (not renderWindow.isOpen()) {
+                return;
+        }
         sf::Text text;
 
         sf::Font font;
 
         // TODO make this a const thing
         if (!font.loadFromFile("input/Roboto/Roboto-Black.ttf")) {
-                throw std::domain_error("failed to load font");
+                throw std::runtime_error("Failed to load font");
         }
 
         // select the font

@@ -49,6 +49,8 @@ public:
          * @param damage: The damage the bullet is expected to do
          * @param pos: The position at which we can find the bullet
          * @param from: The entity that is shooting this particular bullet with a weak pointer
+         * @throws std::domain_error We encounter this exception only when the constructor when one of the parameters
+         * didnt comply to the invariant
          */
         Bullet(const std::string& image, Utils::Direction direction, double speed, double damage,
                const Utils::Position& pos, std::weak_ptr<Entity> from, Utils::Hitbox hitbox);

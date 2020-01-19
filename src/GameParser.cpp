@@ -17,7 +17,6 @@ std::vector<std::string> GameParser::parseGame(const std::string& gameFile)
         json j;
         i >> j;
 
-        // TODO make throw clearer
         if (j["Type"] != "game") {
                 throw Exception::bad_type("The type of the file doesnt match that one of the game");
         }
@@ -42,7 +41,8 @@ void GameParser::parseLevel(const std::string& levelFile)
 
         // TODO make throw clearer
         if (j["Type"] != "level") {
-                throw;
+                throw Exception::bad_type(
+                    "GameParser::parseLevel(const std::string&) : The type of the file was wrong");
         }
 
         // TODO make extra functions for applying the observer pattern
@@ -52,10 +52,12 @@ void GameParser::parseLevel(const std::string& levelFile)
                 parseEnemy(j["Enemies"]);
         } catch (const Exception::bad_type& e) {
                 std::cout << e.what() << std::endl;
-                throw Exception::bad_type("One of the files couldnt be parsed due to being the wrong type");
+                throw Exception::bad_type("GameParser::parseLevel(const std::string&) : One of the files couldnt be "
+                                          "parsed due to being the wrong type");
         } catch (const Exception::entity_underflow& e) {
                 std::cout << e.what() << std::endl;
-                throw Exception::bad_file("One of the files couldnt be parsed correctly");
+                throw Exception::bad_file(
+                    "GameParser::parseLevel(const std::string&) : One of the files couldnt be parsed correctly");
         }
 }
 
@@ -68,7 +70,8 @@ void GameParser::parsePlayer(const std::string&& player)
         i >> j;
 
         if (j["Type"] != "player") {
-                throw Exception::bad_type("The type of the player file is wrong");
+                throw Exception::bad_type(
+                    "GameParser::parsePlayer(const std::string&& : The type of the player file is wrong");
         }
 
         // downcast the world to the right type to have the right functions at hand
@@ -91,10 +94,16 @@ void GameParser::parsePlayer(const std::string&& player)
                 game.controller.addObserver(observerPlayer);
         } catch (const json::exception& e) {
                 std::cout << e.what() << std::endl;
-                throw Exception::bad_file("The file of the player doesnt seem to have the correct attributes");
+                throw Exception::bad_file("GameParser::parsePlayer(const std::string&& : The file of the player doesnt "
+                                          "seem to have the correct attributes");
         } catch (const Exception::bad_type& e) {
                 std::cout << e.what() << std::endl;
-                throw Exception::bad_file("The file of the player doesnt seem to have the correct attributes");
+                throw Exception::bad_file("GameParser::parsePlayer(const std::string&& : The file of the player doesnt "
+                                          "seem to have the correct attributes");
+        } catch (const std::exception& e) {
+                std::cout << e.what() << std::endl;
+                throw Exception::bad_file("GameParser::parsePlayer(const std::string&& : One of the arguments of one "
+                                          "of the json files is of the wrong type");
         }
 }
 
@@ -108,7 +117,8 @@ void GameParser::parseEnemy(const std::string&& enemy)
 
         // TODO make throw clearer
         if (j["Type"] != "enemy") {
-                throw Exception::bad_type("The type of the enemy file is wrong");
+                throw Exception::bad_type(
+                    "GameParser::parseEnemy(const std::string&&) : The type of the enemy file is wrong");
         }
 
         // downcast the world to the right type to have the right functions at hand
@@ -144,23 +154,31 @@ void GameParser::parseEnemy(const std::string&& enemy)
                                 enemyShip->addShip(weakEnemy);
                         } catch (const json::exception& e) {
                                 std::cerr << e.what() << std::endl;
-                                std::cerr
-                                    << "One of the attributes that an enemy needed wasn't available in the json file"
-                                    << std::endl;
+                                std::cerr << "GameParser::parseEnemy(const std::string&&) : One of the attributes that "
+                                             "an enemy needed wasn't available in the json file"
+                                          << std::endl;
                                 continue; // nothing has been added so we can continue
                         } catch (const Exception::bad_type& e) {
                                 std::cerr << e.what() << std::endl;
-                                std::cout << "The enemy couldn't be created" << std::endl;
+                                std::cerr
+                                    << "GameParser::parseEnemy(const std::string&&) : The enemy couldn't be created"
+                                    << std::endl;
                                 continue;
                         }
                 }
                 // Error because no enemies were created and therefore no level can be constructed (it is instantly won)
                 if (world->getEntities().size() - initialEntityCount == 0) {
-                        throw Exception::entity_underflow("No enemies were created");
+                        throw Exception::entity_underflow(
+                            "GameParser::parseEnemy(const std::string&&) : No enemies were created");
                 }
         } catch (const json::exception& e) {
                 std::cout << e.what() << std::endl;
-                throw Exception::bad_file("The enemy type file wasnt correct");
+                throw Exception::bad_file(
+                    "GameParser::parseEnemy(const std::string&&) : The enemy type file wasnt correct");
+        } catch (const std::exception& e) { // If one of the arguments in the json file is of the incorrect type
+                std::cout << e.what() << std::endl;
+                throw Exception::bad_file(
+                    "GameParser::parseEnemy(const std::string&&) : The json file contains wrong variable types")
         }
 }
 
@@ -173,7 +191,8 @@ void GameParser::parseWorld(const std::string& worldName)
 
         // TODO make throw clearer
         if (j["Type"] != "world") {
-                throw Exception::bad_type("The type of the world file is wrong");
+                throw Exception::bad_type(
+                    "GameParser::parseWorld(const std::string&) : The type of the world file is wrong");
         }
 
         game.worldObserver = std::make_shared<Model::World>(Model::World(j["Image"], j["End"]));
@@ -182,6 +201,10 @@ void GameParser::parseWorld(const std::string& worldName)
 std::shared_ptr<Model::Bullet> GameParser::createBullet(const std::string& fileName,
                                                         std::weak_ptr<Model::Entity> entity)
 {
+        if (entity.expired()) {
+                throw std::invalid_argument("GameParser::createBullet(const std::string&, std::weak_ptr<Model::Entity> "
+                                            ": There is no link for the entity to a bullet ");
+        }
         // Parse json file
         std::ifstream i(fileName);
         json j;
@@ -189,7 +212,8 @@ std::shared_ptr<Model::Bullet> GameParser::createBullet(const std::string& fileN
 
         // TODO make throw clearer
         if (j["Type"] != "bullet") {
-                throw Exception::bad_type("The type of the bullet file is wrong");
+                throw Exception::bad_type("GameParser::createBullet(const std::string&, std::weak_ptr<Model::Entity> : "
+                                          "The type of the bullet file is wrong");
         }
 
         try {
@@ -197,12 +221,12 @@ std::shared_ptr<Model::Bullet> GameParser::createBullet(const std::string& fileN
                 std::string image = j["Image"];
                 double damage = j["Damage"];
                 double speed = j["Speed"];
-                // TODO Clean up this mess
+
                 Utils::Hitbox hitbox{j["Hitbox"]["Width"], j["Hitbox"]["Height"]};
                 // Move the bullet so that it is centred over the entity
                 position.moveXPos(-hitbox.getWidth() / 2, hitbox);
                 Utils::Direction direction{};
-                // TODO fix y spawning
+
                 if (entity.lock()->getType() == "enemy") {
                         direction = Utils::Direction::DOWN;
                         position.moveYPos(-entity.lock()->getHitbox().getHeight(), hitbox);
@@ -210,13 +234,16 @@ std::shared_ptr<Model::Bullet> GameParser::createBullet(const std::string& fileN
                         direction = Utils::Direction::UP;
                         position.moveYPos(hitbox.getHeight(), hitbox);
                 } else {
-                        throw Exception::bad_type("The type to which the bullet is supposed to bind is not correct");
+                        throw Exception::bad_type(
+                            "GameParser::createBullet(const std::string&, std::weak_ptr<Model::Entity> : The type to "
+                            "which the bullet is supposed to bind is not correct");
                 }
 
                 return std::make_shared<Model::Bullet>(
                     Model::Bullet(image, direction, speed, damage, position, entity, hitbox));
         } catch (const json::exception& e) {
                 std::cout << e.what() << std::endl;
-                throw Exception::bad_file("The file that contains bullet cant be correctly parsed");
+                throw Exception::bad_file("GameParser::createBullet(const std::string&, std::weak_ptr<Model::Entity> : "
+                                          "The file that contains bullet cant be correctly parsed");
         }
 }

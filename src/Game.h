@@ -47,6 +47,7 @@ private:
          * @brief will display the text passed through on the current active window
          * @param textToDisplay: The text that will be displayed on the window
          * @param renderWindow: The renderWindow on which to display the message
+         * @throws std::runtime_error If the font that is used isn't in the project then error
          */
         void displayText(const std::string& textToDisplay, sf::RenderWindow& renderWindow) const;
 

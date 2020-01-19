@@ -9,7 +9,7 @@
 
 Utils::Hitbox::Hitbox(double width, double height)
 {
-        if (width <= 0 or height <= 0) {
+        if (width < 0 or height < 0) {
                 throw std::domain_error(
                     "Hitbox::Hitbox(double width, double height) : The width or height is too small to be a hitbox");
         }

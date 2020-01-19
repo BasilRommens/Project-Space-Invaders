@@ -59,12 +59,16 @@ public:
         /**
          * @brief Adds and observer to the list of observers the subject holds
          * @param observer: The observer that will be added to the list of observers of the subject
+         * @throws std::invalid_argument This exception will be thrown whenever we try to add an observer that points to
+         * nothing
          */
         void addObserver(std::shared_ptr<Observer> observer);
 
         /**
          * @brief Removes the requested observer from the class
          * @param observer: The observer that needs to be removed
+         * @throws std::invalid_argument We throw this exception whenever we want to remove an empty observer from the
+         * list of observers
          */
         void removeObserver(std::shared_ptr<Observer> observer);
 

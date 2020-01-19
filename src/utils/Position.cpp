@@ -25,7 +25,6 @@ void Utils::Position::moveXPos(double distance, const Hitbox hitbox)
         // Set the new possible x position
         double newXPos = x + distance;
 
-        // TODO throw an error when out of bounds
         if (newXPos + hitbox.getWidth() > CoordinateBound::UPPER_X) {
                 x = CoordinateBound::UPPER_X - hitbox.getWidth();
                 throw std::out_of_range("The entity tried to get out of range");

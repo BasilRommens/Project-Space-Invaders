@@ -93,6 +93,8 @@ public:
          * @brief Reacts upon a notification from all the subjects that have this object as an observer in their classes
          * @param entity: The entity that can be used in the notification
          * @param event: The event that has made this notification possible
+         * @throws Exception::entity_underflow when we want to shoot a bullet from an entity and it just has been shot
+         * down
          */
         void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) final;
 

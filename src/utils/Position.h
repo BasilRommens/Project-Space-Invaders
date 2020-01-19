@@ -45,6 +45,8 @@ public:
          * @brief The constructor of the Position class with both the x and y value to be set
          * @param x: The x value to be set as the x position (default 0)
          * @param y: The y value to be set as the y position (default 0)
+         * @throws std::domain_error If the x coordinate is lower or higher than the world bounds
+         * @throws std::domain_error If the y coordinate is lower or higher than the world bounds
          */
         explicit Position(double x = 0.f, double y = 0.f);
 
@@ -52,7 +54,8 @@ public:
          * @brief moves the x value over a certain distance while keeping it in the bounds declared in the
          * transformation file @see Transformation.h
          * @param distance: The distance over which we need to move the x value
-         * @param hitbox:
+         * @param hitbox: The hitbox of the object to be moved
+         * @throws std::out_of_range If we hit one of the width bounds with the hitbox
          */
         void moveXPos(double distance, Hitbox hitbox);
 
@@ -60,7 +63,8 @@ public:
          * @brief moves the y value over a certain distance while keeping it in the bounds declared in the
          * transformation file @see Transformation.h
          * @param distance: The distance over which we need to move the y value
-         * @brief hitbox:
+         * @brief hitbox: The hitbox of the object to be moved
+         * @throws std::out_of_range If we hit one of the height bounds with the hitbox
          */
         void moveYPos(double distance, Hitbox hitbox);
 
@@ -77,8 +81,9 @@ public:
         /**
          * @brief sets the position by the new position passed through via a parameter
          * @param newPosition: The new position to be set as the current position
+         * @throws std::domain_error If the x coordinate of the newPosition is out of bounds
+         * @throws std::domain_error If the y coordinate of the newPosition is out of bounds
          */
-        // TODO add check if the coordinates are within bounds
         void setPosition(Utils::Position newPosition);
 };
 

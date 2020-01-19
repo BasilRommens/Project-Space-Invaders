@@ -18,7 +18,6 @@ std::shared_ptr<Utils::Transformation>& Utils::Transformation::getTransformation
 
 std::pair<int, int> Utils::Transformation::operator()(double x, double y, unsigned int width, unsigned int height)
 {
-        // TODO fix faulty code
         double scaleWidth = width / (-CoordinateBound::LOWER_X + CoordinateBound::UPPER_X);
         double scaleHeight = height / (-CoordinateBound::LOWER_Y + CoordinateBound::UPPER_Y);
 
