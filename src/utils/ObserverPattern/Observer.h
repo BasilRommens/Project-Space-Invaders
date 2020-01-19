@@ -49,6 +49,7 @@ public:
         /**
          * @brief A pure virtual function that needs to act accordingly when certain events are passed through
          * @param event: The event that took place
+         * @param entity: The entity that needs to be notified depending on the implementation of the subclasses
          */
         virtual void onNotify(std::shared_ptr<Model::Entity> entity, Utils::Event event) = 0;
 

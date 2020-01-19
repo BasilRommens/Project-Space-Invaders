@@ -60,6 +60,7 @@ public:
          * @param x: The x position in the [-4,4] x [-3, 3] coordinate system
          * @param y: The y position in the [-4,4] x [-3, 3] coordinate system
          * @param width: The width of the window
+         * @param height: The height of the window
          * @return The coordinates in pixels of the coordinates in the [-4,4] x [-3, 3] coordinate system
          * @throws std::out_of_range when the x coordinate is too big to be on the screen width
          * @throws std::out_of_range when the y coordinate is too big to be on the screen height

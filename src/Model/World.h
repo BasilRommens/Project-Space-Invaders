@@ -65,6 +65,7 @@ public:
          * @brief The constructor of a world object uses an image which it converts to a texture to use later in the
          * game
          * @param image: The image to use
+         * @param endLine: The end of the world, when passed the game will end
          * TODO check if the image is usable
          */
         World(const std::string& image, double endLine);

@@ -25,6 +25,9 @@ namespace Model {
 
 class World;
 }
+/**
+ * @}
+ */
 
 /**
  * @namespace View We can use this namespace to indicate that we are in the view part of the MVC pattern

@@ -73,6 +73,7 @@ public:
          * @param hSpeed: The horizontal speed at which the ship will move
          * @param bulletDelay: The standard delay of the ship
          * @param hitbox: The hitbox of the ship which is measured from the top left corner
+         * @param world: The world of that the ship is in
          * TODO add the necessary checks
          */
         Ship(const std::string& image, const Utils::Position& pos, double health, double hSpeed, int bulletDelay,

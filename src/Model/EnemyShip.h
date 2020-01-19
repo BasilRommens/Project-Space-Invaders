@@ -79,10 +79,10 @@ public:
          * @param pos: The position of the enemyShip (top left corner)
          * @param health: The health of the ship
          * @param hSpeed: The horizontal speed at which the ship will travel
-         * @param damage: The damage that will be done by a bullet
          * @param bulletDelay: The delay of shooting the next bullet, by a base
          * @param hitbox: The hitbox of the enemyship, used from the position (top left corner)
          * @param vSpeed: The vertical speed at which the enemyShip will move down
+         * @param world: The world that the enemyShip is in
          */
         // TODO add checks for all these variables
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, int bulletDelay,

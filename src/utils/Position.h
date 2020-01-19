@@ -63,7 +63,7 @@ public:
          * @brief moves the y value over a certain distance while keeping it in the bounds declared in the
          * transformation file @see Transformation.h
          * @param distance: The distance over which we need to move the y value
-         * @brief hitbox: The hitbox of the object to be moved
+         * @param hitbox: The hitbox of the object to be moved
          * @throws std::out_of_range If we hit one of the height bounds with the hitbox
          */
         void moveYPos(double distance, Hitbox hitbox);

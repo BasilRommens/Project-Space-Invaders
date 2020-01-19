@@ -50,6 +50,7 @@ public:
          * @param hSpeed: The horizontal speed at which the player ship will move
          * @param bulletDelay: The maximum delay the bullet needs to wait after each reload
          * @param hitbox: The hitbox of the current player ship
+         * @param playerShip: The world that the playerShip is in
          */
         PlayerShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, int bulletDelay,
                    const Utils::Hitbox& hitbox, Model::World& world);

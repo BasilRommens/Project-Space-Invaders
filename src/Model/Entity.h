@@ -125,7 +125,7 @@ public:
         /**
          * @see EnemyShip.h
          * @return The distance that an enemyship has travelled in one step
-         * @detail It is a static variable that is set by the ship that has travelled the least distance. It is used in
+         * It is a static variable that is set by the ship that has travelled the least distance. It is used in
          * the case where one of the ships has hit the screen border
          */
         virtual double getDistance() const;
