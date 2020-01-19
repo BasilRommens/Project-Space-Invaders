@@ -90,6 +90,14 @@ private:
         std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>> determineBulletEntity(
             std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity);
 
+        /**
+         * @brief checks if a bullet can travel through an entity
+         * @param direction: Direction of the bullet
+         * @param typeEntity: The type of the entity
+         * @return if it can travel through an entity
+         */
+        bool canTravelThrough(Utils::Direction direction, const std::string& typeEntity);
+
 public:
         /**
          * @brief The destructor of an object of the world class

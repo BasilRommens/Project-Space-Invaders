@@ -61,7 +61,6 @@ std::string Model::World::getType() const { return "world"; }
 
 void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
-        // TODO clean up this function
         if (event == Utils::Event::CHECK_COLLISIONS) {
                 bool doubleBreak;
                 std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>> pairs;
@@ -119,17 +118,11 @@ void Model::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shar
         // Take the other as the entity that is hit by the bullet
         std::shared_ptr<Entity> entity = ((thisEntity->getType() == "bullet") ? otherEntity : thisEntity);
 
-        // TODO Make this piece a little bit neater
-        // If we find that the bullet is travelling down and it is an enemy then do nothing
-        if (bullet->getDirection() == Utils::Direction::DOWN and entity->getType() == "enemy") {
-                return;
-        }
-        // If we find that the bullet is travelling up and it is a player then do nothing
-        if (bullet->getDirection() == Utils::Direction::UP and entity->getType() == "player") {
+        // If the bullet can travel through then no collisions are happening
+        if (canTravelThrough(bullet->getDirection(), entity->getType())) {
                 return;
         }
 
-        // TODO maybe improve the name of the function
         entity->doDamage(bullet->getDamage());
 
         // Delete the bullet from the world because it can not do damage anymore
@@ -268,4 +261,14 @@ std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<Model::Entity>> Model:
                     static_cast<std::shared_ptr<Entity>&&>(otherEntity),
                     static_cast<std::shared_ptr<Entity>&&>(thisEntity));
         }
+}
+
+bool Model::World::canTravelThrough(Utils::Direction direction, const std::string& typeEntity)
+{
+        // If we find that the bullet is travelling down and it is an enemy then do nothing
+        if (direction == Utils::Direction::DOWN and typeEntity == "enemy") {
+                return true;
+        }
+        // If we find that the bullet is travelling up and it is a player then do nothing
+        return direction == Utils::Direction::UP and typeEntity == "player";
 }
