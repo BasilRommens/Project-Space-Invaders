@@ -6,16 +6,13 @@
  */
 
 #include "GameParser.h"
-#include "Game.h"
+#include "../Game.h"
 
 GameParser::GameParser(Game& game) : game(game) {}
 
 std::vector<std::string> GameParser::parseGame(const std::string& gameFile)
 {
-        // Parse json file of the game
-        std::ifstream i(gameFile);
-        json j;
-        i >> j;
+        json j = parse(gameFile);
 
         if (j["Type"] != "game") {
                 throw Exception::bad_type("The type of the file doesnt match that one of the game");
@@ -34,10 +31,7 @@ std::vector<std::string> GameParser::parseGame(const std::string& gameFile)
 // TODO add check for when entity is not a valid pointer
 void GameParser::parseLevel(const std::string& levelFile)
 {
-        // Parse json file
-        std::ifstream i(levelFile);
-        json j;
-        i >> j;
+        json j = parse(levelFile);
 
         // TODO make throw clearer
         if (j["Type"] != "level") {
@@ -64,10 +58,7 @@ void GameParser::parseLevel(const std::string& levelFile)
 // TODO error on empty filename
 void GameParser::parsePlayer(const std::string&& player)
 {
-        // Parse json file
-        std::ifstream i(player);
-        json j;
-        i >> j;
+        json j = parse(player);
 
         if (j["Type"] != "player") {
                 throw Exception::bad_type(
@@ -110,10 +101,7 @@ void GameParser::parsePlayer(const std::string&& player)
 // TODO error on empty filename
 void GameParser::parseEnemy(const std::string&& enemy)
 {
-        // Parse json file
-        std::ifstream i(enemy);
-        json j;
-        i >> j;
+        json j = parse(enemy);
 
         // TODO make throw clearer
         if (j["Type"] != "enemy") {
@@ -178,16 +166,13 @@ void GameParser::parseEnemy(const std::string&& enemy)
         } catch (const std::exception& e) { // If one of the arguments in the json file is of the incorrect type
                 std::cout << e.what() << std::endl;
                 throw Exception::bad_file(
-                    "GameParser::parseEnemy(const std::string&&) : The json file contains wrong variable types")
+                    "GameParser::parseEnemy(const std::string&&) : The json file contains wrong variable types");
         }
 }
 
 void GameParser::parseWorld(const std::string& worldName)
 {
-        // Parse json file
-        std::ifstream i(worldName);
-        json j;
-        i >> j;
+        json j = parse(worldName);
 
         // TODO make throw clearer
         if (j["Type"] != "world") {
@@ -205,12 +190,9 @@ std::shared_ptr<Model::Bullet> GameParser::createBullet(const std::string& fileN
                 throw std::invalid_argument("GameParser::createBullet(const std::string&, std::weak_ptr<Model::Entity> "
                                             ": There is no link for the entity to a bullet ");
         }
-        // Parse json file
-        std::ifstream i(fileName);
-        json j;
-        i >> j;
 
-        // TODO make throw clearer
+        json j = parse(fileName);
+
         if (j["Type"] != "bullet") {
                 throw Exception::bad_type("GameParser::createBullet(const std::string&, std::weak_ptr<Model::Entity> : "
                                           "The type of the bullet file is wrong");
@@ -246,4 +228,13 @@ std::shared_ptr<Model::Bullet> GameParser::createBullet(const std::string& fileN
                 throw Exception::bad_file("GameParser::createBullet(const std::string&, std::weak_ptr<Model::Entity> : "
                                           "The file that contains bullet cant be correctly parsed");
         }
+}
+
+json GameParser::parse(const std::string& file)
+{
+        // Parse json file
+        std::ifstream i(file);
+        json j;
+        i >> j;
+        return j;
 }

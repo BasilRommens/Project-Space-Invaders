@@ -6,7 +6,7 @@
  */
 
 #include "Game.h"
-#include "GameParser.h"
+#include "Parser/GameParser.h"
 
 // set the instance of the Stopwatch to nullptr to be not pointing to anything
 std::shared_ptr<Utils::Stopwatch> Utils::Stopwatch::instance = nullptr;

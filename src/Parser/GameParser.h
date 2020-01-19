@@ -12,13 +12,13 @@
 #include <string>
 #include <vector>
 
-#include "Exception/bad_file.h"
-#include "Exception/bad_type.h"
-#include "Exception/entity_underflow.h"
-#include "Model/EnemyShip.h"
-#include "Model/PlayerShip.h"
-#include "Model/World.h"
-#include "utils/json.hpp"
+#include "../Exception/bad_file.h"
+#include "../Exception/bad_type.h"
+#include "../Exception/entity_underflow.h"
+#include "../Model/EnemyShip.h"
+#include "../Model/PlayerShip.h"
+#include "../Model/World.h"
+#include "../utils/json.hpp"
 
 using json = nlohmann::json;
 
@@ -31,6 +31,13 @@ class GameParser
 {
 private:
         Game& game; ///< The current game that will be parsed
+
+        /**
+         * @brief will parse the file that is passed through as an argument
+         * @param file: The file to be parsed
+         * @return The json object that contains the parsed file
+         */
+        static json parse(const std::string& file);
 
         /**
          * @brief Loads the player from a string given with it
@@ -77,6 +84,9 @@ public:
         /**
          * @brief Parses a single level file
          * @param levelFile: The filename of the level
+         * @throws Exception::bad_type If the file type doesnt match i.e. level
+         * @throws Exception::bad_type If one of the entities to be loaded throws an exception of the type bad_type
+         * @throws Exception::bad_file we get this exception whenever one of the files is corrupted
          */
         void parseLevel(const std::string& levelFile);
 
@@ -84,9 +94,7 @@ public:
          * @brief Parses the 'game' by only returning the level files
          * @param gameFile: The file name of the game to parse
          * @return The names of the level files in order
-         * @throws Exception::bad_type If the file type doesnt match
-         * @throws Exception::bad_type If one of the entities to be loaded throws an exception of the type bad_type
-         * @throws Exception::bad_file we get this exception whenever one of the files is corrupted
+         * @throws Exception::bad_type If the type of the file isnt game
          */
         static std::vector<std::string> parseGame(const std::string& gameFile);
 };

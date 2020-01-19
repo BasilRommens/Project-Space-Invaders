@@ -6,8 +6,8 @@
  */
 
 #include "Game.h"
-#include "GameParser.h"
 #include "Model/EnemyShip.h"
+#include "Parser/GameParser.h"
 
 double Model::EnemyShip::distance = 0.f;
 
