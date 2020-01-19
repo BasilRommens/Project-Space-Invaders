@@ -1,0 +1,17 @@
+<map id="/media/basil/Data/CLionProjects/GP/project/Project&#45;Space&#45;Invaders/src/Parser/GameParser.h" name="/media/basil/Data/CLionProjects/GP/project/Project&#45;Space&#45;Invaders/src/Parser/GameParser.h">
+<area shape="rect" id="node5" href="$bad__file_8h.html" title="The header file of the class bad_file. " alt="" coords="119,348,271,375"/>
+<area shape="rect" id="node7" href="$bad__type_8h.html" title="The header file of the class bad_type. " alt="" coords="5,266,165,293"/>
+<area shape="rect" id="node8" href="$entity__underflow_8h.html" title="The header file of the class entity_underflow. " alt="" coords="244,259,372,300"/>
+<area shape="rect" id="node9" href="$EnemyShip_8h.html" title="The cpp file of the class EnemyShip. " alt="" coords="447,109,598,136"/>
+<area shape="rect" id="node27" href="$World_8h.html" title="The header file of the World class. " alt="" coords="760,184,827,211"/>
+<area shape="rect" id="node28" href="$PlayerShip_8h.html" title="The header file of PlayerShip class. " alt="" coords="623,109,769,136"/>
+<area shape="rect" id="node11" href="$Ship_8h.html" title="The header file of the class Ship. " alt="" coords="649,184,708,211"/>
+<area shape="rect" id="node14" href="$Position_8h.html" title="The header file of the position class. " alt="" coords="519,430,639,457"/>
+<area shape="rect" id="node20" href="$Bullet_8h.html" title="The header file of the Bullet class. " alt="" coords="629,266,696,293"/>
+<area shape="rect" id="node21" href="$Entity_8h.html" title="The header file of the Entity class. " alt="" coords="699,348,765,375"/>
+<area shape="rect" id="node15" href="$Hitbox_8h.html" title="The header file of the class Hitbox. " alt="" coords="345,519,415,546"/>
+<area shape="rect" id="node16" href="$Transformation_8h.html" title="The header file of the Transformation class. " alt="" coords="625,519,745,546"/>
+<area shape="rect" id="node23" href="$Observer_8h.html" title="The header file of the Observer class. " alt="" coords="1028,512,1185,553"/>
+<area shape="rect" id="node25" href="$Subject_8h.html" title="The header file of the Subject class. " alt="" coords="977,423,1135,464"/>
+<area shape="rect" id="node24" href="$Event_8h.html" title="The file that contains the enum type of all the possible events. " alt="" coords="1067,601,1146,628"/>
+</map>

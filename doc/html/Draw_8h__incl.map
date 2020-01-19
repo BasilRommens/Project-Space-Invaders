@@ -1,0 +1,15 @@
+<map id="/media/basil/Data/CLionProjects/GP/project/Project&#45;Space&#45;Invaders/src/View/Draw.h" name="/media/basil/Data/CLionProjects/GP/project/Project&#45;Space&#45;Invaders/src/View/Draw.h">
+<area shape="rect" id="node4" href="$Bullet_8h.html" title="The header file of the Bullet class. " alt="" coords="457,259,575,285"/>
+<area shape="rect" id="node8" href="$Transformation_8h.html" title="The header file of the Transformation class. " alt="" coords="1179,594,1299,621"/>
+<area shape="rect" id="node14" href="$Entity_8h.html" title="The header file of the Entity class. " alt="" coords="401,423,468,449"/>
+<area shape="rect" id="node22" href="$EnemyShip_8h.html" title="The cpp file of the class EnemyShip. " alt="" coords="737,109,887,136"/>
+<area shape="rect" id="node26" href="$PlayerShip_8h.html" title="The header file of PlayerShip class. " alt="" coords="561,109,708,136"/>
+<area shape="rect" id="node5" href="$Hitbox_8h.html" title="The header file of the class Hitbox. " alt="" coords="221,594,331,621"/>
+<area shape="rect" id="node7" href="$Position_8h.html" title="The header file of the position class. " alt="" coords="437,505,557,531"/>
+<area shape="rect" id="node21" href="$Ship_8h.html" title="The header file of the class Ship. " alt="" coords="572,341,631,367"/>
+<area shape="rect" id="node16" href="$Observer_8h.html" title="The header file of the Observer class. " alt="" coords="512,587,669,628"/>
+<area shape="rect" id="node18" href="$Subject_8h.html" title="The header file of the Subject class. " alt="" coords="632,497,789,539"/>
+<area shape="rect" id="node17" href="$Event_8h.html" title="The file that contains the enum type of all the possible events. " alt="" coords="551,676,630,703"/>
+<area shape="rect" id="node24" href="$World_8h.html" title="The header file of the World class. " alt="" coords="780,184,847,211"/>
+<area shape="rect" id="node25" href="$entity__underflow_8h.html" title="The header file of the class entity_underflow. " alt="" coords="751,333,879,375"/>
+</map>

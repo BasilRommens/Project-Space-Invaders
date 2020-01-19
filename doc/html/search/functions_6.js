@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['game',['Game',['../classGame.html#a4735989677c1cab18866f3ae4ee0aa1c',1,'Game']]],
+  ['gameparser',['GameParser',['../classGameParser.html#aa31248c5dc8c487aab08a04752f4c3d8',1,'GameParser']]],
+  ['get_5flap',['get_lap',['../classUtils_1_1Stopwatch.html#af19060c5745d849ba86fa03551b05fa6',1,'Utils::Stopwatch']]],
+  ['getcurrentdelay',['getCurrentDelay',['../classModel_1_1Entity.html#aecf4a11a2419162b32ec73a9af85333f',1,'Model::Entity::getCurrentDelay()'],['../classModel_1_1Ship.html#aaaaf3b71b00cc9a50bae2518f86a0d7e',1,'Model::Ship::getCurrentDelay()']]],
+  ['getdamage',['getDamage',['../classModel_1_1Bullet.html#a6d764e93e36f4b2f0966453aa23dc426',1,'Model::Bullet::getDamage()'],['../classModel_1_1Entity.html#a0ce54705dcce0bf68e1b4a84f50cfff0',1,'Model::Entity::getDamage()']]],
+  ['getdirection',['getDirection',['../classModel_1_1Bullet.html#a6728f0717659b392386bf35015227d55',1,'Model::Bullet::getDirection()'],['../classModel_1_1Entity.html#ae9cc8863df61f76dcf33c8b15d13e1f8',1,'Model::Entity::getDirection()']]],
+  ['getdistance',['getDistance',['../classModel_1_1EnemyShip.html#aa791971fa1fdfefa0b3e339cedcb95fb',1,'Model::EnemyShip::getDistance()'],['../classModel_1_1Entity.html#a159e35f2a568f4b89ca49ac4ea0b55f8',1,'Model::Entity::getDistance()']]],
+  ['getdummybullet',['getDummyBullet',['../classModel_1_1Entity.html#a48d37490f94a3a198ff9f78a937a3e75',1,'Model::Entity::getDummyBullet()'],['../classModel_1_1Ship.html#a85d7240abf5ae11ac2bcbd48d5bf4f5d',1,'Model::Ship::getDummyBullet()']]],
+  ['getentities',['getEntities',['../classModel_1_1World.html#af8a1604b52f969b3b6080f40eb266911',1,'Model::World']]],
+  ['getfrom',['getFrom',['../classModel_1_1Bullet.html#af6eb8172491730eaef0f7be3bd05ba27',1,'Model::Bullet::getFrom()'],['../classModel_1_1Entity.html#a30217bdcbcc11bcceb422ffa97015387',1,'Model::Entity::getFrom()']]],
+  ['gethealth',['getHealth',['../classModel_1_1Entity.html#a6a3f2fc77261ccf33d5b042c579f3f3e',1,'Model::Entity::getHealth()'],['../classModel_1_1Ship.html#a3630a24a05437bf0e5c2995a1dc15f5d',1,'Model::Ship::getHealth()']]],
+  ['getheight',['getHeight',['../classUtils_1_1Hitbox.html#a7238c39c0288a2d0095ff9e01a58301c',1,'Utils::Hitbox']]],
+  ['gethitbox',['getHitbox',['../classModel_1_1Bullet.html#ab4537df2594d06b511cd68fe0dd9c889',1,'Model::Bullet::getHitbox()'],['../classModel_1_1Entity.html#a08c740299f48e696f84a9c0413ae4f33',1,'Model::Entity::getHitbox()'],['../classModel_1_1Ship.html#a4f6c3c7b47817d5b8e03d7f9dde1fca2',1,'Model::Ship::getHitbox()']]],
+  ['getimage',['getImage',['../classModel_1_1Entity.html#a4d93a18b21cd686327d45ef66fe5993d',1,'Model::Entity']]],
+  ['getobservers',['getObservers',['../classObserverPattern_1_1Subject.html#a471aa32cbae21ec04812cd56fb186d8c',1,'ObserverPattern::Subject']]],
+  ['getplayer',['getPlayer',['../classModel_1_1World.html#a25e81aa6d99dc7387efbc5665d17fcb6',1,'Model::World']]],
+  ['getpos',['getPos',['../classModel_1_1Bullet.html#a1abaa58fac12d3d00feed04bafb0507d',1,'Model::Bullet::getPos()'],['../classModel_1_1Entity.html#acf5a9a439ba19844fb32c76803303574',1,'Model::Entity::getPos()'],['../classModel_1_1Ship.html#ae5ab6d191d534319fdd5a29a45e1345c',1,'Model::Ship::getPos()']]],
+  ['getstopwatch',['getStopwatch',['../classUtils_1_1Stopwatch.html#a61f89e1305b8ca7e463c5e84f18b2c89',1,'Utils::Stopwatch']]],
+  ['gettexture',['getTexture',['../classModel_1_1Entity.html#a0166aacaf63f3074468da1ee031a5751',1,'Model::Entity']]],
+  ['gettransformation',['getTransformation',['../classUtils_1_1Transformation.html#a46d48aa572c59641788f704b0f0609a3',1,'Utils::Transformation']]],
+  ['gettype',['getType',['../classModel_1_1Bullet.html#a55e8b20f0cb8d447623555d47d94d17b',1,'Model::Bullet::getType()'],['../classModel_1_1EnemyShip.html#af745e60d1cabf5b6febbe8f0016cbc13',1,'Model::EnemyShip::getType()'],['../classModel_1_1Entity.html#a066daf933c18f4954160c1b788896e73',1,'Model::Entity::getType()'],['../classModel_1_1PlayerShip.html#a0abff95b7ace3a292020633d6a5f66bc',1,'Model::PlayerShip::getType()'],['../classModel_1_1Ship.html#a4dd68656f330ffb9f769c813391d1bbb',1,'Model::Ship::getType()'],['../classModel_1_1World.html#a853309be5d6439194dc2c5e666cf5688',1,'Model::World::getType()'],['../classObserverPattern_1_1Observer.html#a567fc9fd7a0be1adcfc8a8217595a2a4',1,'ObserverPattern::Observer::getType()'],['../classView_1_1Draw.html#a271f08586decb5aae37a170312e4dfa9',1,'View::Draw::getType()']]],
+  ['getwidth',['getWidth',['../classUtils_1_1Hitbox.html#a951443b8b9487e37e8287476f4069739',1,'Utils::Hitbox']]],
+  ['getx',['getX',['../classUtils_1_1Position.html#af0cf1746072f01cf5d37f52f069e9089',1,'Utils::Position']]],
+  ['gety',['getY',['../classUtils_1_1Position.html#af6855dbd2ae04a37d9d060a3e630d9d2',1,'Utils::Position']]]
+];

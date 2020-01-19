@@ -1,0 +1,9 @@
+<map id="ObserverPattern::Observer" name="ObserverPattern::Observer">
+<area shape="rect" id="node2" href="$classModel_1_1Entity.html" title="is the superclass of all the possible entities in the game " alt="" coords="124,80,223,107"/>
+<area shape="rect" id="node8" href="$classView_1_1Draw.html" title="This class can be used to draw something on the display with sprites. " alt="" coords="247,80,337,107"/>
+<area shape="rect" id="node3" href="$classModel_1_1Bullet.html" title="The class that describes a bullet. " alt="" coords="5,155,104,181"/>
+<area shape="rect" id="node4" href="$classModel_1_1Ship.html" title="The general class of the enemy ship and the player ship. " alt="" coords="128,155,219,181"/>
+<area shape="rect" id="node7" href="$classModel_1_1World.html" title="The class that describes the world in the game. " alt="" coords="243,155,341,181"/>
+<area shape="rect" id="node5" href="$classModel_1_1EnemyShip.html" title="This class describes an enemy ship. " alt="" coords="30,229,162,256"/>
+<area shape="rect" id="node6" href="$classModel_1_1PlayerShip.html" title="The ship that is the ship controlled by the player. " alt="" coords="187,229,315,256"/>
+</map>

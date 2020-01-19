@@ -1,0 +1,4 @@
+<map id="Model::Entity" name="Model::Entity">
+<area shape="rect" id="node2" href="$classObserverPattern_1_1Observer.html" title="The observer class is used to get notified by the subject. " alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node3" href="$classObserverPattern_1_1Subject.html" title="The subject class is created so that it can notify each of its observers if something interesting hap..." alt="" coords="10,56,179,83"/>
+</map>

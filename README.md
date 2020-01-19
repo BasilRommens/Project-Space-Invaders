@@ -18,6 +18,8 @@ $ chmod +x run.sh
 $ ./run.sh
 ```
 
+The initial json files give the player 4 health points and the green aliens 1 health point. The red Alien has 3 health points. Red bullets will do 1 damage, blue 2.
+
 ## Modifying the jsons
 
 This can be done but expect a lot of errors when doing so, also sometimes enemies wont be loaded, because of collisions. Sprites are seen as used from the top left corner. They are scaled based on a default screen size of 800x600. There are no defaults when leaving variables out. When using different images and when you use run.sh from the root of the project. The files will be read from the root of the project. So relative paths to these files.
@@ -103,18 +105,12 @@ Instead of handling the parameter Ships in enemies as a list of entities, we wil
 |Bullet | The file that is used to represent a bullet of the enemy | string |
 |Hitbox| The hitbox of the enemy measured from the top left of the enemy| Hitbox (see above)|
 
-## Creating and opening the documentation
+## Opening the documentation
 
-You are supposed to be in the root of the project in order to be able to create the documentation. Subsequently you need to execute the following bash commands.
-> Doxygen is required to be installed on the PC
+You are supposed to be in the root of the project in order to be able to open the documentation, with the following command series.
 
 ```bash
 $ cd doc
-$ doxygen Doxyfile
-```
-
-To be able to open the files you then need to navigate to the html directory and open the index file with following commands.
-```bash
 $ cd html
 $ xdg-open index.html
 ```

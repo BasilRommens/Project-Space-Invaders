@@ -1,0 +1,23 @@
+<map id="/media/basil/Data/CLionProjects/GP/project/Project&#45;Space&#45;Invaders/src/Parser/GameParser.cpp" name="/media/basil/Data/CLionProjects/GP/project/Project&#45;Space&#45;Invaders/src/Parser/GameParser.cpp">
+<area shape="rect" id="node2" href="$GameParser_8h.html" title="The header file of the class GameParser. " alt="" coords="414,184,521,211"/>
+<area shape="rect" id="node31" href="$Game_8h.html" title="The header file of the class Game. " alt="" coords="1202,109,1282,136"/>
+<area shape="rect" id="node6" href="$bad__file_8h.html" title="The header file of the class bad_file. " alt="" coords="163,497,315,524"/>
+<area shape="rect" id="node8" href="$bad__type_8h.html" title="The header file of the class bad_type. " alt="" coords="191,415,351,442"/>
+<area shape="rect" id="node9" href="$entity__underflow_8h.html" title="The header file of the class entity_underflow. " alt="" coords="375,408,503,449"/>
+<area shape="rect" id="node10" href="$EnemyShip_8h.html" title="The cpp file of the class EnemyShip. " alt="" coords="748,259,899,285"/>
+<area shape="rect" id="node28" href="$World_8h.html" title="The header file of the World class. " alt="" coords="886,333,953,360"/>
+<area shape="rect" id="node29" href="$PlayerShip_8h.html" title="The header file of PlayerShip class. " alt="" coords="974,259,1121,285"/>
+<area shape="rect" id="node12" href="$Ship_8h.html" title="The header file of the class Ship. " alt="" coords="998,333,1057,360"/>
+<area shape="rect" id="node15" href="$Position_8h.html" title="The header file of the position class. " alt="" coords="730,579,850,606"/>
+<area shape="rect" id="node21" href="$Bullet_8h.html" title="The header file of the Bullet class. " alt="" coords="733,415,799,442"/>
+<area shape="rect" id="node22" href="$Entity_8h.html" title="The header file of the Entity class. " alt="" coords="1182,497,1249,524"/>
+<area shape="rect" id="node16" href="$Hitbox_8h.html" title="The header file of the class Hitbox. " alt="" coords="672,669,743,695"/>
+<area shape="rect" id="node17" href="$Transformation_8h.html" title="The header file of the Transformation class. " alt="" coords="818,669,938,695"/>
+<area shape="rect" id="node24" href="$Observer_8h.html" title="The header file of the Observer class. " alt="" coords="1410,661,1567,703"/>
+<area shape="rect" id="node26" href="$Subject_8h.html" title="The header file of the Subject class. " alt="" coords="1178,572,1335,613"/>
+<area shape="rect" id="node25" href="$Event_8h.html" title="The file that contains the enum type of all the possible events. " alt="" coords="1449,751,1528,777"/>
+<area shape="rect" id="node33" href="$Controller_8h.html" title="The header file of the class Controller. " alt="" coords="1369,259,1504,285"/>
+<area shape="rect" id="node34" href="$Draw_8h.html" title="The header file of the class Draw. " alt="" coords="1129,184,1227,211"/>
+<area shape="rect" id="node36" href="$Global_8h_source.html" title="utils/Global.h" alt="" coords="1731,497,1830,524"/>
+<area shape="rect" id="node37" href="$Stopwatch_8h.html" title="The header file of the Stopwatch class. " alt="" coords="1833,184,1955,211"/>
+</map>

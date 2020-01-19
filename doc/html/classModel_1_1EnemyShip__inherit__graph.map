@@ -1,0 +1,6 @@
+<map id="Model::EnemyShip" name="Model::EnemyShip">
+<area shape="rect" id="node2" href="$classModel_1_1Ship.html" title="The general class of the enemy ship and the player ship. " alt="" coords="379,56,469,83"/>
+<area shape="rect" id="node3" href="$classModel_1_1Entity.html" title="is the superclass of all the possible entities in the game " alt="" coords="232,56,331,83"/>
+<area shape="rect" id="node4" href="$classObserverPattern_1_1Observer.html" title="The observer class is used to get notified by the subject. " alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node5" href="$classObserverPattern_1_1Subject.html" title="The subject class is created so that it can notify each of its observers if something interesting hap..." alt="" coords="10,56,179,83"/>
+</map>

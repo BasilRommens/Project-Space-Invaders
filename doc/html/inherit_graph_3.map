@@ -1,0 +1,12 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classModel_1_1Entity.html" title="is the superclass of all the possible entities in the game " alt="" coords="247,56,345,83"/>
+<area shape="rect" id="node3" href="$classModel_1_1Bullet.html" title="The class that describes a bullet. " alt="" coords="408,5,507,32"/>
+<area shape="rect" id="node4" href="$classModel_1_1Ship.html" title="The general class of the enemy ship and the player ship. " alt="" coords="412,56,503,83"/>
+<area shape="rect" id="node7" href="$classModel_1_1World.html" title="The class that describes the world in the game. " alt="" coords="408,107,507,133"/>
+<area shape="rect" id="node5" href="$classModel_1_1EnemyShip.html" title="This class describes an enemy ship. " alt="" coords="555,31,687,57"/>
+<area shape="rect" id="node6" href="$classModel_1_1PlayerShip.html" title="The ship that is the ship controlled by the player. " alt="" coords="557,81,685,108"/>
+<area shape="rect" id="node8" href="$classObserverPattern_1_1Observer.html" title="The observer class is used to get notified by the subject. " alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node9" href="$classView_1_1Draw.html" title="This class can be used to draw something on the display with sprites. " alt="" coords="251,5,341,32"/>
+<area shape="rect" id="node10" href="$classObserverPattern_1_1Subject.html" title="The subject class is created so that it can notify each of its observers if something interesting hap..." alt="" coords="10,107,179,133"/>
+<area shape="rect" id="node11" href="$classControl_1_1Controller.html" title="The class that is used to control the whole game during one game tick iteration. " alt="" coords="232,107,360,133"/>
+</map>

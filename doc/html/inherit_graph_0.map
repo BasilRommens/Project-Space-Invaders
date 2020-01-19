@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classException_1_1bad__file.html" title="this exception can be used when a file is corrupted or wrongly formatted, just something with a file ..." alt="" coords="157,5,290,32"/>
+<area shape="rect" id="node3" href="$classException_1_1bad__type.html" title="You can throw an exception of this type when the type you have used is not of the correct type..." alt="" coords="153,56,294,83"/>
+<area shape="rect" id="node4" href="$classException_1_1entity__underflow.html" title="This exception is thrown whenever there aren&#39;t enough entities created. " alt="" coords="132,107,315,133"/>
+</map>
