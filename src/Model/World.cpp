@@ -6,10 +6,12 @@
  */
 
 #include "World.h"
+#include "../Collision.h"
 
 void Model::World::addEntity(std::shared_ptr<Entity> entity)
 {
         try {
+                Utils::Collision collision{};
                 // If the entity doesnt point to anything then dont add it to the file
                 if (!entity) {
                         std::cerr
@@ -23,7 +25,7 @@ void Model::World::addEntity(std::shared_ptr<Entity> entity)
                         for (std::shared_ptr<Entity> worldEntity : entities) {
                                 // If the entity to be added is colliding with an entity of the world then quit the
                                 // function and display error message
-                                if (areColliding(worldEntity, entity)) {
+                                if (collision.areColliding(worldEntity, entity)) {
                                         std::cerr << "The current to be inserted entity is colliding with the entities "
                                                      "already "
                                                      "in the world, therefore it won't be added"
@@ -61,12 +63,17 @@ std::string Model::World::getType() const { return "world"; }
 
 void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 {
+        Utils::Collision collision{};
         if (event == Utils::Event::CHECK_COLLISIONS) {
-                bool doubleBreak;
+                std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<Model::Entity>> doubleBreak;
                 std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>> pairs;
                 do {
-                        doubleBreak = checkCollisions(pairs);
-                } while (doubleBreak);
+                        doubleBreak = collision.checkCollisions(pairs, entities);
+                        // If a pair has been found then it wont be a nullpointer
+                        if (doubleBreak.first) {
+                                handleColliding(doubleBreak.first, doubleBreak.second);
+                        }
+                } while (doubleBreak.first);
         } else if (entity and event == Utils::Event::MOVED_DOWN) {
                 // TODO Fix this code because it will error big time
         }
@@ -77,64 +84,6 @@ void Model::World::onNotify(std::shared_ptr<Entity> entity, Utils::Event event)
 }
 
 Model::World::~World() { entities.clear(); }
-
-bool Model::World::areColliding(const std::shared_ptr<Entity> thisEntity,
-                                const std::shared_ptr<Entity> otherEntity) const
-{
-        /// @see https://www.gamedevelopment.blog/collision-detection-circles-rectangles-and-polygons/ (31 december 2019
-        /// 13:48)
-        double topEdge1 = thisEntity->getPos()->getY();
-        double rightEdge1 = thisEntity->getPos()->getX() + thisEntity->getHitbox().getWidth();
-        double leftEdge1 = thisEntity->getPos()->getX();
-        double bottomEdge1 = thisEntity->getPos()->getY() - thisEntity->getHitbox().getHeight();
-
-        double topEdge2 = otherEntity->getPos()->getY();
-        double rightEdge2 = otherEntity->getPos()->getX() + otherEntity->getHitbox().getWidth();
-        double leftEdge2 = otherEntity->getPos()->getX();
-        double bottomEdge2 = otherEntity->getPos()->getY() - otherEntity->getHitbox().getHeight();
-
-        return leftEdge1 < rightEdge2 && rightEdge1 > leftEdge2 && bottomEdge1 < topEdge2 && topEdge1 > bottomEdge2;
-}
-
-void Model::World::handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity)
-{
-        // If we find that both the entities are not bullets then delete both the entities
-        // if both are bullets then delete them too
-        if ((thisEntity->getType() != "bullet" and otherEntity->getType() != "bullet") or
-            (thisEntity->getType() == "bullet" and otherEntity->getType() == "bullet")) {
-                // Delete the second entity from the world
-                entities.erase(std::find(entities.begin(), entities.end(), thisEntity));
-                notify(thisEntity, Utils::Event::REMOVE); // Notify that there are entities to be removed
-                removeObserver(thisEntity);
-                // Delete the second entity from the world
-                entities.erase(std::find(entities.begin(), entities.end(), otherEntity));
-                notify(otherEntity, Utils::Event::REMOVE); // Notify that there are entities to be removed
-                removeObserver(otherEntity);
-                // They wont be updated anymore but still drawn every iteration on the same spot
-                return;
-        }
-        // Decide which of the two entities is the bullet and then put it in a dedicated bullet variable
-        std::shared_ptr<Entity> bullet = ((thisEntity->getType() == "bullet") ? thisEntity : otherEntity);
-        // Take the other as the entity that is hit by the bullet
-        std::shared_ptr<Entity> entity = ((thisEntity->getType() == "bullet") ? otherEntity : thisEntity);
-
-        // If the bullet can travel through then no collisions are happening
-        if (canTravelThrough(bullet->getDirection(), entity->getType())) {
-                return;
-        }
-
-        entity->doDamage(bullet->getDamage());
-
-        // Delete the bullet from the world because it can not do damage anymore
-        entities.erase(std::find(entities.begin(), entities.end(), bullet));
-        notify(bullet, Utils::Event::REMOVE); // Notify that there are entities to be removed
-        // Delete the entity from the world if it has no health more left
-        if (entity->getHealth() <= 0) {
-                entities.erase(std::find(entities.begin(), entities.end(), entity));
-                notify(entity, Utils::Event::REMOVE); // Notify that there are entities to be removed
-                removeObserver(entity);
-        }
-}
 
 void Model::World::fireBullet(std::shared_ptr<Model::Entity> entity)
 {
@@ -181,94 +130,44 @@ bool Model::World::canFire(std::shared_ptr<Model::Entity> entity) const
         return entity->getType() == "player" or entity->getType() == "enemy";
 }
 
-bool Model::World::checkCollisions(std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs)
+void Model::World::handleColliding(std::shared_ptr<Model::Entity> thisEntity,
+                                   std::shared_ptr<Model::Entity> otherEntity)
 {
-        // Check for every entity except itself if it intersects with one
-        for (std::shared_ptr<Entity> thisEntity : entities) {
-                for (std::shared_ptr<Entity> otherEntity : entities) {
-                        if (not validCollisionPair(thisEntity, otherEntity, pairs)) {
-                                continue;
-                        } // If the pair is not found in the collections of pairs then add it
-                        else if (not inPairs(pairs, thisEntity, otherEntity)) {
-                                pairs.emplace_back(std::make_pair(thisEntity, otherEntity));
-                        }
-
-                        // bullet, localEntity pair
-                        std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>> bulletEntityPair =
-                            determineBulletEntity(thisEntity, otherEntity);
-                        std::shared_ptr<Entity> bullet = bulletEntityPair.first;
-                        std::shared_ptr<Entity> localEntity = bulletEntityPair.second;
-
-                        // If we haven't found it then we can check if the two objects collide with one
-                        // another
-                        if (areColliding(thisEntity, otherEntity) and
-                            bullet->getFrom().lock().get() != localEntity.get()) {
-                                handleColliding(thisEntity, otherEntity);
-                                // because there are entities that are deleted
-                                return true;
-                        }
-                }
+        // If we find that both the entities are not bullets then delete both the entities
+        // if both are bullets then delete them too
+        if ((thisEntity->getType() != "bullet" and otherEntity->getType() != "bullet") or
+            (thisEntity->getType() == "bullet" and otherEntity->getType() == "bullet")) {
+                // Delete the second entity from the world
+                entities.erase(std::find(entities.begin(), entities.end(), thisEntity));
+                notify(thisEntity, Utils::Event::REMOVE); // Notify that there are entities to be removed
+                removeObserver(thisEntity);
+                // Delete the second entity from the world
+                entities.erase(std::find(entities.begin(), entities.end(), otherEntity));
+                notify(otherEntity, Utils::Event::REMOVE); // Notify that there are entities to be removed
+                removeObserver(otherEntity);
+                // They wont be updated anymore but still drawn every iteration on the same spot
+                return;
         }
-        return false;
-}
+        // Decide which of the two entities is the bullet and then put it in a dedicated bullet variable
+        std::shared_ptr<Model::Entity> bullet = ((thisEntity->getType() == "bullet") ? thisEntity : otherEntity);
+        // Take the other as the entity that is hit by the bullet
+        std::shared_ptr<Model::Entity> entity = ((thisEntity->getType() == "bullet") ? otherEntity : thisEntity);
 
-bool Model::World::validCollisionPair(std::shared_ptr<Model::Entity> thisEntity,
-                                      std::shared_ptr<Model::Entity> otherEntity,
-                                      std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs)
-{
-        // If we dont have the other entity
-        if (not thisEntity or not otherEntity) {
-                return false;
-        } // If they are the same
-        else if (thisEntity == otherEntity) {
-                return false;
-        } // If one of them is the world
-        else if (thisEntity->getType() == "world" or otherEntity->getType() == "world") {
-                return false;
-        } // If one of the entities is not collidable
-        else if (not thisEntity->collidable() or not otherEntity->collidable()) {
-                return false;
+        // If the bullet can travel through then no collisions are happening
+        Utils::Collision collision{};
+        if (collision.canTravelThrough(bullet->getDirection(), entity->getType())) {
+                return;
         }
 
-        return not inPairs(pairs, thisEntity, otherEntity);
-}
+        entity->doDamage(bullet->getDamage());
 
-bool Model::World::inPairs(std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs,
-                           std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity)
-{
-        // search for the corresponding pair in the pairs
-        for (const auto& pair : pairs) {
-                // found the pair
-                if ((pair.first == thisEntity and pair.second == otherEntity) or
-                    (pair.first == otherEntity and pair.second == thisEntity)) {
-                        return true;
-                }
+        // Delete the bullet from the world because it can not do damage anymore
+        entities.erase(std::find(entities.begin(), entities.end(), bullet));
+        notify(bullet, Utils::Event::REMOVE); // Notify that there are entities to be removed
+        // Delete the entity from the world if it has no health more left
+        if (entity->getHealth() <= 0) {
+                entities.erase(std::find(entities.begin(), entities.end(), entity));
+                notify(entity, Utils::Event::REMOVE); // Notify that there are entities to be removed
+                removeObserver(entity);
         }
-        // Didnt find the pair
-        return false;
-}
-
-std::pair<std::shared_ptr<Model::Entity>, std::shared_ptr<Model::Entity>> Model::World::determineBulletEntity(
-    std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity)
-{
-        // Trying to identify the bullet entity
-        if (thisEntity->getType() == "bullet") {
-                return std::make_pair<std::shared_ptr<Model::Entity>, std::shared_ptr<Model::Entity>>(
-                    static_cast<std::shared_ptr<Entity>&&>(thisEntity),
-                    static_cast<std::shared_ptr<Entity>&&>(otherEntity));
-        } else {
-                return std::make_pair<std::shared_ptr<Model::Entity>, std::shared_ptr<Model::Entity>>(
-                    static_cast<std::shared_ptr<Entity>&&>(otherEntity),
-                    static_cast<std::shared_ptr<Entity>&&>(thisEntity));
-        }
-}
-
-bool Model::World::canTravelThrough(Utils::Direction direction, const std::string& typeEntity)
-{
-        // If we find that the bullet is travelling down and it is an enemy then do nothing
-        if (direction == Utils::Direction::DOWN and typeEntity == "enemy") {
-                return true;
-        }
-        // If we find that the bullet is travelling up and it is a player then do nothing
-        return direction == Utils::Direction::UP and typeEntity == "player";
 }

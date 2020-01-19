@@ -19,7 +19,6 @@
 
 namespace Model {
 
-// TODO add window sizes to the world
 /**
  * @brief The class that describes the world in the game
  */
@@ -33,70 +32,18 @@ private:
         bool end{false}; ///< indicates if this world has ended
 
         /**
-         * @brief checks if two already collidable entities are colliding
-         * @param thisEntity: The first entity to check
-         * @param otherEntity: The second entity to check
-         * @return if the two entities do indeed collide
+         * @brief checks if the entity can fire a bullet
+         * @param entity: The entity to be checked if it can fire a bullet
+         * @return True if it can fire a bullet
          */
-        bool areColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity) const;
+        bool canFire(std::shared_ptr<Model::Entity> entity) const;
 
         /**
          * @brief This member function chooses what to do with 2 colliding entities
          * @param thisEntity: The entity that needs to be checked
          * @param otherEntity: The other entity that needs to be checked
          */
-        void handleColliding(std::shared_ptr<Entity> thisEntity, std::shared_ptr<Entity> otherEntity);
-
-        /**
-         * @brief checks if the entity can fire a bullet
-         * @param entity: The entity to be checked if it can fire a bullet
-         * @return True if it can fire a vullet
-         */
-        bool canFire(std::shared_ptr<Model::Entity> entity) const;
-
-        /**
-         * @brief Will check all the objects in the world to check for collisions and handle them if there are
-         * @param pairs: All The collision pairs that already have been checked
-         * @return If the pairs vector didnt grow
-         */
-        bool checkCollisions(std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs);
-
-        /**
-         * @brief checks if the two entities can collide with one another
-         * @param thisEntity: The first entity
-         * @param otherEntity: The other entity
-         * @param pairs: All the collision pairs
-         * @return if they can collide
-         */
-        bool validCollisionPair(std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity,
-                                std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs);
-
-        /**
-         * @brief will determine if the pair already does exist in the pairs vector
-         * @param pairs: The vector in which to check
-         * @param thisEntity: First entity
-         * @param otherEntity: Second entity
-         * @return True if it is in the pairs
-         */
-        bool inPairs(std::vector<std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>>>& pairs,
-                     std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity);
-
-        /**
-         * @brief determines which of the 2 entities is the bullet
-         * @param thisEntity: The first entity
-         * @param otherEntity: The second entity
-         * @return a pair of a bullet (always first) and entity (always second) can be both bullets
-         */
-        std::pair<std::shared_ptr<Entity>, std::shared_ptr<Entity>> determineBulletEntity(
-            std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity);
-
-        /**
-         * @brief checks if a bullet can travel through an entity
-         * @param direction: Direction of the bullet
-         * @param typeEntity: The type of the entity
-         * @return if it can travel through an entity
-         */
-        bool canTravelThrough(Utils::Direction direction, const std::string& typeEntity);
+        void handleColliding(std::shared_ptr<Model::Entity> thisEntity, std::shared_ptr<Model::Entity> otherEntity);
 
 public:
         /**
