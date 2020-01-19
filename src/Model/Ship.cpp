@@ -29,6 +29,7 @@ Model::Ship::Ship(const std::string& image, const Utils::Position& pos, double h
                   const Utils::Hitbox& hitbox, Model::World& world)
     : Entity(image), pos(pos), health(health), HSpeed(hSpeed), hitbox(hitbox), bulletDelay(bulletDelay), world(world)
 {
+        // TODO add exception
         currentDelay = 0;
 }
 

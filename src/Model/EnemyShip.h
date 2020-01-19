@@ -83,8 +83,8 @@ public:
          * @param hitbox: The hitbox of the enemyship, used from the position (top left corner)
          * @param vSpeed: The vertical speed at which the enemyShip will move down
          * @param world: The world that the enemyShip is in
+         * @throws std::domain_error If the VSpeed is negative
          */
-        // TODO add checks for all these variables
         EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed, int bulletDelay,
                   const Utils::Hitbox& hitbox, double vSpeed, Model::World& world);
 

@@ -18,7 +18,7 @@ void Game::start(const std::vector<std::string>& levels)
         GameParser gameParser{*this};
 
         do {
-                bool failure{};
+                bool failure = false;
 
                 for (const auto& level : levels) {
                         // Parse the level and then set all the parsed elements on the current game
@@ -42,7 +42,7 @@ void Game::start(const std::vector<std::string>& levels)
                 if (failure) { // display lost message
                         displayLost(renderWindow);
                 } // otherwise you have won
-                else if (not failure) {
+                else {
                         displayWon(renderWindow);
                 }
 

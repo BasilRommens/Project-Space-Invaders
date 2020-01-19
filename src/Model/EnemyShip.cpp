@@ -174,8 +174,12 @@ inline int Model::EnemyShip::randomOffset() const
 
 Model::EnemyShip::EnemyShip(const std::string& image, const Utils::Position& pos, double health, double hSpeed,
                             int bulletDelay, const Utils::Hitbox& hitbox, double vSpeed, Model::World& world)
-    : Ship(image, pos, health, hSpeed, bulletDelay, hitbox, world), VSpeed(vSpeed)
+    : Ship(image, pos, health, hSpeed, bulletDelay, hitbox, world)
 {
         moved = false;
+        if (vSpeed < 0) {
+                throw std::domain_error("Model::EnemyShip::EnemyShip(...) : The VSpeed cant negative");
+        }
+        this->VSpeed = vSpeed;
         currentDelay += randomOffset();
 }
