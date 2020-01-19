@@ -1,27 +1,27 @@
 <map id="/media/basil/Data/CLionProjects/GP/project/Project&#45;Space&#45;Invaders/src/utils/Transformation.h" name="/media/basil/Data/CLionProjects/GP/project/Project&#45;Space&#45;Invaders/src/utils/Transformation.h">
-<area shape="rect" id="node2" href="$Position_8h.html" title="The header file of the position class. " alt="" coords="189,109,400,165"/>
-<area shape="rect" id="node16" href="$Draw_8h.html" title="The header file of the class Draw. " alt="" coords="381,644,592,700"/>
-<area shape="rect" id="node26" href="$Transformation_8cpp.html" title="The cpp file of the transformation class. " alt="" coords="424,109,667,165"/>
-<area shape="rect" id="node3" href="$Entity_8h.html" title="The header file of the Entity class. " alt="" coords="475,213,685,269"/>
-<area shape="rect" id="node7" href="$Bullet_8h.html" title="The header file of the Bullet class. " alt="" coords="93,317,304,373"/>
-<area shape="rect" id="node22" href="$Ship_8h.html" title="The header file of the class Ship. " alt="" coords="381,421,592,477"/>
-<area shape="rect" id="node25" href="$Position_8cpp.html" title="The cpp file of the class Position. " alt="" coords="189,213,400,269"/>
-<area shape="rect" id="node4" href="$Collision_8h.html" title="The header file of the class Collision. " alt="" coords="1416,317,1627,373"/>
-<area shape="rect" id="node8" href="$World_8h.html" title="The header file of the World class. " alt="" coords="1004,421,1215,477"/>
-<area shape="rect" id="node24" href="$Entity_8cpp.html" title="The cpp file of the class Entity. " alt="" coords="475,317,685,373"/>
-<area shape="rect" id="node5" href="$Collision_8cpp.html" title="The cpp file of the class Collision. " alt="" coords="1416,421,1627,477"/>
-<area shape="rect" id="node6" href="$World_8cpp.html" title="The cpp file of the World class. " alt="" coords="1736,533,1947,589"/>
-<area shape="rect" id="node11" href="$Game_8h.html" title="The header file of the class Game. " alt="" coords="524,748,735,804"/>
-<area shape="rect" id="node23" href="$Bullet_8cpp.html" title="The cpp file of the class Bullet. " alt="" coords="43,421,253,477"/>
-<area shape="rect" id="node9" href="$Controller_8h.html" title="The header file of the class Controller. " alt="" coords="1147,533,1362,589"/>
-<area shape="rect" id="node15" href="$EnemyShip_8h.html" title="The cpp file of the class EnemyShip. " alt="" coords="853,533,1072,589"/>
-<area shape="rect" id="node17" href="$Draw_8cpp.html" title="The cpp file of the class Draw. " alt="" coords="759,748,969,804"/>
-<area shape="rect" id="node18" href="$GameParser_8h.html" title="The header file of the class GameParser. " alt="" coords="994,748,1222,804"/>
-<area shape="rect" id="node19" href="$PlayerShip_8h.html" title="The header file of PlayerShip class. " alt="" coords="379,533,594,589"/>
-<area shape="rect" id="node20" href="$Ship_8cpp.html" title="The cpp file of the class Ship. " alt="" coords="619,533,829,589"/>
-<area shape="rect" id="node21" href="$Subject_8cpp.html" title="The cpp file of the class Subject. " alt="" coords="1386,525,1611,596"/>
-<area shape="rect" id="node10" href="$Controller_8cpp.html" title="The cpp file of the class Controller. " alt="" coords="1297,644,1527,700"/>
-<area shape="rect" id="node12" href="$Game_8cpp.html" title="The cpp file of the class Game. " alt="" coords="524,852,735,908"/>
-<area shape="rect" id="node13" href="$main_8cpp.html" title="The place from where all the code is run. " alt="" coords="1025,852,1236,908"/>
-<area shape="rect" id="node14" href="$GameParser_8cpp.html" title="The cpp file of the class GameParser. " alt="" coords="759,852,1001,908"/>
+<area shape="rect" id="node2" href="$Position_8h.html" title="The header file of the position class. " alt="" coords="513,109,724,165"/>
+<area shape="rect" id="node12" href="$Draw_8h.html" title="The header file of the class Draw. " alt="" coords="144,644,355,700"/>
+<area shape="rect" id="node26" href="$Transformation_8cpp.html" title="The cpp file of the transformation class. " alt="" coords="748,109,991,165"/>
+<area shape="rect" id="node3" href="$Bullet_8h.html" title="The header file of the Bullet class. " alt="" coords="371,317,581,373"/>
+<area shape="rect" id="node19" href="$Ship_8h.html" title="The header file of the class Ship. " alt="" coords="967,421,1177,477"/>
+<area shape="rect" id="node21" href="$Entity_8h.html" title="The header file of the Entity class. " alt="" coords="748,213,959,269"/>
+<area shape="rect" id="node25" href="$Position_8cpp.html" title="The cpp file of the class Position. " alt="" coords="513,213,724,269"/>
+<area shape="rect" id="node4" href="$World_8h.html" title="The header file of the World class. " alt="" coords="732,421,943,477"/>
+<area shape="rect" id="node7" href="$Game_8h.html" title="The header file of the class Game. " alt="" coords="747,748,957,804"/>
+<area shape="rect" id="node20" href="$Bullet_8cpp.html" title="The cpp file of the class Bullet. " alt="" coords="93,421,304,477"/>
+<area shape="rect" id="node5" href="$Controller_8h.html" title="The header file of the class Controller. " alt="" coords="729,533,943,589"/>
+<area shape="rect" id="node11" href="$EnemyShip_8h.html" title="The cpp file of the class EnemyShip. " alt="" coords="1492,533,1711,589"/>
+<area shape="rect" id="node13" href="$Draw_8cpp.html" title="The cpp file of the class Draw. " alt="" coords="73,748,284,804"/>
+<area shape="rect" id="node14" href="$GameParser_8h.html" title="The header file of the class GameParser. " alt="" coords="1070,748,1298,804"/>
+<area shape="rect" id="node15" href="$PlayerShip_8h.html" title="The header file of PlayerShip class. " alt="" coords="967,533,1182,589"/>
+<area shape="rect" id="node16" href="$Ship_8cpp.html" title="The cpp file of the class Ship. " alt="" coords="1257,533,1468,589"/>
+<area shape="rect" id="node17" href="$World_8cpp.html" title="The cpp file of the World class. " alt="" coords="1735,533,1945,589"/>
+<area shape="rect" id="node18" href="$Subject_8cpp.html" title="The cpp file of the class Subject. " alt="" coords="479,525,705,596"/>
+<area shape="rect" id="node6" href="$Controller_8cpp.html" title="The cpp file of the class Controller. " alt="" coords="808,644,1037,700"/>
+<area shape="rect" id="node8" href="$Game_8cpp.html" title="The cpp file of the class Game. " alt="" coords="997,852,1208,908"/>
+<area shape="rect" id="node9" href="$main_8cpp.html" title="The place from where all the code is run. " alt="" coords="1232,852,1443,908"/>
+<area shape="rect" id="node10" href="$GameParser_8cpp.html" title="The cpp file of the class GameParser. " alt="" coords="731,852,973,908"/>
+<area shape="rect" id="node22" href="$Entity_8cpp.html" title="The cpp file of the class Entity. " alt="" coords="605,317,816,373"/>
+<area shape="rect" id="node23" href="$Collision_8h.html" title="The header file of the class Collision. " alt="" coords="1109,317,1320,373"/>
+<area shape="rect" id="node24" href="$Collision_8cpp.html" title="The cpp file of the class Collision. " alt="" coords="1252,421,1463,477"/>
 </map>

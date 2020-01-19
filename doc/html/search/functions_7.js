@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['handleinput',['handleInput',['../classControl_1_1Controller.html#a9d15e00d661d6b3d708791cf0ee67218',1,'Control::Controller']]],
   ['hasenemies',['hasEnemies',['../classModel_1_1World.html#a40fe4a0d8299632e741256d15af5a36d',1,'Model::World']]],
   ['hasentity',['hasEntity',['../classModel_1_1World.html#a0df40590bff2b3a5393e23f9c6e72a37',1,'Model::World']]],
   ['hasplayer',['hasPlayer',['../classModel_1_1World.html#a6a52f560eaaadbec59df7906b21da39f',1,'Model::World']]],

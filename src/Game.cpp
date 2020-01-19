@@ -15,16 +15,14 @@ void Game::start(const std::vector<std::string>& levels)
 {
         sf::RenderWindow renderWindow(sf::VideoMode(800, 600), "Project Space Invaders");
         bool replay;
-        // construct gameparser with this game as a default
+        // construct game parser with this game as a default
         GameParser gameParser{*this};
 
         do {
                 bool failure = false;
-
                 for (const auto& level : levels) {
                         // Parse the level and then set all the parsed elements on the current game
                         gameParser.parseLevel(level);
-
                         failure = play(renderWindow);
                         if (failure) {
                                 break;
@@ -50,6 +48,7 @@ void Game::start(const std::vector<std::string>& levels)
                 replay = controller.replay(renderWindow);
                 renderWindow.clear();
         } while (renderWindow.isOpen() and replay);
+
         // Downcast worldObserver
         std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(worldObserver);
 
@@ -64,6 +63,7 @@ bool Game::play(sf::RenderWindow& renderWindow)
         std::shared_ptr<Model::World> world = std::static_pointer_cast<Model::World>(worldObserver);
 
         std::shared_ptr<sf::RenderWindow> window(&renderWindow);
+        // This constructor will add the creation of the world sprite in the first place
         std::shared_ptr<View::Draw> draw(new View::Draw(window, world));
         std::shared_ptr<ObserverPattern::Observer> drawShared(draw);
 
@@ -116,7 +116,6 @@ bool Game::play(sf::RenderWindow& renderWindow)
                 wait();
         }
 
-        worldObserver.reset();
         controller.clearObservers();
         return failure;
 }

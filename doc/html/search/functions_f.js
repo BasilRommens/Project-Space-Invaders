@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['view',['view',['../classView_1_1Draw.html#a229394daa8ff6d1a9c10cba77919aadd',1,'View::Draw']]]
+  ['update',['update',['../classControl_1_1Controller.html#aa144eb9af0c49bd888cbcabc4c0d91a6',1,'Control::Controller']]]
 ];

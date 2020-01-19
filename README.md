@@ -19,7 +19,7 @@ $ ./run.sh
 ```
 
 The initial json files give the player 4 health points and the green aliens 1 health point. The red Alien has 3 health points. Red bullets will do 1 damage, blue 2.
-Note that the players lives will always be reset when you enter a new level, this is seen as a reward.
+Note that the players lives will always be reset when you enter a new level, because new enemies spawn.
 
 ## Modifying the jsons
 

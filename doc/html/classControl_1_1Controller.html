@@ -93,9 +93,12 @@ Collaboration diagram for Control::Controller:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a789353a91d2bd2c872bbbac5f27d308f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classControl_1_1Controller.html#a789353a91d2bd2c872bbbac5f27d308f">run</a> (sf::RenderWindow &amp;window, std::shared_ptr&lt; <a class="el" href="classModel_1_1World.html">Model::World</a> &gt; world)</td></tr>
-<tr class="memdesc:a789353a91d2bd2c872bbbac5f27d308f"><td class="mdescLeft">&#160;</td><td class="mdescRight">runs the controller during one game tick  <a href="#a789353a91d2bd2c872bbbac5f27d308f">More...</a><br /></td></tr>
-<tr class="separator:a789353a91d2bd2c872bbbac5f27d308f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d15e00d661d6b3d708791cf0ee67218"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classControl_1_1Controller.html#a9d15e00d661d6b3d708791cf0ee67218">handleInput</a> (sf::RenderWindow &amp;window, std::shared_ptr&lt; <a class="el" href="classModel_1_1World.html">Model::World</a> &gt; world)</td></tr>
+<tr class="memdesc:a9d15e00d661d6b3d708791cf0ee67218"><td class="mdescLeft">&#160;</td><td class="mdescRight">handles the input  <a href="#a9d15e00d661d6b3d708791cf0ee67218">More...</a><br /></td></tr>
+<tr class="separator:a9d15e00d661d6b3d708791cf0ee67218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa144eb9af0c49bd888cbcabc4c0d91a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classControl_1_1Controller.html#aa144eb9af0c49bd888cbcabc4c0d91a6">update</a> (std::shared_ptr&lt; <a class="el" href="classModel_1_1World.html">Model::World</a> &gt; world)</td></tr>
+<tr class="memdesc:aa144eb9af0c49bd888cbcabc4c0d91a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">updates the world with the bullets and the enemy ships  <a href="#aa144eb9af0c49bd888cbcabc4c0d91a6">More...</a><br /></td></tr>
+<tr class="separator:aa144eb9af0c49bd888cbcabc4c0d91a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a72dd19d9df14958744c9d80949cd0d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classControl_1_1Controller.html#a3a72dd19d9df14958744c9d80949cd0d">replay</a> (sf::RenderWindow &amp;renderWindow)</td></tr>
 <tr class="memdesc:a3a72dd19d9df14958744c9d80949cd0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function serves as a loop to wait for players input to restart the game.  <a href="#a3a72dd19d9df14958744c9d80949cd0d">More...</a><br /></td></tr>
 <tr class="separator:a3a72dd19d9df14958744c9d80949cd0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,6 +133,43 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The class that is used to control the whole game during one game tick iteration. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9d15e00d661d6b3d708791cf0ee67218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d15e00d661d6b3d708791cf0ee67218">&#9670;&nbsp;</a></span>handleInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Control::Controller::handleInput </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classModel_1_1World.html">Model::World</a> &gt;&#160;</td>
+          <td class="paramname"><em>world</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>handles the input </p>
+<p>' </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The window that is used for graphically displaying the game </td></tr>
+    <tr><td class="paramname">world</td><td>The world that is used to view all the entities and use them </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a3a72dd19d9df14958744c9d80949cd0d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a72dd19d9df14958744c9d80949cd0d">&#9670;&nbsp;</a></span>replay()</h2>
 
@@ -157,37 +197,26 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a789353a91d2bd2c872bbbac5f27d308f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a789353a91d2bd2c872bbbac5f27d308f">&#9670;&nbsp;</a></span>run()</h2>
+<a id="aa144eb9af0c49bd888cbcabc4c0d91a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa144eb9af0c49bd888cbcabc4c0d91a6">&#9670;&nbsp;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Control::Controller::run </td>
+          <td class="memname">void Control::Controller::update </td>
           <td>(</td>
-          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
-          <td class="paramname"><em>window</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classModel_1_1World.html">Model::World</a> &gt;&#160;</td>
-          <td class="paramname"><em>world</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>world</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>runs the controller during one game tick </p>
-<p>' </p><dl class="params"><dt>Parameters</dt><dd>
+<p>updates the world with the bullets and the enemy ships </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">window</td><td>The window that is used for graphically displaying the game </td></tr>
-    <tr><td class="paramname">world</td><td>The world that is used to view all the entities and use them </td></tr>
+    <tr><td class="paramname">world</td><td>The world that needs to be updated </td></tr>
   </table>
   </dd>
 </dl>

@@ -6,6 +6,5 @@ var searchData=
   ['replay',['replay',['../classControl_1_1Controller.html#a3a72dd19d9df14958744c9d80949cd0d',1,'Control::Controller']]],
   ['reset',['reset',['../classModel_1_1World.html#a2b9a91d5e568f3a3b4168776db4d62d7',1,'Model::World::reset()'],['../classUtils_1_1Stopwatch.html#ae7f0fe3f547e1b28ace1d6d6a4526af9',1,'Utils::Stopwatch::reset()']]],
   ['resetdelay',['resetDelay',['../classModel_1_1Ship.html#a9f0405bbce33c890cffc20967df0c59d',1,'Model::Ship']]],
-  ['retrieveobserver',['retrieveObserver',['../classObserverPattern_1_1Subject.html#a1033427540dabf6676fc430336647305',1,'ObserverPattern::Subject']]],
-  ['run',['run',['../classControl_1_1Controller.html#a789353a91d2bd2c872bbbac5f27d308f',1,'Control::Controller']]]
+  ['retrieveobserver',['retrieveObserver',['../classObserverPattern_1_1Subject.html#a1033427540dabf6676fc430336647305',1,'ObserverPattern::Subject']]]
 ];

@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['_7edraw',['~Draw',['../classView_1_1Draw.html#a57834841d535cc929a8945e97027fe38',1,'View::Draw']]],
-  ['_7eentity',['~Entity',['../classModel_1_1Entity.html#af839353706fc10dc6e7acc3b832a9eb9',1,'Model::Entity']]],
-  ['_7eobserver',['~Observer',['../classObserverPattern_1_1Observer.html#a3e2869982049e2ce1f61c8b32d6f75d6',1,'ObserverPattern::Observer']]],
-  ['_7eplayership',['~PlayerShip',['../classModel_1_1PlayerShip.html#a45021541ed59089700a33f2ad78f05f1',1,'Model::PlayerShip']]],
-  ['_7eship',['~Ship',['../classModel_1_1Ship.html#a6c8ba162a173456b87004cda111e8b61',1,'Model::Ship']]],
-  ['_7esubject',['~Subject',['../classObserverPattern_1_1Subject.html#a6224c5566ee35568746f80a09bf7e83f',1,'ObserverPattern::Subject']]],
-  ['_7eworld',['~World',['../classModel_1_1World.html#aba1f3a21f40a6611e005cc60ecbb298d',1,'Model::World']]]
+  ['what',['what',['../classException_1_1bad__file.html#a5a881d9f80eb7838bd0adf63168e75eb',1,'Exception::bad_file::what()'],['../classException_1_1bad__type.html#afa8396908a4e4d51d5866e7cb7a01b29',1,'Exception::bad_type::what()'],['../classException_1_1entity__underflow.html#ab1097aa5f87305c0d2ec5c83573834ac',1,'Exception::entity_underflow::what()']]],
+  ['world',['World',['../classModel_1_1World.html#a0e6a324cda7b28a1b05e257dec544161',1,'Model::World::World(const std::string &amp;image, double endLine)'],['../classModel_1_1World.html#a264f716d6666dd1eb55f7ed6236f489c',1,'Model::World::World()=default']]]
 ];

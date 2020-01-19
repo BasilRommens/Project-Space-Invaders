@@ -87,6 +87,7 @@ public:
          * @throws Exception::bad_type If the file type doesnt match i.e. level
          * @throws Exception::bad_type If one of the entities to be loaded throws an exception of the type bad_type
          * @throws Exception::bad_file we get this exception whenever one of the files is corrupted
+         * @details Always parse the world first otherwise errors might occur
          */
         void parseLevel(const std::string& levelFile);
 
